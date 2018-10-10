@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文章管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+	<#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/admin/article/list">文章管理</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+		<div class="tools">
+			<ul class="toolbar">
+				<li class="click" onclick="showPage('/admin/article/insert','70%','70%','文章添加')"><span><img src="/back/images/t01.png" /></span>添加</li>
+			</ul>
+		</div>
+		<form action="/admin/article/list"  id="from">
+			<ul class="seachform">
+			    <li><label>状态</label>
+			    	<div class="vocation">
+					    <select class="select1" id="isDelete" name="type">
+					   		<option value="0">全部</option>
+					   		<#if (type!0) == 1>
+					   			<option value="1" selected="selected">划痕无忧</option>
+					   		<#else>
+					   			<option value="1" >划痕无忧</option>
+					   		</#if>
+					   		<#if (type!0) == 2>
+					   			<option value="2" selected="selected">天天洗车</option>
+					   		<#else>
+					   			<option value="2" >天天洗车</option>
+					   		</#if>
+							<#if (type!0) == 3>
+								<option value="3" selected="selected">会员协议</option>
+							<#else>
+								<option value="3" >会员协议</option>
+							</#if>
+							<#if (type!0) == 4>
+							<option value="4" selected="selected">车友群介绍</option>
+							<#else>
+							<option value="4" >车友群介绍</option>
+							</#if>
+							<#if (type!0) == 5>
+							<option value="5" selected="selected">道路抢险</option>
+							<#else>
+							<option value="5" >道路抢险</option>
+							</#if>
+							<#if (type!0) == 6>
+							<option value="6" selected="selected">代办车贷</option>
+							<#else>
+							<option value="6" >代办车贷</option>
+							</#if>
+					    </select>
+				    </div>
+			    </li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+		<form id="userId">
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input type="checkbox" onclick="selectAll('userId');"/></th>
+					<th >文章标题</th>
+					<th >文章分类</th>
+					<th >文章内容</th>
+					<th >联系电话</th>
+					<th >联系微信</th>
+					<th>创建时间</th>
+					<th >操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td><input type="checkbox" name="userId" value="${entity.id!''}" /></td>
+				        <td>${entity.articleTitel!''}</td>
+				        <td>
+							<#if (entity.articleType!0) == 1>划痕无忧
+							<#elseif (entity.articleType!0) == 2>天天洗车
+							<#elseif (entity.articleType!0) == 3>会员协议
+							<#elseif (entity.articleType!0) == 4>车友群介绍
+							<#elseif (entity.articleType!0) == 5>道路抢险
+							<#elseif (entity.articleType!0) == 6>代办车贷
+							</#if>
+						</td>
+				        <td title="${entity.articleContent!''}">
+							<#if (entity.articleContent)?length gt 33>
+							 	${entity.articleContent?substring(0,30)}...
+							<#else>
+								${entity.articleContent}
+							</#if>
+				        </td>
+				        <td>${entity.contactsPhome!''}</td>
+				        <td>${entity.contactsWechat!''}</td>
+				        <td>${entity.createTime?number_to_datetime}</td>
+				        <td>
+			 					<a class="tablelink" href="javascript:showPage('/admin/article/update?id=${entity.id?c}','70%','70%','编辑文章-${entity.articleTitel!''}')" title="编辑">编辑</a>
+				        </td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		</form>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+		    $(".select1").uedSelect({
+				width : 100			  
+			});
+		});
+		/*密码-修改*/
+		function change_password(id){
+			layer.confirm('确认要重置密码吗？',function(index){
+				$.post("/admin/adminUser/adreset?from=ajax", {'userId': id },
+				    function(result) {jsonState(result)},'json');
+			});
+		}
+		/*用户-启用/禁用*/
+		function member_start(obj,id){
+			layer.confirm(obj,function(index){
+				$.post("/admin/adminUser/delete?from=ajax", {'userId': id },
+					    function(result) {jsonState(result)},'json');
+			});
+		}
+	
+	
+	</script>
+</body>
+</html>

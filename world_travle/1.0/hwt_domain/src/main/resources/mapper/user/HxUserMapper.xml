@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.HxUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.HxUser">
+    <id column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="account_is_edit" jdbcType="TINYINT" property="account_is_edit" />
+    <result column="account_phone" jdbcType="VARCHAR" property="account_phone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="pwd_salt" jdbcType="VARCHAR" property="pwd_salt" />
+    <result column="im_id" jdbcType="VARCHAR" property="im_id" />
+    <result column="im_token" jdbcType="VARCHAR" property="im_token" />
+    <result column="im_token_time" jdbcType="TIMESTAMP" property="im_token_time" />
+    <result column="login_state" jdbcType="INTEGER" property="login_state" />
+    <result column="login_state2_begin" jdbcType="TIMESTAMP" property="login_state2_begin" />
+    <result column="login_state2_end" jdbcType="TIMESTAMP" property="login_state2_end" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="recently_login_time" jdbcType="TIMESTAMP" property="recently_login_time" />
+    <result column="recently_login_ip" jdbcType="VARCHAR" property="recently_login_ip" />
+    <result column="login_type" jdbcType="INTEGER" property="login_type" />
+    <result column="is_available" jdbcType="BIT" property="is_available" />
+  </resultMap>
+  
+  <!-- 返回主键添加 -->
+  <!-- <insert id="insertReturnUserId" useGeneratedKeys="true" keyProperty="user_id"
+  			 parameterType="com.hwt.domain.entity.user.HxUser">
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into hx_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="accountIsEdit != null">
+        account_is_edit,
+      </if>
+      <if test="accountPhone != null">
+        account_phone,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="pwdSalt != null">
+        pwd_salt,
+      </if>
+      <if test="imId != null">
+        im_id,
+      </if>
+      <if test="imToken != null">
+        im_token,
+      </if>
+      <if test="imTokenTime != null">
+        im_token_time,
+      </if>
+      <if test="loginState != null">
+        login_state,
+      </if>
+      <if test="loginState2Begin != null">
+        login_state2_begin,
+      </if>
+      <if test="loginState2End != null">
+        login_state2_end,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="recentlyLoginTime != null">
+        recently_login_time,
+      </if>
+      <if test="recentlyLoginIp != null">
+        recently_login_ip,
+      </if>
+      <if test="loginType != null">
+        login_type,
+      </if>
+      <if test="isAvailable != null">
+        is_available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIsEdit != null">
+        #{accountIsEdit,jdbcType=TINYINT},
+      </if>
+      <if test="accountPhone != null">
+        #{accountPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdSalt != null">
+        #{pwdSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="imId != null">
+        #{imId,jdbcType=VARCHAR},
+      </if>
+      <if test="imToken != null">
+        #{imToken,jdbcType=VARCHAR},
+      </if>
+      <if test="imTokenTime != null">
+        #{imTokenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginState != null">
+        #{loginState,jdbcType=INTEGER},
+      </if>
+      <if test="loginState2Begin != null">
+        #{loginState2Begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginState2End != null">
+        #{loginState2End,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recentlyLoginTime != null">
+        #{recentlyLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recentlyLoginIp != null">
+        #{recentlyLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null">
+        #{loginType,jdbcType=INTEGER},
+      </if>
+      <if test="isAvailable != null">
+        #{isAvailable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert> -->
+  <insert id="insertReturnUserId" useGeneratedKeys="true" keyProperty="user_id"
+  			 parameterType="com.hwt.domain.entity.user.HxUser">
+   
+    insert into hx_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="account_is_edit != null">
+        account_is_edit,
+      </if>
+      <if test="account_phone != null">
+        account_phone,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="pwd_salt != null">
+        pwd_salt,
+      </if>
+      <if test="im_id != null">
+        im_id,
+      </if>
+      <if test="im_token != null">
+        im_token,
+      </if>
+      <if test="im_token_time != null">
+        im_token_time,
+      </if>
+      <if test="login_state != null">
+        login_state,
+      </if>
+      <if test="login_state2_begin != null">
+        login_state2_begin,
+      </if>
+      <if test="login_state2_end != null">
+        login_state2_end,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="recently_login_time != null">
+        recently_login_time,
+      </if>
+      <if test="recently_login_ip != null">
+        recently_login_ip,
+      </if>
+      <if test="login_type != null">
+        login_type,
+      </if>
+      <if test="is_available != null">
+        is_available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="account_is_edit != null">
+        #{account_is_edit,jdbcType=TINYINT},
+      </if>
+      <if test="account_phone != null">
+        #{account_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd_salt != null">
+        #{pwd_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="im_id != null">
+        #{im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token != null">
+        #{im_token,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token_time != null">
+        #{im_token_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state != null">
+        #{login_state,jdbcType=INTEGER},
+      </if>
+      <if test="login_state2_begin != null">
+        #{login_state2_begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state2_end != null">
+        #{login_state2_end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recently_login_time != null">
+        #{recently_login_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recently_login_ip != null">
+        #{recently_login_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="login_type != null">
+        #{login_type,jdbcType=INTEGER},
+      </if>
+      <if test="is_available != null">
+        #{is_available,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.HxUser">
+    insert into hx_user (user_id, account, account_is_edit, 
+      account_phone, password, pwd_salt, 
+      im_id, im_token, im_token_time, 
+      login_state, login_state2_begin, login_state2_end, 
+      create_time, recently_login_time, recently_login_ip, 
+      login_type, is_available)
+    values (#{user_id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{account_is_edit,jdbcType=TINYINT}, 
+      #{account_phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{pwd_salt,jdbcType=VARCHAR}, 
+      #{im_id,jdbcType=VARCHAR}, #{im_token,jdbcType=VARCHAR}, #{im_token_time,jdbcType=TIMESTAMP}, 
+      #{login_state,jdbcType=INTEGER}, #{login_state2_begin,jdbcType=TIMESTAMP}, #{login_state2_end,jdbcType=TIMESTAMP}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{recently_login_time,jdbcType=TIMESTAMP}, #{recently_login_ip,jdbcType=VARCHAR}, 
+      #{login_type,jdbcType=INTEGER}, #{is_available,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.HxUser">
+    insert into hx_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="account_is_edit != null">
+        account_is_edit,
+      </if>
+      <if test="account_phone != null">
+        account_phone,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="pwd_salt != null">
+        pwd_salt,
+      </if>
+      <if test="im_id != null">
+        im_id,
+      </if>
+      <if test="im_token != null">
+        im_token,
+      </if>
+      <if test="im_token_time != null">
+        im_token_time,
+      </if>
+      <if test="login_state != null">
+        login_state,
+      </if>
+      <if test="login_state2_begin != null">
+        login_state2_begin,
+      </if>
+      <if test="login_state2_end != null">
+        login_state2_end,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="recently_login_time != null">
+        recently_login_time,
+      </if>
+      <if test="recently_login_ip != null">
+        recently_login_ip,
+      </if>
+      <if test="login_type != null">
+        login_type,
+      </if>
+      <if test="is_available != null">
+        is_available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="account_is_edit != null">
+        #{account_is_edit,jdbcType=TINYINT},
+      </if>
+      <if test="account_phone != null">
+        #{account_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd_salt != null">
+        #{pwd_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="im_id != null">
+        #{im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token != null">
+        #{im_token,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token_time != null">
+        #{im_token_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state != null">
+        #{login_state,jdbcType=INTEGER},
+      </if>
+      <if test="login_state2_begin != null">
+        #{login_state2_begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state2_end != null">
+        #{login_state2_end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recently_login_time != null">
+        #{recently_login_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recently_login_ip != null">
+        #{recently_login_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="login_type != null">
+        #{login_type,jdbcType=INTEGER},
+      </if>
+      <if test="is_available != null">
+        #{is_available,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.HxUser">
+    update hx_user
+    <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="account_is_edit != null">
+        account_is_edit = #{account_is_edit,jdbcType=TINYINT},
+      </if>
+      <if test="account_phone != null">
+        account_phone = #{account_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd_salt != null">
+        pwd_salt = #{pwd_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="im_id != null">
+        im_id = #{im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token != null">
+        im_token = #{im_token,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token_time != null">
+        im_token_time = #{im_token_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state != null">
+        login_state = #{login_state,jdbcType=INTEGER},
+      </if>
+      <if test="login_state2_begin != null">
+        login_state2_begin = #{login_state2_begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state2_end != null">
+        login_state2_end = #{login_state2_end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recently_login_time != null">
+        recently_login_time = #{recently_login_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recently_login_ip != null">
+        recently_login_ip = #{recently_login_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="login_type != null">
+        login_type = #{login_type,jdbcType=INTEGER},
+      </if>
+      <if test="is_available != null">
+        is_available = #{is_available,jdbcType=BIT},
+      </if>
+    </set>
+    where user_id = #{user_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.HxUser">
+    update hx_user
+    set account = #{account,jdbcType=VARCHAR},
+      account_is_edit = #{account_is_edit,jdbcType=TINYINT},
+      account_phone = #{account_phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      pwd_salt = #{pwd_salt,jdbcType=VARCHAR},
+      im_id = #{im_id,jdbcType=VARCHAR},
+      im_token = #{im_token,jdbcType=VARCHAR},
+      im_token_time = #{im_token_time,jdbcType=TIMESTAMP},
+      login_state = #{login_state,jdbcType=INTEGER},
+      login_state2_begin = #{login_state2_begin,jdbcType=TIMESTAMP},
+      login_state2_end = #{login_state2_end,jdbcType=TIMESTAMP},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      recently_login_time = #{recently_login_time,jdbcType=TIMESTAMP},
+      recently_login_ip = #{recently_login_ip,jdbcType=VARCHAR},
+      login_type = #{login_type,jdbcType=INTEGER},
+      is_available = #{is_available,jdbcType=BIT}
+    where user_id = #{user_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据条件获取总条数 -->
+<select id="queryCountByMap" resultType="java.lang.Long" parameterType="map">
+	select count(a.user_id) from hx_user a,hx_user_info b where 1=1 and a.user_id = b.user_id
+		<if test="account != null and account !=''">
+			and  `account` like '%${account}%'
+		</if>
+		<if test="account_phone != null and account_phone !=''">
+			and  `account_phone` like '%${account_phone}%'
+		</if>
+		<if test="user_sex != null and user_sex > -1">
+			and  b.user_sex = #{user_sex}
+		</if>
+		<if test="userType != null and userType > -1">
+			and  b.userType = #{userType}
+		</if>
+		
+		<if test="login_state != null and login_state > 0">
+			and  a.login_state = #{login_state}
+		</if>
+		
+			
+		
+
+</select>
+<!-- 根据条件获取数据 -->
+<select id="queryListByMap" resultType="com.hwt.domain.entity.user.Vo.adminHxVo.AdminHxUserVo" parameterType="map">
+	select a.user_id, a.account, a.account_phone, a.login_state, a.recently_login_time, a.recently_login_ip ,b.nickname, b.userType, b.user_sex
+		from hx_user a, hx_user_info b 
+		where 1=1 and a.user_id = b.user_id
+		<if test="account != null and account !=''">
+			and  `account` like '%${account}%'
+		</if>
+		<if test="account_phone != null and account_phone !=''">
+			and  `account_phone`  like '%${account_phone}%'
+		</if>
+		<if test="user_sex != null and user_sex > -1">
+			and  b.user_sex = #{user_sex}
+		</if>
+		<if test="userType != null and userType > -1">
+			and  b.userType = #{userType}
+		</if>
+		<if test="login_state != null and login_state > 0">
+			and  a.login_state = #{login_state}
+		</if>
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->a.${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+
+</select>
+
+<!-- 根据条件获取总条数给报表 -->
+<select id="queryHxUserReportCountByMap" resultType="java.lang.Long" parameterType="map">
+	select count(user_id) from hx_user  where 1=1 
+		<if test="account != null and account !=''">
+			and  `account` like '%${account}%'
+		</if>
+		<if test="account_phone != null and account_phone !=''">
+			and  `account_phone` like '%${account_phone}%'
+		</if>
+		
+		
+			<!-- 本日 -->
+		<if test="registerDate != null and registerDate == 1">
+			and  create_time = curdate()
+		</if>
+		<!-- 本周 -->
+		<if test="registerDate != null and registerDate == 2">
+			and  YEARWEEK(date_format(create_time,'%Y-%m-%d')) = YEARWEEK(now());
+		</if>
+		<!-- 本月 -->
+		<if test="registerDate != null and registerDate == 3">
+			and DATE_FORMAT( create_time, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+		</if>
+</select>
+<!-- 根据条件获取总条数给报表 -->
+<select id="queryHxUserReportByMap" resultType="com.hwt.domain.entity.user.Vo.adminHxVo.HxUserReportVo" parameterType="map">
+	select user_id,account,account_phone,login_state,create_time from hx_user  where 1=1 
+		<if test="account != null and account !=''">
+			and  `account` like '%${account}%'
+		</if>
+		<if test="account_phone != null and account_phone !=''">
+			and  `account_phone` like '%${account_phone}%'
+		</if>
+		<!-- 本日 -->
+		<if test="registerDate != null and registerDate == 1">
+			and  date(create_time) = curdate()
+		</if>
+		<!-- 本周 -->
+		<if test="registerDate != null and registerDate == 2">
+			and  YEARWEEK(date_format(create_time,'%Y-%m-%d')) = YEARWEEK(now())
+		</if>
+		<!-- 本月 -->
+		<if test="registerDate != null and registerDate == 3">
+			and DATE_FORMAT( create_time, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+		</if>
+		
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+</select>
+</mapper>

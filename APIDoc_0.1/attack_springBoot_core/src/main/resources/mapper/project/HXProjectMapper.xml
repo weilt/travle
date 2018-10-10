@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xx.project.mapper.HXProjectMapper" >
+<!-- 查询条数 -->
+  	<select id="queryListCount" parameterType="map" resultType="int">
+  		select count(id) from hx_project where 1=1
+  		<if test="name != null and '' != name">
+  			and name LIKE CONCAT('%',#{name},'%')
+  		</if>
+  		
+  	</select>
+  	<!-- 查询数据 -->
+  	<select id="queryList" parameterType="map" resultType="hashMap">
+  		select p.id as id, p.name as name, u.userName as userName, p.description as description, p.isDelete as isDelete, 
+  			p.createTime as createTime, p.updateTime as updateTime
+  			from hx_project p,admin_user u where p.userId = u.id
+  		<if test="name != null and '' != name">
+  			and p.name LIKE CONCAT('%',#{name},'%')
+  		</if>
+  		order by p.isDelete asc,p.createTime desc
+  		
+  		<if test="last != null and '' != last and last > 0">  
+	        <![CDATA[ LIMIT #{index},#{last} ]]>
+		</if>
+  	</select>
+  	<!-- 跟新 -->
+  	<update id="update" parameterType="com.xx.project.entity.HXProject">
+  		update hx_project
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        isDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      
+        updateTime = now()
+    
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  	</update>
+  	
+</mapper>

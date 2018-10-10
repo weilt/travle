@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.head{
+				width: 100%;
+				height: 50px;
+				position: relative;
+				text-align: center;
+				padding-top: 20px;
+			}
+			.head time{
+				position: absolute;
+				right: 20px;;
+			}
+			.content{
+				width: 100%;
+				min-width: 1200px;
+				height: auto;
+				padding: 0 24px;
+				margin-top: 50px;
+				position: relative;
+				top: 50px;
+			}
+			.bar-box{
+				position: absolute;
+				width: 600px;
+				height: 350px;
+				left: 24px;
+				top: 0;
+				border: 1px solid #000000;
+			}
+			.money{
+				position: absolute;
+				top: 100px;
+				left: 500px;
+			}
+			.money span{
+				font-size: 12px;;
+			}
+			.money p{
+				font-size: 18px;
+				font-weight: bold;
+			}
+			.bottom-box{
+				width: 600px;
+				height: 350px;
+				position: absolute;
+				border: 1px solid #000000;
+				top: 370px;
+			}
+			.bottom-box1{
+				width: 600px;
+				height: 350px;
+				position: absolute;
+				border: 1px solid #000000;
+				top: 740px;
+			}
+			.box1{
+				width: 600px;
+				height: 350px;
+				border: 1px solid #000000;
+				position: absolute;
+				right: 24px;
+				padding: 0 24px;
+			}
+			.title{
+				display: flex;
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				border-bottom: 1px solid #000000;
+			}
+			.list-box{
+				list-style: none;
+			}
+			.list-box .list:nth-child(1){
+				font-weight: bold;
+			}
+			.list{
+				display: flex;
+				width: 100%;
+				height: 30px;
+			}
+			.list div{
+				width: 100px;
+				text-align: center;
+				line-height: 30px;
+			}
+			.box2{
+				width: 600px;
+				height: 350px;
+				border: 1px solid #000000;
+				position: absolute;
+				right: 24px;
+				top: 350px;
+				padding: 0 24px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="head">
+			旗驾车服
+			<time>2018.07.05</time>
+		</div>
+		
+		<div class="money">
+			<span>总交易额</span>
+			<p>￥1654654.00</p>
+		</div>
+		
+		<div class="content">
+			<div id="bar" class="bar-box"></div>
+			<div id="pie1" class="bottom-box"></div>
+			<div id="pie2" class="bottom-box1"></div>
+			<div class="box1">
+				<div class="title">
+					<span>洗车区域排行</span>
+					<div style="flex:1"></div>
+					<span>5月</span>
+				</div>
+				
+				<ul class="list-box" id="list">
+					<li class="list">
+						<div>九龙坡</div>
+						<div>次数</div>
+						<div>洗车率</div>
+						<div>排行</div>
+					</li>
+				</ul>
+			</div>
+			
+			
+			<div class="box2">
+				<div class="title">
+					<span>划痕区域排行</span>
+					<div style="flex:1"></div>
+					<span>5月</span>
+				</div>
+				
+				<ul class="list-box" id="list2">
+					<li class="list">
+						<div>九龙坡</div>
+						<div>次数</div>
+						<div>洗车率</div>
+						<div>排行</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<script src="/back/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/back/js/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/back/js/zry.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			
+			var data = [
+				{value:656, name:'渝中'},
+				{value:45, name:'渝北'},
+				{value:123, name:'九龙坡'},
+				{value:556, name:'大渡口'},
+				{value:123, name:'沙坪坝'},
+				{value:13, name:'巴南'}
+			]
+			var dataList = [
+				{place:'渝北' , num:12 , rate:'50%' , ranking:'第一'},
+				{place:'渝中' , num:78 , rate:'20%' , ranking:'第一'},
+				{place:'江北' , num:55 , rate:'56%' , ranking:'第一'},
+				{place:'大渡口' , num:95 , rate:'77%' , ranking:'第一'},
+				{place:'九龙坡' , num:61 , rate:'42%' , ranking:'第一'}
+			]
+			
+			showRanking('#list' , dataList)
+			showRanking('#list2' , dataList)
+			
+			drawChart('bar' , 'bar' , data , '主城网点覆盖')
+			drawChart('pie1' , 'pie' , data , '今日洗车占比')
+			drawChart('pie2' , 'pie' , data , '今日划痕占比')
+			
+			
+			
+			
+		        
+		</script>
+		
+	</body>
+</html>

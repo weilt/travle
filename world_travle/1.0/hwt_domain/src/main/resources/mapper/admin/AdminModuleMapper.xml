@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.admin.AdminModuleMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.admin.AdminModule">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="parentId" jdbcType="INTEGER" property="parentId" />
+    <result column="moduleImage" jdbcType="VARCHAR" property="moduleImage" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="sort" jdbcType="TINYINT" property="sort" />
+    <result column="isHide" jdbcType="TINYINT" property="isHide" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+ <sql id="Base_Column_List">
+    id, `name`, url, parentId, moduleImage, description, sort, isHide, userId, createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+   <insert id="insert" parameterType="com.hwt.domain.entity.admin.AdminModule">
+    insert into admin_module (id, `name`, url, 
+      parentId, moduleImage, description, 
+      sort, isHide, userId, 
+      createTime)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{moduleImage,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=TINYINT}, #{isHide,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.admin.AdminModule">
+    insert into admin_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="parentId != null">
+        parentId,
+      </if>
+      <if test="moduleImage != null">
+        moduleImage,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="isHide != null">
+        isHide,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleImage != null">
+        #{moduleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="isHide != null">
+        #{isHide,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+   <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.admin.AdminModule">
+    update admin_module
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parentId = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleImage != null">
+        moduleImage = #{moduleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="isHide != null">
+        isHide = #{isHide,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.admin.AdminModule">
+    update admin_module
+    set `name` = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      parentId = #{parentId,jdbcType=INTEGER},
+      moduleImage = #{moduleImage,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=TINYINT},
+      isHide = #{isHide,jdbcType=TINYINT},
+      userId = #{userId,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <!-- 根据条件获取总条数 -->
+<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="map">
+	select count(id) from admin_module where 1=1 
+		<if test="url != null and url !=''">
+			and  `url` like '%${url}%'
+		</if>
+		
+			and  `parentId` = #{parentId}
+		
+
+</select>
+<!-- 根据条件获取数据 -->
+<select id="queryListByMap" resultType="com.hwt.domain.entity.admin.vo.AdminModuleVo" parameterType="map">
+	select a.id, a.`name`, a.url , a.moduleImage, a.description,a.parentId, a.sort, a.isHide, b.user_account, a.createTime
+		from admin_module a join admin_user b 
+		on 1=1 and a.userId = b.user_id 
+		 
+		
+		<if test="url != null and url !=''">
+			and  a.url like '%${url}%'
+		</if>
+	
+			and  a.parentId = #{parentId}
+		
+		
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->a.isHide asc, a.${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+
+</select>
+</mapper>

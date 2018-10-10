@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.wallet.HxUserWalletBillMapper">
+   <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.wallet.HxUserWalletBill">
+    <id column="bill_id" jdbcType="BIGINT" property="bill_id" />
+    <result column="name_id" jdbcType="BIGINT" property="name_id" />
+    <result column="name_type" jdbcType="INTEGER" property="name_type" />
+    <result column="bill_dec" jdbcType="VARCHAR" property="bill_dec" />
+    <result column="bill_title" jdbcType="VARCHAR" property="bill_title" />
+    <result column="bill_type" jdbcType="INTEGER" property="bill_type" />
+    <result column="order_num" jdbcType="VARCHAR" property="order_num" />
+    <result column="trans_num" jdbcType="VARCHAR" property="trans_num" />
+    <result column="operation_amount" jdbcType="DECIMAL" property="operation_amount" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="is_wallet" jdbcType="INTEGER" property="is_wallet" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="is_get" jdbcType="INTEGER" property="is_get" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="stare_time" jdbcType="BIGINT" property="stare_time" />
+    <result column="end_time" jdbcType="BIGINT" property="end_time" />
+    <result column="flow_num" jdbcType="VARCHAR" property="flow_num" />
+    <result column="is_success" jdbcType="INTEGER" property="is_success" />
+  </resultMap>
+    <sql id="Base_Column_List">
+    bill_id, name_id, name_type, bill_dec, bill_title, bill_type, order_num, trans_num, 
+    operation_amount, balance, is_wallet, source, remarks, is_get, create_time, stare_time, 
+    end_time, flow_num, is_success
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_user_wallet_bill
+    where bill_id = #{bill_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_user_wallet_bill
+    where bill_id = #{bill_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBill">
+    insert into hx_user_wallet_bill (bill_id, name_id, name_type, 
+      bill_dec, bill_title, bill_type, 
+      order_num, trans_num, operation_amount, 
+      balance, is_wallet, source, 
+      remarks, is_get, create_time, 
+      stare_time, end_time, flow_num, 
+      is_success)
+    values (#{bill_id,jdbcType=BIGINT}, #{name_id,jdbcType=BIGINT}, #{name_type,jdbcType=INTEGER}, 
+      #{bill_dec,jdbcType=VARCHAR}, #{bill_title,jdbcType=VARCHAR}, #{bill_type,jdbcType=INTEGER}, 
+      #{order_num,jdbcType=VARCHAR}, #{trans_num,jdbcType=VARCHAR}, #{operation_amount,jdbcType=DECIMAL}, 
+      #{balance,jdbcType=DECIMAL}, #{is_wallet,jdbcType=INTEGER}, #{source,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{is_get,jdbcType=INTEGER}, #{create_time,jdbcType=BIGINT}, 
+      #{stare_time,jdbcType=BIGINT}, #{end_time,jdbcType=BIGINT}, #{flow_num,jdbcType=VARCHAR}, 
+      #{is_success,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBill">
+    insert into hx_user_wallet_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bill_id != null">
+        bill_id,
+      </if>
+      <if test="name_id != null">
+        name_id,
+      </if>
+      <if test="name_type != null">
+        name_type,
+      </if>
+      <if test="bill_dec != null">
+        bill_dec,
+      </if>
+      <if test="bill_title != null">
+        bill_title,
+      </if>
+      <if test="bill_type != null">
+        bill_type,
+      </if>
+      <if test="order_num != null">
+        order_num,
+      </if>
+      <if test="trans_num != null">
+        trans_num,
+      </if>
+      <if test="operation_amount != null">
+        operation_amount,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="is_wallet != null">
+        is_wallet,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="is_get != null">
+        is_get,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="stare_time != null">
+        stare_time,
+      </if>
+      <if test="end_time != null">
+        end_time,
+      </if>
+      <if test="flow_num != null">
+        flow_num,
+      </if>
+      <if test="is_success != null">
+        is_success,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bill_id != null">
+        #{bill_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_id != null">
+        #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="bill_dec != null">
+        #{bill_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="bill_title != null">
+        #{bill_title,jdbcType=VARCHAR},
+      </if>
+      <if test="bill_type != null">
+        #{bill_type,jdbcType=INTEGER},
+      </if>
+      <if test="order_num != null">
+        #{order_num,jdbcType=VARCHAR},
+      </if>
+      <if test="trans_num != null">
+        #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="operation_amount != null">
+        #{operation_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="is_wallet != null">
+        #{is_wallet,jdbcType=INTEGER},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="is_get != null">
+        #{is_get,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="stare_time != null">
+        #{stare_time,jdbcType=BIGINT},
+      </if>
+      <if test="end_time != null">
+        #{end_time,jdbcType=BIGINT},
+      </if>
+      <if test="flow_num != null">
+        #{flow_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_success != null">
+        #{is_success,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBill">
+    update hx_user_wallet_bill
+    <set>
+      <if test="name_id != null">
+        name_id = #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        name_type = #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="bill_dec != null">
+        bill_dec = #{bill_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="bill_title != null">
+        bill_title = #{bill_title,jdbcType=VARCHAR},
+      </if>
+      <if test="bill_type != null">
+        bill_type = #{bill_type,jdbcType=INTEGER},
+      </if>
+      <if test="order_num != null">
+        order_num = #{order_num,jdbcType=VARCHAR},
+      </if>
+      <if test="trans_num != null">
+        trans_num = #{trans_num,jdbcType=VARCHAR},
+      </if>
+      <if test="operation_amount != null">
+        operation_amount = #{operation_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="is_wallet != null">
+        is_wallet = #{is_wallet,jdbcType=INTEGER},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="is_get != null">
+        is_get = #{is_get,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="stare_time != null">
+        stare_time = #{stare_time,jdbcType=BIGINT},
+      </if>
+      <if test="end_time != null">
+        end_time = #{end_time,jdbcType=BIGINT},
+      </if>
+      <if test="flow_num != null">
+        flow_num = #{flow_num,jdbcType=VARCHAR},
+      </if>
+      <if test="is_success != null">
+        is_success = #{is_success,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bill_id = #{bill_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBill">
+    update hx_user_wallet_bill
+    set name_id = #{name_id,jdbcType=BIGINT},
+      name_type = #{name_type,jdbcType=INTEGER},
+      bill_dec = #{bill_dec,jdbcType=VARCHAR},
+      bill_title = #{bill_title,jdbcType=VARCHAR},
+      bill_type = #{bill_type,jdbcType=INTEGER},
+      order_num = #{order_num,jdbcType=VARCHAR},
+      trans_num = #{trans_num,jdbcType=VARCHAR},
+      operation_amount = #{operation_amount,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      is_wallet = #{is_wallet,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      is_get = #{is_get,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=BIGINT},
+      stare_time = #{stare_time,jdbcType=BIGINT},
+      end_time = #{end_time,jdbcType=BIGINT},
+      flow_num = #{flow_num,jdbcType=VARCHAR},
+      is_success = #{is_success,jdbcType=INTEGER}
+    where bill_id = #{bill_id,jdbcType=BIGINT}
+  </update>
+  
+  <!--  查询账单  query_bill-->
+  <select id="query_bill_app" parameterType="map" resultType="com.hwt.domain.entity.user.wallet.Vo.HxUserWalletBillVo">
+  	select  * from  hx_user_wallet_bill where name_id = #{user_id} and name_type = 1 
+  		<if test="last_bill_id !=null and last_bill_id != 0">
+  			and bill_id &lt; #{last_bill_id}
+  		
+  		</if>
+  		<if test="bill_type !=null and bill_type != 0">
+  			and bill_type = #{bill_type}
+  		
+  		</if>
+  		<if test="is_wallet !=null and is_wallet == 2">
+  			and is_wallet = #{is_wallet}
+  		
+  		</if>
+  	
+  	order by create_time desc limit 0,#{pageSize}
+   
+  
+  </select>
+  
+  <!-- 旅行社账单查询 query_bill_bureau-->
+  <select id="query_bill_bureau" parameterType="map" resultType="java.util.Map">
+  	
+  	select bill_id, trans_num ,create_time, bill_type, is_get, operation_amount from hx_user_wallet_bill 
+  		where name_id = #{bureau_id} and name_type = 2 
+  		
+  		<if test="bill_type != null and bill_type == 1">
+  			and bill_type = 3 or (bill_type = 6  and is_get = 1)
+  		
+  		</if>
+  		<if test="bill_type != null and bill_type == 2">
+  			and bill_type = 3
+  		
+  		</if>
+  		<if test="bill_type != null and bill_type == 3">
+  		and	bill_type = 6  and is_get = 0
+  		
+  		</if>
+  		<if test="startTime != null and startTime > 0">
+  			and create_time &gt; #{startTime}
+  		
+  		</if>
+  		
+  		<if test="endTime != null and endTime > 0">
+  			and create_time &lt;= #{endTime}
+  		
+  		</if>
+  		
+  		order by ${orderBy}
+  		 
+  		 limit #{startNum},#{pageSize}
+  	
+  </select>
+  
+  <!-- query_bill_bureau_count查询旅行社账条数 -->
+  <select id="query_bill_bureau_count" resultType="java.lang.Long" parameterType="map">
+  	select count(bill_id) from hx_user_wallet_bill 
+  	where name_id = #{bureau_id} and name_type = 2 
+  		
+  		<if test="bill_type != null and bill_type == 1">
+  		and 	bill_type = 3 or (bill_type = 6  and is_get = 1)
+  		
+  		</if>
+  		<if test="bill_type != null and bill_type == 2">
+  		and 	bill_type = 3
+  		
+  		</if>
+  		<if test="bill_type != null and bill_type == 3">
+  		and 	bill_type = 6  and is_get = 0
+  		
+  		</if>
+  		<if test="startTime != null and startTime > 0">
+  			and create_time &gt; #{startTime}
+  		
+  		</if>
+  		
+  		<if test="endTime != null and endTime > 0">
+  		and 	create_time &lt;= #{endTime}
+  		
+  		</if>
+  </select>
+</mapper>

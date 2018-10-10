@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>打赏 补偿查询</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/adminBack/reward/query">打赏 补偿查询</a></li>
+		</ul>
+		<ul class="toolbar1">
+			<li class="click" onclick="location.replace(location.href);"><span><img src="/back/images/t05.png" /></span>刷新</li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+		<form action="/adminBack/reward/query"  id="from">
+			<ul class="seachform">
+			    <li>
+			    	<label>店铺名称</label>
+			    	<div class="vocation">
+			    	<select class="select3"  name="shop_id">
+			    		<option value="" <#if map.shop_id??><#else>selected="selected" </#if>>全部</option>
+						<#list shoplist as entity >
+			    			<option value="${entity.id!''}" <#if map.shop_id??><#if map.shop_id==entity.id>selected="selected" </#if></#if> >${entity.shop_name!''}</option>
+			    		</#list>
+			    	</select>
+				    </div>
+			    </li>
+			    <li><label>用户电话</label><input placeholder="用户电话" value="${map.phone!''}" name="phone" type="text" class="scinput" /></li>
+			    <li>日期范围：
+					<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}',dateFmt:&#39;yyyy-MM-dd&#39;})" value="${map.startTime!''}" id="logmin" name="startTime" class="Wdate scinput" style="width:150px;"/>
+					-
+					<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',dateFmt:&#39;yyyy-MM-dd&#39;})" value="${map.lastTime!''}" id="logmax" name="lastTime" class="Wdate scinput" style="width:150px;"/>
+			    </li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+	                <th>用户电话</th>
+	                <th>店铺名称</th>
+	                <th>打赏、补偿类型</th>
+	                <th>是否成功</th>
+	                <th>支付类型</th>
+	                <th>支付金额</th>
+	                <th>创建时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td>${entity.phone!''}</td>
+						<td>${entity.manager_name!''}</td>
+						<td>
+							<#if entity.re_type??>
+								<#if entity.re_type==1>
+									打赏
+								<#else>
+									赔偿
+								</#if>
+							</#if>
+						</td>
+						<td>
+							<#if entity.re_step??>
+								<#if entity.re_step==1>
+									成功
+								<#else>
+									待支付
+								</#if>
+							</#if>
+						</td>
+						<td>
+							<#if entity.re_pay_type??>
+								<#if entity.re_pay_type==0>
+									余额支付
+								<#elseif entity.re_pay_type==1>
+									微信支付
+								<#elseif entity.re_pay_type==2>
+									支付宝支付
+								<#elseif entity.re_pay_type==3>
+									第四方支付
+								<#else>
+									其他方式
+								</#if>
+							</#if>
+						</td>
+						<td>${entity.re_balance!''}</td>
+						<td><#if entity.creation_time??>${entity.creation_time?string("yyyy-MM-dd HH:mm:ss")}</#if></td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+
+    $(document).ready(function(e) {
+		$(".select3").uedSelect({
+			width : 200
+		});
+	});
+	</script>
+</body>
+</html>

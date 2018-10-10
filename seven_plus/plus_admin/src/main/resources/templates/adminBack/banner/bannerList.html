@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>轮播图管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/adminBack/banner/query">轮播图管理</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<div class="tools">
+
+			<ul class="toolbar">
+				<li class="click" onclick="showPage('/adminBack/banner/insert','70%','70%','添加轮播图')"><span><img src="/back/images/t01.png" /></span>添加</li>
+				<!-- <li><span><img src="/back/images/t03.png" /></span>删除</li>
+				<li><span><img src="/back/images/t04.png" /></span>统计</li> -->
+			</ul>
+			<ul class="toolbar1">
+				<li class="click" onclick="location.replace(location.href);"><span><img src="/back/images/t05.png" /></span>刷新</li>
+			</ul>
+		</div>
+
+		<form action="/adminBack/banner/query"  id="from">
+			<ul class="seachform">
+			    <li><label>图片标题</label><input placeholder="图片名称" value="${map.banner_name!''}" name="banner_name" type="text" class="scinput" /></li>
+			    <li><label>图片位置</label>
+			    	<div class="vocation">
+					    <select class="select3" name="type">
+					    	<option value="0"<#if map.type??><#else>selected="selected"</#if>>全部</option>
+						    <option value="1" <#if map.type??><#if map.type==1> selected="selected"</#if></#if> >首页顶部banner</option>
+						    <option value="2" <#if map.type??><#if map.type==2> selected="selected"</#if></#if> >底部banner</option>
+					    </select>
+				    </div>
+			    </li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+	                <th>图片标题</th>
+	                <th>图片</th>
+	                <th>图片位置</th>
+	                <th>创建时间</th>
+	                <th>更新时间</th>
+	                <th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td>${entity.banner_name!''}</td>
+						<td><img src="${entity.banner_url!''}" width="75px" height="40px"/></td>
+						<td>
+							<#if entity.type==1>
+								首页顶部banner
+							<#else>
+								底部banner
+							</#if>
+						</td>
+						<td>${entity.creation_time?string("yyyy-MM-dd HH:mm:ss")}</td>
+						<td>${entity.update_time?string("yyyy-MM-dd HH:mm:ss")}</td>
+						<td>
+							<a class="tablelink" title="编辑" href="javascript:showPage('/adminBack/banner/update?id=${entity.id?c}','60%','60%','轮播图管理');" >
+		 						编辑</a>  
+							| <a class="tablelink"  href="javascript:role_del(this,'${entity.id?c}');" title="删除">删除</a>
+				            
+						</td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+
+    $(document).ready(function(e) {
+		$(".select3").uedSelect({
+			width : 200
+		});
+	});
+		/*模块-删除*/
+		function role_del(obj,id){
+			layer.confirm('确认要删除吗？',{icon:2},function(index){
+				$.post("/adminBack/banner/delete?from=ajax", {'id': id },
+			     function(result) {
+			    	 jsonState(result);
+			    },'json');
+			});
+		}
+		function numberAll(){
+			$.post("/admin/role/numberAll?from=ajax", {},
+		     function(result) {
+		    	 jsonState(result);
+		    },'json');
+		}
+	</script>
+</body>
+</html>

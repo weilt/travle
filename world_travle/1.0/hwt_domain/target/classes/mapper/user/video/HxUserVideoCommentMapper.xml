@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.video.HxUserVideoCommentMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.video.HxUserVideoComment">
+    <id column="video_comment_id" jdbcType="BIGINT" property="video_comment_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="video_id" jdbcType="BIGINT" property="video_id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="parent_id" jdbcType="BIGINT" property="parent_id" />
+    <result column="parent_user_id" jdbcType="BIGINT" property="parent_user_id" />
+    <result column="is_hide" jdbcType="INTEGER" property="is_hide" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List">
+    video_comment_id, user_id, video_id, content, type, parent_id, parent_user_id, is_hide, 
+    create_time
+  </sql>
+ 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_user_video_comment
+    where video_comment_id = #{video_comment_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_user_video_comment
+    where video_comment_id = #{video_comment_id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.video.HxUserVideoComment">
+    insert into hx_user_video_comment (video_comment_id, user_id, video_id, 
+      content, type, parent_id, 
+      parent_user_id, is_hide, create_time
+      )
+    values (#{video_comment_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{video_id,jdbcType=BIGINT}, 
+      #{content,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{parent_id,jdbcType=BIGINT}, 
+      #{parent_user_id,jdbcType=BIGINT}, #{is_hide,jdbcType=INTEGER}, #{create_time,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.video.HxUserVideoComment">
+    insert into hx_user_video_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="video_comment_id != null">
+        video_comment_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="video_id != null">
+        video_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="parent_id != null">
+        parent_id,
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id,
+      </if>
+      <if test="is_hide != null">
+        is_hide,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="video_comment_id != null">
+        #{video_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="video_id != null">
+        #{video_id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="parent_id != null">
+        #{parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_hide != null">
+        #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.video.HxUserVideoComment">
+    update hx_user_video_comment
+    <set>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="video_id != null">
+        video_id = #{video_id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="parent_id != null">
+        parent_id = #{parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id = #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_hide != null">
+        is_hide = #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where video_comment_id = #{video_comment_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.video.HxUserVideoComment">
+    update hx_user_video_comment
+    set user_id = #{user_id,jdbcType=BIGINT},
+      video_id = #{video_id,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      parent_id = #{parent_id,jdbcType=BIGINT},
+      parent_user_id = #{parent_user_id,jdbcType=BIGINT},
+      is_hide = #{is_hide,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where video_comment_id = #{video_comment_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 一对多查询关联  -->
+     <resultMap type="com.hwt.domain.entity.user.video.vo.HxUserVideoCommentVo" id="userVideoCommentVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+           <id column="video_comment_id" jdbcType="BIGINT" property="video_comment_id" />
+		    <result column="video_id" jdbcType="BIGINT" property="video_id" />
+		    <result column="content" jdbcType="VARCHAR" property="content" />
+		    <result column="type" jdbcType="INTEGER" property="type" />
+		    <result column="parent_id" jdbcType="BIGINT" property="parent_id" />
+		    <result column="is_hide" jdbcType="INTEGER" property="is_hide" />
+		    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+		    
+         <!-- 用collection标签 ,也是实体类属性要对应数据库字段-->
+         <collection property="comment_user" ofType="videoUserVo" column="user_id"
+         	select="query_user">
+         </collection>
+             
+         <collection property="parent_comment_user" ofType="parentVideoUserVo" column="parent_user_id"
+         	select="query_parent_user">
+         </collection>    
+     </resultMap>
+     
+     <resultMap type="com.hwt.domain.entity.user.video.vo.VideoUserVo" id="videoUserVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="user_id" column="user_id"/>
+           
+     </resultMap>
+      <resultMap type="com.hwt.domain.entity.user.video.vo.VideoUserVo" id="parentVideoUserVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="user_id" column="parent_user_id"/>
+           
+     </resultMap>
+     
+      <!-- 查询评论 -->
+     <select id="query_comment" parameterType="map" resultMap="userVideoCommentVo">
+         select * from hx_user_video_comment where video_id = #{video_id}  and is_hide = 0 
+         	<if test="last_video_comment_id != null and last_video_comment_id >0">
+         		and  video_comment_id &lt; #{last_video_comment_id}
+         	
+         	</if>
+          order by create_time desc limit 0 ,#{pageSize}
+     </select>
+     
+     <!-- 通过id查询用户 -->
+     <select id="query_user" parameterType="java.lang.Long" resultMap="videoUserVo">
+         select user_id as user_id, account as user_account , user_icon,nickname from hx_user_info where user_id = #{user_id}
+     </select>
+     <!-- 通过id查询用户 -->
+     <select id="query_parent_user" parameterType="java.lang.Long" resultMap="parentVideoUserVo">
+         select user_id as user_id, account as user_account , user_icon,nickname  from hx_user_info where user_id = #{parent_user_id}
+     </select>
+     
+     
+      <!-- 返回主键添加 insertBackId-->
+    <insert id="insertBackId"  parameterType="com.hwt.domain.entity.user.video.HxUserVideo"   useGeneratedKeys="true" keyProperty="video_comment_id">
+    insert into hx_user_video_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="video_comment_id != null">
+        video_comment_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="video_id != null">
+        video_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="parent_id != null">
+        parent_id,
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id,
+      </if>
+      <if test="is_hide != null">
+        is_hide,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="video_comment_id != null">
+        #{video_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="video_id != null">
+        #{video_id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="parent_id != null">
+        #{parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_hide != null">
+        #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

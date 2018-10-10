@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.HxUserFriendMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.HxUserFriend">
+    <id column="friend_id" jdbcType="BIGINT" property="friend_id" />
+    <id column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="is_shield" jdbcType="INTEGER" property="is_shield" />
+    <result column="friend_remark" jdbcType="VARCHAR" property="friend_remark" />
+    <result column="friend_state" jdbcType="TINYINT" property="friend_state" />
+    <result column="friend_to_me_state" jdbcType="TINYINT" property="friend_to_me_state" />
+    <result column="is_star" jdbcType="TINYINT" property="is_star" />
+    <result column="friend_see_me_space" jdbcType="TINYINT" property="friend_see_me_space" />
+    <result column="me_see_friend_space" jdbcType="TINYINT" property="me_see_friend_space" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="card_image" jdbcType="VARCHAR" property="card_image" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+  </resultMap>
+ 
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.HxUserFriend">
+    insert into hx_user_friend (friend_id, user_id, is_shield, 
+      friend_remark, friend_state, friend_to_me_state, 
+      is_star, friend_see_me_space, me_see_friend_space, 
+      friend_friend_see_me_space, friend_me_see_friend_space, 
+      phone, description, card_image, 
+      source, create_time)
+    values (#{friend_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{is_shield,jdbcType=INTEGER}, 
+      #{friend_remark,jdbcType=VARCHAR}, #{friend_state,jdbcType=TINYINT}, #{friend_to_me_state,jdbcType=TINYINT}, 
+      #{is_star,jdbcType=TINYINT}, #{friend_see_me_space,jdbcType=TINYINT}, #{me_see_friend_space,jdbcType=TINYINT}, 
+      #{friend_friend_see_me_space,jdbcType=TINYINT}, #{friend_me_see_friend_space,jdbcType=TINYINT}, 
+      #{phone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{card_image,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.HxUserFriend">
+    insert into hx_user_friend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="friend_id != null">
+        friend_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="is_shield != null">
+        is_shield,
+      </if>
+      <if test="friend_remark != null">
+        friend_remark,
+      </if>
+      <if test="friend_state != null">
+        friend_state,
+      </if>
+      <if test="friend_to_me_state != null">
+        friend_to_me_state,
+      </if>
+      <if test="is_star != null">
+        is_star,
+      </if>
+      <if test="friend_see_me_space != null">
+        friend_see_me_space,
+      </if>
+      <if test="me_see_friend_space != null">
+        me_see_friend_space,
+      </if>
+      <if test="friend_friend_see_me_space != null">
+        friend_friend_see_me_space,
+      </if>
+      <if test="friend_me_see_friend_space != null">
+        friend_me_see_friend_space,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="card_image != null">
+        card_image,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="friend_id != null">
+        #{friend_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_shield != null">
+        #{is_shield,jdbcType=INTEGER},
+      </if>
+      <if test="friend_remark != null">
+        #{friend_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="friend_state != null">
+        #{friend_state,jdbcType=TINYINT},
+      </if>
+      <if test="friend_to_me_state != null">
+        #{friend_to_me_state,jdbcType=TINYINT},
+      </if>
+      <if test="is_star != null">
+        #{is_star,jdbcType=TINYINT},
+      </if>
+      <if test="friend_see_me_space != null">
+        #{friend_see_me_space,jdbcType=TINYINT},
+      </if>
+      <if test="me_see_friend_space != null">
+        #{me_see_friend_space,jdbcType=TINYINT},
+      </if>
+      <if test="friend_friend_see_me_space != null">
+        #{friend_friend_see_me_space,jdbcType=TINYINT},
+      </if>
+      <if test="friend_me_see_friend_space != null">
+        #{friend_me_see_friend_space,jdbcType=TINYINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="card_image != null">
+        #{card_image,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+   <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.HxUserFriend">
+    update hx_user_friend
+    <set>
+      <if test="is_shield != null">
+        is_shield = #{is_shield,jdbcType=INTEGER},
+      </if>
+      <if test="friend_remark != null">
+        friend_remark = #{friend_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="friend_state != null">
+        friend_state = #{friend_state,jdbcType=TINYINT},
+      </if>
+      <if test="friend_to_me_state != null">
+        friend_to_me_state = #{friend_to_me_state,jdbcType=TINYINT},
+      </if>
+      <if test="is_star != null">
+        is_star = #{is_star,jdbcType=TINYINT},
+      </if>
+      <if test="friend_see_me_space != null">
+        friend_see_me_space = #{friend_see_me_space,jdbcType=TINYINT},
+      </if>
+      <if test="me_see_friend_space != null">
+        me_see_friend_space = #{me_see_friend_space,jdbcType=TINYINT},
+      </if>
+      <if test="friend_friend_see_me_space != null">
+        friend_friend_see_me_space = #{friend_friend_see_me_space,jdbcType=TINYINT},
+      </if>
+      <if test="friend_me_see_friend_space != null">
+        friend_me_see_friend_space = #{friend_me_see_friend_space,jdbcType=TINYINT},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="card_image != null">
+        card_image = #{card_image,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where friend_id = #{friend_id,jdbcType=BIGINT}
+      and user_id = #{user_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.HxUserFriend">
+    update hx_user_friend
+    set is_shield = #{is_shield,jdbcType=INTEGER},
+      friend_remark = #{friend_remark,jdbcType=VARCHAR},
+      friend_state = #{friend_state,jdbcType=TINYINT},
+      friend_to_me_state = #{friend_to_me_state,jdbcType=TINYINT},
+      is_star = #{is_star,jdbcType=TINYINT},
+      friend_see_me_space = #{friend_see_me_space,jdbcType=TINYINT},
+      me_see_friend_space = #{me_see_friend_space,jdbcType=TINYINT},
+      friend_friend_see_me_space = #{friend_friend_see_me_space,jdbcType=TINYINT},
+      friend_me_see_friend_space = #{friend_me_see_friend_space,jdbcType=TINYINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      card_image = #{card_image,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP}
+    where friend_id = #{friend_id,jdbcType=BIGINT}
+      and user_id = #{user_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据条件获取总条数 返回给后台-->
+<select id="queryCountUserFriendByMapToAdmin" resultType="java.lang.Long" parameterType="map">
+	select count(friend_id) from hx_user_friend   where 1=1 
+		<if test="user_id != null and user_id !=0">
+			and  user_id = #{user_id}
+		</if>
+		
+
+</select>
+<!-- 根据条件获取数据  返回给后台-->
+<select id="queryUserFriendListByMapToAdmin" resultType="com.hwt.domain.entity.user.Vo.adminHxVo.AdminHxUserFriendVo" parameterType="map">
+	select b.friend_id, a.account,a.user_sex, a.nickname, b.friend_remark ,b.friend_state, b.friend_to_me_state 
+		from hx_user_info a, hx_user_friend b 
+		where 1=1 and a.user_id = b.friend_id
+		<if test="user_id != null and user_id !=0">
+			and  b.user_id = #{user_id}
+		</if>
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->b.${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+
+</select>
+<!--  朋友圈添加时能发通知所有人能看 -->
+<select id="queryFriend_im_id_for_friendCircle_all" resultType="java.lang.String">
+		SELECT
+		b.im_id
+	FROM
+		hx_user_friend a,
+		hx_user b
+	WHERE
+		a.user_id = #{user_id}
+	AND b.user_id = a.friend_id
+	AND a.friend_state = 1
+	AND a.friend_to_me_state = 1
+	AND a.friend_see_me_space = 1
+	AND a.friend_me_see_friend_space = 1 
+
+</select>
+<!--  朋友圈添加时能发通知只给ids看 -->
+<select id="queryFriend_im_id_for_friendCircle_Y" resultType="java.lang.String">
+	SELECT
+		b.im_id
+	FROM
+		hx_user_friend a,
+		hx_user b
+	WHERE
+		a.user_id = #{user_id}
+	AND b.user_id = a.friend_id
+	AND a.friend_state = 1
+	AND a.friend_to_me_state = 1
+	AND a.friend_see_me_space = 1
+	AND a.friend_me_see_friend_space = 1 
+	AND a.friend_id in 
+	 <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+      </foreach>
+
+</select>
+<!--  朋友圈添加时能发通知 不让谁看 -->
+<select id="queryFriend_im_id_for_friendCircle_N" resultType="java.lang.String">
+	SELECT
+		b.im_id
+	FROM
+		hx_user_friend a,
+		hx_user b
+	WHERE
+		a.user_id = #{user_id}
+	AND b.user_id = a.friend_id
+	AND a.friend_state = 1
+	AND a.friend_to_me_state = 1
+	AND a.friend_see_me_space = 1
+	AND a.friend_me_see_friend_space = 1 
+	AND a.friend_id not in 
+	 <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+      </foreach>
+
+</select>
+</mapper>

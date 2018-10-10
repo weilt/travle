@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.wallet.HxUserWalletBankCardMapper">
+ <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.wallet.HxUserWalletBankCard">
+    <id column="bank_card_id" jdbcType="BIGINT" property="bank_card_id" />
+    <result column="name_id" jdbcType="BIGINT" property="name_id" />
+    <result column="name_type" jdbcType="INTEGER" property="name_type" />
+    <result column="card_num" jdbcType="VARCHAR" property="card_num" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bank_name" />
+    <result column="bank_address" jdbcType="VARCHAR" property="bank_address" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+  
+ <sql id="Base_Column_List">
+    bank_card_id, name_id, name_type, card_num, username, bank_name, bank_address, image, 
+    create_time
+  </sql>
+ 
+   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_user_wallet_bank_card
+    where bank_card_id = #{bank_card_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_user_wallet_bank_card
+    where bank_card_id = #{bank_card_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBankCard">
+    insert into hx_user_wallet_bank_card (bank_card_id, name_id, name_type, 
+      card_num, username, bank_name, 
+      bank_address, image, create_time
+      )
+    values (#{bank_card_id,jdbcType=BIGINT}, #{name_id,jdbcType=BIGINT}, #{name_type,jdbcType=INTEGER}, 
+      #{card_num,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{bank_name,jdbcType=VARCHAR}, 
+      #{bank_address,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{create_time,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBankCard">
+    insert into hx_user_wallet_bank_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bank_card_id != null">
+        bank_card_id,
+      </if>
+      <if test="name_id != null">
+        name_id,
+      </if>
+      <if test="name_type != null">
+        name_type,
+      </if>
+      <if test="card_num != null">
+        card_num,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="bank_name != null">
+        bank_name,
+      </if>
+      <if test="bank_address != null">
+        bank_address,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bank_card_id != null">
+        #{bank_card_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_id != null">
+        #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="card_num != null">
+        #{card_num,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_name != null">
+        #{bank_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_address != null">
+        #{bank_address,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBankCard">
+    update hx_user_wallet_bank_card
+    <set>
+      <if test="name_id != null">
+        name_id = #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        name_type = #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="card_num != null">
+        card_num = #{card_num,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_name != null">
+        bank_name = #{bank_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_address != null">
+        bank_address = #{bank_address,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where bank_card_id = #{bank_card_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBankCard">
+    update hx_user_wallet_bank_card
+    set name_id = #{name_id,jdbcType=BIGINT},
+      name_type = #{name_type,jdbcType=INTEGER},
+      card_num = #{card_num,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      bank_name = #{bank_name,jdbcType=VARCHAR},
+      bank_address = #{bank_address,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where bank_card_id = #{bank_card_id,jdbcType=BIGINT}
+  </update>
+  
+  <!--  insertBackId-->
+   <insert id="insertBackId" parameterType="com.hwt.domain.entity.user.wallet.HxUserWalletBankCard" useGeneratedKeys="true" keyProperty="bank_card_id">
+    insert into hx_user_wallet_bank_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bank_card_id != null">
+        bank_card_id,
+      </if>
+      <if test="name_id != null">
+        name_id,
+      </if>
+      <if test="name_type != null">
+        name_type,
+      </if>
+      <if test="card_num != null">
+        card_num,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="bank_name != null">
+        bank_name,
+      </if>
+      <if test="bank_address != null">
+        bank_address,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bank_card_id != null">
+        #{bank_card_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_id != null">
+        #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="card_num != null">
+        #{card_num,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_name != null">
+        #{bank_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_address != null">
+        #{bank_address,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

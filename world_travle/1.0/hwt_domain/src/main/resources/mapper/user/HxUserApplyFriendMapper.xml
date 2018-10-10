@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.HxUserApplyFriendMapper">
+   <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.HxUserApplyFriend">
+    <id column="apply_user_id" jdbcType="BIGINT" property="apply_user_id" />
+    <id column="apply_friend_id" jdbcType="BIGINT" property="apply_friend_id" />
+    <result column="friend_remark" jdbcType="VARCHAR" property="friend_remark" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="friend_see_me_space" jdbcType="TINYINT" property="friend_see_me_space" />
+    <result column="apply_state" jdbcType="INTEGER" property="apply_state" />
+    <result column="recent_time" jdbcType="TIMESTAMP" property="recent_time" />
+  </resultMap>
+  <!-- 根据朋友id查询 -->
+	<!-- <select id="queryListByType" resultType="com.hwt.domain.mapper.user.vo.FriendApplyVo">
+		SELECT
+			b.user_id as userId,
+			b.nickname as nickname,
+			b.user_sex as userSex,
+			b.user_birthday as userBirthday,
+			b.user_icon as userIcon,
+			b.user_autograph as userAutograph,
+			b.user_profession as userProfession,
+			a.remarks as remarks,
+			a.apply_state as applyState
+		FROM
+			hx_user_apply_friend a
+		JOIN hx_user_info b ON a.apply_user_id = b.user_id
+		<if test="applyType != null and applyType > 0">
+			AND a.apply_type = #{applyType}
+		</if>
+		AND a.apply_friend_id = #{userId}
+		order by a.recent_time desc
+	</select> -->
+	<select id="queryListByType" resultType="com.hwt.domain.entity.user.Vo.FriendApplyVo">
+		SELECT
+			b.user_id as friend_id  ,
+			b.nickname ,
+			b.im_id,
+			b.user_icon ,
+			
+			a.remarks ,
+			a.apply_state
+		FROM
+			hx_user_apply_friend a 
+		JOIN hx_user_info b ON a.apply_user_id = b.user_id 
+		
+		
+	<!-- 	<if test="applyType != null and applyType > 0">
+			AND a.apply_type = #{applyType}
+		</if> -->
+		AND a.apply_friend_id = #{userId}
+		order by a.recent_time desc
+	</select>
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.HxUserApplyFriend">
+    insert into hx_user_apply_friend (apply_user_id, apply_friend_id, friend_remark, 
+      remarks, friend_see_me_space, apply_state, 
+      recent_time)
+    values (#{apply_user_id,jdbcType=BIGINT}, #{apply_friend_id,jdbcType=BIGINT}, #{friend_remark,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{friend_see_me_space,jdbcType=TINYINT}, #{apply_state,jdbcType=INTEGER}, 
+      #{recent_time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.HxUserApplyFriend">
+    insert into hx_user_apply_friend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apply_user_id != null">
+        apply_user_id,
+      </if>
+      <if test="apply_friend_id != null">
+        apply_friend_id,
+      </if>
+      <if test="friend_remark != null">
+        friend_remark,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="friend_see_me_space != null">
+        friend_see_me_space,
+      </if>
+      <if test="apply_state != null">
+        apply_state,
+      </if>
+      <if test="recent_time != null">
+        recent_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apply_user_id != null">
+        #{apply_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="apply_friend_id != null">
+        #{apply_friend_id,jdbcType=BIGINT},
+      </if>
+      <if test="friend_remark != null">
+        #{friend_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="friend_see_me_space != null">
+        #{friend_see_me_space,jdbcType=TINYINT},
+      </if>
+      <if test="apply_state != null">
+        #{apply_state,jdbcType=INTEGER},
+      </if>
+      <if test="recent_time != null">
+        #{recent_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.HxUserApplyFriend">
+    update hx_user_apply_friend
+    <set>
+      <if test="friend_remark != null">
+        friend_remark = #{friend_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="friend_see_me_space != null">
+        friend_see_me_space = #{friend_see_me_space,jdbcType=TINYINT},
+      </if>
+      <if test="apply_state != null">
+        apply_state = #{apply_state,jdbcType=INTEGER},
+      </if>
+      <if test="recent_time != null">
+        recent_time = #{recent_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where apply_user_id = #{apply_user_id,jdbcType=BIGINT}
+      and apply_friend_id = #{apply_friend_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.HxUserApplyFriend">
+     update hx_user_apply_friend
+    set friend_remark = #{friend_remark,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      friend_see_me_space = #{friend_see_me_space,jdbcType=TINYINT},
+      apply_state = #{apply_state,jdbcType=INTEGER},
+      recent_time = #{recent_time,jdbcType=TIMESTAMP}
+    where apply_user_id = #{apply_user_id,jdbcType=BIGINT}
+      and apply_friend_id = #{apply_friend_id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

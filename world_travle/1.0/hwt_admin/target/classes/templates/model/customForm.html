@@ -1,0 +1,219 @@
+
+  <head>
+
+    <!-- vendor css -->
+    <!--<link href="model/lib/highlightjs/github.css" rel="stylesheet">-->
+    <!--<link href="model/lib/select2/css/select2.min.css" rel="stylesheet">-->
+    <!--<link href="model/lib/jquery-toggles/toggles-full.css" rel="stylesheet">-->
+    <!--<link href="model/lib/jt.timepicker/jquery.timepicker.css" rel="stylesheet">-->
+    <!--<link href="model/lib/spectrum/spectrum.css" rel="stylesheet">-->
+    <!--<link href="model/lib/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">-->
+    <!--<link href="model/lib/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">-->
+    <!--<link href="model/lib/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">-->
+
+      <link href="/model/lib/jquery-toggles/toggles-full.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+      <div class="br-pageheader pd-y-15 pd-l-20">
+        <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="index.html">Bracket</a>
+          <a class="breadcrumb-item" href="#">Forms</a>
+          <span class="breadcrumb-item active">Form Elements</span>
+        </nav>
+      </div><!-- br-pageheader -->
+      <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+        <h4 class="tx-gray-800 mg-b-5">示例Form表单</h4>
+        <p class="mg-b-0">Forms are used to collect user information with different element types of input, select, checkboxes, radios and more.</p>
+      </div>
+	<form >
+      <div class="br-pagebody">
+
+        <div class="br-section-wrapper">
+            <!--内容-->
+            <div class="row">
+                <p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>名称:</p>
+                <div class="col-lg mg-l-10">
+                    <input class="form-control wd-250" placeholder="请输入电话名称" type="text">
+                </div><!-- col -->
+                <p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>电话:</p>
+                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">
+                    <input class="form-control wd-250" placeholder="请输入电话号码" type="text">
+                </div><!-- col -->
+                <p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>昵称:</p>
+                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">
+                    <input class="form-control wd-250" placeholder="请输入昵称" type="text">
+                </div><!-- col -->
+            </div>
+            <div class="row mg-t-20">
+                <p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>地址:</p>
+                <div class="col-lg mg-l-10">
+                    <input class="form-control wd-50%" placeholder="请输入地址" type="text">
+                </div><!-- col -->
+            </div>
+            <div class="row mg-t-20">
+                <p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>头像:</p>
+                <div class="col-lg mg-l-10">
+                    <label class="custom-file">
+                        <input type="file" id="file" class="custom-file-input">
+                        <span class="custom-file-control custom-file-control-inverse"></span>
+                    </label>
+                </div>
+                <!-- col -->
+            </div>
+            <div class="row mg-t-20">
+                <p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>类型:</p>
+                <div class="col-lg-3 mg-l-10">
+                    <select class="form-control select2 select2-hidden-accessible" data-placeholder="选择类型" tabindex="-1" aria-hidden="true">
+                        <option label="Choose one"></option>
+                        <option value="Firefox">1</option>
+                        <option value="Chrome">2</option>
+                        <option value="Safari">3</option>
+                        <option value="Opera">4</option>
+                        <option value="Internet Explorer">5</option>
+                    </select>
+                </div>
+                <p class="tx-11 tx-uppercase tx-spacing-2 mg-l-50 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>性别:</p>
+                <div class="col-lg-0 mg-t-10 mg-l-20 wd-60">
+                    <label class="rdiobox ">
+                        <input type="radio" name="aa" checked><span>男</span>
+                    </label>
+                </div>
+                <div class="col-lg-1 mg-t-10 m-l-0">
+                    <label class="rdiobox">
+                        <input type="radio" name="aa"><span>女</span>
+                    </label>
+                </div>
+                <!-- col -->
+            </div>
+
+            <div class="row mg-t-20">
+                <button class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15">取消</button>
+                <button class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10">确定</button>
+                <button class="btn btn-primary bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10"><i class="fa fa-send mg-r-10"></i> 确定</button>
+                <a href="" class="btn btn-primary btn-with-icon mg-l-10 ">
+                    <div class="ht-40 justify-content-between">
+                        <span class="pd-x-15 tx-bold">确定</span>
+                    </div>
+                </a>
+            </div>
+
+        </div><!-- br-section-wrapper -->
+      </div><!-- br-pagebody -->
+       </form>
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+          <div>Attentively and carefully made by ThemePixels.</div>
+        </div>
+        <div class="footer-right d-flex align-items-center">
+          <span class="tx-uppercase mg-r-10">Share:</span>
+          <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+        </div>
+      </footer>
+    <!-- ########## END: MAIN PANEL ########## -->
+
+    <!--<script src="/model/lib/highlightjs/highlight.pack.js"></script>-->
+    <!--<script src="/model/lib/select2/js/select2.min.js"></script>-->
+    <!--<script src="/model/lib/jquery-toggles/toggles.min.js"></script>-->
+    <!--<script src="/model/lib/jt.timepicker/jquery.timepicker.js"></script>-->
+    <!--<script src="/model/lib/spectrum/spectrum.js"></script>-->
+    <!--<script src="/model/lib/jquery.maskedinput/jquery.maskedinput.js"></script>-->
+    <!--<script src="/model/lib/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>-->
+    <!--<script src="/model/lib/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>-->
+      <script src="/model/lib/jquery-toggles/toggles.min.js"></script>
+
+
+    <script>
+      $(function(){
+        'use strict'
+
+        // Toggles
+        $('.toggle').toggles({
+          on: true,
+          height: 26
+        });
+
+        // Input Masks
+        $('#dateMask').mask('99/99/9999');
+        $('#phoneMask').mask('(999) 999-9999');
+        $('#ssnMask').mask('999-99-9999');
+
+        // Datepicker
+        $('.fc-datepicker').datepicker({
+          showOtherMonths: true,
+          selectOtherMonths: true
+        });
+
+        $('#datepickerNoOfMonths').datepicker({
+          showOtherMonths: true,
+          selectOtherMonths: true,
+          numberOfMonths: 2
+        });
+
+        // Time Picker
+        $('#tpBasic').timepicker();
+        $('#tp2').timepicker({'scrollDefault': 'now'});
+        $('#tp3').timepicker();
+
+        $('#setTimeButton').on('click', function (){
+          $('#tp3').timepicker('setTime', new Date());
+        });
+
+        // Color picker
+        $('#colorpicker').spectrum({
+          color: '#17A2B8'
+        });
+
+        $('#showAlpha').spectrum({
+          color: 'rgba(23,162,184,0.5)',
+          showAlpha: true
+        });
+
+        $('#showPaletteOnly').spectrum({
+            showPaletteOnly: true,
+            showPalette:true,
+            color: '#DC3545',
+            palette: [
+                ['#1D2939', '#fff', '#0866C6','#23BF08', '#F49917'],
+                ['#DC3545', '#17A2B8', '#6610F2', '#fa1e81', '#72e7a6']
+            ]
+        });
+
+
+        // Rangeslider
+        if($().ionRangeSlider) {
+          $('#rangeslider1').ionRangeSlider();
+
+          $('#rangeslider2').ionRangeSlider({
+              min: 100,
+              max: 1000,
+              from: 550
+          });
+
+          $('#rangeslider3').ionRangeSlider({
+              type: 'double',
+              grid: true,
+              min: 0,
+              max: 1000,
+              from: 200,
+              to: 800,
+              prefix: '$'
+          });
+
+          $('#rangeslider4').ionRangeSlider({
+              type: 'double',
+              grid: true,
+              min: -1000,
+              max: 1000,
+              from: -500,
+              to: 500,
+              step: 250
+          });
+        }
+
+      });
+    </script>
+  </body>

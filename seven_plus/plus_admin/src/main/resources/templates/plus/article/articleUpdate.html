@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改文章</title>
+	<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+	<link href="/back/js/kindeditor/themes/qq/qq.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    	<form id = "from">
+			<input type="hidden" name="id" value="${entity.id!0}"/>
+		    <ul class="forminfo">
+			    <li><label>标题<b>*</b></label><input maxlength="15" type="text" value="${entity.articleTitel!''}" class="dfinput" id="title" name="articleTitel"/><i>最长不能超过15个字符</i></li>
+			    <li><label>分类<b>*</b></label>
+			    	<div class="vocation">
+					    <select id="type" class="select3" name="articleType">
+						<option value="0" >无</option>
+							<#if (entity.articleType!0) == 1>
+							<option value="1" selected="selected">划痕无忧</option>
+							<#else>
+							<option value="1" >划痕无忧</option>
+							</#if>
+							<#if (entity.articleType!0) == 2>
+							<option value="2" selected="selected">天天洗车</option>
+							<#else>
+							<option value="2" >天天洗车</option>
+							</#if>
+							<#if (entity.articleType!0) == 3>
+							<option value="3" selected="selected">会员协议</option>
+							<#else>
+							<option value="3" >会员协议</option>
+							</#if>
+							<#if (entity.articleType!0) == 4>
+							<option value="4" selected="selected">车友群介绍</option>
+							<#else>
+							<option value="4" >车友群介绍</option>
+							</#if>
+							<#if (entity.articleType!0) == 5>
+							<option value="5" selected="selected">道路抢险</option>
+							<#else>
+							<option value="5" >道路抢险</option>
+							</#if>
+							<#if (entity.articleType!0) == 6>
+							<option value="6" selected="selected">代办车贷</option>
+							<#else>
+							<option value="6" >代办车贷</option>
+							</#if>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>联系电话</label><input maxlength="15" id="telephone" name="contactsPhome" type="text" class="dfinput" value="${entity.contactsPhome!''}" /></li>
+			    <li><label>微信</label><input id="wchat" name="contactsWechat" type="text" class="dfinput" maxlength="15" value="${entity.contactsWechat}" /></li>
+				<li><textarea   rows="20" cols="100" style="width:95%;height:200px;visibility:hidden;" id="ke_demo" name="articleContent" >${entity.articleContent}</textarea></li>
+				<!--<input id="articleContent" name="articleContent" type="hidden" value=""/>-->
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) formVal('/admin/article/update','from');" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/back/js/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-base.js"></script>"
+    
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+    <script type="text/javascript">
+
+        create_textarea("ke_demo");
+
+	    $(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+		function chek(){
+		    var title = $("#title").val();
+		    var type = $("#type").val();
+		    var phone = $("#telephone").val();
+		    if (title == null||title == ''||title == 'NULL') {
+                layer.msg("标题名不能为空！");
+                return false;
+			}
+			if (type == 0 || type == '0'||title == 'NULL') {
+                layer.msg("类型不能为空！");
+                return false;
+			}
+			if (phone != '') {
+                if(!(/^1[34578]\d{9}$/.test(phone))){
+                    layer.msg("电话格式错误!" );
+                    return false;
+                }
+            }
+            return true;
+
+			// var parameter = ["title","type"];
+			// var type = [null,"0"];
+			// var msg = ["标题名不能为空！","类型不能为空！"];
+			// return validation(parameter,type,msg);
+		}
+
+		// 解决 textarea  $(form).serialize() 获取不到值问题
+		function formVal(url, form) {
+            // var content = $("#ke_demo").val();
+			// $("#articleContent").val(content);
+            submitForm(url,form);
+        }
+	</script>
+</body>
+</html>

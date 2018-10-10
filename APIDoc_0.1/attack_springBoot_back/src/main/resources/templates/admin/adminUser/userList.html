@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>admin用户管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/admin/adminUser/query">用户管理</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+		<div class="tools">
+			<ul class="toolbar">
+				<li class="click" onclick="showPage('/admin/adminUser/insert','70%','70%','添加用户')"><span><img src="/back/images/t01.png" /></span>添加</li>
+			</ul>
+		</div>
+		<form action="/admin/adminUser/query"  id="from">
+			<ul class="seachform">
+			    <li><label>用户名</label><input placeholder="输入用户名" value="${map.userName!''}" name="userName" type="text" class="scinput" /></li>
+			    <li><label>姓名</label><input placeholder="输入姓名" value="${map.realName!''}" name="realName" type="text" class="scinput" /></li>
+			    <li><label>性别</label>
+			    	<div class="vocation">
+					    <select class="select1" id="sex" name="sex">
+					   		<option value="">全部</option>
+					   		<#if (map.sex!4) == 0>
+					   			<option value="0" selected="selected">保密</option>
+					   		<#else>
+					   			<option value="0" >保密</option>
+					   		</#if>
+					   		<#if (map.sex!4) == 1>
+					   			<option value="1" selected="selected">男</option>
+					   		<#else>
+					   			<option value="1" >男</option>
+					   		</#if>
+					   		<#if (map.sex!4) == 2>
+					   			<option value="2" selected="selected">女</option>
+					   		<#else>
+					   			<option value="2" >女</option>
+					   		</#if>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>角色</label>
+			    	<div class="vocation">
+					    <select class="select1" id="roleId" name="roleId">
+					   		<option value="0">全部</option>
+					   		<#list roleList as role>
+						   		<#if (role.id?c) == (map.roleId?c)>
+						   			<option value="${role.id?c}" selected="selected">${role.name!''}</option>
+						   		<#else>
+						   			<option value="${role.id?c}" >${role.name!''}</option>
+						   		</#if>
+					   		</#list>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>状态</label>
+			    	<div class="vocation">
+					    <select class="select1" id="isDelete" name="isDelete">
+					   		<option value="0">全部</option>
+					   		<#if (map.isDelete!0) == 1>
+					   			<option value="1" selected="selected">启用</option>
+					   		<#else>
+					   			<option value="1" >启用</option>
+					   		</#if>
+					   		<#if (map.isDelete!0) == 2>
+					   			<option value="2" selected="selected">禁用</option>
+					   		<#else>
+					   			<option value="2" >禁用</option>
+					   		</#if>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>电话</label><input placeholder="电话" value="${map.telephone!''}" name="telephone" type="text" class="scinput" /></li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+		<form id="userId">
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input type="checkbox" onclick="selectAll('userId');"/></th>
+					<th >用户名</th>
+					<th >真实姓名</th>
+					<th >性别</th>
+					<th >角色</th>
+					<th >联系电话</th>
+					<th>家庭住址</th>
+					<th >状态</th>
+					<th >操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td><input type="checkbox" name="userId" value="${entity.id!''}" /></td>
+				        <td>${entity.userName!''}</td>
+				        <td>${entity.realName!''}</td>
+				        <td>
+				        	<#if (entity.sex!0) == 2> 女
+				        	<#elseif (entity.sex!0) == 1> 男
+				        	<#else>保密
+				        	</#if>
+				        </td>
+				        <td>${entity.roleName!''}</td>
+				        <td>${entity.telephone!''}</td>
+				        <td>${entity.address!''}</td>
+				      	<td>
+				        	<#if (entity.isDelete?c) == '1'> 启用
+				        	<#else><font color="red">禁用</font>
+				        	</#if>
+				        </td>
+				        <td>
+				        	<#if (entity.roleId?c) == '1'>
+				        	
+				        	
+				        	<#else>
+			 					<a class="tablelink" href="javascript:showPage('/admin/adminUser/update?encryptionId=${entity.encryptionId!''}','70%','70%','编辑用户-${entity.userName!''}')" title="编辑">编辑</a>
+				        		
+				        		<#if (entity.isDelete?c) == '1'>
+				        			 | <a class="tablelink" href="javascript:member_start('你确定要禁用【${entity.userName!''}】吗','${entity.encryptionId!''}');" title="禁用" style="color: red">禁用</a>
+				        		<#else>
+				        			 | <a class="tablelink" href="javascript:member_start('你确定要启用【${entity.userName!''}】吗','${entity.encryptionId!''}');" title="启用">启用</a>
+				        		</#if>
+				        		 | <a class="tablelink" href="javascript:change_password('${entity.encryptionId!''}')" title="重置密码">重置密码</a>
+				        	</#if>
+				        </td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		</form>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+		    $(".select1").uedSelect({
+				width : 100			  
+			});
+		});
+		/*密码-修改*/
+		function change_password(id){
+			layer.confirm('确认要重置密码吗？',function(index){
+				$.post("/admin/adminUser/adreset?from=ajax", {'encryptionId': id },
+				    function(result) {jsonState(result)},'json');
+			});
+		}
+		/*用户-启用/禁用*/
+		function member_start(obj,id){
+			layer.confirm(obj,function(index){
+				/* $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,'+id+')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+				$(obj).remove(); */
+				$.post("/admin/adminUser/delete?from=ajax", {'encryptionId': id },
+					    function(result) {jsonState(result)},'json');
+				/* layer.msg('已启用!',{icon: 6,time:1000}); */
+			});
+		}
+	
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.admin.AdminRolemoduleMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.admin.AdminRolemodule">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="roleId" jdbcType="BIGINT" property="roleId" />
+    <result column="moduleId" jdbcType="BIGINT" property="moduleId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, roleId, moduleId
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin_rolemodule
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from admin_rolemodule
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.admin.AdminRolemodule">
+    insert into admin_rolemodule (id, roleId, moduleId
+      )
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{moduleId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.admin.AdminRolemodule">
+    insert into admin_rolemodule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleId != null">
+        roleId,
+      </if>
+      <if test="moduleId != null">
+        moduleId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+    </insert>
+   
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.admin.AdminRolemodule">
+    update admin_rolemodule
+    <set>
+      <if test="roleId != null">
+        roleId = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="moduleId != null">
+        moduleId = #{moduleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.admin.AdminRolemodule">
+    update admin_rolemodule
+    set roleId = #{roleId,jdbcType=BIGINT},
+      moduleId = #{moduleId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <!-- 添加  (#{id},#{moduleId},#{roleId})-->
+<insert id="savaRoleModule" parameterType="java.util.List">
+	insert into admin_roleModule(id,moduleId,roleId)
+	values
+	<foreach collection="list" item="item" index="index" separator="," > 
+        (#{item.id},#{item.moduleId},#{item.roleId}) 
+    </foreach> 
+</insert>
+</mapper>

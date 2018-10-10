@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.wallet.HxUserWalletMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.wallet.HxUserWallet">
+    <id column="name_id" jdbcType="BIGINT" property="name_id" />
+    <id column="name_type" jdbcType="INTEGER" property="name_type" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="is_can" jdbcType="DECIMAL" property="is_can" />
+    <result column="is_not_can" jdbcType="DECIMAL" property="is_not_can" />
+    <result column="bad_payment" jdbcType="DECIMAL" property="bad_payment" />
+    <result column="get_payment" jdbcType="DECIMAL" property="get_payment" />
+    <result column="sale_payment" jdbcType="DECIMAL" property="sale_payment" />
+    <result column="payment_password" jdbcType="VARCHAR" property="payment_password" />
+    <result column="payment_salt" jdbcType="VARCHAR" property="payment_salt" />
+    <result column="day_pass_num" jdbcType="INTEGER" property="day_pass_num" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+ 
+ <sql id="Base_Column_List">
+    name_id, name_type, balance, is_can, is_not_can, bad_payment, get_payment, sale_payment, 
+    payment_password, payment_salt, day_pass_num, create_time
+  </sql>
+  
+ 
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.wallet.HxUserWallet">
+    insert into hx_user_wallet (name_id, name_type, balance, 
+      is_can, is_not_can, bad_payment, 
+      get_payment, sale_payment, payment_password, 
+      payment_salt, day_pass_num, create_time
+      )
+    values (#{name_id,jdbcType=BIGINT}, #{name_type,jdbcType=INTEGER}, #{balance,jdbcType=DECIMAL}, 
+      #{is_can,jdbcType=DECIMAL}, #{is_not_can,jdbcType=DECIMAL}, #{bad_payment,jdbcType=DECIMAL}, 
+      #{get_payment,jdbcType=DECIMAL}, #{sale_payment,jdbcType=DECIMAL}, #{payment_password,jdbcType=VARCHAR}, 
+      #{payment_salt,jdbcType=VARCHAR}, #{day_pass_num,jdbcType=INTEGER}, #{create_time,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.wallet.HxUserWallet">
+    insert into hx_user_wallet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name_id != null">
+        name_id,
+      </if>
+      <if test="name_type != null">
+        name_type,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="is_can != null">
+        is_can,
+      </if>
+      <if test="is_not_can != null">
+        is_not_can,
+      </if>
+      <if test="bad_payment != null">
+        bad_payment,
+      </if>
+      <if test="get_payment != null">
+        get_payment,
+      </if>
+      <if test="sale_payment != null">
+        sale_payment,
+      </if>
+      <if test="payment_password != null">
+        payment_password,
+      </if>
+      <if test="payment_salt != null">
+        payment_salt,
+      </if>
+      <if test="day_pass_num != null">
+        day_pass_num,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name_id != null">
+        #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="is_can != null">
+        #{is_can,jdbcType=DECIMAL},
+      </if>
+      <if test="is_not_can != null">
+        #{is_not_can,jdbcType=DECIMAL},
+      </if>
+      <if test="bad_payment != null">
+        #{bad_payment,jdbcType=DECIMAL},
+      </if>
+      <if test="get_payment != null">
+        #{get_payment,jdbcType=DECIMAL},
+      </if>
+      <if test="sale_payment != null">
+        #{sale_payment,jdbcType=DECIMAL},
+      </if>
+      <if test="payment_password != null">
+        #{payment_password,jdbcType=VARCHAR},
+      </if>
+      <if test="payment_salt != null">
+        #{payment_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="day_pass_num != null">
+        #{day_pass_num,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  
+   <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.wallet.HxUserWallet">
+    update hx_user_wallet
+    <set>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="is_can != null">
+        is_can = #{is_can,jdbcType=DECIMAL},
+      </if>
+      <if test="is_not_can != null">
+        is_not_can = #{is_not_can,jdbcType=DECIMAL},
+      </if>
+      <if test="bad_payment != null">
+        bad_payment = #{bad_payment,jdbcType=DECIMAL},
+      </if>
+      <if test="get_payment != null">
+        get_payment = #{get_payment,jdbcType=DECIMAL},
+      </if>
+      <if test="sale_payment != null">
+        sale_payment = #{sale_payment,jdbcType=DECIMAL},
+      </if>
+      <if test="payment_password != null">
+        payment_password = #{payment_password,jdbcType=VARCHAR},
+      </if>
+      <if test="payment_salt != null">
+        payment_salt = #{payment_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="day_pass_num != null">
+        day_pass_num = #{day_pass_num,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where name_id = #{name_id,jdbcType=BIGINT}
+      and name_type = #{name_type,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.wallet.HxUserWallet">
+    update hx_user_wallet
+    set balance = #{balance,jdbcType=DECIMAL},
+      is_can = #{is_can,jdbcType=DECIMAL},
+      is_not_can = #{is_not_can,jdbcType=DECIMAL},
+      bad_payment = #{bad_payment,jdbcType=DECIMAL},
+      get_payment = #{get_payment,jdbcType=DECIMAL},
+      sale_payment = #{sale_payment,jdbcType=DECIMAL},
+      payment_password = #{payment_password,jdbcType=VARCHAR},
+      payment_salt = #{payment_salt,jdbcType=VARCHAR},
+      day_pass_num = #{day_pass_num,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where name_id = #{name_id,jdbcType=BIGINT}
+      and name_type = #{name_type,jdbcType=INTEGER}
+  </update>
+</mapper>

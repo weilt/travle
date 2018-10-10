@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HwOrderUsuallyUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.order.HwOrderUsuallyUser">
+    <id column="usually_id" jdbcType="BIGINT" property="usually_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="eng_surname" jdbcType="VARCHAR" property="eng_surname" />
+    <result column="eng_name" jdbcType="VARCHAR" property="eng_name" />
+    <result column="identity_type" jdbcType="VARCHAR" property="identity_type" />
+    <result column="identity_num" jdbcType="VARCHAR" property="identity_num" />
+    <result column="identity_effective" jdbcType="BIGINT" property="identity_effective" />
+    <result column="birthday" jdbcType="BIGINT" property="birthday" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="is_own" jdbcType="INTEGER" property="is_own" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    usually_id, user_id, name, eng_surname, eng_name, identity_type, identity_num, identity_effective, 
+    birthday, sex, phone, is_own, create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_order_usually_user
+    where usually_id = #{usually_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_order_usually_user
+    where usually_id = #{usually_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.order.HwOrderUsuallyUser">
+    insert into hw_order_usually_user (usually_id, user_id, name, 
+      eng_surname, eng_name, identity_type, 
+      identity_num, identity_effective, birthday, 
+      sex, phone, is_own, 
+      create_time)
+    values (#{usually_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{eng_surname,jdbcType=VARCHAR}, #{eng_name,jdbcType=VARCHAR}, #{identity_type,jdbcType=VARCHAR}, 
+      #{identity_num,jdbcType=VARCHAR}, #{identity_effective,jdbcType=BIGINT}, #{birthday,jdbcType=BIGINT}, 
+      #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{is_own,jdbcType=INTEGER}, 
+      #{create_time,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.order.HwOrderUsuallyUser">
+    insert into hw_order_usually_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="usually_id != null">
+        usually_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="eng_surname != null">
+        eng_surname,
+      </if>
+      <if test="eng_name != null">
+        eng_name,
+      </if>
+      <if test="identity_type != null">
+        identity_type,
+      </if>
+      <if test="identity_num != null">
+        identity_num,
+      </if>
+      <if test="identity_effective != null">
+        identity_effective,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="is_own != null">
+        is_own,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="usually_id != null">
+        #{usually_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eng_surname != null">
+        #{eng_surname,jdbcType=VARCHAR},
+      </if>
+      <if test="eng_name != null">
+        #{eng_name,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_type != null">
+        #{identity_type,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_num != null">
+        #{identity_num,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_effective != null">
+        #{identity_effective,jdbcType=BIGINT},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="is_own != null">
+        #{is_own,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.order.HwOrderUsuallyUser">
+    update hw_order_usually_user
+    <set>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eng_surname != null">
+        eng_surname = #{eng_surname,jdbcType=VARCHAR},
+      </if>
+      <if test="eng_name != null">
+        eng_name = #{eng_name,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_type != null">
+        identity_type = #{identity_type,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_num != null">
+        identity_num = #{identity_num,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_effective != null">
+        identity_effective = #{identity_effective,jdbcType=BIGINT},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="is_own != null">
+        is_own = #{is_own,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where usually_id = #{usually_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.order.HwOrderUsuallyUser">
+    update hw_order_usually_user
+    set user_id = #{user_id,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      eng_surname = #{eng_surname,jdbcType=VARCHAR},
+      eng_name = #{eng_name,jdbcType=VARCHAR},
+      identity_type = #{identity_type,jdbcType=VARCHAR},
+      identity_num = #{identity_num,jdbcType=VARCHAR},
+      identity_effective = #{identity_effective,jdbcType=BIGINT},
+      birthday = #{birthday,jdbcType=BIGINT},
+      sex = #{sex,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      is_own = #{is_own,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where usually_id = #{usually_id,jdbcType=BIGINT}
+  </update>
+</mapper>

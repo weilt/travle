@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xx.admin.dao.AdminSystemConfigDao">
+  
+  
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.xx.admin.entity.AdminSystemconfig">
+		insert into admin_systemConfig(
+			id,displayName,configKey,
+			configValue,isReadOnly,description,createTime,userId
+		)values(
+			#{id},#{displayName},#{configKey},
+			#{configValue},#{isReadOnly},#{description},NOW(),#{userId}
+		)
+	</insert>
+	
+	<!-- 修改信息 -->
+	<update id="update" parameterType="com.xx.admin.entity.AdminSystemconfig">
+		update admin_systemConfig set displayName=#{displayName},configKey=#{configKey},
+			configValue=#{configValue},isReadOnly=#{isReadOnly},description=#{description},createTime=#{createTime},
+			userId=#{userId} where id=#{id}
+	</update>
+	
+	
+	<!-- 查询数量列表数量 -->
+	<select id="queryListCount" parameterType="HashMap" resultType="java.lang.Integer">
+		select count(*) from admin_systemConfig where 1=1  
+		<if test="displayName != null and '' != displayName">  
+              AND displayName LIKE CONCAT('%',#{displayName},'%')
+	     </if>  
+		<if test="configKey != null and '' != configKey">  
+              AND configKey LIKE CONCAT('%',#{configKey},'%')
+	     </if> 
+	</select>
+	<!-- 查询数量列表 -->
+	<select id="queryList" parameterType="HashMap" resultType="com.xx.admin.entity.AdminSystemconfig">
+		select * from admin_systemConfig where 1=1 
+		<if test="displayName != null and '' != displayName">  
+              AND displayName LIKE CONCAT('%',#{displayName},'%')
+	     </if>  
+		<if test="configKey != null and '' != configKey">  
+              AND configKey LIKE CONCAT('%',#{configKey},'%')
+	     </if>
+		<if test="last != null and '' != last and last > 0">  
+            <![CDATA[  
+              LIMIT #{index},#{last}
+            ]]>  
+	     </if>
+	     
+	</select>
+  
+</mapper>

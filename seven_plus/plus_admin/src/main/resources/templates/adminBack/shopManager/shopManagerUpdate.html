@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改模块信息</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+<link href="/back/js/kindeditor/themes/qq/qq.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    	<form id = "from">
+		    <ul class="forminfo">
+			    
+			    
+			    <li><label style="font-size: 16px; font-weight: bold;">店铺信息</label></li>
+				<li><label>店铺名称<b>*</b></label><input id="shop_name" name="shop_name" value="${map.shop_name!''}" type="text" class="dfinput" /></li>
+			    <li><label>洗车消费金额<b>*</b></label><input id="shop_balance" name="shop_balance" value="${map.shop_balance?c}" type="text" class="dfinput" /></li>
+			    <li><label>店家二维码</label><input id="shop_code" name="shop_code" value="${map.shop_code!''}" type="text" class="dfinput" /></li>
+			    <li><label>店家视频地址</label><input id="shop_video" name="shop_video" value="${map.shop_video!''}" type="text" class="dfinput" /></li>
+				<li><label>店铺封面图片</label>
+					<input type="text" class="dfinput" id="shop_image" value="${map.shop_image!''}" name="shop_image" placeholder="这里是图片路径" style="width: 200px;" disabled="disabled"/>
+					
+					<img src="${map.shop_image!''}" id="images_test" alt="" height="29px;" width="50px;"/>
+					
+					<input name="" type="button" onclick="create_image('shop_image','images_test')" class="btn" value="上传图片" />
+				</li>
+			    <li><label>店铺地址</label><input type="hidden" id="tipinput" value="${map.userId!''}" name="userId" />
+			    <input type="hidden" value="${map.shopManagerId!''}" name="shopManagerId" />
+			    <input type="hidden" value="${map.userId!''}" name="shopUserId" />
+			    <input id="shop_site" name="shop_site" value="${map.shop_site!''}" type="text" class="dfinput" /></li>
+			    <li><label>经纬度<b>*</b></label><input class="dfinput" type="text" value="${map.shop_x!''},${map.shop_y!''}" placeholder="这里是获取到的经纬度,在后面地图上可直接选择" readonly="true" name="lnglat" id="lnglat"/></li>
+			    <li>
+					<div id="container" style="width: 50%; height: 50%; margin-left: 500px;margin-top: 150px"></div>
+			    </li>
+			    <li><label>店铺补偿金额（上限）<b>*</b></label><input id="shop_balance_astrict" name="shop_balance_astrict" value="${map.shop_balance_astrict?c}" type="text" class="dfinput" /></li>
+			    <li><label>座机</label><input id="shop_do_phone" name="shop_do_phone" type="text" value="${map.shop_do_phone!''}" class="dfinput" /></li>
+			    
+		    
+		    
+			    <li><label style="font-size: 16px; font-weight: bold;">店长信息</label></li>
+			    <li><label>联系电话<b>*</b></label><input id="shop_phone" name="shop_phone" value="${map.shop_phone!''}" type="text" class="dfinput" /><i>(手机)必填项</i></li>
+			    <li><label>店家昵称</label><input id="nick_name" value="${map.nick_name!''}" name="nick_name" type="text" class="dfinput" /></li>
+			    <li><label>店家密码<b>*</b></label><input id="pass" name="pass" type="text" value="${map.pass!''}" class="dfinput" /><i>不修改可以不填</i></li>
+				<li><label>店长姓名</label><input id="manager_name" name="manager_name" value="${map.manager_name!''}" type="text" class="dfinput" /></li>
+			    <li><label>店长地址</label><input id="manager_site" name="manager_site" value="${map.manager_site!''}" type="text" class="dfinput" /></li>
+			    <li><label>紧急联系人电话</label><input id="manager_exigence_phone" name="manager_exigence_phone" value="${map.manager_exigence_phone!''}" type="text" class="dfinput" /></li>
+		    	<li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) sub();" /></li>
+		    </ul>
+	    </form>
+    </div>
+	<script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.4.5&key=e4b758318e2c941c102fc4cc5c902703&plugin=AMap.Autocomplete"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/back/js/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript">
+
+    var map = new AMap.Map("container", {
+        resizeEnable: true
+    });
+    //为地图注册click事件获取鼠标点击出的经纬度坐标
+    var clickEventListener = map.on('click', function(e) {
+        document.getElementById("lnglat").value = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+        /* $("#container").css('display','none') */
+        
+    });
+    
+    var auto = new AMap.Autocomplete({
+        input: "tipinput"
+    });
+    /* function start(){
+        $("#container").css('display','block')
+    } */
+    AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+    function select(e) {
+        if (e.poi && e.poi.location) {
+            map.setZoom(15);
+            map.setCenter(e.poi.location);
+        }
+    }
+    $(document).ready(function(e) {
+    	create_textarea('content7');
+    });
+
+    function content7(){
+    	alert($('#content7').val());
+    }
+    $(document).ready(function(e) {
+		$(".select3").uedSelect({
+			width : 200
+		});
+	});
+	function chek(){
+		var parameter = ["shop_phone","pass","shop_balance_astrict","shop_image","shop_phone","shop_balance","shop_name","shop_balance_astrict","tipinput","shop_balance","shop_balance_astrict","shop_balance"];
+		var type = ['PHONE','Space','Decimals','Image',null,null,null,null,null,'Decimals','balance','balance'];
+		var msg = ["联系电话号码格式不正确","密码不可以带有空格空","店铺赔偿金额只能输入数字！","上传的图片必须是图片格式！","联系电话为必填项！","洗车消费金额为必填项！","店铺名称为必填项！","店铺补偿限制金额为必填项！","店铺地址为必填项","洗车消费金额只能输入数字！","店铺补偿限制金额只能输入大于0的！","洗车消费金额只能输入大于0的！"];
+		return validation(parameter,type,msg);
+	}
+	function sub(){
+		var str = $("#shop_image").val();
+		submitForm('/adminBack/shopManager/update?image='+str,'from');
+	}
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.cicerone.HxCiceroneTypeMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.cicerone.HxCiceroneType">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type_name" jdbcType="VARCHAR" property="type_name" />
+    <result column="type_value" jdbcType="VARCHAR" property="type_value" />
+    <result column="type_description" jdbcType="VARCHAR" property="type_description" />
+    <result column="create_id" jdbcType="BIGINT" property="create_id" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="update_time" jdbcType="BIGINT" property="update_time" />
+  </resultMap>
+  
+  
+ <sql id="Base_Column_List">
+    id, type_name, type_value, type_description, is_hide, create_id, create_time, update_time
+  </sql>
+
+
+  <select id="findAll" resultType="com.hwt.domain.entity.cicerone.vo.HxCiceroneTypeVo">
+    select
+    t.id as id, t.type_value as typeValue
+    from hx_cicerone_type t
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_cicerone_type
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_cicerone_type
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneType">
+    insert into hx_cicerone_type (id, type_name, type_value, 
+      type_description, is_hide, create_id, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{type_name,jdbcType=VARCHAR}, #{type_value,jdbcType=VARCHAR}, 
+      #{type_description,jdbcType=VARCHAR}, #{is_hide,jdbcType=INTEGER}, #{create_id,jdbcType=BIGINT}, 
+      #{create_time,jdbcType=BIGINT}, #{update_time,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneType">
+    insert into hx_cicerone_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type_name != null">
+        type_name,
+      </if>
+      <if test="type_value != null">
+        type_value,
+      </if>
+      <if test="type_description != null">
+        type_description,
+      </if>
+      <if test="is_hide != null">
+        is_hide,
+      </if>
+      <if test="create_id != null">
+        create_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="update_time != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type_name != null">
+        #{type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="type_value != null">
+        #{type_value,jdbcType=VARCHAR},
+      </if>
+      <if test="type_description != null">
+        #{type_description,jdbcType=VARCHAR},
+      </if>
+      <if test="is_hide != null">
+        #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_id != null">
+        #{create_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="update_time != null">
+        #{update_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneType">
+    update hx_cicerone_type
+    <set>
+      <if test="type_name != null">
+        type_name = #{type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="type_value != null">
+        type_value = #{type_value,jdbcType=VARCHAR},
+      </if>
+      <if test="type_description != null">
+        type_description = #{type_description,jdbcType=VARCHAR},
+      </if>
+      <if test="is_hide != null">
+        is_hide = #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="create_id != null">
+        create_id = #{create_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="update_time != null">
+        update_time = #{update_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneType">
+    update hx_cicerone_type
+    set type_name = #{type_name,jdbcType=VARCHAR},
+      type_value = #{type_value,jdbcType=VARCHAR},
+      type_description = #{type_description,jdbcType=VARCHAR},
+      is_hide = #{is_hide,jdbcType=INTEGER},
+      create_id = #{create_id,jdbcType=BIGINT},
+      create_time = #{create_time,jdbcType=BIGINT},
+      update_time = #{update_time,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据条件查询数据 -->
+  <select id="queryAllByMapToAdmin" resultType="java.util.Map" parameterType="map">
+	select a.* ,b.user_account 
+		
+		from hx_cicerone_type a, admin_user b where 1=1 and a.create_id = b.user_id
+		
+		<if test="type_value != null and type_value !=''">
+			and  `type_value` like '%${type_value}%'
+		</if>
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+		 
+	</select>
+	
+	 <!-- 根据条件获取总条数-->
+  <select id="queryCountAllByMapToAdmin"  resultType="java.lang.Long" parameterType="map">
+  	select count(id) from hx_cicerone_type  where 1=1 
+		<if test="type_value != null and type_value !=''">
+			and  `type_value` like '%${type_value}%'
+		</if>
+		
+		<!-- <if test="account_phone != null and account_phone !=''">
+			and  a.user_id in (select b.user_id from hx_user b where b.account_phone = #{account_phone})
+		</if>
+		<if test="account != null and account !=''">
+			and  a.user_id in (select b.user_id from hx_user b where b.account like '%${account}%')
+		</if> -->
+		<!-- <if test="feild != null and feild !=''">
+			and  a.user_id in (select b.user_id from hx_user b where b.account_phone like '%${feild}%' or b.account like '%${feild}%')
+		</if> -->
+  </select>
+  
+</mapper>

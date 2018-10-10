@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hwt_api:war">
+    <output-path>$PROJECT_DIR$/hwt_api/target</output-path>
+    <root id="archive" name="hwt_api-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="hwt_api:war exploded" />
+    </root>
+  </artifact>
+</component>

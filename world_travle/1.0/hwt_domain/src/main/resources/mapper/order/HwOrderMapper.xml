@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HwOrderMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.order.HwOrder">
+    <id column="order_id" jdbcType="BIGINT" property="order_id" />
+    <result column="order_num" jdbcType="VARCHAR" property="order_num" />
+    <result column="bureau_id" jdbcType="BIGINT" property="bureau_id" />
+    <result column="cicerone_id" jdbcType="BIGINT" property="cicerone_id" />
+    <result column="line_id" jdbcType="BIGINT" property="line_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="insurance_id" jdbcType="BIGINT" property="insurance_id" />
+    <result column="coupon_id" jdbcType="BIGINT" property="coupon_id" />
+    <result column="payment" jdbcType="DECIMAL" property="payment" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="update_time" jdbcType="BIGINT" property="update_time" />
+    <result column="paymen_type" jdbcType="INTEGER" property="paymen_type" />
+    <result column="payment_time" jdbcType="BIGINT" property="payment_time" />
+    <result column="apply_sales_time" jdbcType="BIGINT" property="apply_sales_time" />
+    <result column="start_time" jdbcType="BIGINT" property="start_time" />
+    <result column="end_time" jdbcType="BIGINT" property="end_time" />
+    <result column="completion_time" jdbcType="BIGINT" property="completion_time" />
+    <result column="refundable_time" jdbcType="BIGINT" property="refundable_time" />
+    <result column="buyer_message" jdbcType="VARCHAR" property="buyer_message" />
+    <result column="buyer_rate" jdbcType="INTEGER" property="buyer_rate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="buyer_name" jdbcType="VARCHAR" property="buyer_name" />
+    <result column="buyer_phone" jdbcType="VARCHAR" property="buyer_phone" />
+    <result column="transaction_num" jdbcType="VARCHAR" property="transaction_num" />
+    <result column="tourist_is_delete" jdbcType="INTEGER" property="tourist_is_delete" />
+    <result column="cicerone_is_delete" jdbcType="INTEGER" property="cicerone_is_delete" />
+    <result column="refuse_time" jdbcType="BIGINT" property="refuse_time" />
+    <result column="accept_time" jdbcType="BIGINT" property="accept_time" />
+    <result column="is_settlement" jdbcType="INTEGER" property="is_settlement" />
+    <result column="adult_num" jdbcType="INTEGER" property="adult_num" />
+    <result column="children_num" jdbcType="INTEGER" property="children_num" />
+    <result column="people_num" jdbcType="INTEGER" property="people_num" />
+  </resultMap>
+ 
+  
+   <sql id="Base_Column_List">
+    order_id, order_num, bureau_id, cicerone_id, line_id, user_id, insurance_id, coupon_id, payment, 
+    create_time, update_time, paymen_type, payment_time, apply_sales_time, start_time, 
+    end_time, completion_time, refundable_time, buyer_message, buyer_rate, status, buyer_name, 
+    buyer_phone, transaction_num, tourist_is_delete, cicerone_is_delete, refuse_time, 
+    accept_time, is_settlement, adult_num, children_num, people_num
+  </sql>
+ 
+   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_order
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_order
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </delete>
+  
+   <insert id="insert" parameterType="com.hwt.domain.entity.order.HwOrder">
+    insert into hw_order (order_id, order_num,bureau_id, cicerone_id, 
+      line_id, user_id, insurance_id, 
+      coupon_id, payment, create_time, 
+      update_time, paymen_type, payment_time, 
+      apply_sales_time, start_time, end_time, 
+      completion_time, refundable_time, buyer_message, 
+      buyer_rate, status, buyer_name, 
+      buyer_phone, transaction_num, tourist_is_delete, 
+      cicerone_is_delete, refuse_time, accept_time, 
+      is_settlement, adult_num, children_num, 
+      people_num)
+    values (#{order_id,jdbcType=BIGINT},#{order_num,jdbcType=VARCHAR}, #{bureau_id,jdbcType=BIGINT}, #{cicerone_id,jdbcType=BIGINT}, 
+      #{line_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{insurance_id,jdbcType=BIGINT}, 
+      #{coupon_id,jdbcType=BIGINT}, #{payment,jdbcType=DECIMAL}, #{create_time,jdbcType=BIGINT}, 
+      #{update_time,jdbcType=BIGINT}, #{paymen_type,jdbcType=INTEGER}, #{payment_time,jdbcType=BIGINT}, 
+      #{apply_sales_time,jdbcType=BIGINT}, #{start_time,jdbcType=BIGINT}, #{end_time,jdbcType=BIGINT}, 
+      #{completion_time,jdbcType=BIGINT}, #{refundable_time,jdbcType=BIGINT}, #{buyer_message,jdbcType=VARCHAR}, 
+      #{buyer_rate,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{buyer_name,jdbcType=VARCHAR}, 
+      #{buyer_phone,jdbcType=VARCHAR}, #{transaction_num,jdbcType=VARCHAR}, #{tourist_is_delete,jdbcType=INTEGER}, 
+      #{cicerone_is_delete,jdbcType=INTEGER}, #{refuse_time,jdbcType=BIGINT}, #{accept_time,jdbcType=BIGINT}, 
+      #{is_settlement,jdbcType=INTEGER}, #{adult_num,jdbcType=INTEGER}, #{children_num,jdbcType=INTEGER}, 
+      #{people_num,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.order.HwOrder">
+    insert into hw_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        order_id,
+      </if>
+      <if test="order_num != null">
+        order_num,
+      </if>
+      <if test="bureau_id != null">
+        bureau_id,
+      </if>
+      <if test="cicerone_id != null">
+        cicerone_id,
+      </if>
+      <if test="line_id != null">
+        line_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="insurance_id != null">
+        insurance_id,
+      </if>
+      <if test="coupon_id != null">
+        coupon_id,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="update_time != null">
+        update_time,
+      </if>
+      <if test="paymen_type != null">
+        paymen_type,
+      </if>
+      <if test="payment_time != null">
+        payment_time,
+      </if>
+      <if test="apply_sales_time != null">
+        apply_sales_time,
+      </if>
+      <if test="start_time != null">
+        start_time,
+      </if>
+      <if test="end_time != null">
+        end_time,
+      </if>
+      <if test="completion_time != null">
+        completion_time,
+      </if>
+      <if test="refundable_time != null">
+        refundable_time,
+      </if>
+      <if test="buyer_message != null">
+        buyer_message,
+      </if>
+      <if test="buyer_rate != null">
+        buyer_rate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="buyer_name != null">
+        buyer_name,
+      </if>
+      <if test="buyer_phone != null">
+        buyer_phone,
+      </if>
+      <if test="transaction_num != null">
+        transaction_num,
+      </if>
+      <if test="tourist_is_delete != null">
+        tourist_is_delete,
+      </if>
+      <if test="cicerone_is_delete != null">
+        cicerone_is_delete,
+      </if>
+      <if test="refuse_time != null">
+        refuse_time,
+      </if>
+      <if test="accept_time != null">
+        accept_time,
+      </if>
+      <if test="is_settlement != null">
+        is_settlement,
+      </if>
+      <if test="adult_num != null">
+        adult_num,
+      </if>
+      <if test="children_num != null">
+        children_num,
+      </if>
+      <if test="people_num != null">
+        people_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        #{order_id,jdbcType=BIGINT},
+      </if>
+       <if test="order_num != null">
+        #{order_num,jdbcType=VARCHAR},
+      </if>
+      <if test="bureau_id != null">
+        #{bureau_id,jdbcType=BIGINT},
+      </if>
+      <if test="cicerone_id != null">
+        #{cicerone_id,jdbcType=BIGINT},
+      </if>
+      <if test="line_id != null">
+        #{line_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="insurance_id != null">
+        #{insurance_id,jdbcType=BIGINT},
+      </if>
+      <if test="coupon_id != null">
+        #{coupon_id,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="update_time != null">
+        #{update_time,jdbcType=BIGINT},
+      </if>
+      <if test="paymen_type != null">
+        #{paymen_type,jdbcType=INTEGER},
+      </if>
+      <if test="payment_time != null">
+        #{payment_time,jdbcType=BIGINT},
+      </if>
+      <if test="apply_sales_time != null">
+        #{apply_sales_time,jdbcType=BIGINT},
+      </if>
+      <if test="start_time != null">
+        #{start_time,jdbcType=BIGINT},
+      </if>
+      <if test="end_time != null">
+        #{end_time,jdbcType=BIGINT},
+      </if>
+      <if test="completion_time != null">
+        #{completion_time,jdbcType=BIGINT},
+      </if>
+      <if test="refundable_time != null">
+        #{refundable_time,jdbcType=BIGINT},
+      </if>
+      <if test="buyer_message != null">
+        #{buyer_message,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer_rate != null">
+        #{buyer_rate,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="buyer_name != null">
+        #{buyer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer_phone != null">
+        #{buyer_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="transaction_num != null">
+        #{transaction_num,jdbcType=VARCHAR},
+      </if>
+      <if test="tourist_is_delete != null">
+        #{tourist_is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="cicerone_is_delete != null">
+        #{cicerone_is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="refuse_time != null">
+        #{refuse_time,jdbcType=BIGINT},
+      </if>
+      <if test="accept_time != null">
+        #{accept_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_settlement != null">
+        #{is_settlement,jdbcType=INTEGER},
+      </if>
+      <if test="adult_num != null">
+        #{adult_num,jdbcType=INTEGER},
+      </if>
+      <if test="children_num != null">
+        #{children_num,jdbcType=INTEGER},
+      </if>
+      <if test="people_num != null">
+        #{people_num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+ 
+ 
+    <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.order.HwOrder">
+    update hw_order
+    <set>
+     <if test="order_num != null">
+        order_num = #{order_num,jdbcType=VARCHAR},
+      </if>
+      <if test="bureau_id != null">
+        bureau_id = #{bureau_id,jdbcType=BIGINT},
+      </if>
+      <if test="cicerone_id != null">
+        cicerone_id = #{cicerone_id,jdbcType=BIGINT},
+      </if>
+      <if test="line_id != null">
+        line_id = #{line_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="insurance_id != null">
+        insurance_id = #{insurance_id,jdbcType=BIGINT},
+      </if>
+      <if test="coupon_id != null">
+        coupon_id = #{coupon_id,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="update_time != null">
+        update_time = #{update_time,jdbcType=BIGINT},
+      </if>
+      <if test="paymen_type != null">
+        paymen_type = #{paymen_type,jdbcType=INTEGER},
+      </if>
+      <if test="payment_time != null">
+        payment_time = #{payment_time,jdbcType=BIGINT},
+      </if>
+      <if test="apply_sales_time != null">
+        apply_sales_time = #{apply_sales_time,jdbcType=BIGINT},
+      </if>
+      <if test="start_time != null">
+        start_time = #{start_time,jdbcType=BIGINT},
+      </if>
+      <if test="end_time != null">
+        end_time = #{end_time,jdbcType=BIGINT},
+      </if>
+      <if test="completion_time != null">
+        completion_time = #{completion_time,jdbcType=BIGINT},
+      </if>
+      <if test="refundable_time != null">
+        refundable_time = #{refundable_time,jdbcType=BIGINT},
+      </if>
+      <if test="buyer_message != null">
+        buyer_message = #{buyer_message,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer_rate != null">
+        buyer_rate = #{buyer_rate,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="buyer_name != null">
+        buyer_name = #{buyer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer_phone != null">
+        buyer_phone = #{buyer_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="transaction_num != null">
+        transaction_num = #{transaction_num,jdbcType=VARCHAR},
+      </if>
+      <if test="tourist_is_delete != null">
+        tourist_is_delete = #{tourist_is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="cicerone_is_delete != null">
+        cicerone_is_delete = #{cicerone_is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="refuse_time != null">
+        refuse_time = #{refuse_time,jdbcType=BIGINT},
+      </if>
+      <if test="accept_time != null">
+        accept_time = #{accept_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_settlement != null">
+        is_settlement = #{is_settlement,jdbcType=INTEGER},
+      </if>
+      <if test="adult_num != null">
+        adult_num = #{adult_num,jdbcType=INTEGER},
+      </if>
+      <if test="children_num != null">
+        children_num = #{children_num,jdbcType=INTEGER},
+      </if>
+      <if test="people_num != null">
+        people_num = #{people_num,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.order.HwOrder">
+    update hw_order
+    set  order_num = #{order_num,jdbcType=VARCHAR},
+      bureau_id = #{bureau_id,jdbcType=BIGINT},
+      cicerone_id = #{cicerone_id,jdbcType=BIGINT},
+      line_id = #{line_id,jdbcType=BIGINT},
+      user_id = #{user_id,jdbcType=BIGINT},
+      insurance_id = #{insurance_id,jdbcType=BIGINT},
+      coupon_id = #{coupon_id,jdbcType=BIGINT},
+      payment = #{payment,jdbcType=DECIMAL},
+      create_time = #{create_time,jdbcType=BIGINT},
+      update_time = #{update_time,jdbcType=BIGINT},
+      paymen_type = #{paymen_type,jdbcType=INTEGER},
+      payment_time = #{payment_time,jdbcType=BIGINT},
+      apply_sales_time = #{apply_sales_time,jdbcType=BIGINT},
+      start_time = #{start_time,jdbcType=BIGINT},
+      end_time = #{end_time,jdbcType=BIGINT},
+      completion_time = #{completion_time,jdbcType=BIGINT},
+      refundable_time = #{refundable_time,jdbcType=BIGINT},
+      buyer_message = #{buyer_message,jdbcType=VARCHAR},
+      buyer_rate = #{buyer_rate,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      buyer_name = #{buyer_name,jdbcType=VARCHAR},
+      buyer_phone = #{buyer_phone,jdbcType=VARCHAR},
+      transaction_num = #{transaction_num,jdbcType=VARCHAR},
+      tourist_is_delete = #{tourist_is_delete,jdbcType=INTEGER},
+      cicerone_is_delete = #{cicerone_is_delete,jdbcType=INTEGER},
+      refuse_time = #{refuse_time,jdbcType=BIGINT},
+      accept_time = #{accept_time,jdbcType=BIGINT},
+      is_settlement = #{is_settlement,jdbcType=INTEGER},
+      adult_num = #{adult_num,jdbcType=INTEGER},
+      children_num = #{children_num,jdbcType=INTEGER},
+      people_num = #{people_num,jdbcType=INTEGER}
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </update>
+  
+  <!--   返回主键添加-->
+  <insert id="insertSelectiveBcakId" useGeneratedKeys="true" keyProperty="order_id" parameterType="com.hwt.domain.entity.order.HwOrder">
+     insert into hw_order 
+     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        order_id,
+      </if>
+      <if test="order_num != null">
+        order_num,
+      </if>
+      <if test="bureau_id != null">
+        bureau_id,
+      </if>
+      <if test="cicerone_id != null">
+        cicerone_id,
+      </if>
+      <if test="line_id != null">
+        line_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="insurance_id != null">
+        insurance_id,
+      </if>
+      <if test="coupon_id != null">
+        coupon_id,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="update_time != null">
+        update_time,
+      </if>
+      <if test="paymen_type != null">
+        paymen_type,
+      </if>
+      <if test="payment_time != null">
+        payment_time,
+      </if>
+      <if test="apply_sales_time != null">
+        apply_sales_time,
+      </if>
+      <if test="start_time != null">
+        start_time,
+      </if>
+      <if test="end_time != null">
+        end_time,
+      </if>
+      <if test="completion_time != null">
+        completion_time,
+      </if>
+      <if test="refundable_time != null">
+        refundable_time,
+      </if>
+      <if test="buyer_message != null">
+        buyer_message,
+      </if>
+      <if test="buyer_rate != null">
+        buyer_rate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="buyer_name != null">
+        buyer_name,
+      </if>
+      <if test="buyer_phone != null">
+        buyer_phone,
+      </if>
+      <if test="transaction_num != null">
+        transaction_num,
+      </if>
+      <if test="tourist_is_delete != null">
+        tourist_is_delete,
+      </if>
+      <if test="cicerone_is_delete != null">
+        cicerone_is_delete,
+      </if>
+      <if test="refuse_time != null">
+        refuse_time,
+      </if>
+      <if test="accept_time != null">
+        accept_time,
+      </if>
+      <if test="is_settlement != null">
+        is_settlement,
+      </if>
+      <if test="adult_num != null">
+        adult_num,
+      </if>
+      <if test="children_num != null">
+        children_num,
+      </if>
+      <if test="people_num != null">
+        people_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        #{order_id,jdbcType=BIGINT},
+      </if>
+       <if test="order_num != null">
+        #{order_num,jdbcType=VARCHAR},
+      </if>
+      <if test="bureau_id != null">
+        #{bureau_id,jdbcType=BIGINT},
+      </if>
+      <if test="cicerone_id != null">
+        #{cicerone_id,jdbcType=BIGINT},
+      </if>
+      <if test="line_id != null">
+        #{line_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="insurance_id != null">
+        #{insurance_id,jdbcType=BIGINT},
+      </if>
+      <if test="coupon_id != null">
+        #{coupon_id,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="update_time != null">
+        #{update_time,jdbcType=BIGINT},
+      </if>
+      <if test="paymen_type != null">
+        #{paymen_type,jdbcType=INTEGER},
+      </if>
+      <if test="payment_time != null">
+        #{payment_time,jdbcType=BIGINT},
+      </if>
+      <if test="apply_sales_time != null">
+        #{apply_sales_time,jdbcType=BIGINT},
+      </if>
+      <if test="start_time != null">
+        #{start_time,jdbcType=BIGINT},
+      </if>
+      <if test="end_time != null">
+        #{end_time,jdbcType=BIGINT},
+      </if>
+      <if test="completion_time != null">
+        #{completion_time,jdbcType=BIGINT},
+      </if>
+      <if test="refundable_time != null">
+        #{refundable_time,jdbcType=BIGINT},
+      </if>
+      <if test="buyer_message != null">
+        #{buyer_message,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer_rate != null">
+        #{buyer_rate,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="buyer_name != null">
+        #{buyer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer_phone != null">
+        #{buyer_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="transaction_num != null">
+        #{transaction_num,jdbcType=VARCHAR},
+      </if>
+      <if test="tourist_is_delete != null">
+        #{tourist_is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="cicerone_is_delete != null">
+        #{cicerone_is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="refuse_time != null">
+        #{refuse_time,jdbcType=BIGINT},
+      </if>
+      <if test="accept_time != null">
+        #{accept_time,jdbcType=BIGINT},
+      </if>
+      <if test="is_settlement != null">
+        #{is_settlement,jdbcType=INTEGER},
+      </if>
+      <if test="adult_num != null">
+        #{adult_num,jdbcType=INTEGER},
+      </if>
+      <if test="children_num != null">
+        #{children_num,jdbcType=INTEGER},
+      </if>
+      <if test="people_num != null">
+        #{people_num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <!-- 查询订单给游客 -->
+  <select id="qureyByMapToTourist" resultType="com.hwt.domain.entity.order.vo.OrderInfoVO" parameterType="map">
+  		select * from hw_order a, hx_order_info b where a.order_id = b.order_id and 1=1 and  a.user_id = #{user_id} and a.tourist_is_delete = 0 
+  		<if test="status !=null and status  &lt; 4">
+  			and a.status = #{status} 
+  		</if>
+  		
+  		<if test="status !=null and status == 4">
+  			and a.status = 4 or status = 5 
+  		</if>
+  		<if test="status !=null and status == 5">
+  			and a.status = 3 and buyer_rate = 0 
+  		</if>
+  		order by a.create_time desc 
+  	     limit #{startNum} ,#{pageSize}
+  </select>
+  
+  <!-- 查询订单给导游 -->
+  <select id="qureyByMapToCicerone" resultType="com.hwt.domain.entity.order.vo.OrderInfoVO" parameterType="map">
+  		select * from hw_order a, hx_order_info b where a.order_id = b.order_id and 1=1 and  a.cicerone_id = #{cicerone_id} and a.cicerone_is_delete = 0 
+  		<if test="status !=null and status  &lt; 6">
+  			and a.status = #{status} 
+  		</if>
+  		
+  		
+  		<if test="status !=null and status == 6">
+  			and a.status = 3 and a.is_settlement = 0 
+  		</if>
+  		order by a.create_time desc 
+  	     limit #{startNum} ,#{pageSize}
+  </select>
+  
+  <!-- 客户端查询订单  qureyByMapToHx-->
+  <select id="qureyByMapToHx" resultType="com.hwt.domain.entity.order.vo.HxOrderInfoBaseVo" parameterType="map">
+  		select a.order_id, a.bureau_id, a.cicerone_id, a.user_id, a.payment, b.travel_line_id,  b.image,  b.`dec` ,a.end_time,a.start_time
+  			,a.status , a.buyer_rate
+  			from hw_order a, hx_order_info b where 1=1 and a.order_id = b.order_id and (( a.user_id = #{user_id} and a.tourist_is_delete = 0) 
+  			 or (a.cicerone_id = #{user_id} and a.cicerone_is_delete = 0)) and a.`status` !=0 and a.`status` != 7 
+  	
+  		<if test="status !=null and status == 1">
+  			and a.`status` = 1 
+  		</if>
+  		<if test="status !=null and status == 2">
+  			and a.`status` = 2 and a.start_time &lt; #{time}
+  		</if>
+  		<if test="status !=null and status == 5">
+  			and a.buyer_rate = 0 and a.`status` = 3
+  		</if>
+  		order by a.create_time desc 
+  	     limit #{startNum} ,#{pageSize}
+  </select>
+  
+  <!-- 查询数据 -->
+  <select id="qureyByMapToBureau" resultType="java.util.Map" parameterType="map">
+  	
+  	select a.order_id, a.order_num, a.start_time ,a.apply_sales_time, a.accept_time ,a.create_time, a.payment, a.status, a.user_id ,b.dec from  hw_order a , hx_order_info b 
+  		where   1=1 and  b.order_id = a.order_id and 
+  	 
+  	 a.bureau_id = #{bureau_id}  and a.`status` != 0 and a.`status` != 7 and a.`status` != 6
+  	<!--  <if test="status !=null and status == 0">
+  			and a.`status` != 0 and a.`status` != 7
+  	 </if>
+  	 <if test="status !=null and status == 1">
+  			and a.`status` = 1
+  	 </if>
+  	 <if test="status !=null and status == 2">
+  			and a.`status` = 2 and UNIX_TIMESTAMP()*1000 &lt; a.start_time 
+  	 </if>
+  	<if test="status !=null and status == 3">
+  			and a.`status` = 2 and UNIX_TIMESTAMP()*1000 &gt; a.start_time 
+  	 </if>
+  	 <if test="status !=null and status == 4">
+  			and a.`status` = 3 
+  	 </if>
+  	 <if test="status !=null and status == 5">
+  			and (a.`status` = 4 or a.`status` = 5) and a.apply_sales_time != null
+  	 </if>
+  	 <if test="status !=null and status == 6">
+  			and (a.`status` = 4 or a.`status` = 5) and a.apply_sales_time = null and a.accept_time != null
+  	 </if> -->
+  	  <if test="status !=null and status == 0">
+  			
+  	 </if>
+  	 <if test="status !=null and status == 1">
+  			and a.`status` = 1
+  	 </if>
+  	 <if test="status !=null and status == 2">
+  			and a.`status` = 2 and UNIX_TIMESTAMP()*1000 &lt; a.start_time 
+  	 </if>
+  	<if test="status !=null and status == 3">
+  			and a.`status` = 2 and UNIX_TIMESTAMP()*1000 &gt; a.start_time 
+  	 </if>
+  	 <if test="status !=null and status == 4">
+  			and a.`status` = 3 
+  	 </if>
+  	 <if test="status !=null and status == 5">
+  			and (a.`status` = 4 or a.`status` = 5)
+  	 </if>
+  	 <if test="order_num !=null and order_num !=''">
+  			and a.order_num like %#{order_num}%
+  	 </if>
+  	 <if test="filde !=null and filde !=''">
+  			and (a.buyer_name like %#{filde}% or a.buyer_phone like %#{filde}%)
+  	 </if>
+  	 
+  	 order by ${orderBy}
+  	  limit #{startNum},#{pageSize}
+  </select>
+  
+  <!-- 查询条数 按条件 -->
+  <select  id="qureyCountByMapToBureau" resultType="java.lang.Long" parameterType="map">
+  	select count(order_id) from  hw_order where   1=1 and
+  	 bureau_id = #{bureau_id}  and `status` != 0 and `status` != 7 and `status` != 6
+  	  <if test="status !=null and status == 0">
+  			
+  	 </if>
+  	 <if test="status !=null and status == 1">
+  			and `status` = 1
+  	 </if>
+  	 <if test="status !=null and status == 2">
+  			and `status` = 2 and UNIX_TIMESTAMP()*1000 &lt; start_time 
+  	 </if>
+  	<if test="status !=null and status == 3">
+  			and `status` = 2 and UNIX_TIMESTAMP()*1000 &gt; start_time 
+  	 </if>
+  	 <if test="status !=null and status == 4">
+  			and `status` = 3 
+  	 </if>
+  	 <if test="status !=null and status == 5">
+  			and (`status` = 4 or `status` = 5)
+  	 </if>
+  	 <if test="order_num !=null and order_num !=''">
+  			and order_num like %#{order_num}%
+  	 </if>
+  	 <if test="filde !=null and filde !=''">
+  			and (buyer_name like %#{filde}% or buyer_phone like %#{filde}%)
+  	 </if>
+  
+  </select>
+</mapper>

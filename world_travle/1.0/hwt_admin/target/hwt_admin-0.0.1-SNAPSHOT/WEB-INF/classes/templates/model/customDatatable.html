@@ -1,0 +1,161 @@
+
+  <head>
+      <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+  </head>
+
+  <body>
+<!--请求路径-->
+  <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="index.html">Bracket</a>
+          <a class="breadcrumb-item" href="#">Tables</a>
+          <span class="breadcrumb-item active">Data Table</span>
+      </nav>
+  </div>
+
+<!--页面标题-->
+<div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">角色管理</h4>
+    <p class="mg-b-0">DataTables is a plug-in for the jQuery Javascript library.</p>
+</div>
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="table-wrapper">
+            <!--查询条件-->
+            <div class="row">
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入名称" name="tname" id="tname">
+
+                    </div><!-- input-group -->
+                </div>
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon ion-calendar tx-16 lh-0 op-6"></i></span>
+                        <input type="text" class="form-control" id="start_time" placeholder="选择起始日期" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\');}'})">
+                    </div>
+                </div>
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon ion-calendar tx-16 lh-0 op-6"></i></span>
+                        <input type="text" class="form-control" id="end_time" placeholder="选择起始日期" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\');}'})">
+                        <!--<div class="col-xs-3">-->
+                        <!--<label style="width: 60px;">开始日期:</label>-->
+                        <!--<input style="margin-left: 5px; width: 130px;" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'guide_end_time\');}'})" type="text" id="guide_start_time" placeholder="选择起始日期" >-->
+
+                        <!--</div>-->
+                        <!--<div class="col-xs-3">-->
+                        <!--<label style="width: 60px;">结束日期:</label>-->
+                        <!--<input style="margin-left: 5px; width: 130px;" onclick="WdatePicker({minDate:'#F{$dp.$D(\'guide_start_time\');}'})" type="text" id="guide_end_time" placeholder="选择结束日期">-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                    <div class="input-group">
+                        <select class="form-control select2" name="tselect" id="tselect" data-placeholder="Choose one"
+                                data-parsley-class-handler="#slWrapper"
+                                data-parsley-errors-container="#slErrorContainer" required>
+                            <option label="Choose one"></option>
+                            <option value="Firefox">Firefox</option>
+                            <option value="Chrome">Chrome</option>
+                            <option value="Safari">Safari</option>
+                            <option value="Opera">Opera</option>
+                            <option value="Internet Explorer">Internet Explorer</option>
+                        </select>
+	
+                    </div><!-- input-group -->
+                </div>
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 pd-l-0">
+                    <div class="input-group">
+                        <button class="btn btn-primary mg-l-10" onclick="sreachCommit()"><i class="fa fa-search mg-r-10"></i> 搜索</button>
+                        <button class="btn btn-primary mg-l-10" onclick="addRole()"><i class="fa fa-plus mg-r-10"></i> 添加</button>
+                    </div><!-- input-group -->
+                </div>
+            </div>
+
+            <!--数据列表-->
+            <div id="dynamic-table_wrapper" class="dataTables_wrapper no-footer">
+                <table id="dynamic-table" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="dynamic-table_info" >
+                    <thead>
+                    <tr role="row">
+                        <th class="wd-5p parsley-checkbox " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;">
+
+                            <label class="ckbox " >
+                                <input type="checkbox" name="browser[]"><span></span>
+                            </label>
+
+                            <!--<label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label>-->
+                        </th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >角色Id</th>
+                        <th class="wd-20p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 180px;" >角色名称</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >角色数量</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >角色描述</th>
+                        <th class="wd-10p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 78px;" >创建人</th>
+                        <th class="wd-10p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 78px;" >创建时间</th>
+                        <th class="wd-25p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 231px;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+  <!--<div class="table-wrapper">-->
+      <!--<table id="dynamic-table" class="table display responsive nowrap">-->
+          <!--<thead>-->
+          <!--<tr>-->
+              <!--<th class="wd-5p"><label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label></th>-->
+              <!--<th class="wd-10p">ID</th>-->
+              <!--<th class="wd-15p">名称</th>-->
+              <!--<th class="wd-20p">性别</th>-->
+              <!--<th class="wd-15p">时间</th>-->
+              <!--<th class="wd-10p">TOKEN</th>-->
+              <!--<th class="wd-25p">操作</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+
+          <!--</tbody>-->
+      <!--</table>-->
+  <!--</div>&lt;!&ndash; table-wrapper &ndash;&gt;-->
+
+
+
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+          <div>Attentively and carefully made by ThemePixels.</div>
+        </div>
+        <div class="footer-right d-flex align-items-center">
+          <span class="tx-uppercase mg-r-10">Share:</span>
+          <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+        </div>
+      </footer>
+      <script src="/model/lib/jquery/jquery.js"></script>
+      <script src="/plugins/dataTable/js/ro.dataTable.js"></script>
+      <script src="/plugins/dataTable/js/demo.dataTable.js"></script>
+      <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+
+<!--<script src="/model/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>-->
+<!--<script src="/model/lib/d3/d3.js"></script>-->
+
+    <script>
+    	function name() {
+			
+		}
+    </script>
+  </body>

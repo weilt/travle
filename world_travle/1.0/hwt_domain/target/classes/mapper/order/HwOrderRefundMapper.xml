@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HwOrderRefundMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.order.HwOrderRefund">
+    <id column="order_id" jdbcType="BIGINT" property="order_id" />
+    <result column="refund_sum" jdbcType="DECIMAL" property="refund_sum" />
+    <result column="is_complete" jdbcType="INTEGER" property="is_complete" />
+    <result column="refund_dec" jdbcType="VARCHAR" property="refund_dec" />
+    <result column="user_remarks" jdbcType="VARCHAR" property="user_remarks" />
+    <result column="business_remarks" jdbcType="VARCHAR" property="business_remarks" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List">
+    order_id, refund_sum, is_complete, refund_dec, user_remarks, business_remarks
+  </sql>
+  
+   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_order_refund
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_order_refund
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.order.HwOrderRefund">
+    insert into hw_order_refund (order_id, refund_sum, is_complete, 
+      refund_dec, user_remarks, business_remarks
+      )
+    values (#{order_id,jdbcType=BIGINT}, #{refund_sum,jdbcType=DECIMAL}, #{is_complete,jdbcType=INTEGER}, 
+      #{refund_dec,jdbcType=VARCHAR}, #{user_remarks,jdbcType=VARCHAR}, #{business_remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.order.HwOrderRefund">
+    insert into hw_order_refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        order_id,
+      </if>
+      <if test="refund_sum != null">
+        refund_sum,
+      </if>
+      <if test="is_complete != null">
+        is_complete,
+      </if>
+      <if test="refund_dec != null">
+        refund_dec,
+      </if>
+      <if test="user_remarks != null">
+        user_remarks,
+      </if>
+      <if test="business_remarks != null">
+        business_remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        #{order_id,jdbcType=BIGINT},
+      </if>
+      <if test="refund_sum != null">
+        #{refund_sum,jdbcType=DECIMAL},
+      </if>
+      <if test="is_complete != null">
+        #{is_complete,jdbcType=INTEGER},
+      </if>
+      <if test="refund_dec != null">
+        #{refund_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="user_remarks != null">
+        #{user_remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="business_remarks != null">
+        #{business_remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.order.HwOrderRefund">
+    update hw_order_refund
+    <set>
+      <if test="refund_sum != null">
+        refund_sum = #{refund_sum,jdbcType=DECIMAL},
+      </if>
+      <if test="is_complete != null">
+        is_complete = #{is_complete,jdbcType=INTEGER},
+      </if>
+      <if test="refund_dec != null">
+        refund_dec = #{refund_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="user_remarks != null">
+        user_remarks = #{user_remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="business_remarks != null">
+        business_remarks = #{business_remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.order.HwOrderRefund">
+    update hw_order_refund
+    set refund_sum = #{refund_sum,jdbcType=DECIMAL},
+      is_complete = #{is_complete,jdbcType=INTEGER},
+      refund_dec = #{refund_dec,jdbcType=VARCHAR},
+      user_remarks = #{user_remarks,jdbcType=VARCHAR},
+      business_remarks = #{business_remarks,jdbcType=VARCHAR}
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

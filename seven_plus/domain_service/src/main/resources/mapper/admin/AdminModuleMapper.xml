@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.domain.admin.mapper.AdminModuleMapper">
+
+
+	<!-- 查询数据数量 -->
+	<select id="queryListMapCount" parameterType="map" resultType="int">
+		select COUNT(id) from admin_module where 1=1
+		<choose>
+			<when test="parentId != null and parentId > 0">
+				and parentId = #{parentId}
+			</when>
+			<otherwise>
+				and (parentId = 0 OR parentId IS NULL)
+			</otherwise>
+		</choose>
+		<if test="url != null and '' != url">
+			and url LIKE CONCAT('%',#{url},'%')
+		</if>
+	</select>
+
+	<!-- 查询数据列表 -->
+	<select id="queryListMap" parameterType="map" resultType="map">
+		select * from admin_module where 1=1 
+		<choose>
+			<when test="parentId != null and parentId > 0">
+				and parentId = #{parentId}
+			</when>
+			<otherwise>
+				and (parentId=0 OR parentId IS NULL)
+			</otherwise>
+		</choose>
+		<if test="url != null and '' != url">
+			and url LIKE CONCAT('%',#{url},'%')
+		</if>
+		order by sort
+		<if test="last != null and '' != last and last > 0">  
+	        <![CDATA[ LIMIT #{index},#{last} ]]>
+		</if>
+	</select>
+</mapper>

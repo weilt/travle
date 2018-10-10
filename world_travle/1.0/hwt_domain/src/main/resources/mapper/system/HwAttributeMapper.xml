@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.system.HwAttributeMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.system.HwAttribute">
+    <id column="attribute_id" jdbcType="INTEGER" property="attribute_id" />
+    <result column="attribute_name" jdbcType="VARCHAR" property="attribute_name" />
+    <result column="attribute_key" jdbcType="VARCHAR" property="attribute_key" />
+    <result column="attribute_dec" jdbcType="VARCHAR" property="attribute_dec" />
+    <result column="is_hide" jdbcType="INTEGER" property="is_hide" />
+    <result column="update_time" jdbcType="BIGINT" property="update_time" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List">
+    attribute_id, attribute_name, attribute_key, attribute_dec, is_hide, update_time, 
+    create_time
+  </sql>
+ 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_attribute
+    where attribute_id = #{attribute_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hw_attribute
+    where attribute_id = #{attribute_id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.system.HwAttribute">
+    insert into hw_attribute (attribute_id, attribute_name, attribute_key, 
+      attribute_dec, is_hide, update_time, 
+      create_time)
+    values (#{attribute_id,jdbcType=INTEGER}, #{attribute_name,jdbcType=VARCHAR}, #{attribute_key,jdbcType=VARCHAR}, 
+      #{attribute_dec,jdbcType=VARCHAR}, #{is_hide,jdbcType=INTEGER}, #{update_time,jdbcType=BIGINT}, 
+      #{create_time,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.system.HwAttribute">
+    insert into hw_attribute
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attribute_id != null">
+        attribute_id,
+      </if>
+      <if test="attribute_name != null">
+        attribute_name,
+      </if>
+      <if test="attribute_key != null">
+        attribute_key,
+      </if>
+      <if test="attribute_dec != null">
+        attribute_dec,
+      </if>
+      <if test="is_hide != null">
+        is_hide,
+      </if>
+      <if test="update_time != null">
+        update_time,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attribute_id != null">
+        #{attribute_id,jdbcType=INTEGER},
+      </if>
+      <if test="attribute_name != null">
+        #{attribute_name,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute_key != null">
+        #{attribute_key,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute_dec != null">
+        #{attribute_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="is_hide != null">
+        #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null">
+        #{update_time,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.system.HwAttribute">
+    update hw_attribute
+    <set>
+      <if test="attribute_name != null">
+        attribute_name = #{attribute_name,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute_key != null">
+        attribute_key = #{attribute_key,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute_dec != null">
+        attribute_dec = #{attribute_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="is_hide != null">
+        is_hide = #{is_hide,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null">
+        update_time = #{update_time,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where attribute_id = #{attribute_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.system.HwAttribute">
+    update hw_attribute
+    set attribute_name = #{attribute_name,jdbcType=VARCHAR},
+      attribute_key = #{attribute_key,jdbcType=VARCHAR},
+      attribute_dec = #{attribute_dec,jdbcType=VARCHAR},
+      is_hide = #{is_hide,jdbcType=INTEGER},
+      update_time = #{update_time,jdbcType=BIGINT},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where attribute_id = #{attribute_id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据条件返回总条数给后台 -->
+  <select id="queryCountByMapToAdmin" resultType="java.lang.Long" parameterType="map">
+  		select count(attribute_id) from hw_attribute  where 1=1 
+		<if test="attribute_name != null and attribute_name !=''">
+			and  `attribute_name` like '%${attribute_name}%'
+		</if>
+		<if test="attribute_key != null and attribute_key !=''">
+			and  attribute_key = #{attribute_key}
+		</if>
+		
+		
+  </select>
+  
+  <!-- 根据条件获取数据 -->
+<select id="queryByMapToAdmin" resultType="java.util.Map" parameterType="map">
+	select * 
+		
+		from hw_attribute where 1=1 
+		<if test="attribute_name != null and attribute_name !=''">
+			and  `attribute_name` like '%${attribute_name}%'
+		</if>
+		<if test="attribute_key != null and attribute_key !=''">
+			and  attribute_key = #{attribute_key}
+		</if>
+		
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+</select>
+</mapper>

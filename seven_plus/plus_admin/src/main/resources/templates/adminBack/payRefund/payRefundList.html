@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户退款管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/adminBack/payRefund/query">用户退款管理</a></li>
+		</ul>
+		
+		<ul class="toolbar1">
+			<li class="click" onclick="location.replace(location.href);"><span><img src="/back/images/t05.png" /></span>刷新</li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+		<form action="/adminBack/payRefund/query"  id="from">
+			<ul class="seachform">
+			    <li><label>是否处理</label>
+			    	<div class="vocation">
+					    <select class="select3" name="pay_dispose">
+					    	<option value="-1"<#if map.pay_dispose??><#else>selected="selected"</#if>>请选择</option>
+					    	<option value="0" <#if map.pay_dispose??><#if map.pay_dispose==0>selected="selected"</#if></#if> >待处理</option>
+						    <option value="1" <#if map.pay_dispose??><#if map.pay_dispose==1> selected="selected"</#if></#if> >已处理</option>
+						    <option value="2" <#if map.pay_dispose??><#if map.pay_dispose==2> selected="selected"</#if></#if> >处理失败</option>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>用户电话</label><input placeholder="用户电话" value="${map.phone!''}" name="phone" type="text" class="scinput" /></li>
+			    <li>日期范围：
+					<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}',dateFmt:&#39;yyyy-MM-dd&#39;})" value="${map.startTime!''}" id="logmin" name="startTime" class="Wdate scinput" style="width:150px;"/>
+					-
+					<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',dateFmt:&#39;yyyy-MM-dd&#39;})" value="${map.lastTime!''}" id="logmax" name="lastTime" class="Wdate scinput" style="width:150px;"/>
+			    </li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+	                <th>用户昵称</th>
+	                <th>用户电话</th>
+	                <th>用户余额</th>
+	                <th>用户余额状态</th>
+	                <th>退款原因</th>
+	                <th>说明</th>
+	                <th>是否处理</th>
+	                <th>申请时间</th>
+	                <th>处理时间</th>
+	                <th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td>${entity.nick_name!''}</td>
+						<td>${entity.phone!''}</td>
+						<td>${entity.money!''}</td>
+						<td>
+							<#if entity.balance_freezetype==0>
+								正常	
+							<#else>
+								退款冻结
+							</#if>
+						</td>
+						<td>${entity.pay_cause!''}</td>
+						<td>${entity.explain1!''}</td>
+						<td>
+							<#if entity.pay_dispose==0>
+								待处理
+							<#elseif entity.pay_dispose==1>
+								已处理
+							<#else>
+								处理失败
+							</#if>
+						</td>
+						<td><#if entity.creation_time??>${entity.creation_time?string("yyyy-MM-dd HH:mm:ss")}</#if></td>
+						<td><#if entity.dispose_time??>${entity.dispose_time?string("yyyy-MM-dd HH:mm:ss")}</#if></td>
+						<td>
+							<#if entity.pay_dispose==0>
+								<a class="tablelink"  href="javascript:showPage('/adminBack/payRefund/updates?Id=${entity.id!''}&user_id=${entity.user_id}&pay_dispose=1','50%','50%','退款管理-说明');" title="退款成功">退款成功</a>
+								<a class="tablelink"  href="javascript:showPage('/adminBack/payRefund/updates?Id=${entity.id!''}&user_id=${entity.user_id}&pay_dispose=2','50%','50%','退款管理-说明');" title="退款失败">退款失败</a>
+							<#else>
+								已处理
+							</#if>
+						</td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+
+    $(document).ready(function(e) {
+		$(".select3").uedSelect({
+			width : 200
+		});
+	});
+	/*模块-删除*/
+	function role_del(obj,id,isDelete){
+		var str = '确认要删除吗？';
+		if(isDelete==0){
+			str = '确认要启用吗？';
+		}
+		layer.confirm(str,{icon:2},function(index){
+			$.post("/adminBack/paylist/delete?from=ajax&isDelete="+isDelete, {'id': id },
+			   /*  function(result) {processJson(result) */
+		     function(result) {
+		    	 jsonState(result);
+		    },'json');
+		});
+	}
+	function confirmUpdateAward(id,start) {
+	    layer.open({
+	        type: 1,
+	        closeBtn: false,
+	        shift: 7,
+	        shadeClose: true,
+	        content:  "<li><label>说明</label><textarea id='paylist_remark' name='paylist_remark' rows='3' cols='100' class='textinput' ></textarea> </li>" +
+	        "<li><label>&nbsp;</label><input type='button' class='btn' value='确认' onclick='if(chek()) submitForm(\"/adminBack/paylist/insert?id="+id+"&start="+start+"&explain="+$('#paylist_remark').text()+"\",\"from\");' /></li>"
+	    });
+	}
+	</script>
+</body>
+</html>

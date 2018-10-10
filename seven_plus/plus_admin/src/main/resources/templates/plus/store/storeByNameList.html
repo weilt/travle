@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网点管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+<#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
+</head>
+<body>
+
+		<form action="/admin/store/getStoreByName"  id="from">
+			<ul class="seachform">
+			    <li><label>网点名称</label><input placeholder="网点名称" value="${storeName!''}" name="storeName" type="text" class="scinput" /></li>
+				<input type="hidden" value="1" name="storeType"/>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+			    <li><button type="button" class="scbtn" onclick="checkRadio('storeId');" value="选择">选择</button></li>
+		    </ul>
+	    </form>
+		<form id="commentForm">
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input type="checkbox" onclick="selectAll('comments');"/></th>
+					<th >网点名称</th>
+					<th >网点电话</th>
+					<th >网点位置</th>
+					<th >网点分类</th>
+					<th >网点单数</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td><input type="radio" name="storeId" value="${entity.id!''}" /></td>
+				        <td><input type="hidden"  id="storeName${entity.id!''}" value="${entity.storeName!''}" /> ${entity.storeName!''}</td>
+				        <td>
+								${entity.storePhone!''}
+						</td>
+				        <td>
+							${entity.storeAddress!''}
+						</td>
+						<td>
+							<#if (entity.storeType!'') == 0>天天洗车
+							<#else>划痕无忧
+							</#if>
+						</td>
+						<td>
+							${entity.orderCount!0}
+						</td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		</form>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(e) {
+	    $(".select1").uedSelect({
+			width : 100			  
+		});
+	});
+
+
+	/**
+	 *  @Param nameValue radio name
+	 *  @Param id 父页面要绑定值元素的id
+	 */
+	function checkRadio(nameValue) {
+        var value = $("input[name='"+nameValue+"'"+"]:checked").val();
+        var name = $("#storeName"+value+"").val();
+        console.log(value);
+        console.log(name);
+        if (null == value ){
+            layer.alert("请选择网点！");
+		} else {
+            window.parent.document.getElementById("storeId").value = value;
+            window.parent.document.getElementById("storeName").value = name;
+            layer_close();
+		}
+    }
+
+	</script>
+</body>
+</html>

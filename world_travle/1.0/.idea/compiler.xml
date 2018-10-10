@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hwt_admin" />
+        <module name="hwt_admin_service" />
+        <module name="hwt_api" />
+        <module name="hwt_bureau" />
+        <module name="hwt_bureau_service" />
+        <module name="hwt_core" />
+        <module name="hwt_domain" />
+        <module name="hwt_information_service" />
+        <module name="hwt_order_service" />
+        <module name="hwt_scenic_service" />
+        <module name="hwt_system_service" />
+        <module name="hwt_user_service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hwt_admin" target="1.8" />
+      <module name="hwt_admin_service" target="1.8" />
+      <module name="hwt_api" target="1.8" />
+      <module name="hwt_bureau" target="1.8" />
+      <module name="hwt_bureau_service" target="1.8" />
+      <module name="hwt_core" target="1.8" />
+      <module name="hwt_domain" target="1.8" />
+      <module name="hwt_information_service" target="1.8" />
+      <module name="hwt_order_service" target="1.8" />
+      <module name="hwt_scenic_service" target="1.8" />
+      <module name="hwt_system_service" target="1.8" />
+      <module name="hwt_user_service" target="1.8" />
+      <module name="hx_world_travel" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

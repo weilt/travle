@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		
+		<link rel="stylesheet" type="text/css" href="/plugins/dataTable/js/bureaut/tourism/css/laydate.css"/>
+		<link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/index.css">
+		<link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+	
+		<div class="zry_IbigBox">
+		<#if map.last_login_time??>
+			<p class="title-box">
+				上次登陆时间：${map.last_login_time!''}（如果不是本人登陆，请点击<span onclick="edit_password()"> 这里 </span>）
+			</p>
+		</#if>
+			
+			<div class="div1">
+				<div class="min-div min-div1">
+					<div class="min-txtBox">
+						<p>${map.today_order?c}</p>
+						<p>Downloads</p>
+					</div>
+					<img src="/plugins/dataTable/js/bureaut/tourism/img/jinridingdanzongshu_icon.png" />
+					<p>今日订单总数<i></i></p>
+				</div>
+				<div class="min-div min-div2">
+					<div class="min-txtBox">
+						<p>${map.today_start_order?c}</p>
+						<p>Visits</p>
+					</div>
+					<img src="/plugins/dataTable/js/bureaut/tourism/img/jinrikaishidingdan_icon.png" />
+					<p>今日开始订单<i></i></p>
+				</div>
+				<div class="min-div min-div3">
+					<div class="min-txtBox">
+						<p>${map.today_end_order?c}</p>
+						<p>Sales</p>
+					</div>
+					<img src="/plugins/dataTable/js/bureaut/tourism/img/jinrijieshudingdan_icon.png" />
+					<p>今日结束订单<i></i></p>
+				</div>
+				<div class="min-div min-div4">
+					<div class="min-txtBox">
+						<p>${map.today_refundable_order?c}</p>
+						<p>Conversions</p>
+					</div>
+					<img src="/plugins/dataTable/js/bureaut/tourism/img/jinrituikuandingdan_icon.png" />
+					<p>今日退款订单<i></i></p>
+				</div>
+			</div>
+			
+			<div class="div2">
+				<p class="div2-title title-after">快捷入口</p>
+				<ul class="btn-box">
+					<li onclick="jump_to('bureau/line/list')">
+						发布线路
+					</li>
+					<li onclick="jump_to('bureau/order/list')">
+						订单详情
+					</li>
+					<li onclick="jump_to('adminbureau/user/list')">
+						用户管理
+					</li>
+					<li onclick="jump_to('bureau/wallet/bill-list')">
+						交易统计
+					</li>
+					
+				</ul>
+			</div>
+			
+			<div class="div3">
+				<div class="div3-title">
+					<p class="div3-p title-after">线路总览</p>
+				</div>
+				
+				<ul class="div3-ul">
+					<li>
+						<p class="div3-liP1">已发布路线</p>
+						<p class="div3-liP2">${map.line_total?c}</p>
+					</li>
+					<li>
+						<p class="div3-liP1">已关闭路线</p>
+						<p class="div3-liP2">${map.line_hide_total?c}</p>
+					</li>
+					<li>
+						<p class="div3-liP1">今日新增路线</p>
+						<p class="div3-liP2">${map.line_today_total?c}</p>
+					</li>
+					<li>
+						<p class="div3-liP1">本月新增路线</p>
+						<p class="div3-liP2">${map.line_tomonth_total?c}</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="div3">
+				<div class="div3-title">
+					<p class="div3-p title-after">订单统计</p>
+				</div>
+				<form id = "form">
+				<!-- <input type="text" class="form-control" id="start_time" name="start_time" placeholder="选择起始日期" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\');}'})">
+				<input type="text" class="form-control" id="end_time" name="end_time"  placeholder="选择结束日期" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\');}'})"> -->
+				<input  name = "choose_type" id ="choose_type" type="hidden" value="1"/>
+				<div class="div4-content">
+					<div class="div4-contentL">
+						<p class="div4-p1">本月订单总数</p>
+						<p class="div4-p2">60000</p>
+						<!-- <p class="div4-p3">
+							<i></i>
+							<span>10%</span>
+							&nbsp;&nbsp;同比上月
+						</p> -->
+						
+						<p class="div4-p1" style="margin-top: 50px;">本周订单总数</p>
+						<p class="div4-p2">60000</p>
+						<!-- <p class="div4-p3">
+							<i></i>
+							<span>10%</span>
+							&nbsp;&nbsp;同比上周
+						</p> -->
+					</div>
+					
+					<div class="div4-contentR">
+						<div class="div4-head">
+							<div class="div4-headL">近一周订单统计</div>
+							
+							<div class="div4-headR">
+								
+								<!-- <span class="div4-span onSelect" choose_type = "1">今日</span>
+								<span class="div4-span" choose_type = "2">本周</span>
+								<span class="div4-span" choose_type = "3">本月</span> -->
+								<!-- <div class="div4-date">
+									<p class="show-date btn-date">请选择日期</p>
+									<i class="btn-date"></i>
+									
+									<div class="select-date">
+										<div class="select-date-header">
+											<ul class="heade-ul">
+												<li class="header-item header-item-one">
+													<select name="" id="yearList"></select>
+												</li>
+												<li class="header-item header-item-two" onselectstart="return false">
+													<select name="" id="monthList"></select>
+												</li>
+												<li class="header-item header-item-three" onselectstart="return false" >
+													<span class="reback">回到今天</span>
+												</li>
+											</ul>
+										</div>
+										<div class="select-date-body">
+											<ul class="week-list">
+												<li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>
+											</ul>
+											<ul class="day-tabel"></ul>
+										</div>
+									</div>
+								</div> -->
+							
+							</div>
+						</div>
+						<div class="div-4-lineBox" id="myChart"></div>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	
+	<script src="/model/lib/jquery/jquery.js"></script>
+	<script src="/plugins/dataTable/js/bureaut/tourism/js/laydate.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/plugins/dataTable/js/bureaut/tourism/js/echarts.simplemin.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/public/base.js"></script>
+	<script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+		$(window).ready(function(){
+			setChart('myChart' , [70,10,60,10,50,55] , ['a' , 'b' , 'c' , 'd' , 'e' , 'f'])
+		})
+		function getToDay(day){
+			console.log(day)
+		}
+		
+		function setChart(domId , numData , strData){		//		画图
+			var myChart = echarts.init(document.getElementById(domId));
+			var option = {
+			    xAxis: {
+			        type: 'category',
+			        data: strData
+			    },
+			    yAxis: {
+			        type: 'value'
+			    },
+			    series: [{
+			        data: numData,
+			        type: 'line',
+			        smooth: true
+			    }]
+			};
+			myChart.setOption(option)
+		}
+		
+		$('.div4-span').click(function(e){		//	选择时间
+			$('.div4-span').removeClass('onSelect')
+			$(this).addClass('onSelect')
+			choose_type();
+		})
+		
+		function getSelectDate(result){		//这里获取选择的日期
+			console.log(result);
+//			$('.show-date').text(result)
+		}
+		
+		function jump_to(url){
+			/* var urls = $(".nav-link");
+			for (var i = 0; i < urls.length; i++) {
+				var url1 = $(urls[i]).attr("onclick").toString();
+				if (url1.indexOf(url) >= 0){
+					var ul = $(urls[i]).parent("ul")
+					jumpToPage(url,$(urls[i]));	
+				}
+			} */
+			jumpToPage(url);	
+		}
+		
+		//修改密码
+		function edit_password(){
+			var _html="";
+    		_html+='<form id = "form">                                                                                                                                                                                                       '
+    		+'      <div class="br-pagebody">                                                                                                                                                                               '
+    		+'                                                                                                                                                                                                              '
+    		+'        <div class="br-section-wrapper">                                                                                                                                                                      '
+    		+'            <!--内容-->                                                                                                                                                                                       '
+    		+'                                                                                                                                                                                                              '
+    		+'            <div class="row mg-t-20">                                                                                                                                                                         '
+    		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>旧密码:</p>                                                                          '
+    		+'                <div class="col-lg mg-l-10">                                                                                                                                                                  '
+    		+'                    <input class="form-control wd-50%" id="oldPassword" name="oldPassword"  type="password" value="">                                                                                               '
+    		+'                </div><!-- col -->                                                                                                                                                                            '
+    		+'            </div>                                                                                                                                                                                            '
+    		+'           <div class="row mg-t-20">                                                                                                                                                                          '
+    		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>新密码:</p>                                                                              '
+    		+'                <div class="col-lg mg-l-10">                                                                                                                                                                  '
+    		+'                    <input class="form-control wd-50%" id="password" name="password" type="password" value="">                                                                                    '
+    		+'                </div><!-- col -->                                                                                                                                                                            '
+    		+'            </div>                                                                                                                                                                                            '
+    		+'            <div class="row mg-t-20">                                                                                                                                                                         '
+    		+'            	<p  style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>确认密码:</p>                                                                    '
+    		+'                <div class="col-lg mg-l-10">                                                                                                                                                                  '
+    		+'                    <input class="form-control wd-50%" id="conPassword" name="conPassword" type="password" value="">                                                                                    '
+    		+'                </div><!-- col -->                                                                                                                                                             '
+    		+'            </div>                                                                                                                                                                                            '
+    		+'            <div class="row mg-t-20">                                                                                                                                                                         '
+    		+'                <div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                 '
+    		+'                <div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="insert_editPassWord(\'/passWord\',\'form\')">确定</div>'
+    		+'            </div>                                                                                                                                                                                            '
+    		+'                                                                                                                                                                                                              '
+    		+'        </div><!-- br-section-wrapper -->                                                                                                                                                                     '
+    		+'      </div><!-- br-pagebody -->                                                                                                                                                                              '
+    		+'       </form>   '
+	    		
+	    		fromEject(_html,"密码修改",'50%','50%');
+		}
+		  
+		function insert_editPassWord(url, form){
+			if (validation(["oldPassword","password","conPassword","password"],[null,null,null,'Min'],["旧密码不能为空！","新密码不能为空！","确认密码不能为空！","6"])){
+    			
+				insert(url,form);
+    		}else{
+    			return
+    		}
+		}
+		
+		function choose_type(){
+			var choose_type = $(".onSelect").attr("choose_type");
+			$("#choose_type").val(choose_type);
+			//判断时间
+			
+			$.ajax({
+		        url : "/queryOrderStatistics",
+		        type : "POST",
+		        data : $("#form").serialize(),
+		        success : function (res) {
+		        	res = strToJson(res);
+		        	jsonState(res);
+		            if (res.code =="200"){
+		            	
+		            	//数据处理
+		            }else{
+		            	if(res.msg!=null){
+		            		layer.alert(res.msg,{icon: 6});
+		            	}else{
+		            		layer.alert('调试错误',{icon: 6});
+		            	}
+		            }
+		        }
+		    })
+			
+		}
+		
+		//近一周订单统计
+		function latelyOrderStatistics(){
+			$.ajax({
+		        url : "/queryLatelyOrderStatistics",
+		        type : "POST",
+		        data : {},
+		        success : function (res) {
+		        	res = strToJson(res);
+		        	jsonState(res);
+		            if (res.code =="200"){
+		            	
+		            }else{
+		            	if(res.msg!=null){
+		            		layer.alert(res.msg,{icon: 6});
+		            	}else{
+		            		layer.alert('调试错误',{icon: 6});
+		            	}
+		            }
+		        }
+		    })
+		}
+		$(function (){
+			$.ajax({
+		        url : "/queryLatelyOrderStatistics",
+		        type : "POST",
+		        data : {},
+		        success : function (res) {
+		        	res = strToJson(res);
+		        	jsonState(res);
+		            if (res.code =="200"){
+		            	var data = res.data;
+		            	setChart("myChart" , data.ordinate, data.abscissa )
+		            }else{
+		            	if(res.msg!=null){
+		            		layer.alert(res.msg,{icon: 6});
+		            	}else{
+		            		layer.alert('调试错误',{icon: 6});
+		            	}
+		            }
+		        }
+		    })
+		})
+		
+		/* window.location = function (){
+			latelyOrderStatistics();
+		} */
+	</script>
+</html>

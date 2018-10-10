@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/adminBack/user/query">用户管理</a></li>
+		</ul>
+		<ul class="toolbar1">
+			<li class="click" onclick="location.replace(location.href);"><span><img src="/back/images/t05.png" /></span>刷新</li>
+		</ul>
+		
+	</div>
+
+	<div class="rightinfo">
+
+		<form action="/adminBack/user/query"  id="from">
+			<ul class="seachform">
+			    <li><label>昵称</label><input placeholder="昵称" value="${map.nick_name!''}" name="nick_name" type="text" class="scinput" /></li>
+			    <li><label>电话号码</label><input placeholder="电话号码" value="${map.phone!''}" name="phone" type="text" class="scinput" /></li>
+			    <li><label>用户类型</label>
+			    	<div class="vocation">
+					    <select class="select3" name="user_shop_type">
+					    	<option value="-1" <#if map.user_shop_type??><#else>selected="selected"</#if>>全部</option>
+						    <option value="0" <#if map.user_shop_type??><#if map.user_shop_type==1> selected="selected"</#if></#if> >普通用户</option>
+						    <option value="1" <#if map.user_shop_type??><#if map.user_shop_type==2> selected="selected"</#if></#if> >店长</option>
+					    </select>
+				    </div>
+			    </li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+	                <th>(客户)手机号</th>
+	                <th>用户类型</th>
+	                <th>洗车次数</th>
+	                <th>昵称</th>
+	                <th>车牌</th>
+	                <th>金额</th>
+	                <th>赠送的金额</th>
+	                <th>金额状态</th>
+	                <th>车型</th>
+	                <th>登录状态</th>
+	                <th>最近登录时间</th>
+	                <th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td>${entity.phone!''}</td>
+						<td>
+							<#if entity.user_shop_type==0>
+								普通用户
+							<#else>
+								店长
+							</#if>
+						</td>
+						<td>${entity.car_wash_number!''}</td>
+						<td>${entity.nick_name!''}</td>
+						<td>${entity.user_plate_number!''}</td>
+						<td>${entity.balance!''}</td>
+						<td>${entity.balance_send!''}</td>
+						<td>
+							<#if entity.balance_freezetype==0>
+								正常
+							<#else>
+								退款冻结
+							</#if>
+						</td>
+						<td>${entity.user_plate_type!''}</td>
+						<td>
+							<#if entity.login_state==1>
+								正常状态
+							<#else>
+								冻结
+							</#if>
+						</td>
+						<td><#if entity.login_time??>${entity.login_time?string("yyyy-MM-dd HH:mm:ss")}</#if></td>
+						<td>
+		 					<#if entity.login_state == 1>
+							<a class="tablelink"  href="javascript:role_del(this,'${entity.id!''}',2);" title="冻结">冻结</a>
+							<#else>
+							<a class="tablelink"  href="javascript:role_del(this,'${entity.id!''}',1);" title="删除">启用</a>
+							</#if>
+						</td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+
+    $(document).ready(function(e) {
+		$(".select3").uedSelect({
+			width : 200
+		});
+	});
+	/*模块-删除*/
+	function role_del(obj,id,isDelete){
+		var str = '确认要冻结该用户吗？';
+		if(isDelete==0){
+			str = '确认要将该用户启用吗？';
+		}
+		layer.confirm(str,{icon:2},function(index){
+			$.post("/adminBack/user/delete?from=ajax&isDelete="+isDelete, {'id': id },
+			   /*  function(result) {processJson(result) */
+		     function(result) {
+		    	 jsonState(result);
+		    },'json');
+		});
+	}
+	</script>
+</body>
+</html>

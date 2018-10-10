@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			a{
+				color: #000000;
+			}
+			.content{
+				display: flex;
+				width: 1640px;
+				height: 850px;
+				margin: 50px auto;
+				border: 1px solid #000000;
+			}
+			.content .content-L{
+				padding: 24px;
+				width: 85%;
+				height: 100%;
+				border-right: 1px solid #000000;
+			}
+			.txt{
+				margin-top: 20px;
+			}
+			.txt span{
+				margin-right: 40px;
+			}
+			.list-box{
+				display: flex;
+				flex-wrap: wrap;
+				width: 100%;
+				height: auto;
+				list-style: none;
+				margin-top: 50px;
+			}
+			.list-box li{
+				width: 365px;
+				height: 260px;
+				font-size: 12px;
+				color: rgb(0,149,255);
+				margin-bottom: 20px;
+				margin-right: 80px;
+			}
+			.list-box li img{
+				width: 100%;
+				height: 240px;
+				margin-top: 5px;
+			}
+			.content-R{
+				width: 15%;
+				height: 100%;
+			}
+			.content-R h3{
+				display: block;
+				width: 100%;
+				height: 50px;
+				line-height: 20px;
+				border-bottom: 1px solid #000000;
+				margin-bottom: 20px;
+			}
+			.content-R p{
+				margin-bottom: 10px;
+				margin-left: 10px;
+			}
+		</style>
+		<#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
+	</head>
+	<body>
+		<div class="content">
+			<div class="content-L">
+
+				<p class="txt">
+					<span>手机号码：
+					<#if (phoneSee!0) == 1>
+						${entity.phone!'暂没绑定'}
+					<#else > ${(entity.phone!'18888888888')?replace(((entity.phone!'18888888888')?substring(3,7)),'****')}
+					</#if>
+					</span>
+					<span>办理业务：  <#if (entity.orderType!0) == 1>天天洗车 </#if>
+					<#if (entity.orderType!0) == 2>划痕无忧 </#if>
+					</span>
+					<span>上传时间：${entity.createTime!0}</span>
+
+				</p>
+				<ul class="list-box">
+					<li>
+						<p>正前图片</p>
+						<img src="${entity.faceUrl!''}"/>
+					</li>
+					<li>
+						<p>左前图片</p>
+						<img  src="${entity.leftAnteriorUrl!''}" />
+					</li>
+					<li>
+						<p>右前图片</p>
+						<img src="${entity.rightAnteriorUrl!''}" />
+					</li>
+					<li>
+						<p>左侧图片</p>
+						<img src="${entity.leftUrl!''}" />
+					</li>
+					<li>
+						<p>右侧图片</p>
+						<img src="${entity.rightUrl!''}"  />
+					</li>
+					<li>
+						<p>正后图片</p>
+						<img  src="${entity.backUrl!''}" />
+					</li>
+				</ul>
+			</div>
+			<div class="content-R">
+				<h3>车辆信息</h3>
+				<p>车牌号码：${entity.carNo!''}</p>
+				<p>品牌型号：${entity.carBrand!''}</p>
+				<p>车辆性质：<#if (entity.carNature!'')==0 >非运营</#if>
+				<#if (entity.carNature!'')==1 >运营</#if>
+			</p>
+				<p>车龄年限：<#if (entity.drivingAge!'')==0 >三年以下</#if><#if (entity.drivingAge!'')==1 >三年到五年以下</#if>
+		<#if (entity.drivingAge!'')==2 >五年以上</#if>
+		</p>
+				<p>车辆类型：<#if (entity.carType!'')==0> 五座以内</#if><#if (entity.carType!'')==1> 五座到七座</#if> </p>
+			</div>
+		</div>
+	</body>
+</html>

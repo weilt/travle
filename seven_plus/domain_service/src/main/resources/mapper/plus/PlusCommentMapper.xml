@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.plus.mapper.PlusCommentMapper">
+
+
+    <insert id="insertPlusComment"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `plus_comment`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="userId!=null">
+                        `user_id`,
+                    </if>
+                    <if test="storeId!=null">
+                        `store_id`,
+                    </if>
+                    <if test="recordId!=null">
+                        `record_id`,
+                    </if>
+                    <if test="type!=null">
+                        `type`,
+                    </if>
+                    <if test="comment!=null">
+                        `comment`,
+                    </if>
+                    <if test="createTime!=null">
+                        `create_time`,
+                    </if>
+                    <if test="updateTime!=null">
+                        `update_time`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="userId!=null">
+                    #{userId},
+                </if>
+                <if test="storeId!=null">
+                    #{storeId},
+                </if>
+                <if test="recordId!=null">
+                    #{recordId},
+                </if>
+                <if test="type!=null">
+                    #{type},
+                </if>
+                <if test="comment!=null">
+                    #{comment},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime},
+                </if>
+                <if test="updateTime!=null">
+                    #{updateTime},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePlusComment">
+        UPDATE `plus_comment`
+        SET
+        <trim suffixOverrides=",">
+            <if test="userId != null">
+                `user_id` = #{userId},
+            </if>
+            <if test="storeId != null">
+                `store_id` = #{storeId},
+            </if>
+            <if test="type != null">
+                `type` = #{type},
+            </if>
+            <if test="comment != null and comment!=''">
+                `comment` = #{comment},
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `plus_comment`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.userId != null">
+            `user_id` = #{set.userId},
+        </if>
+        <if test="set.storeId != null">
+            `store_id` = #{set.storeId},
+        </if>
+        <if test="set.type != null">
+            `type` = #{set.type},
+        </if>
+        <if test="set.comment != null and set.comment!=''">
+            `comment` = #{set.comment},
+        </if>
+        <if test="set.createTime != null">
+            `create_time` = #{set.createTime},
+        </if>
+        <if test="set.updateTime != null">
+            `update_time` = #{set.updateTime},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.userIdList != null">
+                    `user_id` in
+                    <foreach collection="where.userIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.userIdSt !=null">
+                `user_id` >= #{where.userIdSt} and
+            </if>
+            <if test="where.userIdEd!=null">
+                `user_id` &lt;= #{where.userIdEd} and
+            </if>
+                <if test="where.storeIdList != null">
+                    `store_id` in
+                    <foreach collection="where.storeIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.storeIdSt !=null">
+                `store_id` >= #{where.storeIdSt} and
+            </if>
+            <if test="where.storeIdEd!=null">
+                `store_id` &lt;= #{where.storeIdEd} and
+            </if>
+                <if test="where.typeList != null">
+                    `type` in
+                    <foreach collection="where.typeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.typeSt !=null">
+                `type` >= #{where.typeSt} and
+            </if>
+            <if test="where.typeEd!=null">
+                `type` &lt;= #{where.typeEd} and
+            </if>
+                <if test="where.commentList != null">
+                    `comment` in
+                    <foreach collection="where.commentList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyComment!=null and where.fuzzyComment.size()>0">
+                (
+                <foreach collection="where.fuzzyComment"  separator="or" item="item">
+                    `Comment` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyComment!=null and where.rightFuzzyComment.size()>0">
+                (
+                <foreach collection="where.rightFuzzyComment"  separator="or" item="item">
+                    `Comment` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.createTimeList != null">
+                    `create_time` in
+                    <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.createTimeSt !=null">
+                `create_time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_time` &lt;= #{where.createTimeEd} and
+            </if>
+                <if test="where.updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="where.updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.updateTimeSt !=null">
+                `update_time` >= #{where.updateTimeSt} and
+            </if>
+            <if test="where.updateTimeEd!=null">
+                `update_time` &lt;= #{where.updateTimeEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.domain.plus.entity.PlusComment" id="PlusCommentMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="storeId" column="store_id"/>
+        <result property="type" column="type"/>
+        <result property="comment" column="comment"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <resultMap id="CommentVoMap" type="com.domain.plus.vo.CommentVo">
+        <result property="id" column="id"/>
+        <result property="phone" column="phone"/>
+        <result property="storeName" column="store_name"/>
+        <result property="storeAddress" column="store_address"/>
+        <result property="createTime" column="create_time"/>
+        <result property="comment" column="comment"/>
+    </resultMap>
+
+    <select id="queryPlusComment" resultMap="PlusCommentMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_comment`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId} and
+            </if>
+            <if test="storeId != null">
+                `store_id` = #{storeId} and
+            </if>
+            <if test="type != null">
+                `type` = #{type} and
+            </if>
+            <if test="comment != null and comment!=''">
+                `comment` = #{comment} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusComment$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="userIdList != null">
+                    `user_id` in
+                    <foreach collection="userIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="userIdSt !=null">
+                    `user_id` >= #{userIdSt} and
+                </if>
+                <if test="userIdEd!=null">
+                    `user_id` &lt;= #{userIdEd} and
+                </if>
+                <if test="storeIdList != null">
+                    `store_id` in
+                    <foreach collection="storeIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="storeIdSt !=null">
+                    `store_id` >= #{storeIdSt} and
+                </if>
+                <if test="storeIdEd!=null">
+                    `store_id` &lt;= #{storeIdEd} and
+                </if>
+                <if test="typeList != null">
+                    `type` in
+                    <foreach collection="typeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="typeSt !=null">
+                    `type` >= #{typeSt} and
+                </if>
+                <if test="typeEd!=null">
+                    `type` &lt;= #{typeEd} and
+                </if>
+                <if test="commentList != null">
+                    `comment` in
+                    <foreach collection="commentList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyComment!=null and fuzzyComment.size()>0">
+                    (
+                    <foreach collection="fuzzyComment"  separator="or" item="item">
+                        `Comment` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyComment!=null and rightFuzzyComment.size()>0">
+                    (
+                    <foreach collection="rightFuzzyComment"  separator="or" item="item">
+                        `Comment` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPlusCommentLimit1" resultMap="PlusCommentMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_comment`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId} and
+            </if>
+            <if test="storeId != null">
+                `store_id` = #{storeId} and
+            </if>
+            <if test="type != null">
+                `type` = #{type} and
+            </if>
+            <if test="comment != null and comment!=''">
+                `comment` = #{comment} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusComment$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="userIdList != null">
+                        `user_id` in
+                        <foreach collection="userIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="userIdSt !=null">
+                    `user_id` >= #{userIdSt} and
+                </if>
+                <if test="userIdEd!=null">
+                    `user_id` &lt;= #{userIdEd} and
+                </if>
+                    <if test="storeIdList != null">
+                        `store_id` in
+                        <foreach collection="storeIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="storeIdSt !=null">
+                    `store_id` >= #{storeIdSt} and
+                </if>
+                <if test="storeIdEd!=null">
+                    `store_id` &lt;= #{storeIdEd} and
+                </if>
+                    <if test="typeList != null">
+                        `type` in
+                        <foreach collection="typeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="typeSt !=null">
+                    `type` >= #{typeSt} and
+                </if>
+                <if test="typeEd!=null">
+                    `type` &lt;= #{typeEd} and
+                </if>
+                    <if test="commentList != null">
+                        `comment` in
+                        <foreach collection="commentList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyComment!=null and fuzzyComment.size()>0">
+                    (
+                    <foreach collection="fuzzyComment"  separator="or" item="item">
+                        `Comment` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyComment!=null and rightFuzzyComment.size()>0">
+                    (
+                    <foreach collection="rightFuzzyComment"  separator="or" item="item">
+                        `Comment` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="createTimeList != null">
+                        `create_time` in
+                        <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                    <if test="updateTimeList != null">
+                        `update_time` in
+                        <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `user_id`,
+        `store_id`,
+        `type`+0 as `type`,
+        `comment`,
+        `create_time`,
+        `update_time`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof entity.PlusComment$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.userId==true">
+                        `user_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeId==true">
+                        `store_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.type==true">
+                        `type`+0 as `type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.comment==true">
+                        `comment`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createTime==true">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.updateTime==true">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.userId==null">
+                        `user_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeId==null">
+                        `store_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.type==null">
+                        `type`+0 as `type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.comment==null">
+                        `comment`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createTime==null">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.updateTime==null">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof entity.PlusComment$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+    <!-- 删除 -->
+    <delete id="deleteComment">
+        delete from plus_comment where id =#{id}
+    </delete>
+
+    <!-- 查询列表 -->
+    <select id="queryCommentList" resultMap="CommentVoMap">
+        SELECT
+            c.id,
+            u.phone,
+            s.store_name,
+            s.store_address,
+            c.create_time
+        FROM
+            plus_comment c
+        LEFT JOIN plus_user u ON c.user_id = u.id
+        LEFT JOIN plus_store s ON c.store_id = s.id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="phone != null and phone != ''">
+                u.phone LIKE concat(concat('%',#{phone}),'%') and
+            </if>
+            <if test="storeName != null and  storeName != ''">
+                s.store_name LIKE concat(concat('%',#{storeName}),'%') and
+            </if>
+            <if test="storeAddress != null and storeAddress != '' ">
+                s.store_address LIKE  concat(concat('%',#{storeAddress}),'%') and
+            </if>
+        </trim>
+          ORDER BY c.create_time DESC
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <!-- 总条数 -->
+    <select id="countComment" resultType="java.lang.Integer">
+        SELECT
+        count(c.id)
+        FROM
+        plus_comment c
+        LEFT JOIN plus_user u ON c.user_id = u.id
+        LEFT JOIN plus_store s ON c.store_id = s.id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="phone != null and phone != ''">
+                u.phone LIKE concat(concat('%',#{phone}),'%') and
+            </if>
+            <if test="storeName != null and  storeName != ''">
+                s.store_name LIKE concat(concat('%',#{storeName}),'%') and
+            </if>
+            <if test="storeAddress != null and storeAddress != '' ">
+                s.store_address LIKE  concat(concat('%',#{storeAddress}),'%') and
+            </if>
+        </trim>
+    </select>
+
+
+    <select id="queryCommentById" resultMap="CommentVoMap">
+        SELECT
+            c.id,
+            u.phone,
+            s.store_name,
+            s.store_address,
+            c.comment,
+            c.create_time
+        FROM
+            plus_comment c
+        LEFT JOIN plus_user u ON c.user_id = u.id
+        LEFT JOIN plus_store s ON c.store_id = s.id
+        WHERE c.id = #{id}
+    </select>
+
+    <select id="queryCommentByStoreId" resultType="com.domain.plus.vo.CommentStoreVo">
+        SELECT
+            c.create_time AS createTime,
+            c.comment AS comment,
+            u.phone AS phone
+        FROM
+            plus_comment c
+        LEFT JOIN plus_user u ON u.id = c.user_id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="storeId != null" >
+                c.store_id = #{storeId}
+            </if>
+            <if test="type != null" >
+                c.type = #{type}
+            </if>
+        </trim>
+        ORDER BY c.create_time DESC
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <select id="countCommentByRecordId" resultType="java.lang.Integer">
+        SELECT count(1) FROM plus_comment c WHERE c.record_id = #{recordId}
+    </select>
+</mapper>

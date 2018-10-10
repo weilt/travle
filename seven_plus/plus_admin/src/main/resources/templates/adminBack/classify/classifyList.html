@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>模块管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/adminBack/classify/query">分类列表</a></li>
+			<#if riList??>
+				<#list riList as mo>
+	                   <li><a href="/adminBack/classify/query?parentId=${mo.id?c}">${mo.name!''}</a></li>
+	            </#list>
+			</#if>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<div class="tools">
+
+			<ul class="toolbar">
+				<#if !classify?? >
+					<li class="click" onclick="showPage('/adminBack/classify/insert?parentId=${map.parentId?c}','70%','70%','添加顶级分类${map.parentId?c}')"><span><img src="/back/images/t01.png" /></span>添加</li>
+				<#else>
+					<li class="click" onclick="showPage('/adminBack/classify/insert?parentId=${map.parentId?c}','70%','70%','添加子分类${map.parentId?c}-${classify.name!''}')"><span><img src="/back/images/t01.png" /></span>添加</li>
+				</#if>
+				<!-- <li class="click"><span><img src="/back/images/t02.png" /></span>修改</li>
+				<li><span><img src="/back/images/t03.png" /></span>删除</li>
+				<li><span><img src="/back/images/t04.png" /></span>统计</li> -->
+			</ul>
+			<ul class="toolbar1">
+				<li class="click" onclick="location.replace(location.href);"><span><img src="/back/images/t05.png" /></span>刷新</li>
+			</ul>
+		</div>
+
+		<form action="/adminBack/classify/query"  id="from">
+			<input type="hidden" name="parentId" value="${map.parentId!0}"/>
+			<ul class="seachform">
+			    <li><label></label><input placeholder="输入分类标题" value="${map.name!''}" name="name" type="text" class="scinput" /></li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<!-- <th><input type="checkbox" /></th> -->
+					<th>编号<!-- <i class="sort"><img src="/back/images/px.gif" /></i> --></th>
+					<th>标题</th>
+					<th>父级</th>
+					<th>品牌LOGO</th>
+					<th>描述</th>
+					<th>是否常用车型</th>
+					<th>创建时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<#list list as entity >
+					<tr>
+						<!-- <td><input type="checkbox" id="moduleIds" name="moduleIds" value="${entity.id?c}" /></td> -->
+						<td>${entity_index + 1}</td>
+						<td><a href="/adminBack/classify/query?parentId=${entity.id?c}">${entity.name!''}</a></td>
+						<td>
+							<#if !entity.parentId?? || (entity.parentId!0) == 0>
+								顶级分类
+							<#else>
+								<a href="/adminBack/classify/query?parentId=${entity.parentId?c}">${entity.parentName!''}</a>
+							</#if>
+						</td>
+						<td><img src="${entity.image!''}" width="75px" height="40px"/></td>
+						<td>${entity.description!}</td>
+						<td>
+							<#if entity.commonly == 1>
+								是
+							<#else>
+								否
+							</#if>
+						</td>
+						<td>${entity.creationTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+						<td>
+							<#if (Session.role.id) == 1>
+					            <a class="tablelink" title="编辑" href="javascript:showPage('/adminBack/classify/update?id=${entity.id?c}','70%','70%','模块管理-编辑（${entity.name!''}）');" >
+			 						编辑</a> | 
+			 					<a class="tablelink"  href="javascript:module_del(this,'${entity.id?c}');" title="删除">
+									删除</a>
+					        </#if>
+						</td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+
+
+		<!-- <div class="pagin">
+			<div class="message">
+				共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页
+			</div>
+			<ul class="paginList">
+				<li class="paginItem"><a href="javascript:;"><span
+						class="pagepre"></span></a></li>
+				<li class="paginItem"><a href="javascript:;">1</a></li>
+				<li class="paginItem current"><a href="javascript:;">2</a></li>
+				<li class="paginItem"><a href="javascript:;">3</a></li>
+				<li class="paginItem"><a href="javascript:;">4</a></li>
+				<li class="paginItem"><a href="javascript:;">5</a></li>
+				<li class="paginItem more"><a href="javascript:;">...</a></li>
+				<li class="paginItem"><a href="javascript:;">10</a></li>
+				<li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+			</ul>
+		</div> -->
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+		/*模块-删除*/
+		function module_del(obj,id){
+			layer.confirm('删除后此类型下面的分类信息不可以恢复，确认要删除吗？',{icon:2},function(index){
+				$.post("/adminBack/classify/delete?from=ajax", {'ids': id },
+				   /*  function(result) {processJson(result) */
+			     function(result) {
+			    	 jsonState(result);
+			    },'json');
+			});
+		}
+	</script>
+</body>
+</html>

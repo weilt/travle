@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HwOrderCommentMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.order.HwOrderComment">
+    <id column="order_comment_id" jdbcType="BIGINT" property="order_comment_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="order_id" jdbcType="BIGINT" property="order_id" />
+    <result column="name_id" jdbcType="BIGINT" property="name_id" />
+    <result column="name_type" jdbcType="INTEGER" property="name_type" />
+    <result column="parent_comment_id" jdbcType="BIGINT" property="parent_comment_id" />
+    <result column="parent_user_id" jdbcType="BIGINT" property="parent_user_id" />
+    <result column="is_image" jdbcType="INTEGER" property="is_image" />
+    <result column="comment_dec" jdbcType="VARCHAR" property="comment_dec" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="match_score" jdbcType="INTEGER" property="match_score" />
+    <result column="trip_score" jdbcType="INTEGER" property="trip_score" />
+    <result column="service_score" jdbcType="INTEGER" property="service_score" />
+    <result column="score" jdbcType="REAL" property="score" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+  
+ 
+ <sql id="Base_Column_List">
+    order_comment_id, user_id, order_id, name_id, name_type, parent_comment_id, parent_user_id, 
+    is_image, comment_dec, image, match_score, trip_score, service_score, score, create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_order_comment
+    where order_comment_id = #{order_comment_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_order_comment
+    where order_comment_id = #{order_comment_id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwt.domain.entity.order.HwOrderComment">
+    insert into hw_order_comment (order_comment_id, user_id, order_id, 
+      name_id, name_type, parent_comment_id, 
+      parent_user_id, is_image, comment_dec, 
+      image, match_score, trip_score, 
+      service_score, score, create_time
+      )
+    values (#{order_comment_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{order_id,jdbcType=BIGINT}, 
+      #{name_id,jdbcType=BIGINT}, #{name_type,jdbcType=INTEGER}, #{parent_comment_id,jdbcType=BIGINT}, 
+      #{parent_user_id,jdbcType=BIGINT}, #{is_image,jdbcType=INTEGER}, #{comment_dec,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{match_score,jdbcType=INTEGER}, #{trip_score,jdbcType=INTEGER}, 
+      #{service_score,jdbcType=INTEGER}, #{score,jdbcType=REAL}, #{create_time,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.order.HwOrderComment">
+    insert into hw_order_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order_comment_id != null">
+        order_comment_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="order_id != null">
+        order_id,
+      </if>
+      <if test="name_id != null">
+        name_id,
+      </if>
+      <if test="name_type != null">
+        name_type,
+      </if>
+      <if test="parent_comment_id != null">
+        parent_comment_id,
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id,
+      </if>
+      <if test="is_image != null">
+        is_image,
+      </if>
+      <if test="comment_dec != null">
+        comment_dec,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="match_score != null">
+        match_score,
+      </if>
+      <if test="trip_score != null">
+        trip_score,
+      </if>
+      <if test="service_score != null">
+        service_score,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order_comment_id != null">
+        #{order_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="order_id != null">
+        #{order_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_id != null">
+        #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="parent_comment_id != null">
+        #{parent_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_image != null">
+        #{is_image,jdbcType=INTEGER},
+      </if>
+      <if test="comment_dec != null">
+        #{comment_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="match_score != null">
+        #{match_score,jdbcType=INTEGER},
+      </if>
+      <if test="trip_score != null">
+        #{trip_score,jdbcType=INTEGER},
+      </if>
+      <if test="service_score != null">
+        #{service_score,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=REAL},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.order.HwOrderComment">
+    update hw_order_comment
+    <set>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="order_id != null">
+        order_id = #{order_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_id != null">
+        name_id = #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="name_type != null">
+        name_type = #{name_type,jdbcType=INTEGER},
+      </if>
+      <if test="parent_comment_id != null">
+        parent_comment_id = #{parent_comment_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_user_id != null">
+        parent_user_id = #{parent_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_image != null">
+        is_image = #{is_image,jdbcType=INTEGER},
+      </if>
+      <if test="comment_dec != null">
+        comment_dec = #{comment_dec,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="match_score != null">
+        match_score = #{match_score,jdbcType=INTEGER},
+      </if>
+      <if test="trip_score != null">
+        trip_score = #{trip_score,jdbcType=INTEGER},
+      </if>
+      <if test="service_score != null">
+        service_score = #{service_score,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=REAL},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where order_comment_id = #{order_comment_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.order.HwOrderComment">
+    update hw_order_comment
+    set user_id = #{user_id,jdbcType=BIGINT},
+      order_id = #{order_id,jdbcType=BIGINT},
+      name_id = #{name_id,jdbcType=BIGINT},
+      name_type = #{name_type,jdbcType=INTEGER},
+      parent_comment_id = #{parent_comment_id,jdbcType=BIGINT},
+      parent_user_id = #{parent_user_id,jdbcType=BIGINT},
+      is_image = #{is_image,jdbcType=INTEGER},
+      comment_dec = #{comment_dec,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      match_score = #{match_score,jdbcType=INTEGER},
+      trip_score = #{trip_score,jdbcType=INTEGER},
+      service_score = #{service_score,jdbcType=INTEGER},
+      score = #{score,jdbcType=REAL},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where order_comment_id = #{order_comment_id,jdbcType=BIGINT}
+  </update>
+  
+   <!-- 返回主键添加 insertBackId-->
+    <insert id="insertBackId"  parameterType="com.hwt.domain.entity.order.HwOrderComment"   useGeneratedKeys="true" keyProperty="order_comment_id">
+    	 insert into hw_order_comment
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="order_comment_id != null">
+	        order_comment_id,
+	      </if>
+	      <if test="user_id != null">
+	        user_id,
+	      </if>
+	      <if test="order_id != null">
+	        order_id,
+	      </if>
+	      <if test="name_id != null">
+	        name_id,
+	      </if>
+	      <if test="name_type != null">
+	        name_type,
+	      </if>
+	      <if test="parent_comment_id != null">
+	        parent_comment_id,
+	      </if>
+	      <if test="parent_user_id != null">
+	        parent_user_id,
+	      </if>
+	      <if test="is_image != null">
+	        is_image,
+	      </if>
+	      <if test="comment_dec != null">
+	        comment_dec,
+	      </if>
+	      <if test="image != null">
+	        image,
+	      </if>
+	      <if test="match_score != null">
+	        match_score,
+	      </if>
+	      <if test="trip_score != null">
+	        trip_score,
+	      </if>
+	      <if test="service_score != null">
+	        service_score,
+	      </if>
+	      <if test="score != null">
+	        score,
+	      </if>
+	      <if test="create_time != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="order_comment_id != null">
+	        #{order_comment_id,jdbcType=BIGINT},
+	      </if>
+	      <if test="user_id != null">
+	        #{user_id,jdbcType=BIGINT},
+	      </if>
+	      <if test="order_id != null">
+	        #{order_id,jdbcType=BIGINT},
+	      </if>
+	      <if test="name_id != null">
+	        #{name_id,jdbcType=BIGINT},
+	      </if>
+	      <if test="name_type != null">
+	        #{name_type,jdbcType=INTEGER},
+	      </if>
+	      <if test="parent_comment_id != null">
+	        #{parent_comment_id,jdbcType=BIGINT},
+	      </if>
+	      <if test="parent_user_id != null">
+	        #{parent_user_id,jdbcType=BIGINT},
+	      </if>
+	      <if test="is_image != null">
+	        #{is_image,jdbcType=INTEGER},
+	      </if>
+	      <if test="comment_dec != null">
+	        #{comment_dec,jdbcType=VARCHAR},
+	      </if>
+	      <if test="image != null">
+	        #{image,jdbcType=VARCHAR},
+	      </if>
+	      <if test="match_score != null">
+	        #{match_score,jdbcType=INTEGER},
+	      </if>
+	      <if test="trip_score != null">
+	        #{trip_score,jdbcType=INTEGER},
+	      </if>
+	      <if test="service_score != null">
+	        #{service_score,jdbcType=INTEGER},
+	      </if>
+	      <if test="score != null">
+	        #{score,jdbcType=REAL},
+	      </if>
+	      <if test="create_time != null">
+	        #{create_time,jdbcType=BIGINT},
+	      </if>
+	    </trim>
+    </insert>
+    
+    <!-- 一对多查询关联  -->
+     <resultMap type="com.hwt.domain.entity.order.vo.HwOrderCommentVo" id="orderCommentVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+          <id column="order_comment_id" jdbcType="BIGINT" property="order_comment_id" />
+		    <result column="order_id" jdbcType="BIGINT" property="order_id" />
+		    <result column="name_id" jdbcType="BIGINT" property="name_id" />
+		    <result column="name_type" jdbcType="INTEGER" property="name_type" />
+		    <result column="parent_comment_id" jdbcType="BIGINT" property="parent_comment_id" />
+		    <result column="is_image" jdbcType="INTEGER" property="is_image" />
+		    <result column="comment_dec" jdbcType="VARCHAR" property="comment_dec" />
+		    <result column="image" jdbcType="VARCHAR" property="image" />
+		    <result column="match_score" jdbcType="INTEGER" property="match_score" />
+		    <result column="trip_score" jdbcType="INTEGER" property="trip_score" />
+		    <result column="service_score" jdbcType="INTEGER" property="service_score" />
+		    <result column="score" jdbcType="REAL" property="score" />
+		    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+		    
+         <!-- 用collection标签 ,也是实体类属性要对应数据库字段-->
+         <collection property="comment_user" ofType="videoUserVo" column="user_id"
+         	select="query_user">
+         </collection>
+             
+         <!-- <collection property="parent_comment_user" ofType="parentVideoUserVo" column="parent_user_id"
+         	select="query_parent_user">
+         </collection>     -->
+     </resultMap>
+     
+     <resultMap type="com.hwt.domain.entity.order.vo.CommentUserVo" id="commentUserVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="user_id" column="user_id"/>
+           
+     </resultMap>
+      <resultMap type="com.hwt.domain.entity.order.vo.CommentUserVo" id="parentCommentUserVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="user_id" column="parent_user_id"/>
+           
+     </resultMap>
+     
+      <!-- 查询评论 -->
+     <select id="query_comment" parameterType="map" resultMap="orderCommentVo">
+         select * from hw_order_comment where name_id = #{name_id}  and name_type = #{name_type} 
+         	
+         	
+         	<if test="other_condition != null and other_condition == 1">
+         		and  score &gt; 3
+         	
+         	</if>
+         	<if test="other_condition != null and other_condition == 2">
+         		and  is_image = 1
+         	
+         	</if>
+         	
+         	<if test="other_condition != null and other_condition == 3">
+         		and  score = 3
+         	
+         	</if>
+         	<if test="other_condition != null and other_condition == 4">
+         		and  score &lt; 3
+         	
+         	</if>
+         	<if test="last_order_comment_id != null and last_order_comment_id >0">
+         		and  order_comment_id &lt; #{last_order_comment_id}
+         	
+         	</if>
+          order by create_time desc limit 0 ,#{pageSize}
+     </select>
+     
+     <!-- 通过id查询用户 -->
+     <select id="query_user" parameterType="java.lang.Long" resultMap="commentUserVo">
+         select user_id as user_id, account as user_account , user_icon,nickname from hx_user_info where user_id = #{user_id}
+     </select>
+     <!-- 通过id查询用户 -->
+     <select id="query_parent_user" parameterType="java.lang.Long" resultMap="parentCommentUserVo">
+         select user_id as user_id, account as user_account , user_icon,nickname  from hx_user_info where user_id = #{parent_user_id}
+     </select>
+     
+     <!--  查询线路最近的一次好评-->
+     <select id="query_good_one_comment"  resultMap="orderCommentVo">
+         select * from hw_order_comment where name_id = #{name_id}  and name_type = #{name_type} 
+         	
+         	and  score &gt; 3 
+         	
+          order by create_time desc limit 0 ,1
+     </select>
+</mapper>

@@ -1,0 +1,8 @@
+com\hx\system\service\adminHx\service\HxAttributeService.class
+com\hx\system\service\adminHx\service\AdminHxVersionService.class
+com\hx\system\service\hx\VersionService.class
+com\hx\system\service\adminHx\service\HxReportService.class
+com\hx\system\service\adminHx\service\impl\AdminHxVersionServiceImpl.class
+com\hx\system\service\adminHx\service\impl\HxAttributeServiceImpl.class
+com\hx\system\service\adminHx\service\impl\HxReportServiceImpl.class
+com\hx\system\service\hx\impl\VersionServiceImpl.class

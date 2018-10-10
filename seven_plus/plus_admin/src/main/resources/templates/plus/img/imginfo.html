@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加广告位</title>
+    <link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+    <link href="/back/js/kindeditor/themes/qq/qq.css" rel="stylesheet" type="text/css" />
+    <#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
+</head>
+<body>
+<div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    <form id = "from">
+        <ul class="forminfo">
+            <li>图片名称: ${entity.imgName!""}</li>
+            <li>图片类型: <#if (entity.imgType!0) == 0 >广告轮播图
+                    <#elseif (entity.imgType!0) == 1 >  划痕无忧宣传图
+                    <#elseif (entity.imgType!0) == 2 >  天天洗车宣传图
+                    <#elseif (entity.imgType!0) == 3 >  二维码
+                    <#elseif (entity.imgType!0) == 4 >  车辆正面示意图
+                    <#elseif (entity.imgType!0) == 5 >  左前面示意图
+                    <#elseif (entity.imgType!0) == 6 >  右前面示意图
+                    <#elseif (entity.imgType!0) == 7 >  左侧面示意图
+                    <#elseif (entity.imgType!0) == 8 >  右侧面示意图
+                    <#elseif (entity.imgType!0) == 9 >  正后面示意图
+                    <#elseif (entity.imgType!0) == 10 >  划痕示意图
+                    <#elseif (entity.imgType!0) == 11 >  天天洗车示意图
+                </#if>
+            </li>
+            <li>上传时间：${entity.createTime?number_to_datetime}</li>
+            <li><label>图片<b></b></label>
+                <div align="center">
+                    <img src="${entity.imgUrl!''}" id="images_test" alt="" height="360;" width="640;"/>
+                </div>
+            </li>
+
+        </ul>
+
+    </form>
+</div>
+<script src="/back/js/jquery.js" language="JavaScript" ></script>
+<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+<!-- 弹窗js -->
+<script src="/back/js/layer/layer.js"></script>
+<script src="/back/js/base.js"></script>
+<script src="/back/js/jquery.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.plus.mapper.OrderRecordMapper">
+
+
+    <insert id="insertOrderRecord"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `order_record`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="orderId!=null">
+                        `order_id`,
+                    </if>
+                    <if test="storeId!=null">
+                        `store_id`,
+                    </if>
+                    <if test="userId!=null">
+                        `user_id`,
+                    </if>
+                    <if test="imgUrl!=null">
+                        `img_url`,
+                    </if>
+                    <if test="orderType!=null">
+                        `order_type`,
+                    </if>
+                    <if test="state!=null">
+                        `state`,
+                    </if>
+                    <if test="remarks!=null">
+                        `remarks`,
+                    </if>
+                    <if test="createTime!=null">
+                        `create_time`,
+                    </if>
+                    <if test="updateTime!=null">
+                        `update_time`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="orderId!=null">
+                    #{orderId},
+                </if>
+                <if test="storeId!=null">
+                    #{storeId},
+                </if>
+                <if test="userId!=null">
+                    #{userId},
+                </if>
+                <if test="imgUrl!=null">
+                    #{imgUrl},
+                </if>
+                <if test="orderType!=null">
+                    #{orderType},
+                </if>
+                <if test="state!=null">
+                    #{state},
+                </if>
+                <if test="remarks!=null">
+                    #{remarks},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime},
+                </if>
+                <if test="updateTime!=null">
+                    #{updateTime},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateOrderRecord">
+        UPDATE `order_record`
+        SET
+        <trim suffixOverrides=",">
+            <if test="orderId != null">
+                `order_id` = #{orderId},
+            </if>
+            <if test="storeId != null">
+                `store_id` = #{storeId},
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl},
+            </if>
+            <if test="orderType != null">
+                `order_type` = #{orderType},
+            </if>
+            <if test="state != null">
+                `state` = #{state},
+            </if>
+            <if test="remarks != null and remarks!=''">
+                `remarks` = #{remarks},
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `order_record`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.orderId != null">
+            `order_id` = #{set.orderId},
+        </if>
+        <if test="set.storeId != null">
+            `store_id` = #{set.storeId},
+        </if>
+        <if test="set.imgUrl != null and set.imgUrl!=''">
+            `img_url` = #{set.imgUrl},
+        </if>
+        <if test="set.orderType != null">
+            `order_type` = #{set.orderType},
+        </if>
+        <if test="set.state != null">
+            `state` = #{set.state},
+        </if>
+        <if test="set.remarks != null and set.remarks!=''">
+            `remarks` = #{set.remarks},
+        </if>
+        <if test="set.createTime != null">
+            `create_time` = #{set.createTime},
+        </if>
+        <if test="set.updateTime != null">
+            `update_time` = #{set.updateTime},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.orderIdList != null">
+                    `order_id` in
+                    <foreach collection="where.orderIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.orderIdSt !=null">
+                `order_id` >= #{where.orderIdSt} and
+            </if>
+            <if test="where.orderIdEd!=null">
+                `order_id` &lt;= #{where.orderIdEd} and
+            </if>
+                <if test="where.storeIdList != null">
+                    `store_id` in
+                    <foreach collection="where.storeIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.storeIdSt !=null">
+                `store_id` >= #{where.storeIdSt} and
+            </if>
+            <if test="where.storeIdEd!=null">
+                `store_id` &lt;= #{where.storeIdEd} and
+            </if>
+                <if test="where.imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="where.imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyImgUrl!=null and where.fuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyImgUrl!=null and where.rightFuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.orderTypeList != null">
+                    `order_type` in
+                    <foreach collection="where.orderTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.orderTypeSt !=null">
+                `order_type` >= #{where.orderTypeSt} and
+            </if>
+            <if test="where.orderTypeEd!=null">
+                `order_type` &lt;= #{where.orderTypeEd} and
+            </if>
+                <if test="where.stateList != null">
+                    `state` in
+                    <foreach collection="where.stateList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.stateSt !=null">
+                `state` >= #{where.stateSt} and
+            </if>
+            <if test="where.stateEd!=null">
+                `state` &lt;= #{where.stateEd} and
+            </if>
+                <if test="where.remarksList != null">
+                    `remarks` in
+                    <foreach collection="where.remarksList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRemarks!=null and where.fuzzyRemarks.size()>0">
+                (
+                <foreach collection="where.fuzzyRemarks"  separator="or" item="item">
+                    `Remarks` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRemarks!=null and where.rightFuzzyRemarks.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRemarks"  separator="or" item="item">
+                    `Remarks` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.createTimeList != null">
+                    `create_time` in
+                    <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.createTimeSt !=null">
+                `create_time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_time` &lt;= #{where.createTimeEd} and
+            </if>
+                <if test="where.updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="where.updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.updateTimeSt !=null">
+                `update_time` >= #{where.updateTimeSt} and
+            </if>
+            <if test="where.updateTimeEd!=null">
+                `update_time` &lt;= #{where.updateTimeEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.domain.plus.entity.OrderRecord" id="OrderRecordMap">
+        <result property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="storeId" column="store_id"/>
+        <result property="recordId" column="record_id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="orderType" column="order_type"/>
+        <result property="state" column="state"/>
+        <result property="remarks" column="remarks"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <resultMap id="OrderRecordVoMap" type="com.domain.plus.vo.OrderRecordVo" extends="OrderRecordMap">
+        <result property="phone" column="phone"/>
+        <result property="city" column="city"/>
+        <result property="storeName" column="store_name"/>
+        <result property="storeAddress" column="store_address"/>
+    </resultMap>
+
+    <select id="queryOrderRecord" resultMap="OrderRecordMap">
+        select
+        <include refid="baseResult"></include>
+        from  `order_record`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="orderId != null">
+                `order_id` = #{orderId} and
+            </if>
+            <if test="storeId != null">
+                `store_id` = #{storeId} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test="orderType != null">
+                `order_type` = #{orderType} and
+            </if>
+            <if test="state != null">
+                `state` = #{state} and
+            </if>
+            <if test="remarks != null and remarks!=''">
+                `remarks` = #{remarks} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.OrderRecord$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="orderIdList != null">
+                    `order_id` in
+                    <foreach collection="orderIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="orderIdSt !=null">
+                    `order_id` >= #{orderIdSt} and
+                </if>
+                <if test="orderIdEd!=null">
+                    `order_id` &lt;= #{orderIdEd} and
+                </if>
+                <if test="storeIdList != null">
+                    `store_id` in
+                    <foreach collection="storeIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="storeIdSt !=null">
+                    `store_id` >= #{storeIdSt} and
+                </if>
+                <if test="storeIdEd!=null">
+                    `store_id` &lt;= #{storeIdEd} and
+                </if>
+                <if test="imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="orderTypeList != null">
+                    `order_type` in
+                    <foreach collection="orderTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="orderTypeSt !=null">
+                    `order_type` >= #{orderTypeSt} and
+                </if>
+                <if test="orderTypeEd!=null">
+                    `order_type` &lt;= #{orderTypeEd} and
+                </if>
+                <if test="stateList != null">
+                    `state` in
+                    <foreach collection="stateList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="stateSt !=null">
+                    `state` >= #{stateSt} and
+                </if>
+                <if test="stateEd!=null">
+                    `state` &lt;= #{stateEd} and
+                </if>
+                <if test="remarksList != null">
+                    `remarks` in
+                    <foreach collection="remarksList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRemarks!=null and fuzzyRemarks.size()>0">
+                    (
+                    <foreach collection="fuzzyRemarks"  separator="or" item="item">
+                        `Remarks` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRemarks!=null and rightFuzzyRemarks.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRemarks"  separator="or" item="item">
+                        `Remarks` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryOrderRecordLimit1" resultMap="OrderRecordMap">
+        select
+        <include refid="baseResult"></include>
+        from  `order_record`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="orderId != null">
+                `order_id` = #{orderId} and
+            </if>
+            <if test="storeId != null">
+                `store_id` = #{storeId} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test="orderType != null">
+                `order_type` = #{orderType} and
+            </if>
+            <if test="state != null">
+                `state` = #{state} and
+            </if>
+            <if test="remarks != null and remarks!=''">
+                `remarks` = #{remarks} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.OrderRecord$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="orderIdList != null">
+                        `order_id` in
+                        <foreach collection="orderIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="orderIdSt !=null">
+                    `order_id` >= #{orderIdSt} and
+                </if>
+                <if test="orderIdEd!=null">
+                    `order_id` &lt;= #{orderIdEd} and
+                </if>
+                    <if test="storeIdList != null">
+                        `store_id` in
+                        <foreach collection="storeIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="storeIdSt !=null">
+                    `store_id` >= #{storeIdSt} and
+                </if>
+                <if test="storeIdEd!=null">
+                    `store_id` &lt;= #{storeIdEd} and
+                </if>
+                    <if test="imgUrlList != null">
+                        `img_url` in
+                        <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="orderTypeList != null">
+                        `order_type` in
+                        <foreach collection="orderTypeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="orderTypeSt !=null">
+                    `order_type` >= #{orderTypeSt} and
+                </if>
+                <if test="orderTypeEd!=null">
+                    `order_type` &lt;= #{orderTypeEd} and
+                </if>
+                    <if test="stateList != null">
+                        `state` in
+                        <foreach collection="stateList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="stateSt !=null">
+                    `state` >= #{stateSt} and
+                </if>
+                <if test="stateEd!=null">
+                    `state` &lt;= #{stateEd} and
+                </if>
+                    <if test="remarksList != null">
+                        `remarks` in
+                        <foreach collection="remarksList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRemarks!=null and fuzzyRemarks.size()>0">
+                    (
+                    <foreach collection="fuzzyRemarks"  separator="or" item="item">
+                        `Remarks` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRemarks!=null and rightFuzzyRemarks.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRemarks"  separator="or" item="item">
+                        `Remarks` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="createTimeList != null">
+                        `create_time` in
+                        <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                    <if test="updateTimeList != null">
+                        `update_time` in
+                        <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <select id="queryRecordById" resultMap="OrderRecordMap">
+        select <include refid="allResult"/> from order_record where id = #{id}
+    </select>
+
+
+    <select id="queryOrderRecordVo" resultMap="OrderRecordVoMap">
+        SELECT
+            o.*, u.phone,u.city,
+            s.store_name,
+            s.store_address
+        FROM
+            order_record o
+        LEFT JOIN plus_user u ON u.id = o.user_id
+        LEFT JOIN plus_store s ON s.id = o.store_id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="orderType != null and orderType >0">
+                o.order_type = #{orderType} and
+            </if>
+            <if test="phone != null and phone != ''">
+                u.phone like concat(concat('%',#{phone}),'%') and
+            </if>
+            <if test="storeName != null and storeName != '' ">
+                s.store_name like concat(concat('%',#{storeName}),'%') and
+            </if>
+            <if test="storeAddress != null and  storeAddress != ''">
+                s.store_address like concat(concat('%',#{storeAddress}),'%')
+            </if>
+        </trim>
+        order by o.create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+
+    <select id="countOrderRecord" resultType="java.lang.Integer">
+        SELECT
+            count(o.id)
+        FROM
+            order_record o
+        LEFT JOIN plus_user u ON u.id = o.user_id
+        LEFT JOIN plus_store s ON s.id = o.store_id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="orderType != null and orderType >0">
+                o.order_type = #{orderType} and
+            </if>
+            <if test="phone != null and phone != ''">
+                u.phone like concat(concat('%',#{phone}),'%') and
+            </if>
+            <if test="storeName != null and storeName != '' ">
+                s.store_name like concat(concat('%',#{storeName}),'%') and
+            </if>
+            <if test="storeAddress != null and  storeAddress != ''">
+                s.store_address like concat(concat('%',#{storeAddress}),'%')
+            </if>
+        </trim>
+    </select>
+
+
+    <select id="queryScratchOrder" resultMap="OrderRecordVoMap">
+        SELECT
+        o.*,
+        u.phone,
+        u.city,
+        s.store_name
+        FROM
+        order_record o
+        LEFT JOIN plus_user u ON u.id = o.user_id
+        LEFT JOIN plus_store s ON s.id = o.store_id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="orderType != null and orderType >0">
+                o.order_type = #{orderType} and
+            </if>
+            <if test="state != null ">
+                o.state = #{state} and
+            </if>
+            <if test="phone != null and phone != ''">
+                u.phone like concat(concat('%',#{phone}),'%') and
+            </if>
+            <if test="beginTime != null and  beginTime != ''">
+              o.create_time &gt; #{beginTime} and o.create_time &lt; #{endTime}
+            </if>
+        </trim>
+        order by o.create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+
+    <select id="countScratchOrder" resultType="java.lang.Integer" >
+        SELECT
+          count(o.id)
+        FROM
+        order_record o
+        LEFT JOIN plus_user u ON u.id = o.user_id
+        LEFT JOIN plus_store s ON s.id = o.store_id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="orderType != null and orderType >0">
+                o.order_type = #{orderType} and
+            </if>
+            <if test="state != null ">
+                o.state = #{state} and
+            </if>
+            <if test="phone != null and phone != ''">
+                u.phone like concat(concat('%',#{phone}),'%') and
+            </if>
+            <if test="beginTime != null and  beginTime != ''">
+                o.create_time &gt; #{beginTime} and o.create_time &lt; #{endTime}
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryOrderRecordApiVo" resultType="com.domain.plus.vo.OrderRecordApiVo">
+        SELECT
+            r.id AS id,
+            c.car_no AS carNo,
+            r.create_time AS createTime,
+            o.order_type AS orderType,
+            r.img_url AS imgUrl,
+            r.state AS state,
+            IFNULL(s.store_name,'')  AS storeName,
+            IFNULL(s.store_phone,'')  AS storePhone,
+            IFNULL(s.id,'')  AS storeId,
+            IFNULL(s.store_lat,'')  AS lat,
+            IFNULL(s.store_lon,'')  AS lng,
+            IFNULL(s.store_address,'')  AS  address
+        FROM
+            order_record r
+        LEFT JOIN plus_store s ON s.id = r.store_id
+        LEFT JOIN plus_order o ON o.id = r.order_id
+        LEFT JOIN plus_car c ON c.id = o.car_id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="orderType != null and orderType >0">
+                o.order_type = #{orderType} and
+            </if>
+            <if test="userId != null and userId != ''">
+                o.user_id = #{userId}
+            </if>
+
+        </trim>
+        ORDER BY r.create_time DESC
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <select id="countScratchOrderId" resultType="java.lang.Integer">
+        select count(1) from order_record where order_id = #{orderId} and state &lt;&gt; 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `order_id`,
+        `store_id`,
+        `img_url`,
+        `order_type`+0 as `order_type`,
+        `state`+0 as `state`,
+        `remarks`,
+        `create_time`,
+        `update_time`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof entity.OrderRecord$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.orderId==true">
+                        `order_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeId==true">
+                        `store_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgUrl==true">
+                        `img_url`,
+                    </if>
+                    <if test="fetchFields.fetchFields.orderType==true">
+                        `order_type`+0 as `order_type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.state==true">
+                        `state`+0 as `state`,
+                    </if>
+                    <if test="fetchFields.fetchFields.remarks==true">
+                        `remarks`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createTime==true">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.updateTime==true">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.orderId==null">
+                        `order_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeId==null">
+                        `store_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgUrl==null">
+                        `img_url`,
+                    </if>
+                    <if test="fetchFields.excludeFields.orderType==null">
+                        `order_type`+0 as `order_type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.state==null">
+                        `state`+0 as `state`,
+                    </if>
+                    <if test="fetchFields.excludeFields.remarks==null">
+                        `remarks`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createTime==null">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.updateTime==null">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof entity.OrderRecord$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

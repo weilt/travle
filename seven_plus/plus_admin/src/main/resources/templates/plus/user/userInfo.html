@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>修改网点</title>
+    <link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .cc{
+            border:1px solid #999999;
+        }
+    </style>
+
+<#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
+</head>
+<body>
+<div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    <form id = "from">
+        <ul class="forminfo">
+            <li>电话:&nbsp;&nbsp;<#if (phoneSee!0) == 1>
+                ${user.phone!'暂没绑定'}
+            <#else > ${(user.phone!'18888888888')?replace(((user.phone!'18888888888')?substring(3,7)),'****')}
+            </#if></li>
+            <li>地区:&nbsp;&nbsp;${(user.city)!''}</li>
+            <li>佣金:&nbsp;&nbsp;¥${((user.brokerage!0)/100.0)?string(',###.##')}</li>
+            <li>天天洗车佣金:&nbsp;&nbsp;¥${((washBrokerage!0)/100.0)?string(',###.##')}</li>
+            <li>划痕无忧佣金:&nbsp;&nbsp;¥${((nikeBrokerage!0)/100.0)?string(',###.##')}</li>
+            <li>车辆信息:&nbsp;&nbsp;
+                <table class="tablelist">
+                    <thead>
+                    <tr>
+                        <th >车牌号码</th>
+                        <th >品牌型号</th>
+                        <th >车辆性质</th>
+                        <th >车龄年限</th>
+                        <th >车辆类型</th>
+                        <th >办理业务</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+				<#list cars as car >
+                <tr>
+                    <td>${(car.carNo)!''}</td>
+                    <td>${(car.carBrand)!''}</td>
+                    <td><#if (car.carNature!'')==0 >非运营</#if>
+				        <#if (car.carNature!'')==1 >运营</#if>
+                    </td>
+                    <td>
+                        <#if (car.drivingAge!'')==0 >三年以下</#if>
+                        <#if (car.drivingAge!'')==1 >三年到五年以下</#if>
+		                <#if (car.drivingAge!'')==2 >五年以上</#if>
+                    </td>
+                    <td>
+                        <#if (car.carType!'')==0> 五座以内</#if>
+                        <#if (car.carType!'')==1> 五座到七座</#if>
+                    </td>
+                    <td>
+                        <#if (car.orderType !0) == 1 >天天洗车</#if>
+                        <#if (car.orderType !0) == 2 >划痕无忧</#if>
+                    </td>
+                </tr>
+                </#list>
+                    </tbody>
+                </table>
+            </li>
+            <li>洗车抽佣:&nbsp;&nbsp;
+                <table class="tablelist">
+                    <thead>
+                    <tr>
+                        <th >电话</th>
+                        <th >金额</th>
+                        <th >时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+				<#list washBrokerageList as wash >
+                <tr>
+                    <td> <#if (phoneSee!0) == 1>
+                        ${wash.phone!'暂没绑定'}
+                    <#else > ${(wash.phone!'18888888888')?replace(((wash.phone!'18888888888')?substring(3,7)),'****')}
+                    </#if> </td>
+                    <td>
+                        ${((wash.brokerage!0)/100.0)?string(',###.##')}
+                    </td>
+                    <td>${wash.createTime?number_to_datetime}</td>
+                </tr>
+                </#list>
+                    </tbody>
+                </table>
+            </li>
+            <li>划痕抽佣:&nbsp;&nbsp;
+            <table class="tablelist">
+                <thead>
+                <tr>
+                    <th >电话</th>
+                    <th >金额</th>
+                    <th >时间</th>
+                </tr>
+                </thead>
+                <tbody>
+				<#list nikeBrokerageList as nike >
+                <tr>
+                    <td><#if (phoneSee!0) == 1>
+                        ${nike.phone!'暂没绑定'}
+                    <#else > ${(nike.phone!'18888888888')?replace(((nike.phone!'18888888888')?substring(3,7)),'****')}
+                    </#if></td>
+                    <td>
+                        ${((nike.brokerage!0)/100.0)?string(',###.##')}
+                    </td>
+                    <td>${nike.createTime?number_to_datetime}</td>
+                </tr>
+                </#list>
+                </tbody>
+            </table>
+        </li>
+            <li>地址信息:&nbsp;&nbsp;
+                <table class="tablelist">
+                    <thead>
+                    <tr>
+                        <th >地址</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+				<#list addressList as add >
+                <tr>
+                    <td>${(add.address)!''}</td>
+                </tr>
+                </#list>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </form>
+</div>
+<script src="/back/js/jquery.js" language="JavaScript" ></script>
+<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+<!-- 弹窗js -->
+<script src="/back/js/layer/layer.js"></script>
+<script src="/back/js/base.js"></script>
+<script src="/back/js/jquery.js"></script>
+<script type="text/javascript">
+
+    function checkSubmit() {
+        var id = $("#id").val();
+        var brokerage = $("#brokerage").val();
+        if (!(/(^[1-9]\d*$)/.test(brokerage))) {
+            layer.alert("请输入正整数！");
+            return;
+        }
+        $.post("/admin/user/setBrokerage?from=ajax",
+                {'id': id,'money':brokerage },
+                function(result) {jsonState(result)},'json');
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.bureau.HwTravelBureauMapper">
+ <resultMap id="BaseResultMap" type="com.hwt.domain.entity.bureau.HwTravelBureau">
+    <id column="bureau_id" jdbcType="BIGINT" property="bureau_id" />
+    <result column="bureau_account" jdbcType="VARCHAR" property="bureau_account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="pwd_salt" jdbcType="VARCHAR" property="pwd_salt" />
+    <result column="company_name" jdbcType="VARCHAR" property="company_name" />
+    <result column="license_no" jdbcType="VARCHAR" property="license_no" />
+    <result column="legal_person" jdbcType="VARCHAR" property="legal_person" />
+    <result column="legal_person_phome" jdbcType="VARCHAR" property="legal_person_phome" />
+    <result column="registered_capital" jdbcType="DECIMAL" property="registered_capital" />
+    <result column="company_time" jdbcType="BIGINT" property="company_time" />
+    <result column="licen_validity_begin" jdbcType="BIGINT" property="licen_validity_begin" />
+    <result column="licen_validity_end" jdbcType="BIGINT" property="licen_validity_end" />
+    <result column="taxpayer_state" jdbcType="INTEGER" property="taxpayer_state" />
+    <result column="org_no" jdbcType="VARCHAR" property="org_no" />
+    <result column="quality_deposit" jdbcType="DECIMAL" property="quality_deposit" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="contacts_name" jdbcType="VARCHAR" property="contacts_name" />
+    <result column="contacts_phome" jdbcType="VARCHAR" property="contacts_phome" />
+    <result column="contacts_emil" jdbcType="VARCHAR" property="contacts_emil" />
+    <result column="license_url" jdbcType="VARCHAR" property="license_url" />
+    <result column="busine_licen_url" jdbcType="VARCHAR" property="busine_licen_url" />
+    <result column="duty_policy_url" jdbcType="VARCHAR" property="duty_policy_url" />
+    <result column="identity_positive" jdbcType="VARCHAR" property="identity_positive" />
+    <result column="identity_negative" jdbcType="VARCHAR" property="identity_negative" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="examine_time" jdbcType="BIGINT" property="examine_time" />
+    <result column="bureau_bank_account" jdbcType="VARCHAR" property="bureau_bank_account" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bank_name" />
+  </resultMap>
+
+ <sql id="Base_Column_List">
+    bureau_id, bureau_account, password, pwd_salt, company_name, license_no, legal_person, 
+    legal_person_phome, registered_capital, company_time, licen_validity_begin, licen_validity_end, 
+    taxpayer_state, org_no, quality_deposit, address, description, contacts_name, contacts_phome, 
+    contacts_emil, license_url, busine_licen_url, duty_policy_url, identity_positive, 
+    identity_negative, reason, state, remark, create_time, examine_time, bureau_bank_account, 
+    bank_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_travel_bureau
+    where bureau_id = #{bureau_id,jdbcType=BIGINT}
+  </select>
+  <!-- <select id="query_by_legal_person_phome" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_travel_bureau
+    where legal_person_phome = #{legal_person_phome,jdbcType=VARCHAR}
+  </select> -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_travel_bureau
+    where bureau_id = #{bureau_id,jdbcType=BIGINT}
+  </delete>
+   <insert id="insert" parameterType="com.hwt.domain.entity.bureau.HwTravelBureau">
+    insert into hw_travel_bureau (bureau_id, bureau_account, password, 
+      pwd_salt, company_name, license_no, 
+      legal_person, legal_person_phome, registered_capital, 
+      company_time, licen_validity_begin, licen_validity_end, 
+      taxpayer_state, org_no, quality_deposit, 
+      address, description, contacts_name, 
+      contacts_phome, contacts_emil, license_url, 
+      busine_licen_url, duty_policy_url, identity_positive, 
+      identity_negative, reason, state, 
+      remark, create_time, examine_time, 
+      bureau_bank_account, bank_name)
+    values (#{bureau_id,jdbcType=BIGINT}, #{bureau_account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{pwd_salt,jdbcType=VARCHAR}, #{company_name,jdbcType=VARCHAR}, #{license_no,jdbcType=VARCHAR}, 
+      #{legal_person,jdbcType=VARCHAR}, #{legal_person_phome,jdbcType=VARCHAR}, #{registered_capital,jdbcType=DECIMAL}, 
+      #{company_time,jdbcType=BIGINT}, #{licen_validity_begin,jdbcType=BIGINT}, #{licen_validity_end,jdbcType=BIGINT}, 
+      #{taxpayer_state,jdbcType=INTEGER}, #{org_no,jdbcType=VARCHAR}, #{quality_deposit,jdbcType=DECIMAL}, 
+      #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{contacts_name,jdbcType=VARCHAR}, 
+      #{contacts_phome,jdbcType=VARCHAR}, #{contacts_emil,jdbcType=VARCHAR}, #{license_url,jdbcType=VARCHAR}, 
+      #{busine_licen_url,jdbcType=VARCHAR}, #{duty_policy_url,jdbcType=VARCHAR}, #{identity_positive,jdbcType=VARCHAR}, 
+      #{identity_negative,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{create_time,jdbcType=BIGINT}, #{examine_time,jdbcType=BIGINT}, 
+      #{bureau_bank_account,jdbcType=VARCHAR}, #{bank_name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.bureau.HwTravelBureau">
+    insert into hw_travel_bureau
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bureau_id != null">
+        bureau_id,
+      </if>
+      <if test="bureau_account != null">
+        bureau_account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="pwd_salt != null">
+        pwd_salt,
+      </if>
+      <if test="company_name != null">
+        company_name,
+      </if>
+      <if test="license_no != null">
+        license_no,
+      </if>
+      <if test="legal_person != null">
+        legal_person,
+      </if>
+      <if test="legal_person_phome != null">
+        legal_person_phome,
+      </if>
+      <if test="registered_capital != null">
+        registered_capital,
+      </if>
+      <if test="company_time != null">
+        company_time,
+      </if>
+      <if test="licen_validity_begin != null">
+        licen_validity_begin,
+      </if>
+      <if test="licen_validity_end != null">
+        licen_validity_end,
+      </if>
+      <if test="taxpayer_state != null">
+        taxpayer_state,
+      </if>
+      <if test="org_no != null">
+        org_no,
+      </if>
+      <if test="quality_deposit != null">
+        quality_deposit,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="contacts_name != null">
+        contacts_name,
+      </if>
+      <if test="contacts_phome != null">
+        contacts_phome,
+      </if>
+      <if test="contacts_emil != null">
+        contacts_emil,
+      </if>
+      <if test="license_url != null">
+        license_url,
+      </if>
+      <if test="busine_licen_url != null">
+        busine_licen_url,
+      </if>
+      <if test="duty_policy_url != null">
+        duty_policy_url,
+      </if>
+      <if test="identity_positive != null">
+        identity_positive,
+      </if>
+      <if test="identity_negative != null">
+        identity_negative,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="examine_time != null">
+        examine_time,
+      </if>
+      <if test="bureau_bank_account != null">
+        bureau_bank_account,
+      </if>
+      <if test="bank_name != null">
+        bank_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bureau_id != null">
+        #{bureau_id,jdbcType=BIGINT},
+      </if>
+      <if test="bureau_account != null">
+        #{bureau_account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd_salt != null">
+        #{pwd_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="company_name != null">
+        #{company_name,jdbcType=VARCHAR},
+      </if>
+      <if test="license_no != null">
+        #{license_no,jdbcType=VARCHAR},
+      </if>
+      <if test="legal_person != null">
+        #{legal_person,jdbcType=VARCHAR},
+      </if>
+      <if test="legal_person_phome != null">
+        #{legal_person_phome,jdbcType=VARCHAR},
+      </if>
+      <if test="registered_capital != null">
+        #{registered_capital,jdbcType=DECIMAL},
+      </if>
+      <if test="company_time != null">
+        #{company_time,jdbcType=BIGINT},
+      </if>
+      <if test="licen_validity_begin != null">
+        #{licen_validity_begin,jdbcType=BIGINT},
+      </if>
+      <if test="licen_validity_end != null">
+        #{licen_validity_end,jdbcType=BIGINT},
+      </if>
+      <if test="taxpayer_state != null">
+        #{taxpayer_state,jdbcType=INTEGER},
+      </if>
+      <if test="org_no != null">
+        #{org_no,jdbcType=VARCHAR},
+      </if>
+      <if test="quality_deposit != null">
+        #{quality_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts_name != null">
+        #{contacts_name,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts_phome != null">
+        #{contacts_phome,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts_emil != null">
+        #{contacts_emil,jdbcType=VARCHAR},
+      </if>
+      <if test="license_url != null">
+        #{license_url,jdbcType=VARCHAR},
+      </if>
+      <if test="busine_licen_url != null">
+        #{busine_licen_url,jdbcType=VARCHAR},
+      </if>
+      <if test="duty_policy_url != null">
+        #{duty_policy_url,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_positive != null">
+        #{identity_positive,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_negative != null">
+        #{identity_negative,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="examine_time != null">
+        #{examine_time,jdbcType=BIGINT},
+      </if>
+      <if test="bureau_bank_account != null">
+        #{bureau_bank_account,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_name != null">
+        #{bank_name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.bureau.HwTravelBureau">
+    update hw_travel_bureau
+    <set>
+      <if test="bureau_account != null">
+        bureau_account = #{bureau_account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd_salt != null">
+        pwd_salt = #{pwd_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="company_name != null">
+        company_name = #{company_name,jdbcType=VARCHAR},
+      </if>
+      <if test="license_no != null">
+        license_no = #{license_no,jdbcType=VARCHAR},
+      </if>
+      <if test="legal_person != null">
+        legal_person = #{legal_person,jdbcType=VARCHAR},
+      </if>
+      <if test="legal_person_phome != null">
+        legal_person_phome = #{legal_person_phome,jdbcType=VARCHAR},
+      </if>
+      <if test="registered_capital != null">
+        registered_capital = #{registered_capital,jdbcType=DECIMAL},
+      </if>
+      <if test="company_time != null">
+        company_time = #{company_time,jdbcType=BIGINT},
+      </if>
+      <if test="licen_validity_begin != null">
+        licen_validity_begin = #{licen_validity_begin,jdbcType=BIGINT},
+      </if>
+      <if test="licen_validity_end != null">
+        licen_validity_end = #{licen_validity_end,jdbcType=BIGINT},
+      </if>
+      <if test="taxpayer_state != null">
+        taxpayer_state = #{taxpayer_state,jdbcType=INTEGER},
+      </if>
+      <if test="org_no != null">
+        org_no = #{org_no,jdbcType=VARCHAR},
+      </if>
+      <if test="quality_deposit != null">
+        quality_deposit = #{quality_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts_name != null">
+        contacts_name = #{contacts_name,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts_phome != null">
+        contacts_phome = #{contacts_phome,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts_emil != null">
+        contacts_emil = #{contacts_emil,jdbcType=VARCHAR},
+      </if>
+      <if test="license_url != null">
+        license_url = #{license_url,jdbcType=VARCHAR},
+      </if>
+      <if test="busine_licen_url != null">
+        busine_licen_url = #{busine_licen_url,jdbcType=VARCHAR},
+      </if>
+      <if test="duty_policy_url != null">
+        duty_policy_url = #{duty_policy_url,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_positive != null">
+        identity_positive = #{identity_positive,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_negative != null">
+        identity_negative = #{identity_negative,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="examine_time != null">
+        examine_time = #{examine_time,jdbcType=BIGINT},
+      </if>
+      <if test="bureau_bank_account != null">
+        bureau_bank_account = #{bureau_bank_account,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_name != null">
+        bank_name = #{bank_name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bureau_id = #{bureau_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.bureau.HwTravelBureau">
+    update hw_travel_bureau
+    set bureau_account = #{bureau_account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      pwd_salt = #{pwd_salt,jdbcType=VARCHAR},
+      company_name = #{company_name,jdbcType=VARCHAR},
+      license_no = #{license_no,jdbcType=VARCHAR},
+      legal_person = #{legal_person,jdbcType=VARCHAR},
+      legal_person_phome = #{legal_person_phome,jdbcType=VARCHAR},
+      registered_capital = #{registered_capital,jdbcType=DECIMAL},
+      company_time = #{company_time,jdbcType=BIGINT},
+      licen_validity_begin = #{licen_validity_begin,jdbcType=BIGINT},
+      licen_validity_end = #{licen_validity_end,jdbcType=BIGINT},
+      taxpayer_state = #{taxpayer_state,jdbcType=INTEGER},
+      org_no = #{org_no,jdbcType=VARCHAR},
+      quality_deposit = #{quality_deposit,jdbcType=DECIMAL},
+      address = #{address,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      contacts_name = #{contacts_name,jdbcType=VARCHAR},
+      contacts_phome = #{contacts_phome,jdbcType=VARCHAR},
+      contacts_emil = #{contacts_emil,jdbcType=VARCHAR},
+      license_url = #{license_url,jdbcType=VARCHAR},
+      busine_licen_url = #{busine_licen_url,jdbcType=VARCHAR},
+      duty_policy_url = #{duty_policy_url,jdbcType=VARCHAR},
+      identity_positive = #{identity_positive,jdbcType=VARCHAR},
+      identity_negative = #{identity_negative,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=BIGINT},
+      examine_time = #{examine_time,jdbcType=BIGINT},
+      bureau_bank_account = #{bureau_bank_account,jdbcType=VARCHAR},
+      bank_name = #{bank_name,jdbcType=VARCHAR}
+    where bureau_id = #{bureau_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据条件返回总条数给后台 -->
+  <select id="queryCountByMapToAdmin" resultType="java.lang.Long" parameterType="map">
+  		select count(bureau_id) from hw_travel_bureau  where 1=1 
+		<if test="company_name != null and company_name !=''">
+			and  `company_name` like '%${company_name}%'
+		</if>
+		
+		<if test="status != null and status >0">
+			and  state = #{status}
+		</if>
+		
+  </select>
+  
+  <!-- 根据条件获取数据 -->
+<select id="queryByMapToAdmin" resultType="java.util.Map" parameterType="map">
+	select bureau_id ,company_name,legal_person, legal_person_phome, contacts_name, contacts_phome,create_time, examine_time,state
+		
+		from hw_travel_bureau where 1=1 
+		<if test="company_name != null and company_name !=''">
+			and  `company_name` like '%${company_name}%'
+		</if>
+		
+		<if test="status != null and status >0">
+			and  state = #{status}
+		</if>
+		
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> -->${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+</select>
+</mapper>

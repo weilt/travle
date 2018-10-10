@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.HxUserConfigMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.HxUserConfig">
+    <id column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="communication_add_me_validate" jdbcType="TINYINT" property="communication_add_me_validate" />
+    <result column="communication_to_me_recommend_communication" jdbcType="TINYINT" property="communication_to_me_recommend_communication" />
+    <result column="friend_circle_stranger_see_10" jdbcType="TINYINT" property="friend_circle_stranger_see_10" />
+    <result column="friend_circle_friend_see_day" jdbcType="TINYINT" property="friend_circle_friend_see_day" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List">
+    user_id, communication_add_me_validate, communication_to_me_recommend_communication, 
+    friend_circle_stranger_see_10, friend_circle_friend_see_day
+  </sql>
+  
+  <!-- 通过主键查询 -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_user_config
+    where user_id = #{user_id,jdbcType=BIGINT}
+  </select>
+  <!-- 通过主键删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_user_config
+    where user_id = #{user_id,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 添加空值为null -->
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.HxUserConfig">
+    insert into hx_user_config (user_id, communication_add_me_validate, 
+      communication_to_me_recommend_communication, friend_circle_stranger_see_10, 
+      friend_circle_friend_see_day)
+    values (#{user_id,jdbcType=BIGINT}, #{communication_add_me_validate,jdbcType=TINYINT}, 
+      #{communication_to_me_recommend_communication,jdbcType=TINYINT}, #{friend_circle_stranger_see_10,jdbcType=TINYINT}, 
+      #{friend_circle_friend_see_day,jdbcType=TINYINT})
+  </insert>
+  <!-- 添加 空值为默认 -->
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.HxUserConfig">
+    insert into hx_user_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="communication_add_me_validate != null">
+        communication_add_me_validate,
+      </if>
+      <if test="communication_to_me_recommend_communication != null">
+        communication_to_me_recommend_communication,
+      </if>
+      <if test="friend_circle_stranger_see_10 != null">
+        friend_circle_stranger_see_10,
+      </if>
+      <if test="friend_circle_friend_see_day != null">
+        friend_circle_friend_see_day,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="communication_add_me_validate != null">
+        #{communication_add_me_validate,jdbcType=TINYINT},
+      </if>
+      <if test="communication_to_me_recommend_communication != null">
+        #{communication_to_me_recommend_communication,jdbcType=TINYINT},
+      </if>
+      <if test="friend_circle_stranger_see_10 != null">
+        #{friend_circle_stranger_see_10,jdbcType=TINYINT},
+      </if>
+      <if test="friend_circle_friend_see_day != null">
+        #{friend_circle_friend_see_day,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 更新  空值不更新 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.HxUserConfig">
+    update hx_user_config
+    <set>
+      <if test="communication_add_me_validate != null">
+        communication_add_me_validate = #{communication_add_me_validate,jdbcType=TINYINT},
+      </if>
+      <if test="communication_to_me_recommend_communication != null">
+        communication_to_me_recommend_communication = #{communication_to_me_recommend_communication,jdbcType=TINYINT},
+      </if>
+      <if test="friend_circle_stranger_see_10 != null">
+        friend_circle_stranger_see_10 = #{friend_circle_stranger_see_10,jdbcType=TINYINT},
+      </if>
+      <if test="friend_circle_friend_see_day != null">
+        friend_circle_friend_see_day = #{friend_circle_friend_see_day,jdbcType=TINYINT},
+      </if>
+    </set>
+    where user_id = #{user_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 更新  空值为null -->
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.HxUserConfig">
+    update hx_user_config
+    set communication_add_me_validate = #{communication_add_me_validate,jdbcType=TINYINT},
+      communication_to_me_recommend_communication = #{communication_to_me_recommend_communication,jdbcType=TINYINT},
+      friend_circle_stranger_see_10 = #{friend_circle_stranger_see_10,jdbcType=TINYINT},
+      friend_circle_friend_see_day = #{friend_circle_friend_see_day,jdbcType=TINYINT}
+    where user_id = #{user_id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateUserConfig" parameterType="com.hwt.domain.entity.user.HxUserConfig">
+    update hx_user_config
+    <set>
+      <if test="communication_add_me_validate != null">
+        communication_add_me_validate = #{communication_add_me_validate,jdbcType=TINYINT},
+      </if>
+      <if test="communication_to_me_recommend_communication != null">
+        communication_to_me_recommend_communication = #{communication_to_me_recommend_communication,jdbcType=TINYINT},
+      </if>
+      <if test="friend_circle_stranger_see_10 != null">
+        friend_circle_stranger_see_10 = #{friend_circle_stranger_see_10,jdbcType=TINYINT},
+      </if>
+      <if test="friend_circle_friend_see_day != null">
+        friend_circle_friend_see_day = #{friend_circle_friend_see_day,jdbcType=TINYINT},
+      </if>
+    </set>
+    where user_id = #{user_id,jdbcType=BIGINT}
+  </update>
+</mapper>

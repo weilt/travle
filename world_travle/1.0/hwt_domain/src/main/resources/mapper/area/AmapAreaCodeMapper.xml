@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.area.AmapAreaCodeMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.area.AmapAreaCode">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="province_code" jdbcType="VARCHAR" property="province_code" />
+    <result column="province_name" jdbcType="VARCHAR" property="province_name" />
+    <result column="city_code" jdbcType="VARCHAR" property="city_code" />
+    <result column="city_name" jdbcType="VARCHAR" property="city_name" />
+    <result column="district_code" jdbcType="VARCHAR" property="district_code" />
+    <result column="district_name" jdbcType="VARCHAR" property="district_name" />
+    <result column="area_code" jdbcType="VARCHAR" property="area_code" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, level, province_code, province_name, city_code, city_name, district_code, district_name, 
+    area_code
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from amap_area_code
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from amap_area_code
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.area.AmapAreaCode">
+    insert into amap_area_code (id, level, province_code, 
+      province_name, city_code, city_name, 
+      district_code, district_name, area_code
+      )
+    values (#{id,jdbcType=BIGINT}, #{level,jdbcType=VARCHAR}, #{province_code,jdbcType=VARCHAR}, 
+      #{province_name,jdbcType=VARCHAR}, #{city_code,jdbcType=VARCHAR}, #{city_name,jdbcType=VARCHAR}, 
+      #{district_code,jdbcType=VARCHAR}, #{district_name,jdbcType=VARCHAR}, #{area_code,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.area.AmapAreaCode">
+    insert into amap_area_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="province_code != null">
+        province_code,
+      </if>
+      <if test="province_name != null">
+        province_name,
+      </if>
+      <if test="city_code != null">
+        city_code,
+      </if>
+      <if test="city_name != null">
+        city_name,
+      </if>
+      <if test="district_code != null">
+        district_code,
+      </if>
+      <if test="district_name != null">
+        district_name,
+      </if>
+      <if test="area_code != null">
+        area_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="province_code != null">
+        #{province_code,jdbcType=VARCHAR},
+      </if>
+      <if test="province_name != null">
+        #{province_name,jdbcType=VARCHAR},
+      </if>
+      <if test="city_code != null">
+        #{city_code,jdbcType=VARCHAR},
+      </if>
+      <if test="city_name != null">
+        #{city_name,jdbcType=VARCHAR},
+      </if>
+      <if test="district_code != null">
+        #{district_code,jdbcType=VARCHAR},
+      </if>
+      <if test="district_name != null">
+        #{district_name,jdbcType=VARCHAR},
+      </if>
+      <if test="area_code != null">
+        #{area_code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.area.AmapAreaCode">
+    update amap_area_code
+    <set>
+      <if test="level != null">
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="province_code != null">
+        province_code = #{province_code,jdbcType=VARCHAR},
+      </if>
+      <if test="province_name != null">
+        province_name = #{province_name,jdbcType=VARCHAR},
+      </if>
+      <if test="city_code != null">
+        city_code = #{city_code,jdbcType=VARCHAR},
+      </if>
+      <if test="city_name != null">
+        city_name = #{city_name,jdbcType=VARCHAR},
+      </if>
+      <if test="district_code != null">
+        district_code = #{district_code,jdbcType=VARCHAR},
+      </if>
+      <if test="district_name != null">
+        district_name = #{district_name,jdbcType=VARCHAR},
+      </if>
+      <if test="area_code != null">
+        area_code = #{area_code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.area.AmapAreaCode">
+    update amap_area_code
+    set level = #{level,jdbcType=VARCHAR},
+      province_code = #{province_code,jdbcType=VARCHAR},
+      province_name = #{province_name,jdbcType=VARCHAR},
+      city_code = #{city_code,jdbcType=VARCHAR},
+      city_name = #{city_name,jdbcType=VARCHAR},
+      district_code = #{district_code,jdbcType=VARCHAR},
+      district_name = #{district_name,jdbcType=VARCHAR},
+      area_code = #{area_code,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加配置新信息</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    	<form id="from">
+		    <ul class="forminfo">
+			    <li><label>显示名称<b>*</b></label><input maxlength="15" id="displayName" name="displayName" type="text" class="dfinput" /><i>名称请控制在15个字以内</i></li>
+			    <li><label>配置键<b>*</b></label><input placeholder="配置键添加成功后不能更改" maxlength="20" id="configKey" name="configKey" type="text" class="dfinput" /><i>配置键请控制在20个字以内</i></li>
+			    <li><label>配置值<b>*</b></label><input maxlength="100" id="configValue" name="configValue" type="text" class="dfinput" /><i>配置值请控制在100个字以内</i></li>
+			    <li><label>配置描述</label>
+			    	<textarea id="description" name="description" rows="3" cols="100" class="textinput" ></textarea>
+			    </li>
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) submitForm('/admin/systemconfig/insert','from');" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+    <script type="text/javascript">
+		function chek(){
+			var parameter = ["displayName","configKey","configValue"];
+			var type = [null,null,null];
+			var msg = ["显示名称不能为空！","配置键不能为空","配置值不能为空"];
+			return validation(parameter,type,msg);
+		}
+	</script>
+</body>
+</html>

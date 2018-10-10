@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="screenshot:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/screenshot_jar</output-path>
+    <root id="root">
+      <element id="archive" name="screenshot.jar">
+        <element id="module-output" name="screenshot" />
+      </element>
+      <element id="library" level="project" name="lib" />
+    </root>
+  </artifact>
+</component>

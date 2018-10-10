@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.cicerone.HxCiceroneRelevanceMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.cicerone.HxCiceroneRelevance">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cic_id" jdbcType="BIGINT" property="cic_id" />
+    <result column="type_id" jdbcType="BIGINT" property="type_id" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List">
+    id, cic_id, type_id, create_time
+  </sql>
+ 
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneRelevance">
+    insert into hx_cicerone_relevance (id, cic_id, type_id, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{cic_id,jdbcType=BIGINT}, #{type_id,jdbcType=BIGINT}, 
+      #{create_time,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneRelevance">
+    insert into hx_cicerone_relevance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cic_id != null">
+        cic_id,
+      </if>
+      <if test="type_id != null">
+        type_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cic_id != null">
+        #{cic_id,jdbcType=BIGINT},
+      </if>
+      <if test="type_id != null">
+        #{type_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+
+  <!-- 批量添加 -->
+  <insert id="insertCollection" parameterType="java.util.List">
+    insert into hx_cicerone_relevance (cic_id, type_id, create_time)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.cic_id,jdbcType=BIGINT}, #{item.type_id,jdbcType=BIGINT},#{item.create_time,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneRelevance">
+    update hx_cicerone_relevance
+    <set>
+      <if test="cic_id != null">
+        cic_id = #{cic_id,jdbcType=BIGINT},
+      </if>
+      <if test="type_id != null">
+        type_id = #{type_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.cicerone.HxCiceroneRelevance">
+    update hx_cicerone_relevance
+    set cic_id = #{cic_id,jdbcType=BIGINT},
+      type_id = #{type_id,jdbcType=BIGINT},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <delete id="deleteByCicId" parameterType="long">
+    delete from hx_cicerone_relevance where  cic_id = #{cicId,jdbcType=BIGINT}
+  </delete>
+</mapper>

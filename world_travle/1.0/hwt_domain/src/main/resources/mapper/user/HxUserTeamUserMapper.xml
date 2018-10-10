@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.HxUserTeamUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.HxUserTeamUser">
+    <id column="team_id" jdbcType="VARCHAR" property="team_id" />
+    <id column="user_id_im_id" jdbcType="VARCHAR" property="user_id_im_id" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="state2_begin" jdbcType="TIMESTAMP" property="state2_begin" />
+    <result column="login_state2_end" jdbcType="TIMESTAMP" property="login_state2_end" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="team_nick" jdbcType="VARCHAR" property="team_nick" />
+    <result column="is_shield" jdbcType="TINYINT" property="is_shield" />
+    <result column="display_team_nick" jdbcType="TINYINT" property="display_team_nick" />
+  </resultMap>
+  
+   <sql id="Base_Column_List">
+    team_id, user_id_im_id, state, state2_begin, login_state2_end, type, create_time, team_nick, 
+    is_shield, display_team_nick
+  </sql>
+  
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.HxUserTeamUser">
+    insert into hx_user_team_user (team_id, user_id_im_id, state, 
+      state2_begin, login_state2_end, type, 
+      create_time, team_nick, is_shield, 
+      display_team_nick)
+    values (#{team_id,jdbcType=VARCHAR}, #{user_id_im_id,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, 
+      #{state2_begin,jdbcType=TIMESTAMP}, #{login_state2_end,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{team_nick,jdbcType=VARCHAR}, #{is_shield,jdbcType=TINYINT}, 
+      #{display_team_nick,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.HxUserTeamUser">
+    insert into hx_user_team_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="team_id != null">
+        team_id,
+      </if>
+      <if test="user_id_im_id != null">
+        user_id_im_id,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="state2_begin != null">
+        state2_begin,
+      </if>
+      <if test="login_state2_end != null">
+        login_state2_end,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="team_nick != null">
+        team_nick,
+      </if>
+      <if test="is_shield != null">
+        is_shield,
+      </if>
+      <if test="display_team_nick != null">
+        display_team_nick,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="team_id != null">
+        #{team_id,jdbcType=VARCHAR},
+      </if>
+      <if test="user_id_im_id != null">
+        #{user_id_im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="state2_begin != null">
+        #{state2_begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state2_end != null">
+        #{login_state2_end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="team_nick != null">
+        #{team_nick,jdbcType=VARCHAR},
+      </if>
+      <if test="is_shield != null">
+        #{is_shield,jdbcType=TINYINT},
+      </if>
+      <if test="display_team_nick != null">
+        #{display_team_nick,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.HxUserTeamUser">
+    update hx_user_team_user
+    <set>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="state2_begin != null">
+        state2_begin = #{state2_begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="login_state2_end != null">
+        login_state2_end = #{login_state2_end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="team_nick != null">
+        team_nick = #{team_nick,jdbcType=VARCHAR},
+      </if>
+      <if test="is_shield != null">
+        is_shield = #{is_shield,jdbcType=TINYINT},
+      </if>
+      <if test="display_team_nick != null">
+        display_team_nick = #{display_team_nick,jdbcType=TINYINT},
+      </if>
+    </set>
+    where team_id = #{team_id,jdbcType=VARCHAR}
+      and user_id_im_id = #{user_id_im_id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.HxUserTeamUser">
+    update hx_user_team_user
+    set state = #{state,jdbcType=TINYINT},
+      state2_begin = #{state2_begin,jdbcType=TIMESTAMP},
+      login_state2_end = #{login_state2_end,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=TINYINT},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      team_nick = #{team_nick,jdbcType=VARCHAR},
+      is_shield = #{is_shield,jdbcType=TINYINT},
+      display_team_nick = #{display_team_nick,jdbcType=TINYINT}
+    where team_id = #{team_id,jdbcType=VARCHAR}
+      and user_id_im_id = #{user_id_im_id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 添加群成员多个 -->
+  <insert id="insertList" parameterType="java.util.List">
+  	  insert into hx_user_team_user (team_id, user_id_im_id, state, 
+      state2_begin, login_state2_end, type, 
+      create_time, team_nick, is_shield, 
+      display_team_nick)
+      values
+        <foreach collection="list" item="item" index="index" separator=",">
+         (#{team_id,jdbcType=VARCHAR}, #{user_id_im_id,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, 
+      #{state2_begin,jdbcType=TIMESTAMP}, #{login_state2_end,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{team_nick,jdbcType=VARCHAR}, #{is_shield,jdbcType=TINYINT}, 
+      #{display_team_nick,jdbcType=TINYINT})
+        </foreach>
+      
+  </insert>
+  
+  <!-- 删除多个 -->
+  <delete id="team_delete_users" parameterType="int">
+  	 delete from hx_user_team_user where team_id = #{team_id} and user_id_im_id in 
+  	  <foreach item="user_id_im_id" collection="user_id_im_ids" open="(" separator="," close=")">
+            #{user_id_im_id}
+       </foreach>
+  	
+  </delete>
+</mapper>

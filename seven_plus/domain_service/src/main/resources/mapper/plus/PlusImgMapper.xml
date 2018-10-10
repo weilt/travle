@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.plus.mapper.PlusImgMapper">
+
+
+    <insert id="insertPlusImg"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `plus_img`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="imgName!=null">
+                        `img_name`,
+                    </if>
+                    <if test="imgUrl!=null">
+                        `img_url`,
+                    </if>
+                    <if test="imgType!=null">
+                        `img_type`,
+                    </if>
+                    <if test="createTime!=null">
+                        `create_time`,
+                    </if>
+                    <if test="updateTime!=null">
+                        `update_time`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="imgName!=null">
+                    #{imgName},
+                </if>
+                <if test="imgUrl!=null">
+                    #{imgUrl},
+                </if>
+                <if test="imgType!=null">
+                    #{imgType},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime},
+                </if>
+                <if test="updateTime!=null">
+                    #{updateTime},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePlusImg">
+        UPDATE `plus_img`
+        SET
+        <trim suffixOverrides=",">
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName},
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl},
+            </if>
+            <if test="imgType != null">
+                `img_type` = #{imgType},
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `plus_img`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.imgName != null and set.imgName!=''">
+            `img_name` = #{set.imgName},
+        </if>
+        <if test="set.imgUrl != null and set.imgUrl!=''">
+            `img_url` = #{set.imgUrl},
+        </if>
+        <if test="set.imgType != null">
+            `img_type` = #{set.imgType},
+        </if>
+        <if test="set.createTime != null">
+            `create_time` = #{set.createTime},
+        </if>
+        <if test="set.updateTime != null">
+            `update_time` = #{set.updateTime},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.imgNameList != null">
+                    `img_name` in
+                    <foreach collection="where.imgNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyImgName!=null and where.fuzzyImgName.size()>0">
+                (
+                <foreach collection="where.fuzzyImgName"  separator="or" item="item">
+                    `Img_name` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyImgName!=null and where.rightFuzzyImgName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyImgName"  separator="or" item="item">
+                    `Img_name` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="where.imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyImgUrl!=null and where.fuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyImgUrl!=null and where.rightFuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.imgTypeList != null">
+                    `img_type` in
+                    <foreach collection="where.imgTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.imgTypeSt !=null">
+                `img_type` >= #{where.imgTypeSt} and
+            </if>
+            <if test="where.imgTypeEd!=null">
+                `img_type` &lt;= #{where.imgTypeEd} and
+            </if>
+                <if test="where.createTimeList != null">
+                    `create_time` in
+                    <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.createTimeSt !=null">
+                `create_time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_time` &lt;= #{where.createTimeEd} and
+            </if>
+                <if test="where.updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="where.updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.updateTimeSt !=null">
+                `update_time` >= #{where.updateTimeSt} and
+            </if>
+            <if test="where.updateTimeEd!=null">
+                `update_time` &lt;= #{where.updateTimeEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.domain.plus.entity.PlusImg" id="PlusImgMap">
+        <result property="id" column="id"/>
+        <result property="imgName" column="img_name"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="imgType" column="img_type"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="findById" resultMap="PlusImgMap">
+        select <include refid="allResult"/>
+        from plus_img
+        where id = #{id}
+    </select>
+
+    <select id="queryPlusImg" resultMap="PlusImgMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_img`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test="imgType != null">
+                `img_type` = #{imgType} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusImg$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="imgNameList != null">
+                    `img_name` in
+                    <foreach collection="imgNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyImgName!=null and fuzzyImgName.size()>0">
+                    (
+                    <foreach collection="fuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgName!=null and rightFuzzyImgName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="imgTypeList != null">
+                    `img_type` in
+                    <foreach collection="imgTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="imgTypeSt !=null">
+                    `img_type` >= #{imgTypeSt} and
+                </if>
+                <if test="imgTypeEd!=null">
+                    `img_type` &lt;= #{imgTypeEd} and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPlusImgLimit1" resultMap="PlusImgMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_img`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test="imgType != null">
+                `img_type` = #{imgType} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusImg$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="imgNameList != null">
+                        `img_name` in
+                        <foreach collection="imgNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyImgName!=null and fuzzyImgName.size()>0">
+                    (
+                    <foreach collection="fuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgName!=null and rightFuzzyImgName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="imgUrlList != null">
+                        `img_url` in
+                        <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="imgTypeList != null">
+                        `img_type` in
+                        <foreach collection="imgTypeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="imgTypeSt !=null">
+                    `img_type` >= #{imgTypeSt} and
+                </if>
+                <if test="imgTypeEd!=null">
+                    `img_type` &lt;= #{imgTypeEd} and
+                </if>
+                    <if test="createTimeList != null">
+                        `create_time` in
+                        <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                    <if test="updateTimeList != null">
+                        `update_time` in
+                        <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+
+    <select id="queryImgByTypes" resultMap="PlusImgMap">
+        select  <include refid="allResult"/>
+        from  plus_img
+        <trim prefix="where" suffixOverrides="and | or">
+        <if test="types != null">
+            img_type in
+            <foreach collection="types" close=")" open="(" separator="," item="item">
+                #{item}
+            </foreach>
+        </if>
+        </trim>
+    </select>
+
+
+    <select id="countType" resultType="java.lang.Integer">
+        select  count(1)
+        from plus_img
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="type != null">
+                img_type = #{type}
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryImgByTypeLimit1" resultMap="PlusImgMap">
+        select <include refid="allResult" /> from plus_img where img_type = #{type} order by id desc limit 1
+    </select>
+
+
+    <select id="queryImgByType" resultMap="PlusImgMap">
+        select  <include refid="allResult" /> from plus_img where img_type = #{type} order by id desc
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `img_name`,
+        `img_url`,
+        `img_type`+0 as `img_type`,
+        `create_time`,
+        `update_time`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof entity.PlusImg$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgName==true">
+                        `img_name`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgUrl==true">
+                        `img_url`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgType==true">
+                        `img_type`+0 as `img_type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createTime==true">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.updateTime==true">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgName==null">
+                        `img_name`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgUrl==null">
+                        `img_url`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgType==null">
+                        `img_type`+0 as `img_type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createTime==null">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.updateTime==null">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof entity.PlusImg$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+    <delete id="deleteImg" >
+        delete from plus_img where id = #{id}
+    </delete>
+</mapper>

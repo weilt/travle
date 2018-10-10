@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>配置充值中心</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/adminBack/paylist/query">配置充值中心</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<div class="tools">
+
+			<ul class="toolbar">
+				<li class="click" onclick="showPage('/adminBack/paylist/insert','70%','70%','添加配置')"><span><img src="/back/images/t01.png" /></span>添加</li>
+				<!-- <li class="click"><span><img src="/back/images/t02.png" /></span>修改</li>
+				<li><span><img src="/back/images/t03.png" /></span>删除</li>
+				<li><span><img src="/back/images/t04.png" /></span>统计</li> -->
+			</ul>
+			<ul class="toolbar1">
+				<li class="click" onclick="location.replace(location.href);"><span><img src="/back/images/t05.png" /></span>刷新</li>
+			</ul>
+		</div>
+
+		<form action="/adminBack/paylist/query"  id="from">
+			<ul class="seachform">
+			    <li><label>充值类型</label>
+			    	<div class="vocation">
+					    <select class="select3" name="pay_list_type">
+					    	<option value="-1"<#if map.pay_list_type??><#else>selected="selected"</#if>>全部</option>
+						    <option value="0" <#if map.pay_list_type??><#if map.pay_list_type==0> selected="selected"</#if></#if> >普通充值</option>
+						    <option value="1" <#if map.pay_list_type??><#if map.pay_list_type==1> selected="selected"</#if></#if> >VIP充值</option>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label></label><input placeholder="输入名称" value="${map.paylist_name!''}" name="paylist_name" type="text" class="scinput" /></li>
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>充值类型</th>
+					<th>模块名称</th>
+					<th>模块备注</th>
+					<th>天数（vip充值才有的）</th>
+					<th>金额</th>
+					<th>赠送金额（普通充值这个会有）</th>
+					<th>是否删除</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<#list list as entity >
+					<tr>
+						<td>${entity_index + 1}</td>
+						<td>
+							<#if entity.pay_list_type==0>
+								普通充值
+							<#else>
+								vip充值
+							</#if>
+						</td>
+						<td>${entity.paylist_name!''}</td>
+						<td>${entity.paylist_remark!''}</td>
+						<td><#if entity.paylist_day??>${entity.paylist_day}</#if></td>
+						<td><#if entity.pay_balance??>${entity.pay_balance!}</#if></td>
+						<td><#if entity.pay_give_balance??>${entity.pay_give_balance!}</#if></td>
+						<td>
+							<#if entity.is_delete==0>
+								未删除
+							<#else>
+								已删除
+							</#if>
+						</td>
+						<td>
+				            <a class="tablelink" title="编辑" href="javascript:showPage('/adminBack/paylist/update?id=${entity.id!''}','70%','70%','模块管理-编辑');" >
+		 						编辑</a>  
+		 					<#if entity.is_delete == 0>
+							| <a class="tablelink"  href="javascript:role_del(this,'${entity.id!''}',1);" title="删除">删除</a>
+							<#else>
+							| <a class="tablelink"  href="javascript:role_del(this,'${entity.id!''}',0);" title="删除">启用</a>
+							</#if>
+						</td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+
+
+		<!-- <div class="pagin">
+			<div class="message">
+				共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页
+			</div>
+			<ul class="paginList">
+				<li class="paginItem"><a href="javascript:;"><span
+						class="pagepre"></span></a></li>
+				<li class="paginItem"><a href="javascript:;">1</a></li>
+				<li class="paginItem current"><a href="javascript:;">2</a></li>
+				<li class="paginItem"><a href="javascript:;">3</a></li>
+				<li class="paginItem"><a href="javascript:;">4</a></li>
+				<li class="paginItem"><a href="javascript:;">5</a></li>
+				<li class="paginItem more"><a href="javascript:;">...</a></li>
+				<li class="paginItem"><a href="javascript:;">10</a></li>
+				<li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+			</ul>
+		</div> -->
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+		/*模块-删除*/
+		function role_del(obj,id,isDelete){
+			var str = '确认要删除吗？';
+			if(isDelete==0){
+				str = '确认要启用吗？';
+			}
+			layer.confirm(str,{icon:2},function(index){
+				$.post("/adminBack/paylist/delete?from=ajax&isDelete="+isDelete, {'id': id },
+				   /*  function(result) {processJson(result) */
+			     function(result) {
+			    	 jsonState(result);
+			    },'json');
+			});
+		}
+	</script>
+</body>
+</html>

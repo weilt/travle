@@ -1,0 +1,555 @@
+
+  <head>
+      <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+  </head>
+
+  <body>
+<!--请求路径-->
+  <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="index.html">首页</a>
+          <a class="breadcrumb-item" href="javascrip:void(0);" onclick="reCommit()">版本管理</a>
+      </nav>
+  </div>
+
+<!--页面标题-->
+<!-- <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">版本管理</h4>
+    <p class="mg-b-0">版本管理</p>
+</div> -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="table-wrapper">
+            <!--查询条件-->
+            <div class="row">
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                版本名称
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入版本名称" name="paramMap_version_name" id="paramMap_version_name">
+
+                    </div><!-- input-group -->
+                </div>
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                版本号
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入版本号" name="paramMap_version_number" id="paramMap_version_number">
+
+                    </div><!-- input-group -->
+                </div>
+              
+                
+               
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 pd-l-0">
+                 <br />
+                    <div class="input-group">
+                        <button class="btn btn-primary mg-l-10" onclick="sreachCommit()"><i class="fa fa-search mg-r-10"></i> 搜索</button>
+                        <button class="btn btn-primary mg-l-10" onclick="add()"><i class="fa fa-plus mg-r-10"></i> 添加</button>
+                    </div><!-- input-group -->
+                </div>
+            </div>
+
+            <!--数据列表-->
+            <div id="dynamic-table_wrapper" class="dataTables_wrapper no-footer">
+                <table id="dynamic-table" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="dynamic-table_info" >
+                    <thead>
+                    <tr role="row">
+                        <th class="wd-5p parsley-checkbox " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;">
+
+                            <label class="ckbox " >
+                                <input type="checkbox" name="browser[]"><span></span>
+                            </label>
+
+                            <!--<label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label>-->
+                        </th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >版本Id</th>
+                        <th class="wd-20p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 180px;" >版本名称</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >版本号</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >手机端</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >是否强制更新</th>
+                        <th class="wd-10p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 78px;" >创建时间</th>
+                        <th class="wd-25p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 231px;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+  <!--<div class="table-wrapper">-->
+      <!--<table id="dynamic-table" class="table display responsive nowrap">-->
+          <!--<thead>-->
+          <!--<tr>-->
+              <!--<th class="wd-5p"><label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label></th>-->
+              <!--<th class="wd-10p">ID</th>-->
+              <!--<th class="wd-15p">名称</th>-->
+              <!--<th class="wd-20p">性别</th>-->
+              <!--<th class="wd-15p">时间</th>-->
+              <!--<th class="wd-10p">TOKEN</th>-->
+              <!--<th class="wd-25p">操作</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+
+          <!--</tbody>-->
+      <!--</table>-->
+  <!--</div>&lt;!&ndash; table-wrapper &ndash;&gt;-->
+  
+
+
+
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+          <div>Attentively and carefully made by ThemePixels.</div>
+        </div>
+        <div class="footer-right d-flex align-items-center">
+          <span class="tx-uppercase mg-r-10">Share:</span>
+          <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+        </div>
+      </footer>
+      <script src="/model/lib/jquery/jquery.js"></script>
+      <script src="/plugins/dataTable/js/ro.dataTable.js"></script>
+      <script src="/plugins/dataTable/js/adminHx/version/demo.dataTable.js"></script>
+      <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+      <script src="/public/base.js"></script>
+
+<!--<script src="/model/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>-->
+<!--<script src="/model/lib/d3/d3.js"></script>-->
+
+    <script>
+    	function name() {
+			
+		}
+    	function add(){
+    		var _html = '';
+    		_html+='<form id="form">                                                                                                                                                                           '
+    		+'	<div class="br-pagebody">                                                                                                                                                               '  
+    		+'																																															'
+    		+'		<div class="br-section-wrapper">                                                                                                                                                    '    
+    		+'			<!--内容-->                                                                                                                                                                     '    
+    		+'			<div class="row">                                                                                                                                                               '    
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本名称:</p>                                                        '    
+    		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    		+'					<input class="form-control wd-250" placeholder="请输入版本名称" type="text" name="version_name" id="version_name" value="">                                             '                      
+    		+'				</div><!-- col -->                                                                                                                                                          '    
+    		+'																																															'	
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本号:</p>                                                          '  
+    		+'				<div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                              '    
+    		+'					<input class="form-control wd-250" placeholder="版本号" type="number"  name="version_number" id = "version_number" value="">                                              '          
+    		+'				</div><!-- col -->                                                                                                                                                          '    
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>低版本号:</p>                                                          '  
+    		+'				<div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                              '    
+    		+'					<input class="form-control wd-250" placeholder="最低版本号" type="number"  name="minimun" id = "minimun" value="">                                              '          
+    		+'				</div><!-- col -->                                                                                                                                                          '    
+    		+'			 	                                                                                                                                                                            '
+    		+'			</div>                                                                                                                                                                          '
+    		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本说明:</p>                                                        '    
+    		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    		+'					<input class="form-control wd-50%" placeholder="版本说明" type="text" name="version_instruction" onblur="complete(this)" value="">                                          '                         
+    		+'				</div><!-- col -->                                                                                                                                                          '    
+    		+'			</div>    																																						                '
+    		+'			<div class="row mg-t-20">                                                                                                                                                       '
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>手机端口:</p>                                                          '  
+    		+'				<div class="col-lg-3 mg-l-10">                                                                                                                                              '
+    		+'                    <select class="form-control select2 " name="android_or_ios" data-placeholder="选择手机端" tabindex="-1" aria-hidden="true">                   '
+    		+'                        <option value="1">安卓</option>                                                                                                                                    '
+    		+'                        <option value="2">ios</option>                                                                                                                                     '
+    		+'                    </select>                                                                                                                                                              '
+    		+'                </div>                                                                                                                                                                     '
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>最低版本:</p>                                                    '        
+    		+'				<div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                                                '
+    		+'                    <label class="rdiobox ">                                                                                                                                               '
+    		+'                        <input type="radio" name="is_not_minimum" value="0" checked><span>否</span>                                                                             '
+    		+'                    </label>                                                                                                                                                               '
+    		+'                </div>                                                                                                                                                                     '
+    		+'                <div class="col-lg-1 mg-t-10 m-l-0">                                                                                                                                       '
+    		+'                    <label class="rdiobox">                                                                                                                                                '
+    		+'                        <input type="radio" name="is_not_minimum" value="1"><span>是</span>                                                                                     '
+    		+'                    </label>                                                                                                                                                               '
+    		+'                </div>                                                                                                                                                                     '
+    		+'				                                                                                                                                                                            '
+    		+'			</div>                                                                                                                                                                          '
+    		+'			<input type="hidden" name="version_instructions" id="version_instructions" />                                                                                                   '
+    		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>下载路径:</p>                                                    '        
+    		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    		+'					<input class="form-control wd-50%" placeholder="请输入版本下载路径" type="text" name="versions_url" id="versions_url" value="">                                         '                          
+    		+'				</div><!-- col -->                                                                                                                                                          '    
+    		+'			</div>                                                                                                                                                                          '    
+    		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本备注:</p>                                                            '
+    		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    		+'					<input class="form-control wd-50%" placeholder="请输入备注" type="text" name="remarks" id="remarks" value="">                                                       '                 
+    		+'				</div><!-- col -->                                                                                                                                                          '    
+    		+'			</div>                                                                                                                                                                          '    
+    		+'																																															'	
+    		+'																																															'	
+    		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    		+'				<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                               '    
+    		+'				<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="subInsert(\'adminHx/version/insert\',\'form\')">确定</div>'
+    		+'																																															'	
+    		+'			</div>                                                                                                                                                                          '    
+    		+'																																															'	
+    		+'		</div><!-- br-section-wrapper -->                                                                                                                                                   '    
+    		+'	</div><!-- br-pagebody -->                                                                                                                                                              '  
+    		+'</form>                                                                                                                                                                                    '
+			fromEject(_html,"版本添加",'80%','80%');
+    	}
+    	
+    	function subInsert(url,form){
+    		
+    		data_processing();
+    		
+			if (validation(["version_name","version_number","versions_url"],[],[])){
+    			
+    			insert(url,form);
+    		}else{
+    			return
+    		}
+    	}
+    	
+    	function data_processing(){
+    		var version_instructions = $("input[name ='version_instruction']");
+    		var a ="";
+    		for(var i=0;i<version_instructions.length;i++){
+    			a+=$(version_instructions[i]).val();
+    			a+="@zz@";
+    		}
+    		$("#version_instructions").val(a);
+    		
+    		var minimun = $("#minimun").val();
+    		var version_number =  $("#version_number").val();
+    		if (minimun>version_number){
+    			$("#minimun").val(version_number);
+    		}
+    	}
+    	
+    	function edit(id,url,dec,type){
+    		var _html = '';
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data : {"id":id,"type":type},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	            if (res.code =="200"){
+    	            	var version = res.data;
+    	            	var id = version.id == null||version.id == "null"?"":version.id;
+    	            	var version_name = version.version_name == null||version.version_name == "null"?"":version.version_name;
+    	            	var version_number = version.version_number == null||version.version_number == "null"?"":version.version_number;
+    	            	var minimun = version.minimun == null||version.minimun == "null"?"":version.minimun;
+    	            	var version_instructions = version.version_instructions == null||version.version_instructions == "null"?"":version.version_instructions;
+    	            	var version_instructions_html = '';
+    	            	if(version_instructions!=null){
+    	            		var _htmls = version_instructions.split('@zz@');
+    	            		for(var i = 0;i<_htmls.length;i++){
+    	            			if ($.trim(_htmls[i])!=""){
+    	            				version_instructions_html+='			<div class="row mg-t-20">                                                                                                                                                       '    
+    	        	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本说明:</p>                                                        '    
+    	        	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	        	            		+'					<input class="form-control wd-50%" placeholder="版本说明" type="text" name="version_instruction" onblur="complete(this)" value="'+_htmls[i]+'">                                          '                         
+    	        	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	        	            		+'			</div>    					'
+    	            			}
+    	            			
+    	            		}
+    	            	}
+    	            	version_instructions_html+='			<div class="row mg-t-20">                                                                                                                                                       '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本说明:</p>                                                        '    
+    	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	            		+'					<input class="form-control wd-50%" placeholder="版本说明" type="text" name="version_instruction" onblur="complete(this)" value="">                                          '                         
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'			</div>  '
+    	            	var android_or_ios = version.android_or_ios == null||version.android_or_ios == "null"?"":version.android_or_ios;
+    	            	var android_or_ios_html = '';
+    	            	android_or_ios_html+='                    <select class="form-control select2 " name="android_or_ios" data-placeholder="选择手机端" tabindex="-1" aria-hidden="true">                   '
+	            		+'                        <option value="1" '
+	            		if (android_or_ios==1){
+	            			android_or_ios_html+=" seleced "
+	            		}
+    	            	android_or_ios_html+='>安卓</option>                                                                                                                                    '
+	            		+'                        <option value="2" '
+	            		if (android_or_ios==2){
+	            			android_or_ios_html+=" seleced "
+	            		} 
+    	            	android_or_ios_html+='>ios</option>                                                                                                                                     '
+	            		+'                    </select>   '
+    	            	var is_not_minimum = version.is_not_minimum == null||version.is_not_minimum == "null"?"":version.is_not_minimum;
+	            		var is_not_minimum_html='';
+	            		is_not_minimum_html +='				<div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                                                '
+	            		+'                    <label class="rdiobox ">                                                                                                                                               '
+	            		+'                        <input type="radio" name="is_not_minimum" value="0" '
+	            		if (is_not_minimum==0){
+	            			is_not_minimum_html+='checked'
+	            		}
+	            		is_not_minimum_html+='><span>否</span>                                                                             '
+	            		+'                    </label>                                                                                                                                                               '
+	            		+'                </div>                                                                                                                                                                     '
+	            		+'                <div class="col-lg-1 mg-t-10 m-l-0">                                                                                                                                       '
+	            		+'                    <label class="rdiobox">                                                                                                                                                '
+	            		+'                        <input type="radio" name="is_not_minimum" value="1"  ';
+	            		if (is_not_minimum==1){
+	            			is_not_minimum_html+='checked'
+	            		} 
+	            		is_not_minimum_html+='><span>是</span>                                                                                     '
+	            		+'                    </label>                                                                                                                                                               '
+	            		+'                </div>     '  
+	            		
+	            		var versions_url = version.versions_url == null||version.versions_url == "null"?"":version.versions_url;
+    	            	var remarks = version.remarks == null||version.remarks == "null"?"":version.remarks;
+    	            	var _html ='';
+    	            	_html+='<form id="form">                                                                                                                                                                           '
+    	            		+'	<div class="br-pagebody">                                                                                                                                                               '  
+    	            		+'																																															'
+    	            		+'		<div class="br-section-wrapper">                                                                                                                                                    '    
+    	            		+'			<!--内容-->                <input type="hidden" id="id"  name="id" value="'+id+'"/>       <input type="hidden" id="type"  name="type" value="2"/>                                                                                                                                              '    
+    	            		+'			<div class="row">                                                                                                                                                               '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本名称:</p>                                                        '    
+    	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	            		+'					<input class="form-control wd-250" placeholder="请输入版本名称" type="text" name="version_name" id="version_name" value="'+version_name+'">                                             '                      
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'																																															'	
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本号:</p>                                                          '  
+    	            		+'				<div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                              '    
+    	            		+'					<input class="form-control wd-250" placeholder="版本号" type="text"  name="version_number" readonly="readonly" id = "version_number" value="'+version_number+'">                                              '          
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>最低版本:</p>                                                          '  
+    	            		+'				<div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                              '    
+    	            		+'					<input class="form-control wd-250" placeholder="最低版本" type="text" readonly="readonly"  name="minimun" id = "minimun" value="'+minimun+'">                                              '          
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'			 	                                                                                                                                                                            '
+    	            		+'			</div>                                                                                                                                                                          '
+							+version_instructions_html
+    	            		+'			<div class="row mg-t-20">                                                                                                                                                       '
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>手机端口:</p>                                                          '  
+    	            		+'				<div class="col-lg-3 mg-l-10">                                                                                                                                              '
+							+android_or_ios_html
+    	            		+'                </div>                                                                                                                                                                     '
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>强制更新:</p>                                                    '        
+							+is_not_minimum_html
+    	            		+'				                                                                                                                                                                            '
+    	            		+'			</div>                                                                                                                                                                          '
+    	            		+'			<input type="hidden" name="version_instructions" id="version_instructions" />                                                                                                   '
+    	            		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>下载路径:</p>                                                    '        
+    	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	            		+'					<input class="form-control wd-50%" placeholder="请输入版本下载路径" type="text" name="versions_url" id="versions_url" value="'+versions_url+'">                                         '                          
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'			</div>                                                                                                                                                                          '    
+    	            		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本备注:</p>                                                            '
+    	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	            		+'					<input class="form-control wd-50%" placeholder="请输入备注" type="text" name="remarks" id="remarks" value="'+remarks+'">                                                       '                 
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'			</div>                                                                                                                                                                          '    
+    	            		+'																																															'	
+    	            		+'																																															'	
+    	            		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    	            		+'				<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                               '    
+    	            		+'				<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="subUpdate(\''+url+'\',\'form\')">确定</div>'
+    	            		+'																																															'	
+    	            		+'			</div>                                                                                                                                                                          '    
+    	            		+'																																															'	
+    	            		+'		</div><!-- br-section-wrapper -->                                                                                                                                                   '    
+    	            		+'	</div><!-- br-pagebody -->                                                                                                                                                              '  
+    	            		+'</form>    		'
+					    fromEject(_html,dec,'80%','80%');
+    	            }else{
+    	            
+    	            }
+    	        }
+    	    })
+    	}
+    	
+    	function subUpdate(url,form){
+    		data_processing();
+    		
+			if (validation(["id","version_name","version_number","versions_url"],[],[])){
+    			
+    			update(url,form);
+    		}else{
+    			return
+    		}
+    	}
+    	
+    	//版本说明失去焦点
+    	function complete(a){
+    		//var pa3 = $(a).parent().parent().parent();
+    		var pa2 = $(a).parent().parent();
+    		var val = $.trim($(a).val());
+    		if (val==""){
+    			pa2.prev("p").remove();
+    			pa2.remove();
+    		}
+    		var version_instructions = $("input[name ='version_instruction']");
+    		if (version_instructions.length==0){
+    			var _html='';
+    			_html+='<div class="row mg-t-20">'
+    			+'<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本说明:</p>'
+    			+'<div class="col-lg mg-l-10">'
+    			+'<input class="form-control wd-50%" placeholder="版本说明" type="text" name="version_instruction" onblur="complete(this)" value="">'
+    			+'</div><!-- col -->'
+    			+'</div>'
+    			$("input[name ='version_number']").parent().parent().after(_html);
+    			return;
+    		}	
+    		var end_val= $.trim($(version_instructions[version_instructions.length-1]).val());
+    		if (end_val==""){
+    			return;
+    		}else{
+    			
+    			var _html='';
+    			_html+='<div class="row mg-t-20">'
+    			+'<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本说明:</p>'
+    			+'<div class="col-lg mg-l-10">'
+    			+'<input class="form-control wd-50%" placeholder="版本说明" type="text" name="version_instruction" onblur="complete(this)" value="">'
+    			+'</div><!-- col -->'
+    			+'</div>'
+    			$(version_instructions[version_instructions.length-1]).parent().parent().after(_html);
+    		}
+    	}
+    	
+    	
+    	//查看详情
+    	function versionInfo(id,url,dec){
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data : {"id":id},
+    	        success : function (res) {
+    	        	
+    	        	res = strToJson(res);
+    	            if (res.code =="200"){
+    	            	var version = res.data;
+    	            	var id = version.id == null||version.id == "null"?"":version.id;
+    	            	var version_name = version.version_name == null||version.version_name == "null"?"":version.version_name;
+    	            	var version_number = version.version_number == null||version.version_number == "null"?"":version.version_number;
+    	            	var minimun = version.minimun == null||version.minimun == "null"?"":version.minimun;
+    	            	var version_instructions = version.version_instructions == null||version.version_instructions == "null"?"":version.version_instructions;
+    	            	var version_instructions_html = '';
+    	            	if(version_instructions!=null){
+    	            		var _htmls = version_instructions.split('@zz@');
+    	            		for(var i = 0;i<_htmls.length;i++){
+    	            			if ($.trim(_htmls[i])!=""){
+    	            				version_instructions_html+='			<div class="row mg-t-20">                                                                                                                                                       '    
+    	        	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本说明:</p>                                                        '    
+    	        	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	        	            		+'					<input class="form-control wd-50%" readonly="readonly" placeholder="版本说明" type="text" name="version_instruction" onblur="complete(this)" value="'+_htmls[i]+'">                                          '                         
+    	        	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	        	            		+'			</div>    					'
+    	            			}
+    	            			
+    	            		}
+    	            	}
+    	            	var android_or_ios = version.android_or_ios == null||version.android_or_ios == "null"?"":version.android_or_ios;
+    	            	var android_or_ios_html = '';
+    	            	android_or_ios_html+='                    <select class="form-control select2 " disabled name="android_or_ios" data-placeholder="选择手机端" tabindex="-1" aria-hidden="true">                   '
+	            		+'                        <option value="1" '
+	            		if (android_or_ios==1){
+	            			android_or_ios_html+=" seleced "
+	            		}
+    	            	android_or_ios_html+='>安卓</option>                                                                                                                                    '
+	            		+'                        <option value="2" '
+	            		if (android_or_ios==2){
+	            			android_or_ios_html+=" seleced "
+	            		} 
+    	            	android_or_ios_html+='>ios</option>                                                                                                                                     '
+	            		+'                    </select>   '
+    	            	var is_not_minimum = version.is_not_minimum == null||version.is_not_minimum == "null"?"":version.is_not_minimum;
+	            		var is_not_minimum_html='';
+	            		is_not_minimum_html +='				<div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                                                '
+	            		+'                    <label class="rdiobox ">                                                                                                                                               '
+	            		+'                        <input type="radio" disabled name="is_not_minimum" value="0" '
+	            		if (is_not_minimum==0){
+	            			is_not_minimum_html+='checked'
+	            		}
+	            		is_not_minimum_html+='><span>否</span>                                                                             '
+	            		+'                    </label>                                                                                                                                                               '
+	            		+'                </div>                                                                                                                                                                     '
+	            		+'                <div class="col-lg-1 mg-t-10 m-l-0">                                                                                                                                       '
+	            		+'                    <label class="rdiobox">                                                                                                                                                '
+	            		+'                        <input type="radio" disabled name="is_not_minimum" value="1"  ';
+	            		if (is_not_minimum==1){
+	            			is_not_minimum_html+='checked'
+	            		} 
+	            		is_not_minimum_html+='><span>是</span>                                                                                     '
+	            		+'                    </label>                                                                                                                                                               '
+	            		+'                </div>     '  
+	            		
+	            		var versions_url = version.versions_url == null||version.versions_url == "null"?"":version.versions_url;
+    	            	var remarks = version.remarks == null||version.remarks == "null"?"":version.remarks;
+    	            	var _html ='';
+    	            	_html+='<form id="form">                                                                                                                                                                           '
+    	            		+'	<div class="br-pagebody">                                                                                                                                                               '  
+    	            		+'																																															'
+    	            		+'		<div class="br-section-wrapper">                                                                                                                                                    '    
+    	            		+'			<div class="row">                                                                                                                                                               '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本名称:</p>                                                        '    
+    	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	            		+'					<input class="form-control wd-250" readonly="readonly" placeholder="请输入版本名称" type="text" name="version_name" id="version_name" value="'+version_name+'">                                             '                      
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'																																															'	
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本号:</p>                                                          '  
+    	            		+'				<div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                              '    
+    	            		+'					<input class="form-control wd-250" readonly="readonly" placeholder="版本号" type="text"  name="version_number" id = "version_number" value="'+version_number+'">                                              '          
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>最低版本:</p>                                                          '  
+    	            		+'				<div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                              '    
+    	            		+'					<input class="form-control wd-250" readonly="readonly" placeholder="最低版本" type="text"  name="minimun" id = "minimun" value="'+minimun+'">                                              '          
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'			 	                                                                                                                                                                            '
+    	            		+'			</div>                                                                                                                                                                          '
+							+version_instructions_html
+    	            		+'			<div class="row mg-t-20">                                                                                                                                                       '
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>手机端口:</p>                                                          '  
+    	            		+'				<div class="col-lg-3 mg-l-10">                                                                                                                                              '
+							+android_or_ios_html
+    	            		+'                </div>                                                                                                                                                                     '
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>强制更新:</p>                                                    '        
+							+is_not_minimum_html
+    	            		+'				                                                                                                                                                                            '
+    	            		+'			</div>                                                                                                                                                                          '
+    	            		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>下载路径:</p>                                                    '        
+    	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	            		+'					<input class="form-control wd-50%" readonly="readonly" placeholder="请输入版本下载路径" type="text" name="versions_url" id="versions_url" value="'+versions_url+'">                                         '                          
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'			</div>                                                                                                                                                                          '    
+    	            		+'			<div class="row mg-t-20">                                                                                                                                                       '    
+    	            		+'				<p class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>版本备注:</p>                                                            '
+    	            		+'				<div class="col-lg mg-l-10">                                                                                                                                                '    
+    	            		+'					<input class="form-control wd-50%" readonly="readonly" placeholder="请输入备注" type="text" name="remarks" id="remarks" value="'+remarks+'">                                                       '                 
+    	            		+'				</div><!-- col -->                                                                                                                                                          '    
+    	            		+'			</div>                                                                                                                                                                          '    
+    	            		+'																																															'	
+    	            		+'																																															'	
+    	            		+'																																															'	
+    	            		+'		</div><!-- br-section-wrapper -->                                                                                                                                                   '    
+    	            		+'	</div><!-- br-pagebody -->                                                                                                                                                              '  
+    	            		+'</form>    		'
+					    fromEject(_html,dec,'80%','80%');
+    	            }
+    	        	
+    	        }
+    	        
+    		
+    		})
+    	}
+    </script>
+   
+  </body>

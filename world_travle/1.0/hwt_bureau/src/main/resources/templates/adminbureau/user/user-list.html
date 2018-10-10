@@ -1,0 +1,446 @@
+
+  <head>
+      <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+  </head>
+
+  <body>
+<!--请求路径-->
+  <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="/main">首页</a>
+          <a class="breadcrumb-item" href="javascrip:void(0);" onclick="reCommit()">用户管理</a>
+      </nav>
+  </div>
+
+<!--页面标题-->
+<!-- <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">用户管理</h4>
+    <p class="mg-b-0">用户管理</p>
+</div> -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="table-wrapper">
+            <!--查询条件-->
+            <div class="row">
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                用户账号
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入用户名" name="paramMap_bureau_user_account" id="paramMap_bureau_user_account">
+                       <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                		</div>
+                    </div><!-- input-group -->
+                    
+                    
+                </div>
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                姓名
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入姓名" name="paramMap_real_name" id="paramMap_real_name">
+                       <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                		</div>
+                    </div><!-- input-group -->
+                    
+                    
+                </div>
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                电话
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入电话" name="paramMap_phone" id="paramMap_phone">
+                       <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                		</div>
+                    </div><!-- input-group -->
+                    
+                    
+                </div>
+               
+                 <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 ">
+                 状态
+                    <div class="input-group">
+                        <select class="form-control select2" name="paramMap_is_delete" id="paramMap_is_delete" data-placeholder="Choose one"
+                                data-parsley-class-handler="#slWrapper"
+                                data-parsley-errors-container="#slErrorContainer" required>
+                            <option value="0">全部</option>
+                            <option value="1">正常</option>
+                            <option value="2">禁用</option>
+                            
+                        </select>
+	
+                    </div><!-- input-group -->
+                    </div>
+                
+               
+                <div class="col-lg-2 mg-l-0 mg-b-20 mg-lg-t-0 pd-l-0">
+                 <br />
+                    <div class="input-group">
+                        <button class="btn btn-primary mg-l-10" onclick="sreachCommit()"><i class="fa fa-search mg-r-10"></i> 搜索</button>
+                        <button class="btn btn-primary mg-l-10" onclick="add()"><i class="fa fa-plus mg-r-10"></i> 添加</button>
+                    </div><!-- input-group -->
+                </div>
+            </div>
+
+            <!--数据列表-->
+            <div id="dynamic-table_wrapper" class="dataTables_wrapper no-footer">
+                <table id="dynamic-table" class="table display responsive nowrap dataTable no-footer dtr-inline" module="grid" aria-describedby="dynamic-table_info" >
+                    <thead>
+                    <tr module="row">
+                        <th class="wd-5p parsley-checkbox " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;">
+
+                            <label class="ckbox " >
+                                <input type="checkbox" name="browser[]"><span></span>
+                            </label>
+
+                            <!--<label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label>-->
+                        </th>
+                        <th class="wd-20p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 180px;" >用户账号</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >真实姓名</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >所属地区</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >描述</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >联系电话</th>
+                        <th class="wd-15p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 129px;" >状态</th>
+                        <th class="wd-25p " tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 231px;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+  <!--<div class="table-wrapper">-->
+      <!--<table id="dynamic-table" class="table display responsive nowrap">-->
+          <!--<thead>-->
+          <!--<tr>-->
+              <!--<th class="wd-5p"><label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label></th>-->
+              <!--<th class="wd-10p">ID</th>-->
+              <!--<th class="wd-15p">名称</th>-->
+              <!--<th class="wd-20p">性别</th>-->
+              <!--<th class="wd-15p">时间</th>-->
+              <!--<th class="wd-10p">TOKEN</th>-->
+              <!--<th class="wd-25p">操作</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+
+          <!--</tbody>-->
+      <!--</table>-->
+  <!--</div>&lt;!&ndash; table-wrapper &ndash;&gt;-->
+  
+
+
+
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+          <div>Attentively and carefully made by ThemePixels.</div>
+        </div>
+        <div class="footer-right d-flex align-items-center">
+          <span class="tx-uppercase mg-r-10">Share:</span>
+          <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+        </div>
+      </footer>
+      <script src="/model/lib/jquery/jquery.js"></script>
+      <script src="/plugins/dataTable/js/ro.dataTable.js"></script>
+      <script src="/plugins/dataTable/js/user/demo.dataTable.js"></script>
+      <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+      <script src="/public/base.js"></script>
+
+<!--<script src="/model/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>-->
+<!--<script src="/model/lib/d3/d3.js"></script>-->
+
+    <script>
+    
+   
+    	function name() {
+			
+		}
+    	
+    	function add(){
+    		
+         	var _html = '<form id="form">'
+         		+'      <div class="br-pagebody">                                                                                                                                                                 '
+         		+'                                                                                                                                                                                                '
+         		+'        <div class="br-section-wrapper">                                                                                                                                                        '
+         		+'            <!--内容-->                                                                                                                                                                         '
+         		+'            <div class="row">                                                                                                                                                                   '
+         		+'                <p  style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>用户账号:</p>                                                            '
+         		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+         		+'                    <input class="form-control wd-250" placeholder="请输入用户账号" id="bureau_user_account" type="text" name="bureau_user_account" value="">                                                                   '
+         		+'                </div><!-- col -->                                                                                                                                                              '
+         		+'                                                                                                                                                                                                '
+         		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>用户姓名:</p>                                                            '
+         		+'                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                                  '
+         		+'                    <input class="form-control wd-250" placeholder="用户姓名" id="real_name" type="text"  name="real_name" value="">                                                        '
+         		+'                </div><!-- col -->                                                                                                                                                              '
+         		+'            </div>                                                                                                                                                                              '
+         		+'                                                                                                                                                                                                '
+         		+'            <div class="row mg-t-20">                                                                                                                                                           '
+         		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>描述:</p>                                                            '
+         		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+         		+'                    <input class="form-control wd-50%" placeholder="请输入描述" id="description" type="text" name="description" value="">                                                                   '
+         		+'                </div><!-- col -->                                                                                                                                                              '
+         		+'            </div>                                                                                                                                                                              '
+         		+'            <div class="row mg-t-20">                                                                                                                                                           '
+         		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>联系方式:</p>                                                            '
+         		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+         		+'                    <input class="form-control wd-50%" placeholder="请输入联系方式" id="phone" type="text" name="phone" value="">                                                                        '
+         		+'                </div><!-- col -->                                                                                                                                                              '
+         		+'            </div>                                                                                                                                                                              '
+         		+'            <div class="row mg-t-20">                                                                                                                                                           '
+         		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>所属地区:</p>                                                            '
+         		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+         		+'                    <input class="form-control wd-50%" placeholder="请输入所属地区" id="remarks" type="text" name="remarks" value="">                                                                        '
+         		+'                </div><!-- col -->                                                                                                                                                              '
+         		+'            </div>                                                                                                                                                                              '
+         		+'            <div class="row mg-t-20">                                                                                                                                                           '
+         		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>登录密码:</p>                                                            '
+         		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+         		+'                    <input class="form-control wd-50%" placeholder="请输入登录密码" id="password" type="text" name="password" value="">                                                                        '
+         		+'                </div><!-- col -->                                                                                                                                                              '
+         		+'            </div>                                                                                                                                                                              '
+         		+'            <div class="row mg-t-20">                                                                                                                                                           '
+         		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>确认密码:</p>                                                            '
+         		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+         		+'                    <input class="form-control wd-50%" placeholder="请输入确认密码" id="conpassword" type="text" name="conpassword" value="">                                                                        '
+         		+'                </div><!-- col -->                                                                                                                                                              '
+         		+'            </div>                                                                                                                                                                              '
+         		+'                                                                                                                                                                                                '
+         		+'                                                                                                                                                                                                '
+         		+'            <div class="row mg-t-20">                                                                                                                                                           '
+         		+'                <div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                   '
+         		+'                <div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="insertBureauUser(\'adminbureau/user/insert\',\'form\')">确定</div>'
+         		+'                                                                                                                                                                                                '
+         		+'            </div>                                                                                                                                                                              '
+         		+'                                                                                                                                                                                                '
+         		+'        </div><!-- br-section-wrapper -->                                                                                                                                                       '
+         		+'      </div><!-- br-pagebody -->                                                                                                                                                                '
+         		+'       </form>'
+     			fromEject(_html,"添加用户",'80%','50%');
+		            
+    		
+    	}
+    	function insertBureauUser(url,form){
+			if (validation(["phone","bureau_user_account","real_name","description","password","conpassword"],["PHONE"],[])){
+    			
+    			insert(url,form);
+    		}else{
+    			return
+    		}
+    	}
+    	 
+    	function updateBureauUser(){
+			if (validation(["phone","bureau_user_account","real_name","description"],["PHONE"],[])){
+    			
+    			update(url,form);
+    		}else{
+    			return
+    		}
+    	}
+    	
+    	function edit(id,url,dec,type){
+    		var _html = '';
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data : {"bureau_user_id":id,"type":type},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	            if (res.code =="200"){
+    	            	var a='';
+		            	
+		            	var user = res.data;
+		            	
+	            		var _html = '<form id="form">                                                                                                                                                                                '
+	                		+'      <div class="br-pagebody">                                                                                                                                                                 '
+	                		+'                                                                                                                                                                                                '
+	                		+'        <div class="br-section-wrapper">                                                                                                                                                        '
+	                		+'            <!--内容-->                                                                                                                                                                         '
+	                		+'            <div class="row">                                                                                                                                                                   '
+	                		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>用户账号:</p>                                                            '
+	                		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+	                		+'                    <input class="form-control wd-250" placeholder="请输入用户账号" type="text" readonly="readonly" id="bureau_user_account" name="bureau_user_account" value="'+user.bureau_user_account+'">                                                                   '
+	                		+'                </div><!-- col -->                                                                                                                                                              '
+	                		+'                         <input type="hidden" id = "bureau_user_id" name="bureau_user_id" value="'+user.bureau_user_id+'" />   <input type="hidden"  name="type" value="2"/>                                                                                                                                                                       '
+	                		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>用户姓名:</p>                                                            '
+	                		+'                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                                  '
+	                		+'                    <input class="form-control wd-250" placeholder="用户姓名" type="text"  name="real_name" value="'+user.real_name+'">                                                        '
+	                		+'                </div><!-- col -->                                                                                                                                                              '
+	                		+'            </div>                                                                                                                                                                              '
+	                		+'            <div class="row mg-t-20">                                                                                                                                                           '
+	                		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>描述:</p>                                                            '
+	                		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+	                		+'                    <input class="form-control wd-50%" placeholder="请输入描述" type="text" id="description" name="description" value="'+user.description+'">                                                                   '
+	                		+'                </div><!-- col -->                                                                                                                                                              '
+	                		+'            </div>                                                                                                                                                                              '
+	                		+'            <div class="row mg-t-20">                                                                                                                                                           '
+	                		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>联系方式:</p>                                                            '
+	                		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+	                		+'                    <input class="form-control wd-50%" placeholder="请输入联系方式" type="text" id="phone" name="phone" value="'+user.phone+'">                                                                        '
+	                		+'                </div><!-- col -->                                                                                                                                                              '
+	                		+'            </div>                                                                                                                                                                              '
+	                		+'            <div class="row mg-t-20">                                                                                                                                                           '
+	                		+'                <p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>所属地区:</p>                                                            '
+	                		+'                <div class="col-lg mg-l-10">                                                                                                                                                    '
+	                		+'                    <input class="form-control wd-50%" placeholder="请输入所属地区" type="text" id="remarks" name="phone" value="'+user.remarks+'">                                                                        '
+	                		+'                </div><!-- col -->                                                                                                                                                              '
+	                		+'            </div>                                                                                                                                                                              '
+	                		+'                                                                                                                                                                                                '
+	                		+'                                                                                                                                                                                                '
+	                		+'            <div class="row mg-t-20">                                                                                                                                                           '
+	                		+'                <div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                   '
+	                		+'                <div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="updateBureauUser(\'adminbureau/user/update\',\'form\')">确定</div>'
+	                		+'                                                                                                                                                                                                '
+	                		+'            </div>                                                                                                                                                                              '
+	                		+'                                                                                                                                                                                                '
+	                		+'        </div><!-- br-section-wrapper -->                                                                                                                                                       '
+	                		+'      </div><!-- br-pagebody -->                                                                                                                                                                '
+	                		+'       </form>'
+					    		
+					    fromEject(_html,dec,'80%','50%');
+    	            }else{
+    	            	layer.alert(res.msg,{icon: 6});
+    	            }
+    	        }
+    	    })
+    	}
+    	
+    	function resetPassword(id,url,dec){
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data :{"id":id},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	            if (res.code =="200"){
+    	            	layer.alert(res.msg,{icon: 6});
+    	            }else{
+    	            	if(res.msg!=null){
+    	            		layer.alert(res.msg,{icon: 6});
+    	            	}else{
+    	            		layer.alert('密码重置失败',{icon: 6});
+    	            	}
+    	            }
+    	        }
+    	    })
+    	}
+    	
+    	
+    	
+    	
+    	//授权
+    	function adpower(a,type,id,url,dec){
+    		var _html = '';
+    		$.ajax({
+    	        url : url,
+    	        type : "POST",
+    	        data : {"id":id,"type":type},
+    	        success : function (res) {
+    	        	res = strToJson(res);
+    	            if (res.code =="200"){
+    	            	var adminModules = res.data.bureauModules;
+    	            	var adminModulesToRole = res.data.bureauModulesTobureau_user;
+    	            	_html+='<form id="adpower" background-color="red"> <div style="margin-left: 50px;">'
+    	            		+'<input type="hidden" name="id" value="'+id+'"><input type="hidden" name="type" value="2">';
+					  for (var i = 0; i < adminModules.length; i++) {
+						var ml = adminModules[i];
+							if (ml.parent_id==0){
+								_html+='<div style="margin-top: 20px;">&nbsp;&nbsp;';
+								_html+='<input type="checkbox" id="rightList_'+ml.bureau_module_id+'" name="rightList" value="'+ml.bureau_module_id+'" '+judgeChecked(ml.bureau_module_id,adminModulesToRole)+' onclick = "this_checkbox(this)"/>';
+								_html+='<label for="rightList_'+ml.bureau_module_id+'" style="cursor: pointer;">'+ml.name+'</label>&nbsp;&nbsp;';
+								 for (var j = 0;j < adminModules.length; j++) {
+									var ml1 = adminModules[j];
+									if (ml1.parent_id==ml.bureau_module_id){
+										_html+='<div>　　|---- ';
+										_html+='<input type="checkbox" id="rightList_'+ml1.bureau_module_id+'" name="rightList" value="'+ml1.bureau_module_id+'" '+judgeChecked(ml1.bureau_module_id,adminModulesToRole)+' onclick = "this_checkbox(this)"/>';
+										_html+='<label for="rightList_'+ml1.bureau_module_id+'" style="cursor: pointer;"> '+ml1.name+'</label>&nbsp;&nbsp;';
+										_html+='<div>　　|------------	';
+										for (var k = 0;k < adminModules.length; k++) {
+											var ml2 = adminModules[k];
+											if (ml2.parent_id == ml1.bureau_module_id){
+												
+												_html+='<input type="checkbox" id="rightList_'+ml2.bureau_module_id+'" name="rightList" value="'+ml2.bureau_module_id+'" '+judgeChecked(ml2.bureau_module_id,adminModulesToRole)+' onclick = "this_checkbox(this)"/>';
+												_html+='<label for="rightList_'+ml2.bureau_module_id+'" style="cursor: pointer;">'+ml2.name+'</label>&nbsp;&nbsp;';
+											}
+											
+										}
+										_html+='</div><br/>'
+											_html+='</div>'
+									}
+								} 
+								
+								_html+=' </div>';
+							}
+					  	}	
+						_html+=' </div>';
+					  _html+='<div class=" mg-t-20" >'
+				    		+'<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()" >取消</div>'
+				    		+'<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="updateAdpower(\'adminbureau/user/adpower\',\'adpower\')">确定</div>'
+				    		+' </div> '
+				    	_html+='</form>';
+				    
+					    fromEject(_html,dec,'50%','60%');
+    	            }else{
+    	            	layer.alert(res.msg,{icon: 6});
+    	            }
+    	        }
+    	    })
+    	}
+    		//判断是否备选
+    		function judgeChecked(id, rows){
+    			if(rows.length==0){
+    				return " ";
+    			}
+    			for (var i = 0; i < rows.length; i++) {
+					if (id==rows[i].bureau_module_id){
+						return "checked";
+						break;
+					}
+				}
+    			return " ";
+    		}
+    		//选择权限
+    		function this_checkbox(a){
+    			if($(a).prop('checked') == true){
+					$(a).parent('div').siblings('input:checkbox').prop('checked',true).parent('div').siblings('input:checkbox').prop('checked',true);
+				}else{
+				}	
+				//向下级联
+				$(a).siblings('div').children('input:checkbox').prop('checked',$(a).prop('checked')).siblings('div').children('input:checkbox').prop('checked',$(a).prop('checked'));
+    		}
+    		//更新权限
+    		function updateAdpower(url,fromId){
+    			$.ajax({
+    		        url : url,
+    		        type : "POST",
+    		        data : $("#"+fromId).serialize(),
+    		        success : function (res) {
+    		        	res = strToJson(res);
+    		            if (res.code =="200"){
+    		            	layer.alert(res.msg,{icon: 6},function(){
+    		            		layer.closeAll();
+    		            	});
+    		            }else{
+    		            	if(res.msg!=null){
+    		            		layer.alert(res.msg,{icon: 6});
+    		            	}else{
+    		            		layer.alert('授权失败',{icon: 6});
+    		            	}
+    		            }
+    		        }
+    		    })
+    		}
+    	
+    </script>
+  </body>

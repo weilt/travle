@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加接口文档</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+<link href="/back/js/kindeditor/themes/qq/qq.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    	<form id = "from">
+    		<input type="hidden" name="projectId" value="${projectId?c}"/>
+		    <ul class="forminfo">
+			    <li><label>接口文档名称<b>*</b></label><input maxlength="15" type="text" class="dfinput" id="name" name="name"/><i>最长不能超过15个字符</i></li>
+			     <li><label>接口路径</label><input id="url" name="url" type="text" class="dfinput" /><i>如：admin/module</i></li>
+			    
+			    <li><label>是否删除</label>
+			    	<div class="vocation">
+					    <select class="select3" name="isDelete">
+						    
+						    <option value="1" >否</option>
+						    <option value="2" >是</option>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>参数<b>*</b></label> <textarea id="content7" name="param"
+							style="width: 700px; height: 250px; visibility: hidden;"></textarea>
+				</li>
+				<li><label>返回值<b>*</b></label> <textarea id="content8" name="returnValue"
+							style="width: 700px; height: 250px; visibility: hidden;"></textarea>
+				</li>
+				<li><label>备注<b>*</b></label> <textarea id="content9" name="remark"
+							style="width: 700px; height: 250px; visibility: hidden;"></textarea>
+				</li>
+			    
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) submitForm('/admin/interfaceDocument/add','from');" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script type="text/javascript" src="/back/js/jquery.js"></script>
+<script type="text/javascript" src="/back/js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+<!-- 自定义的base.js - 里面的功能自己去看 -->
+<script type="text/javascript" src="/back/js/base.js"></script>
+<!-- 弹窗js -->
+<script src="/back/js/layer/layer.js"></script>
+
+<!-- 富文本，上传啥的 -->
+<script type="text/javascript" src="/back/js/kindeditor/kindeditor-all.js"></script>
+<script type="text/javascript" src="/back/js/kindeditor/lang/zh-CN.js"></script>
+<script charset="utf-8" src="/back/js/kindeditor/plugins/code/prettify.js"></script>
+<script type="text/javascript" src="/back/js/kindeditor/kindeditor-base.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	create_textarea('content7');
+	create_textarea('content8');
+	create_textarea('content9');
+});
+
+function content7(){
+	alert($('#content7').val());
+}
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(e) {
+		$(".select1").uedSelect({
+			width : 345
+		});
+		$(".select2").uedSelect({
+			width : 167
+		});
+		$(".select3").uedSelect({
+			width : 100
+		});
+	});
+</script>
+<script type="text/javascript">
+	$("#usual1 ul").idTabs();
+</script>
+
+<script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+</script>
+    <script type="text/javascript">
+	    $(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+		function chek(){
+			var parameter = ["name"];
+			var type = [null];
+			var msg = ["接口文档名不能为空！"];
+			return validation(parameter,type,msg);
+		}
+	</script>
+</body>
+</html>

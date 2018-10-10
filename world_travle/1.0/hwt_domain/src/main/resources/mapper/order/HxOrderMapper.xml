@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HxOrderMapper">
+    <resultMap id="OrderEntity" type="com.hwt.domain.entity.order.vo.OrderEntity">
+        <result column="order_id" jdbcType="BIGINT" property="order_id"/>
+        <result column="unit_price" jdbcType="DECIMAL" property="unit_price"/>
+        <result column="travel_line_id" jdbcType="BIGINT" property="travel_line_id"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+        <result column="dec" jdbcType="VARCHAR" property="dec"/>
+    </resultMap>
+
+    <!-- 查询已支付订单 -->
+    <select id="selectPaid" resultType="com.hwt.domain.entity.order.vo.OrderEntity" parameterType="java.lang.Integer">
+     SELECT
+	a.order_num,
+	a.payment_time,
+	a.paymen_type,
+	a.payment,
+	a.`status`,
+	b.`dec`,
+	a.order_id,
+	c.total
+	FROM
+	(SELECT COUNT(1) total FROM hw_order where STATUS=#{status}) c,
+	hw_order a,
+	hx_order_info b
+	WHERE
+	a.`status` =#{status}
+	AND b.order_id = a.order_id LIMIT #{page},10
+  </select>
+
+    <!-- 查询条数 按条件 -->
+    <select id="selectQueryCountByMap" resultType="java.lang.Long" parameterType="map">
+        select count(order_id) from hw_order where 1=1
+        and `status` != 0
+        and `status` != 4
+        and `status` != 5
+        and `status` != 7
+        and `status` != 6
+        and `cicerone_id` =0
+        <if test="status !=null and status == 1">
+            and `status` = 1
+        </if>
+        <if test="status !=null and status == 2">
+            and `status` = 2
+        </if>
+        <if test="status !=null and status == 3">
+            and `status` = 3
+        </if>
+        <!--<if test="status !=null and status == 4">-->
+        <!--and `status` = 3-->
+        <!--</if>-->
+        <!--<if test="status !=null and status == 5">-->
+        <!--and (`status` = 4 or `status` = 5)-->
+        <!--</if>-->
+        <if test="order_num !=null and order_num !=''">
+            and order_num like concat('%',#{order_num,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="filde !=null and filde !=''">
+            and payment_time &lt; (#{filde,jdbcType=BIGINT} +86400000) and payment_time &gt; #{filde,jdbcType=BIGINT}
+        </if>
+
+    </select>
+    <!--&#45;&#45;             and `status` = 2 and UNIX_TIMESTAMP()*1000 &lt; start_time-->
+    <!--&#45;&#45;             and `status` = 3 and UNIX_TIMESTAMP()*1000 &gt; start_time unix_timestamap-->
+    <!-- 查询条数 按条件 -->
+    <select id="selectGuideQueryCountByMap" resultType="java.lang.Long" parameterType="map">
+        select count(order_id) from hw_order where 1=1
+        and `status` != 0
+        and `status` != 4
+        and `status` != 5
+        and `status` != 7
+        and `status` != 6
+        and `cicerone_id` !=0
+        <if test="status !=null and status == 1">
+            and `status` = 1
+        </if>
+        <if test="status !=null and status == 2">
+            and `status` = 2
+        </if>
+        <if test="status !=null and status == 3">
+            and `status` = 3
+        </if>
+        <!--<if test="status !=null and status == 4">-->
+        <!--and `status` = 3-->
+        <!--</if>-->
+        <!--<if test="status !=null and status == 5">-->
+        <!--and (`status` = 4 or `status` = 5)-->
+        <!--</if>-->
+        <if test="order_num !=null and order_num !=''">
+            and order_num like concat('%',#{order_num,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="filde !=null and filde !=''">
+            and payment_time &lt; (#{filde,jdbcType=BIGINT} +86400000) and payment_time &gt; #{filde,jdbcType=BIGINT}
+        </if>
+
+    </select>
+    <!--86400000是一天的毫秒数-->
+    <!-- 查询路线数据 -->
+    <select id="selectQueryByMap" resultType="java.util.Map" parameterType="map">
+
+        select
+        a.order_id,
+        a.order_num,
+        a.start_time,
+        a.apply_sales_time,
+        a.accept_time,
+        a.create_time,
+        a.payment,
+        a.status,
+        a.user_id,
+        b.dec
+        from
+        hw_order a,
+        hx_order_info b
+        where
+        1=1
+        and b.order_id = a.order_id
+        and a.`status` != 0
+        and a.`status` != 4
+        and a.`status` != 5
+        and a.`status` != 6
+        and a.`status` != 7
+        and a.`cicerone_id` =0
+        <if test="status !=null and status == 0">
+
+        </if>
+        <if test="status !=null and status == 1">
+            and a.`status` = 1
+        </if>
+        <if test="status !=null and status == 2">
+            and a.`status` = 2
+        </if>
+        <if test="status !=null and status == 3">
+            and a.`status` = 3
+        </if>
+        <!--<if test="status !=null and status == 4">-->
+        <!--and a.`status` = 3-->
+        <!--</if>-->
+        <!--<if test="status !=null and status == 5">-->
+        <!--and (a.`status` = 4 or a.`status` = 5)-->
+        <!--</if>-->
+        <if test="order_num !=null and order_num !=''">
+            and a.order_num like concat('%',#{order_num,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="filde !=null and filde !=''">
+            and payment_time &lt; (#{filde,jdbcType=BIGINT} +86400000) and payment_time &gt; #{filde,jdbcType=BIGINT}
+        </if>
+
+        order by ${orderBy}
+        limit #{startNum},#{pageSize}
+    </select>
+    <!--and UNIX_TIMESTAMP()*1000 &lt; a.start_time-->
+    <!--and UNIX_TIMESTAMP()*1000 &gt; a.start_time-->
+    <!-- 查询导游数据 -->
+    <select id="selectGuideQueryByMap" resultType="java.util.Map" parameterType="map">
+
+        select
+        a.order_id,
+        a.order_num,
+        a.start_time,
+        a.apply_sales_time,
+        a.accept_time,
+        a.create_time,
+        a.payment,
+        a.status,
+        a.user_id,
+        b.dec
+        from
+        hw_order a,
+        hx_order_info b
+        where
+        1=1
+        and b.order_id = a.order_id
+        and a.`status` != 0
+        and a.`status` != 4
+        and a.`status` != 5
+        and a.`status` != 6
+        and a.`status` != 7
+        and a.`cicerone_id` !=0
+        <if test="status !=null and status == 0">
+
+        </if>
+        <if test="status !=null and status == 1">
+            and a.`status` = 1
+        </if>
+        <if test="status !=null and status == 2">
+            and a.`status` = 2
+        </if>
+        <if test="status !=null and status == 3">
+            and a.`status` = 3
+        </if>
+        <!--<if test="status !=null and status == 4">-->
+        <!--and a.`status` = 3-->
+        <!--</if>-->
+        <!--<if test="status !=null and status == 5">-->
+        <!--and (a.`status` = 4 or a.`status` = 5)-->
+        <!--</if>-->
+        <if test="order_num !=null and order_num !=''">
+            and a.order_num like concat('%',#{order_num,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="filde !=null and filde !=''">
+            and payment_time &lt; (#{filde,jdbcType=BIGINT} +86400000) and payment_time &gt; #{filde,jdbcType=BIGINT}
+        </if>
+
+        order by ${orderBy}
+        limit #{startNum},#{pageSize}
+    </select>
+    <!--a.payment_time like '%#{filde}%'-->
+
+    <!-- 一对多查询关联  -->
+    <resultMap type="com.hwt.domain.entity.order.vo.HwOrderUserVo" id="orderUserVo">
+        <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+        <id column="order_user_id" jdbcType="BIGINT" property="order_user_id"/>
+        <result column="order_id" jdbcType="BIGINT" property="order_id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="identity_type" jdbcType="VARCHAR" property="identity_type"/>
+        <result column="identity_num" jdbcType="VARCHAR" property="identity_num"/>
+
+        <result column="create_time" jdbcType="BIGINT" property="create_time"/>
+        <!-- 用collection标签 ,也是实体类属性要对应数据库字段-->
+        <collection property="hwOrderUserInsubranceVos" ofType="insubranceVos" column="order_user_id"
+                    select="query_user_insubrance_list_by_order_id">
+        </collection>
+    </resultMap>
+    <resultMap type="com.hwt.domain.entity.order.vo.HwOrderUserInsubranceVo" id="insubranceVos">
+        <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+        <id property="order_user_id" column="order_user_id"/>
+
+    </resultMap>
+    <!-- 通过订单id查询用户信息以及保险信息 -->
+    <select id="selectQueryListByOrderUser" parameterType="java.lang.Long" resultMap="orderUserVo">
+         select * from hw_order_user where order_id = #{order_id}
+     </select>
+    <!-- 通过id查询用户保险信息 -->
+    <select id="query_user_insubrance_list_by_order_id" parameterType="java.lang.Long" resultMap="insubranceVos">
+         select * from hw_order_user_insubrance where order_user_id = #{order_user_id}
+     </select>
+</mapper>
+        <!--and a.order_num-->

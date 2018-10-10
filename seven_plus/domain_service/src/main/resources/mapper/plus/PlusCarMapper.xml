@@ -1,0 +1,1397 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.plus.mapper.PlusCarMapper">
+
+
+    <insert id="insertPlusCar"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `plus_car`
+        (
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                `id`,
+            </if>
+            <if test="userId!=null">
+                `user_id`,
+            </if>
+            <if test="orderId!=null">
+                `order_id`,
+            </if>
+            <if test="faceUrl!=null">
+                `face_url`,
+            </if>
+            <if test="leftAnteriorUrl!=null">
+                `left_anterior_url`,
+            </if>
+            <if test="rightAnteriorUrl!=null">
+                `right_anterior_url`,
+            </if>
+            <if test="leftUrl!=null">
+                `left_url`,
+            </if>
+            <if test="rightUrl!=null">
+                `right_url`,
+            </if>
+            <if test="backUrl!=null">
+                `back_url`,
+            </if>
+            <if test="carNo!=null">
+                `car_no`,
+            </if>
+            <if test="carBrand!=null">
+                `car_brand`,
+            </if>
+            <if test="carNature!=null">
+                `car_nature`,
+            </if>
+            <if test="drivingAge!=null">
+                `driving_age`,
+            </if>
+            <if test="carType!=null">
+                `car_type`,
+            </if>
+            <if test="evaluation!=null">
+                `evaluation`,
+            </if>
+            <if test="createTime!=null">
+                `create_time`,
+            </if>
+            <if test="updateTime!=null">
+                `update_time`,
+            </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="userId!=null">
+                #{userId},
+            </if>
+            <if test="orderId!=null">
+                #{orderId},
+            </if>
+            <if test="faceUrl!=null">
+                #{faceUrl},
+            </if>
+            <if test="leftAnteriorUrl!=null">
+                #{leftAnteriorUrl},
+            </if>
+            <if test="rightAnteriorUrl!=null">
+                #{rightAnteriorUrl},
+            </if>
+            <if test="leftUrl!=null">
+                #{leftUrl},
+            </if>
+            <if test="rightUrl!=null">
+                #{rightUrl},
+            </if>
+            <if test="backUrl!=null">
+                #{backUrl},
+            </if>
+            <if test="carNo!=null">
+                #{carNo},
+            </if>
+            <if test="carBrand!=null">
+                #{carBrand},
+            </if>
+            <if test="carNature!=null">
+                #{carNature},
+            </if>
+            <if test="drivingAge!=null">
+                #{drivingAge},
+            </if>
+            <if test="carType!=null">
+                #{carType},
+            </if>
+            <if test="evaluation!=null">
+                #{evaluation},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="updateTime!=null">
+                #{updateTime},
+            </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePlusCar">
+        UPDATE `plus_car`
+        SET
+        <trim suffixOverrides=",">
+            <if test="userId != null">
+                `user_id` = #{userId},
+            </if>
+            <if test="orderId != null">
+                `order_id` = #{orderId},
+            </if>
+            <if test="faceUrl != null and faceUrl!=''">
+                `face_url` = #{faceUrl},
+            </if>
+            <if test="leftAnteriorUrl != null and leftAnteriorUrl!=''">
+                `left_anterior_url` = #{leftAnteriorUrl},
+            </if>
+            <if test="rightAnteriorUrl != null and rightAnteriorUrl!=''">
+                `right_anterior_url` = #{rightAnteriorUrl},
+            </if>
+            <if test="leftUrl != null and leftUrl!=''">
+                `left_url` = #{leftUrl},
+            </if>
+            <if test="rightUrl != null and rightUrl!=''">
+                `right_url` = #{rightUrl},
+            </if>
+            <if test="backUrl != null and backUrl!=''">
+                `back_url` = #{backUrl},
+            </if>
+            <if test="carNo != null and carNo!=''">
+                `car_no` = #{carNo},
+            </if>
+            <if test="carBrand != null and carBrand!=''">
+                `car_brand` = #{carBrand},
+            </if>
+            <if test="carNature != null">
+                `car_nature` = #{carNature},
+            </if>
+            <if test="drivingAge != null">
+                `driving_age` = #{drivingAge},
+            </if>
+            <if test="carType != null">
+                `car_type` = #{carType},
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+            `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `plus_car`
+        SET
+        <trim suffixOverrides=",">
+            <if test="set.userId != null">
+                `user_id` = #{set.userId},
+            </if>
+            <if test="set.orderId != null">
+                `order_id` = #{set.orderId},
+            </if>
+            <if test="set.faceUrl != null and set.faceUrl!=''">
+                `face_url` = #{set.faceUrl},
+            </if>
+            <if test="set.leftAnteriorUrl != null and set.leftAnteriorUrl!=''">
+                `left_anterior_url` = #{set.leftAnteriorUrl},
+            </if>
+            <if test="set.rightAnteriorUrl != null and set.rightAnteriorUrl!=''">
+                `right_anterior_url` = #{set.rightAnteriorUrl},
+            </if>
+            <if test="set.leftUrl != null and set.leftUrl!=''">
+                `left_url` = #{set.leftUrl},
+            </if>
+            <if test="set.rightUrl != null and set.rightUrl!=''">
+                `right_url` = #{set.rightUrl},
+            </if>
+            <if test="set.backUrl != null and set.backUrl!=''">
+                `back_url` = #{set.backUrl},
+            </if>
+            <if test="set.carNo != null and set.carNo!=''">
+                `car_no` = #{set.carNo},
+            </if>
+            <if test="set.carBrand != null and set.carBrand!=''">
+                `car_brand` = #{set.carBrand},
+            </if>
+            <if test="set.carNature != null">
+                `car_nature` = #{set.carNature},
+            </if>
+            <if test="set.drivingAge != null">
+                `driving_age` = #{set.drivingAge},
+            </if>
+            <if test="set.carType != null">
+                `car_type` = #{set.carType},
+            </if>
+            <if test="set.createTime != null">
+                `create_time` = #{set.createTime},
+            </if>
+            <if test="set.updateTime != null">
+                `update_time` = #{set.updateTime},
+            </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="where.idList != null">
+                `id` in
+                <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+            <if test="where.userIdList != null">
+                `user_id` in
+                <foreach collection="where.userIdList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.userIdSt !=null">
+                `user_id` >= #{where.userIdSt} and
+            </if>
+            <if test="where.userIdEd!=null">
+                `user_id` &lt;= #{where.userIdEd} and
+            </if>
+            <if test="where.orderIdList != null">
+                `order_id` in
+                <foreach collection="where.orderIdList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.orderIdSt !=null">
+                `order_id` >= #{where.orderIdSt} and
+            </if>
+            <if test="where.orderIdEd!=null">
+                `order_id` &lt;= #{where.orderIdEd} and
+            </if>
+            <if test="where.faceUrlList != null">
+                `face_url` in
+                <foreach collection="where.faceUrlList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyFaceUrl!=null and where.fuzzyFaceUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyFaceUrl"  separator="or" item="item">
+                    `Face_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyFaceUrl!=null and where.rightFuzzyFaceUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyFaceUrl"  separator="or" item="item">
+                    `Face_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.leftAnteriorUrlList != null">
+                `left_anterior_url` in
+                <foreach collection="where.leftAnteriorUrlList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyLeftAnteriorUrl!=null and where.fuzzyLeftAnteriorUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyLeftAnteriorUrl"  separator="or" item="item">
+                    `Left_anterior_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyLeftAnteriorUrl!=null and where.rightFuzzyLeftAnteriorUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyLeftAnteriorUrl"  separator="or" item="item">
+                    `Left_anterior_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.rightAnteriorUrlList != null">
+                `right_anterior_url` in
+                <foreach collection="where.rightAnteriorUrlList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyRightAnteriorUrl!=null and where.fuzzyRightAnteriorUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyRightAnteriorUrl"  separator="or" item="item">
+                    `Right_anterior_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRightAnteriorUrl!=null and where.rightFuzzyRightAnteriorUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRightAnteriorUrl"  separator="or" item="item">
+                    `Right_anterior_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.leftUrlList != null">
+                `left_url` in
+                <foreach collection="where.leftUrlList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyLeftUrl!=null and where.fuzzyLeftUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyLeftUrl"  separator="or" item="item">
+                    `Left_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyLeftUrl!=null and where.rightFuzzyLeftUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyLeftUrl"  separator="or" item="item">
+                    `Left_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.rightUrlList != null">
+                `right_url` in
+                <foreach collection="where.rightUrlList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyRightUrl!=null and where.fuzzyRightUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyRightUrl"  separator="or" item="item">
+                    `Right_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRightUrl!=null and where.rightFuzzyRightUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRightUrl"  separator="or" item="item">
+                    `Right_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.backUrlList != null">
+                `back_url` in
+                <foreach collection="where.backUrlList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyBackUrl!=null and where.fuzzyBackUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyBackUrl"  separator="or" item="item">
+                    `Back_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyBackUrl!=null and where.rightFuzzyBackUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyBackUrl"  separator="or" item="item">
+                    `Back_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.carNoList != null">
+                `car_no` in
+                <foreach collection="where.carNoList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyCarNo!=null and where.fuzzyCarNo.size()>0">
+                (
+                <foreach collection="where.fuzzyCarNo"  separator="or" item="item">
+                    `Car_no` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCarNo!=null and where.rightFuzzyCarNo.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCarNo"  separator="or" item="item">
+                    `Car_no` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.carBrandList != null">
+                `car_brand` in
+                <foreach collection="where.carBrandList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyCarBrand!=null and where.fuzzyCarBrand.size()>0">
+                (
+                <foreach collection="where.fuzzyCarBrand"  separator="or" item="item">
+                    `Car_brand` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCarBrand!=null and where.rightFuzzyCarBrand.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCarBrand"  separator="or" item="item">
+                    `Car_brand` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.carNatureList != null">
+                `car_nature` in
+                <foreach collection="where.carNatureList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.carNatureSt !=null">
+                `car_nature` >= #{where.carNatureSt} and
+            </if>
+            <if test="where.carNatureEd!=null">
+                `car_nature` &lt;= #{where.carNatureEd} and
+            </if>
+            <if test="where.drivingAgeList != null">
+                `driving_age` in
+                <foreach collection="where.drivingAgeList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.drivingAgeSt !=null">
+                `driving_age` >= #{where.drivingAgeSt} and
+            </if>
+            <if test="where.drivingAgeEd!=null">
+                `driving_age` &lt;= #{where.drivingAgeEd} and
+            </if>
+            <if test="where.carTypeList != null">
+                `car_type` in
+                <foreach collection="where.carTypeList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.carTypeSt !=null">
+                `car_type` >= #{where.carTypeSt} and
+            </if>
+            <if test="where.carTypeEd!=null">
+                `car_type` &lt;= #{where.carTypeEd} and
+            </if>
+            <if test="where.createTimeList != null">
+                `create_time` in
+                <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.createTimeSt !=null">
+                `create_time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_time` &lt;= #{where.createTimeEd} and
+            </if>
+            <if test="where.updateTimeList != null">
+                `update_time` in
+                <foreach collection="where.updateTimeList" close=")" open="(" separator="," item="item">
+                    #{item}
+                </foreach> and
+            </if>
+            <if test="where.updateTimeSt !=null">
+                `update_time` >= #{where.updateTimeSt} and
+            </if>
+            <if test="where.updateTimeEd!=null">
+                `update_time` &lt;= #{where.updateTimeEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.domain.plus.entity.PlusCar" id="PlusCarMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="faceUrl" column="face_url"/>
+        <result property="leftAnteriorUrl" column="left_anterior_url"/>
+        <result property="rightAnteriorUrl" column="right_anterior_url"/>
+        <result property="leftUrl" column="left_url"/>
+        <result property="rightUrl" column="right_url"/>
+        <result property="backUrl" column="back_url"/>
+        <result property="carNo" column="car_no"/>
+        <result property="carBrand" column="car_brand"/>
+        <result property="carNature" column="car_nature"/>
+        <result property="drivingAge" column="driving_age"/>
+        <result property="carType" column="car_type"/>
+        <result property="evaluation" column="evaluation"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <resultMap id="PlusCarVoMap" type="com.domain.plus.vo.PlusCarVo" extends="PlusCarMap">
+        <result property="phone" column="phone"/>
+        <result property="orderType" column="order_type"/>
+    </resultMap>
+
+    <resultMap id="PlusCarTaskMap" type="com.domain.plus.vo.PlusCarTaskVo" extends="PlusCarMap">
+        <result property="orderId" column="orderId" />
+    </resultMap>
+
+
+    <select id="findOneCarByUserId" resultMap="PlusCarMap">
+        SELECT
+            c.*
+        FROM
+            plus_car c
+        LEFT JOIN plus_order o ON o.car_id = c.id
+        WHERE
+	    c.user_id = #{userId} order by id desc limit 1
+    </select>
+
+    <select id="findCarByUserId" resultMap="PlusCarVoMap">
+        SELECT
+            c.*,o.order_type
+        FROM
+        plus_order o
+        LEFT JOIN plus_car c ON c.id  = o.car_id
+        WHERE
+            o.is_expire = 0
+        AND c.user_id = #{userId}
+    </select>
+
+    <select id="countCarByPhone" resultType="java.lang.Integer">
+        SELECT
+            count(c.id)
+        FROM
+            plus_car c
+        LEFT JOIN plus_order o ON o.car_id = c.id
+        LEFT JOIN plus_user u ON u.id = c.user_id
+        WHERE
+            o.order_type = 2
+            <if test="phone != null and phone != '' ">
+              and  u.phone like  concat(concat('%',#{phone}),'%')
+            </if>
+    </select>
+
+    <select id="findCarByPhone" resultMap="PlusCarVoMap">
+        SELECT
+            c.*,o.order_type,u.phone
+        FROM
+            plus_car c
+        LEFT JOIN plus_order o ON o.car_id = c.id
+        LEFT JOIN plus_user u ON u.id = c.user_id
+        WHERE
+            o.order_type = 2
+        <if test="phone != null and phone != '' ">
+            and  u.phone like  concat(concat('%',#{phone}),'%')
+        </if>
+        order by c.create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <select id="findById" resultMap="PlusCarMap">
+        select <include refid="allResult" />
+        from plus_car where id = #{id}
+    </select>
+
+    <select id="queryCarById" resultMap="PlusCarVoMap">
+         SELECT
+            c.*,o.order_type,u.phone
+        FROM
+            plus_car c
+        LEFT JOIN plus_order o ON o.car_id = c.id
+        LEFT JOIN plus_user u ON u.id = c.user_id
+        WHERE
+            o.order_type = 2 and c.id = #{id}
+    </select>
+    <select id="queryPlusCar" resultMap="PlusCarMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_car`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId} and
+            </if>
+            <if test="orderId != null">
+                `order_id` = #{orderId} and
+            </if>
+            <if test="faceUrl != null and faceUrl!=''">
+                `face_url` = #{faceUrl} and
+            </if>
+            <if test="leftAnteriorUrl != null and leftAnteriorUrl!=''">
+                `left_anterior_url` = #{leftAnteriorUrl} and
+            </if>
+            <if test="rightAnteriorUrl != null and rightAnteriorUrl!=''">
+                `right_anterior_url` = #{rightAnteriorUrl} and
+            </if>
+            <if test="leftUrl != null and leftUrl!=''">
+                `left_url` = #{leftUrl} and
+            </if>
+            <if test="rightUrl != null and rightUrl!=''">
+                `right_url` = #{rightUrl} and
+            </if>
+            <if test="backUrl != null and backUrl!=''">
+                `back_url` = #{backUrl} and
+            </if>
+            <if test="carNo != null and carNo!=''">
+                `car_no` = #{carNo} and
+            </if>
+            <if test="carBrand != null and carBrand!=''">
+                `car_brand` = #{carBrand} and
+            </if>
+            <if test="carNature != null">
+                `car_nature` = #{carNature} and
+            </if>
+            <if test="drivingAge != null">
+                `driving_age` = #{drivingAge} and
+            </if>
+            <if test="carType != null">
+                `car_type` = #{carType} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusCar$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="userIdList != null">
+                    `user_id` in
+                    <foreach collection="userIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="userIdSt !=null">
+                    `user_id` >= #{userIdSt} and
+                </if>
+                <if test="userIdEd!=null">
+                    `user_id` &lt;= #{userIdEd} and
+                </if>
+                <if test="orderIdList != null">
+                    `order_id` in
+                    <foreach collection="orderIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="orderIdSt !=null">
+                    `order_id` >= #{orderIdSt} and
+                </if>
+                <if test="orderIdEd!=null">
+                    `order_id` &lt;= #{orderIdEd} and
+                </if>
+                <if test="faceUrlList != null">
+                    `face_url` in
+                    <foreach collection="faceUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyFaceUrl!=null and fuzzyFaceUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyFaceUrl"  separator="or" item="item">
+                        `Face_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyFaceUrl!=null and rightFuzzyFaceUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyFaceUrl"  separator="or" item="item">
+                        `Face_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="leftAnteriorUrlList != null">
+                    `left_anterior_url` in
+                    <foreach collection="leftAnteriorUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyLeftAnteriorUrl!=null and fuzzyLeftAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyLeftAnteriorUrl"  separator="or" item="item">
+                        `Left_anterior_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyLeftAnteriorUrl!=null and rightFuzzyLeftAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyLeftAnteriorUrl"  separator="or" item="item">
+                        `Left_anterior_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="rightAnteriorUrlList != null">
+                    `right_anterior_url` in
+                    <foreach collection="rightAnteriorUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRightAnteriorUrl!=null and fuzzyRightAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyRightAnteriorUrl"  separator="or" item="item">
+                        `Right_anterior_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRightAnteriorUrl!=null and rightFuzzyRightAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRightAnteriorUrl"  separator="or" item="item">
+                        `Right_anterior_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="leftUrlList != null">
+                    `left_url` in
+                    <foreach collection="leftUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyLeftUrl!=null and fuzzyLeftUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyLeftUrl"  separator="or" item="item">
+                        `Left_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyLeftUrl!=null and rightFuzzyLeftUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyLeftUrl"  separator="or" item="item">
+                        `Left_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="rightUrlList != null">
+                    `right_url` in
+                    <foreach collection="rightUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRightUrl!=null and fuzzyRightUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyRightUrl"  separator="or" item="item">
+                        `Right_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRightUrl!=null and rightFuzzyRightUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRightUrl"  separator="or" item="item">
+                        `Right_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="backUrlList != null">
+                    `back_url` in
+                    <foreach collection="backUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyBackUrl!=null and fuzzyBackUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyBackUrl"  separator="or" item="item">
+                        `Back_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyBackUrl!=null and rightFuzzyBackUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyBackUrl"  separator="or" item="item">
+                        `Back_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="carNoList != null">
+                    `car_no` in
+                    <foreach collection="carNoList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCarNo!=null and fuzzyCarNo.size()>0">
+                    (
+                    <foreach collection="fuzzyCarNo"  separator="or" item="item">
+                        `Car_no` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCarNo!=null and rightFuzzyCarNo.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCarNo"  separator="or" item="item">
+                        `Car_no` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="carBrandList != null">
+                    `car_brand` in
+                    <foreach collection="carBrandList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCarBrand!=null and fuzzyCarBrand.size()>0">
+                    (
+                    <foreach collection="fuzzyCarBrand"  separator="or" item="item">
+                        `Car_brand` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCarBrand!=null and rightFuzzyCarBrand.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCarBrand"  separator="or" item="item">
+                        `Car_brand` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="carNatureList != null">
+                    `car_nature` in
+                    <foreach collection="carNatureList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="carNatureSt !=null">
+                    `car_nature` >= #{carNatureSt} and
+                </if>
+                <if test="carNatureEd!=null">
+                    `car_nature` &lt;= #{carNatureEd} and
+                </if>
+                <if test="drivingAgeList != null">
+                    `driving_age` in
+                    <foreach collection="drivingAgeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="drivingAgeSt !=null">
+                    `driving_age` >= #{drivingAgeSt} and
+                </if>
+                <if test="drivingAgeEd!=null">
+                    `driving_age` &lt;= #{drivingAgeEd} and
+                </if>
+                <if test="carTypeList != null">
+                    `car_type` in
+                    <foreach collection="carTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="carTypeSt !=null">
+                    `car_type` >= #{carTypeSt} and
+                </if>
+                <if test="carTypeEd!=null">
+                    `car_type` &lt;= #{carTypeEd} and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+
+    <select id="queryCarByNo" resultMap="PlusCarMap">
+        select <include refid="allResult" /> from plus_car where car_no = #{carNo} and user_id = #{userId} order by id desc limit 1
+    </select>
+
+    <select id="queryPlusCarLimit1" resultMap="PlusCarMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_car`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId} and
+            </if>
+            <if test="orderId != null">
+                `order_id` = #{orderId} and
+            </if>
+            <if test="faceUrl != null and faceUrl!=''">
+                `face_url` = #{faceUrl} and
+            </if>
+            <if test="leftAnteriorUrl != null and leftAnteriorUrl!=''">
+                `left_anterior_url` = #{leftAnteriorUrl} and
+            </if>
+            <if test="rightAnteriorUrl != null and rightAnteriorUrl!=''">
+                `right_anterior_url` = #{rightAnteriorUrl} and
+            </if>
+            <if test="leftUrl != null and leftUrl!=''">
+                `left_url` = #{leftUrl} and
+            </if>
+            <if test="rightUrl != null and rightUrl!=''">
+                `right_url` = #{rightUrl} and
+            </if>
+            <if test="backUrl != null and backUrl!=''">
+                `back_url` = #{backUrl} and
+            </if>
+            <if test="carNo != null and carNo!=''">
+                `car_no` = #{carNo} and
+            </if>
+            <if test="carBrand != null and carBrand!=''">
+                `car_brand` = #{carBrand} and
+            </if>
+            <if test="carNature != null">
+                `car_nature` = #{carNature} and
+            </if>
+            <if test="drivingAge != null">
+                `driving_age` = #{drivingAge} and
+            </if>
+            <if test="carType != null">
+                `car_type` = #{carType} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusCar$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="userIdList != null">
+                    `user_id` in
+                    <foreach collection="userIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="userIdSt !=null">
+                    `user_id` >= #{userIdSt} and
+                </if>
+                <if test="userIdEd!=null">
+                    `user_id` &lt;= #{userIdEd} and
+                </if>
+                <if test="orderIdList != null">
+                    `order_id` in
+                    <foreach collection="orderIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="orderIdSt !=null">
+                    `order_id` >= #{orderIdSt} and
+                </if>
+                <if test="orderIdEd!=null">
+                    `order_id` &lt;= #{orderIdEd} and
+                </if>
+                <if test="faceUrlList != null">
+                    `face_url` in
+                    <foreach collection="faceUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyFaceUrl!=null and fuzzyFaceUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyFaceUrl"  separator="or" item="item">
+                        `Face_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyFaceUrl!=null and rightFuzzyFaceUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyFaceUrl"  separator="or" item="item">
+                        `Face_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="leftAnteriorUrlList != null">
+                    `left_anterior_url` in
+                    <foreach collection="leftAnteriorUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyLeftAnteriorUrl!=null and fuzzyLeftAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyLeftAnteriorUrl"  separator="or" item="item">
+                        `Left_anterior_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyLeftAnteriorUrl!=null and rightFuzzyLeftAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyLeftAnteriorUrl"  separator="or" item="item">
+                        `Left_anterior_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="rightAnteriorUrlList != null">
+                    `right_anterior_url` in
+                    <foreach collection="rightAnteriorUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRightAnteriorUrl!=null and fuzzyRightAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyRightAnteriorUrl"  separator="or" item="item">
+                        `Right_anterior_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRightAnteriorUrl!=null and rightFuzzyRightAnteriorUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRightAnteriorUrl"  separator="or" item="item">
+                        `Right_anterior_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="leftUrlList != null">
+                    `left_url` in
+                    <foreach collection="leftUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyLeftUrl!=null and fuzzyLeftUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyLeftUrl"  separator="or" item="item">
+                        `Left_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyLeftUrl!=null and rightFuzzyLeftUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyLeftUrl"  separator="or" item="item">
+                        `Left_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="rightUrlList != null">
+                    `right_url` in
+                    <foreach collection="rightUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRightUrl!=null and fuzzyRightUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyRightUrl"  separator="or" item="item">
+                        `Right_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRightUrl!=null and rightFuzzyRightUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRightUrl"  separator="or" item="item">
+                        `Right_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="backUrlList != null">
+                    `back_url` in
+                    <foreach collection="backUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyBackUrl!=null and fuzzyBackUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyBackUrl"  separator="or" item="item">
+                        `Back_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyBackUrl!=null and rightFuzzyBackUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyBackUrl"  separator="or" item="item">
+                        `Back_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="carNoList != null">
+                    `car_no` in
+                    <foreach collection="carNoList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCarNo!=null and fuzzyCarNo.size()>0">
+                    (
+                    <foreach collection="fuzzyCarNo"  separator="or" item="item">
+                        `Car_no` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCarNo!=null and rightFuzzyCarNo.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCarNo"  separator="or" item="item">
+                        `Car_no` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="carBrandList != null">
+                    `car_brand` in
+                    <foreach collection="carBrandList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCarBrand!=null and fuzzyCarBrand.size()>0">
+                    (
+                    <foreach collection="fuzzyCarBrand"  separator="or" item="item">
+                        `Car_brand` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCarBrand!=null and rightFuzzyCarBrand.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCarBrand"  separator="or" item="item">
+                        `Car_brand` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="carNatureList != null">
+                    `car_nature` in
+                    <foreach collection="carNatureList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="carNatureSt !=null">
+                    `car_nature` >= #{carNatureSt} and
+                </if>
+                <if test="carNatureEd!=null">
+                    `car_nature` &lt;= #{carNatureEd} and
+                </if>
+                <if test="drivingAgeList != null">
+                    `driving_age` in
+                    <foreach collection="drivingAgeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="drivingAgeSt !=null">
+                    `driving_age` >= #{drivingAgeSt} and
+                </if>
+                <if test="drivingAgeEd!=null">
+                    `driving_age` &lt;= #{drivingAgeEd} and
+                </if>
+                <if test="carTypeList != null">
+                    `car_type` in
+                    <foreach collection="carTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="carTypeSt !=null">
+                    `car_type` >= #{carTypeSt} and
+                </if>
+                <if test="carTypeEd!=null">
+                    `car_type` &lt;= #{carTypeEd} and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+            `id`,
+            `user_id`,
+            `order_id`,
+            `face_url`,
+            `left_anterior_url`,
+            `right_anterior_url`,
+            `left_url`,
+            `right_url`,
+            `back_url`,
+            `car_no`,
+            `car_brand`,
+            `car_nature`+0 as `car_nature`,
+            `driving_age`+0 as `driving_age`,
+            `car_type`+0 as `car_type`,
+            `evaluation`,
+            `create_time`,
+            `update_time`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof entity.PlusCar$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                        <if test="fetchFields.fetchFields.id==true">
+                            `id`,
+                        </if>
+                        <if test="fetchFields.fetchFields.userId==true">
+                            `user_id`,
+                        </if>
+                        <if test="fetchFields.fetchFields.orderId==true">
+                            `order_id`,
+                        </if>
+                        <if test="fetchFields.fetchFields.faceUrl==true">
+                            `face_url`,
+                        </if>
+                        <if test="fetchFields.fetchFields.leftAnteriorUrl==true">
+                            `left_anterior_url`,
+                        </if>
+                        <if test="fetchFields.fetchFields.rightAnteriorUrl==true">
+                            `right_anterior_url`,
+                        </if>
+                        <if test="fetchFields.fetchFields.leftUrl==true">
+                            `left_url`,
+                        </if>
+                        <if test="fetchFields.fetchFields.rightUrl==true">
+                            `right_url`,
+                        </if>
+                        <if test="fetchFields.fetchFields.backUrl==true">
+                            `back_url`,
+                        </if>
+                        <if test="fetchFields.fetchFields.carNo==true">
+                            `car_no`,
+                        </if>
+                        <if test="fetchFields.fetchFields.carBrand==true">
+                            `car_brand`,
+                        </if>
+                        <if test="fetchFields.fetchFields.carNature==true">
+                            `car_nature`+0 as `car_nature`,
+                        </if>
+                        <if test="fetchFields.fetchFields.drivingAge==true">
+                            `driving_age`+0 as `driving_age`,
+                        </if>
+                        <if test="fetchFields.fetchFields.carType==true">
+                            `car_type`+0 as `car_type`,
+                        </if>
+                        <if test="fetchFields.fetchFields.createTime==true">
+                            `create_time`,
+                        </if>
+                        <if test="fetchFields.fetchFields.updateTime==true">
+                            `update_time`,
+                        </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                        <if test="fetchFields.excludeFields.id==null">
+                            `id`,
+                        </if>
+                        <if test="fetchFields.excludeFields.userId==null">
+                            `user_id`,
+                        </if>
+                        <if test="fetchFields.excludeFields.orderId==null">
+                            `order_id`,
+                        </if>
+                        <if test="fetchFields.excludeFields.faceUrl==null">
+                            `face_url`,
+                        </if>
+                        <if test="fetchFields.excludeFields.leftAnteriorUrl==null">
+                            `left_anterior_url`,
+                        </if>
+                        <if test="fetchFields.excludeFields.rightAnteriorUrl==null">
+                            `right_anterior_url`,
+                        </if>
+                        <if test="fetchFields.excludeFields.leftUrl==null">
+                            `left_url`,
+                        </if>
+                        <if test="fetchFields.excludeFields.rightUrl==null">
+                            `right_url`,
+                        </if>
+                        <if test="fetchFields.excludeFields.backUrl==null">
+                            `back_url`,
+                        </if>
+                        <if test="fetchFields.excludeFields.carNo==null">
+                            `car_no`,
+                        </if>
+                        <if test="fetchFields.excludeFields.carBrand==null">
+                            `car_brand`,
+                        </if>
+                        <if test="fetchFields.excludeFields.carNature==null">
+                            `car_nature`+0 as `car_nature`,
+                        </if>
+                        <if test="fetchFields.excludeFields.drivingAge==null">
+                            `driving_age`+0 as `driving_age`,
+                        </if>
+                        <if test="fetchFields.excludeFields.carType==null">
+                            `car_type`+0 as `car_type`,
+                        </if>
+                        <if test="fetchFields.excludeFields.createTime==null">
+                            `create_time`,
+                        </if>
+                        <if test="fetchFields.excludeFields.updateTime==null">
+                            `update_time`,
+                        </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                            `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof entity.PlusCar$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+    <select id="queryCarTask" resultMap="PlusCarTaskMap">
+        SELECT o.id orderId,c.* FROM plus_car c LEFT JOIN plus_order o ON o.car_id = c.id LIMIT #{index},#{last}
+    </select>
+
+    <delete id="deleteCarById" >
+        delete  from  plus_car where id = #{id}
+    </delete>
+    
+    
+    <select id="queryServerOrderByUserId" resultType="com.domain.plus.vo.ServerOrderCarVo">
+        SELECT
+            o.id AS orderId,
+            c.car_no AS carNo
+        FROM
+            plus_order o
+        LEFT JOIN plus_car c ON c.id = o.car_id
+        WHERE o.user_id = #{userId} AND o.order_type = #{orderType}
+    </select>
+</mapper>

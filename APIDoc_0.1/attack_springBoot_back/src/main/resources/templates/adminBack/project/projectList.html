@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>项目管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/admin/project/query">项目管理</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+		<div class="tools">
+
+			<ul class="toolbar">
+				<li class="click" onclick="showPage('/admin/project/add','70%','70%','添加项目')"><span><img src="/back/images/t01.png" /></span>添加</li>
+				<!-- <li><span><img src="/back/images/t03.png" /></span>删除</li>
+				<li><span><img src="/back/images/t04.png" /></span>统计</li> -->
+			</ul>
+			<ul class="toolbar1">
+				<li class="click" onclick="location.replace(location.href);"><span><img src="/back/images/t05.png" /></span>刷新</li>
+			</ul>
+		</div>
+
+		<form action="/admin/project/query"  id="from">
+			<ul class="seachform">
+			    <li><label>项目名称</label><input placeholder="输入项目标题" value="${map.name!''}" name="name" type="text" class="scinput" /></li>
+			    
+			    
+			    <li><button type="button" class="scbtn" onclick="formSubmit(this,'from');" value="查询">查询</button></li>
+			    
+		    </ul>
+	    </form>
+		<form id="projectsForm">
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input type="checkbox" onclick="selectAll('projects');"/></th>
+					<th>项目名称</th>
+					<th>创建人</th>
+					<th>项目描述</th>
+					<th>是否删除</th>
+					<th>创建时间</th>
+					<th>修改时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td><input type="checkbox" name="projects" value="${entity.id?c}" /></td>
+				        <td>${entity.name!''}</td>
+				        <td>${entity.userName!''}</td>
+				        <td>${entity.description!''}</td>
+				        <td>
+				        	<#if entity.isDelete ==1 >
+				        		否
+				        	<#else>
+				        		<font color="red">是</font>
+				        	</#if>
+				        </td>
+				        <td>${entity.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+				        <td>${entity.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+				        <td>
+			 				<a class="tablelink" title="编辑" href="javascript:showPage('/admin/project/edit?id=${entity.id?c}','60%','60%','项目管理-编辑（${entity.title!''}）)');" >
+		 						编辑</a>  
+							<#if entity.isDelete ==1 >
+				        		 | <a class="tablelink"  href="javascript:project_del(this,'${entity.id?c}','2');" title="删除">删除</a>
+				        	<#else>
+				        		 | <a class="tablelink"  href="javascript:project_del(this,'${entity.id?c}','1');" title="恢复">恢复</a>
+				        	</#if>
+								 
+								 |<!-- <a class="tablelink" title="查看接口文档" href="javascript:showPage('../../admin/interfaceDocument/query?projectId=${entity.id!''}&projectIdPageNumber=${pageInfo.pageNumber?c}&projectIdPageSize=${pageInfo.pageSize?c}','60%','80%','接口文档（${entity.name!''}）)');" > -->
+		 						<a class="tablelink" href="/admin/interfaceDocument/query?projectName=${entity.name!''}&projectId=${entity.id?c}&projectIdPageNumber=${pageInfo.pageNumber?c}&projectIdPageSize=${pageInfo.pageSize?c}">查看接口文档</a> 
+								  
+				        </td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		</form>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(e) {
+	    $(".select1").uedSelect({
+			width : 100			  
+		});
+	});
+	
+	/*独立-删除*/
+	function project_del(obj,id,stuts){
+		layer.confirm('确认要删除吗？',function(index){
+			$.post("/admin/project/delete?from=ajax", {'ids': id ,'stuts':stuts},
+			    function(result) {
+			    	jsonState(result);
+			    },'json');
+		});
+	}
+	/* 条件删除数据 */
+	function delete_tiaojian(){
+		layer.confirm('确认要条件删除这些数据吗？',function(index){
+			$.post("/admin/project/deletetj?from=ajax",$("#from").serialize(),
+			    function(result) {
+					jsonState(result);
+			    },'json');
+		});
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body{
+				background-color: rgb(240,240,240);
+			}
+			.zry_IbigBox{
+				width: 1222px;
+				height: auto;
+				margin: 0 auto;
+				background-color: rgb(240,240,240);
+				padding-bottom: 50px;
+			}
+			.title-box{
+				font-size: 14px;
+				color: #666;
+				padding: 12px 0px 12px 20px;
+				position: relative;
+			}
+			.title-box:after{
+				content: '';
+				display: block;
+				width: 16px;
+				height: 13px;
+				background-image: url(/plugins/dataTable/js/bureaut/tourism/img/remind_icon.png);
+				position: absolute;
+				top: 16px;
+				left: 0;
+			}
+			.title-box span{
+				color: red;
+				cursor: pointer;
+			}
+			.div1{
+				width: 100%;
+				height: 182px;
+				background-color: #fff;
+				border-radius: 10px;
+				padding: 28px 20px;
+				overflow: hidden;
+				zoom: 1;
+			}
+			.min-div{
+				width: 260px;
+				height: 126px;
+				float: left;
+				margin-right: 30px;
+				position: relative;
+			}
+			.min-div>p{
+				width: 100%;
+				height: 28px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				background-color: rgba(0,0,0,.3);
+				font-size: 16px;
+				color: #fff;
+				line-height: 28px;
+				padding: 0 28px;
+			}
+			.min-div i{
+				display: block;
+				position: absolute;
+				width: 18px;
+				height: 18px;
+				background-image: url(/plugins/dataTable/js/bureaut/tourism/img/right_icon.png);
+				right: 28px;
+				top: 5px;
+			}
+			.min-div1{
+				background-color: #27a9e3;
+			}
+			.min-div2{
+				background-color: #28b779;
+			}
+			.min-div3{
+				background-color: #852b99;
+			}
+			.min-div4{
+				background-color: #ffb848;
+			}
+			.min-txtBox{
+				color: #FFFFFF;
+				position: absolute;
+				right: 22px;
+				top: 20px;
+				text-align: right;
+			}
+			.min-txtBox p:nth-child(1){
+				font-size: 34px;
+				font-weight: 500;
+			}
+			.min-txtBox p:nth-child(2){
+				font-size: 18px;
+			}
+			
+			.div2{
+				width: 100%;
+				height: auto;
+				margin-top: 20px;
+			}
+			.div2-title{
+				font-size: 16px;
+				color: #333;
+				position: relative;
+				line-height: 20px;
+				padding-left: 20px;
+				margin-bottom: 12px;
+			}
+			.title-after:after{
+				content: '';
+				width: 4px;
+				height: 20px;
+				background-color: rgb(255,84,2);
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.btn-box{
+				list-style: none;
+				overflow: hidden;
+				zoom: 1;
+			}
+			.btn-box li{
+				float: left;
+				width: 140px;
+				height: 40px;
+				border-radius: 4px;
+				text-align: center;
+				line-height: 40px;
+				margin-right: 10px;
+				color: #fff;
+				position: relative;
+				cursor: pointer;
+			}
+			.btn-box li>i{
+				display: block;
+				width: 15px;
+				height: 15px;
+				position: absolute;
+				background-image: url(/plugins/dataTable/js/bureaut/tourism/img/jia.png);
+				background-size: 100% 100%;
+				top: 12px;
+				left: 20px;
+			}
+			.btn-box li:nth-child(1){
+				background-color: #ffa45a;
+			}
+			.btn-box li:nth-child(2){
+				background-color: #32a8ee;
+			}
+			.btn-box li:nth-child(3){
+				background-color: #01e19f;
+			}
+			.btn-box li:nth-child(4){
+				background-color: #7d83fe;
+			}
+			.btn-box li:nth-last-child(1){
+				color: #ccc;
+				border: 1px dashed #ccc;
+				padding-left: 15px;
+			}
+			
+			.div3{
+				width: 100%;
+				height: auto;
+				background-color: #FFFFFF;
+				margin-top: 20px;
+			}
+			.div3-title{
+				width: 100%;
+				height: 60px;
+				border-bottom: 1px solid rgb(245,245,245);
+			}
+			.div3-p{
+				position: relative;
+				padding-left: 20px;
+				top: 18px;
+			}
+			.div3-ul{
+				width: 100%;
+				height: 142px;
+				/*padding: 20px 12px;*/
+				padding: 20px 0 20px 10px;
+				list-style: none;
+				overflow: hidden;
+				zoom: 1;
+			}
+			.div3-ul li{
+				width: 24.17%;
+				height: 100%;
+				background-color: rgb(245,245,245);
+				border-radius: 10px;
+				float: left;
+				margin-right: 10px;
+			}
+			.div3-ul p{
+				text-align: center;
+			}
+			.div3-liP1{
+				font-size: 20px;
+				color: #333333;
+				margin-top: 20px;
+			}
+			.div3-liP2{
+				font-size: 26px;
+				color: #d90000;
+				margin-top: 10px;
+				font-weight: bold;
+			}
+			.div4-content{
+				width: 100%;
+				height: 350px;
+				overflow: hidden;
+				zoom: 1;
+			}
+			.div4-content>div{
+				float: left;
+			}
+			.div4-contentL{
+				width: 190px;
+				height: 100%;
+				border-right: 1px solid rgb(245,245,245);
+				padding-top: 40px;
+			}
+			.div4-contentL p{
+				text-align: center;
+			}
+			.div4-p1{
+				font-size: 16px;
+				color: #666666;
+			}
+			.div4-p2{
+				font-size: 28px;
+				color: #333;
+				font-weight: bold;
+			}
+			.div4-p3{
+				font-size: 14px;
+				color: #999;
+				margin-top: 10px;
+				position: relative;
+			}
+			.div4-p3 i{
+				display: block;
+				width: 12px;
+				height: 14px;
+				background-image: url(/plugins/dataTable/js/bureaut/tourism/img/zengzhang_icon.png);
+				position: absolute;
+				left: 30px;
+				top: 2px;
+			}
+			.div4-p3 span{
+				color: #ff5402;
+			}
+			
+			.div4-contentR{
+				width: 1032px;
+				height: 100%;
+			}
+			.div4-head{
+				width: 100%;
+				height: 40px;
+				/*overflow: hidden;*/
+				zoom: 1;
+				line-height: 40px;
+				margin-top: 20px;
+				padding: 0 12px;
+			}
+			.div4-headL{
+				float: left;
+				color: #666;
+			}
+			.div4-headR{
+				float: right;
+				height: 40px;
+				line-height: 40px;
+				position: relative;
+			}
+			.div4-headR>span{
+				color: #666;
+				position: relative;
+				cursor: pointer;
+				padding: 0 10px;
+			}
+			.div4-date{
+				display: inline-block;
+				width: 330px;
+				height: 40px;
+				border: 1px solid rgb(240,240,240);
+				margin-left: 10px;
+				position: relative;
+				padding: 0 12px;
+			}
+			.div4-date p{
+				font-size: 16px;
+				color: #999999;
+			}
+			.div4-date i{
+				display: block;
+				width: 19px;
+				height: 20px;
+				background-image: url(/plugins/dataTable/js/bureaut/tourism/img/calendarcopy_icon.png);
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				cursor: pointer;
+			}
+			.onSelect{
+				color: #ff5402 !important;
+			}
+			.div-4-lineBox{
+				width: 100%;
+				height: 300px;
+			}

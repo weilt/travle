@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hwt_admin/hwt_admin.iml" filepath="$PROJECT_DIR$/hwt_admin/hwt_admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_admin_service/hwt_admin_service.iml" filepath="$PROJECT_DIR$/hwt_admin_service/hwt_admin_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_api/hwt_api.iml" filepath="$PROJECT_DIR$/hwt_api/hwt_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_bureau/hwt_bureau.iml" filepath="$PROJECT_DIR$/hwt_bureau/hwt_bureau.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_bureau_service/hwt_bureau_service.iml" filepath="$PROJECT_DIR$/hwt_bureau_service/hwt_bureau_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_core/hwt_core.iml" filepath="$PROJECT_DIR$/hwt_core/hwt_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_domain/hwt_domain.iml" filepath="$PROJECT_DIR$/hwt_domain/hwt_domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_information_service/hwt_information_service.iml" filepath="$PROJECT_DIR$/hwt_information_service/hwt_information_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_order_service/hwt_order_service.iml" filepath="$PROJECT_DIR$/hwt_order_service/hwt_order_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_scenic_service/hwt_scenic_service.iml" filepath="$PROJECT_DIR$/hwt_scenic_service/hwt_scenic_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_system_service/hwt_system_service.iml" filepath="$PROJECT_DIR$/hwt_system_service/hwt_system_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwt_user_service/hwt_user_service.iml" filepath="$PROJECT_DIR$/hwt_user_service/hwt_user_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hx_world_travel.iml" filepath="$PROJECT_DIR$/hx_world_travel.iml" />
+    </modules>
+  </component>
+</project>

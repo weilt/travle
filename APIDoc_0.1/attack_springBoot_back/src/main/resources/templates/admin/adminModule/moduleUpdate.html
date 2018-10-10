@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加模块信息</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息${adminModule.id?c}</span></div>
+    	<form id = "from">
+		    <input type="hidden" name="encryptionId" value="${adminModule.encryptionId!''}"/>
+		    <ul class="forminfo">
+			    <li><label>模块名称<b>*</b></label><input id="name" name="name" type="text" class="dfinput" value="${adminModule.name!}"/><i>名称请控制在5个字以内</i></li>
+			    <li><label>模块地址</label><input id="url" name="url" type="text" class="dfinput" value="${adminModule.url!}"/><i>如：admin/module</i></li>
+			    <li><label>模块排序</label>
+			    	<div class="vocation">
+					    <select class="select3" name="sort">
+					    	<#if (adminModule.sort!0) == 1><option value="1" selected="selected" >1</option>
+					    	<#else><option value="1" >1</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 2><option value="2" selected="selected" >2</option>
+					    	<#else><option value="2" >2</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 3><option value="3" selected="selected" >3</option>
+					    	<#else><option value="3" >3</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 4><option value="4" selected="selected" >4</option>
+					    	<#else><option value="4" >4</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 5><option value="5" selected="selected" >5</option>
+					    	<#else><option value="5" >5</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 6><option value="6" selected="selected" >6</option>
+					    	<#else><option value="6" >6</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 7><option value="7" selected="selected" >7</option>
+					    	<#else><option value="7" >7</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 8><option value="8" selected="selected" >8</option>
+					    	<#else><option value="8" >8</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 9><option value="9" selected="selected" >9</option>
+					    	<#else><option value="9" >9</option>
+					    	</#if>
+					    	<#if (adminModule.sort!0) == 10><option value="10" selected="selected" >10</option>
+					    	<#else><option value="10" >10</option>
+					    	</#if>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>是否隐藏</label>
+			    	<div class="vocation">
+					    <select class="select3" name="isHide">
+					    <#if (adminModule.isHide!0) == 2>
+					    	<option value="2" selected="selected">是</option>
+					    <#else>
+					    	<option value="2" >是</option>
+					    </#if>
+					    
+					    <#if (adminModule.isHide!0) == 1>
+					    	<option value="1" selected="selected">是</option>
+					    <#else>
+					    	<option value="1" >否</option>
+					    </#if>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>模块图标</label><input id="moduleImage" name="moduleImage" type="text" class="dfinput" value="${adminModule.moduleImage!}" /></li>
+			    <li><label>模块描述</label>
+			    	<textarea id="description" name="description" rows="3" cols="100" class="textinput" >${adminModule.description!}</textarea>
+			    </li>
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) submitForm('/admin/module/update','from');" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+    
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+    <script type="text/javascript">
+	    $(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+    
+		function chek(){
+			var parameter = ["name"];
+			var type = [null];
+			var msg = ["模块名称不能为空！"];
+			return validation(parameter,type,msg);
+		}
+	</script>
+</body>
+</html>

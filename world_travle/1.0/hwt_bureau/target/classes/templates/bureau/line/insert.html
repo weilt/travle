@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@themepixels">
+    <meta name="twitter:creator" content="@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bracket">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="http://themepixels.me/bracket/img/bracket-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://themepixels.me/bracket">
+    <meta property="og:title" content="Bracket">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+
+    <meta property="og:image" content="http://themepixels.me/bracket/img/bracket-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/bracket/img/bracket-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="ThemePixels">
+
+    <title>Bracket Responsive Bootstrap 4 Admin Template</title>
+
+    <!-- vendor css -->
+    <link href="/model/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/model/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="/model/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="/model/lib/jquery-switchbutton/jquery.switchButton.css" rel="stylesheet">
+    <link href="/model/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="plugins/layer/mobile/need/layer.css">
+    <!-- <link href="/model/lib/chartist/chartist.css" rel="stylesheet"> -->
+    <link href="/plugins/layui/css/layui.css" rel="stylesheet">
+    <!-- Bracket CSS -->
+    <link rel="stylesheet" href="/model/css/bracket.css">
+     <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+      <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/release.css">
+      
+      <link href="/plugins/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">  
+     <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/release.css">
+     <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/laydate.css">
+      <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=4784f9fde42266b8300aa2fe374a83fb&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+    <style type="text/css">
+    *{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.box{
+				width: 175px;
+				height: auto;
+				position: relative;
+				margin: 20px auto;
+			}
+			.box input{
+				width: 100%;
+			}
+			.box-ul{
+				display: none;
+				width: 100%;
+				list-style: none;
+			}
+			.box-ul li{
+				width: 100%;
+				height: 30px;
+				text-align: left;
+				line-height: 30px;
+				border-bottom: 1px solid #333333;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				font-size: 14px;
+				cursor: pointer;
+				transition: .3s;
+				padding: 0 10px;
+				position: relative;
+			}
+			.box-ul li>i{
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 1px solid #000000;
+				text-align: center;
+				line-height: 20px;
+				font-size: 12px;
+				position: absolute;
+				right: 12px;
+				top: 5px;
+				color: #000;
+				z-index: 10;
+				font-style: normal;
+			}
+			.box-ul li:hover{
+				color: #999;
+			}
+			.select-date{
+				position: initial;
+				width: 100%;
+				height: auto;
+				box-sizing: content-box;
+			}
+			.moneyBtn{
+				display: inline-block;
+				width: 50px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				border: 1px solid #333333;
+				cursor: pointer;
+				margin-left: 10px;
+				transition: .3s;
+			}
+			.moneyBtn:hover{
+				background-color: #999;
+			}
+			.week-list li{
+				width: 50px;
+				margin: 0;
+			}
+			.tabel-line , .tabel-ul{
+				height: 50px;
+			}
+			.tabel-li{
+				width: 50px;
+				height: 50px;
+				margin: 0;
+				line-height: 15px;
+			}
+			.adultMoney{
+				font-size: 12px;
+				color: #DC143C;
+			}
+			.childrenMoney{
+				font-size: 12px;
+				color: 	#006400;
+			}
+
+		td a{
+				color: #cd2626 !important;
+				border: 1px solid #cd2626 !important;
+			}
+			td a:hover{
+				color: #fff !important;
+				background-color: #cd2626 !important;
+			}
+			.btn-primary{
+				background-color: #cd2626 !important;
+				border: none !important;
+				outline: none !important;
+			}
+			.btn-outline-primary{
+				color: #cd2626 !important;
+			}
+			.current{
+				background-color: #cd2626 !important;
+			}
+			.br-menu-link.show-sub{
+				background-color: #cd2626 !important;
+			}
+			.br-menu-link.active{
+				background-color: #cd2626 !important;
+			}
+			.br-header , .input-group:ont(.table-wrapper div){
+				background-color: #cd2626 !important;
+			}
+			.dropdown>a , .pos-relative>i{
+				color: #fff !important;
+			}
+			#btnLeftMenu>i{
+				color: #fff !important;
+			}
+			ul>li>.br-header-right a{
+				color: #868e96 !important;
+			}
+			tr td .btn{
+				color: #fff !important;
+				/* background-color: #cd2626 !important; */
+			}
+			.br-logo{
+				background-color: #cd2626 !important;
+				
+			}
+			.br-logo > a{
+				color: #fff !important;
+			}
+			.odd div{
+				color: #cd2626 !important;
+			}
+			.br-header{
+				background-color: #cd2626 !important;
+			}
+			.br-section-wrapper .btn{
+				/* background-color: #cd2626 !important; */
+				color: #fff !important;
+				border: none;
+			}
+			td .btn-outline-primary div{
+				color: #cd2626;
+			}
+			td .btn-outline-primary:hover div{
+				color: #fff !important;
+			}
+			.br-logo{
+				border-right:none !important;
+			}
+			.zry_box{
+				display: table;
+				width: 100%;
+				height: 40px;
+				padding: 5px;
+				background-color: #fff;
+				margin-bottom: 15px;
+			}
+			.zry_box div{
+				width: auto;
+				height: 100%;
+				border: 1px solid #ccc;
+				text-align: center;
+				padding: 0 15px;
+				line-height: 40px;
+				border-radius: 5px;
+				float: left;
+				margin-left: 20px;
+				box-sizing:borbox;
+			}
+			.zry_box div:nth-child(1){
+				margin-left: 0px;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.bigbox{
+				display: table;
+				width: 625px;
+				height: auto;
+				box-sizing: border-box;
+				border: 1px solid #000;
+				margin: 100px auto;
+				padding: 10px 0 10px 5px;
+			}
+			.bigbox>div{
+				
+				width: 200px;
+				height: 200px;
+				float: left;
+				margin: 0 5px 5px 0;
+				position: relative;
+			}
+			.line{
+				width: 100%;
+				height:20px;
+				position: absolute;
+				bottom: -3px;
+			}
+			.line p{
+				width: 50%;
+				float: left;
+				text-align: center;
+				cursor: pointer;
+				transition: .3s;
+			}
+			.line p:hover{
+				color: #ccc;
+			}
+			.bigbox .addimgbtn{
+				background-color: #ccc;
+			}
+			.addimgbtn h1{
+				text-align: center;
+				margin-top: 80px;
+				cursor: pointer;
+			}
+			.imgbox{
+				width: 100%;
+				height: 180px;
+				background-color: #A52A2A;
+			}
+    </style>
+  </head>
+  
+ <body>
+ <form id = "form">                                                                                                                                                                                                           
+  <div class="br-pagebody">                                                                                                                                                                                                
+																																																		                   
+	<div class="br-section-wrapper">                                                                                                                                                                                       
+		<!--内容-->                                                                                                                                                                                                        
+		 <div class="row">                                                                                                                                                                                                 
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>线路名称:</p>                                                                          
+			<div class="col-lg mg-l-10">                                                                                                                                                                                   
+				<input class="form-control wd-50%" id="line_name" name="line_name"  type="text" value="">                                                                                                                  
+			</div><!-- col -->                                                                                                                                                                                             
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+		                                                                                                                                                                                                                   
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>行程天数:</p>                                                                   
+			<div class="col-lg mg-l-10"> 
+				<input class="form-control wd-250" id="day_num" name="day_num"  type="text" value="">     
+			</div>                                                                                                                                                                                             
+			<p  style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>是否上架:</p>                                                                    
+			<div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                                                                                   
+				<label class="rdiobox ">                                                                                                                                                                                   
+					<input type="radio" name="is_hide" value="0" checked><span>是</span>                                                                                                                                   
+				</label>                                                                                                                                                                                                   
+			</div>                                                                                                                                                                                                         
+			<div class="col-lg-1 mg-t-10 m-l-0">                                                                                                                                                                           
+				<label class="rdiobox">                                                                                                                                                                                    
+					<input type="radio" name="is_hide" value="1"><span>否</span>                                                                                                                                           
+				</label>                                                                                                                                                                                                   
+			</div>                                                                                                                                                                                                         
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>线路分类:</p>                                                                          
+			<div class="col-lg mg-l-10">                                                                                                                                                                                   
+				<select class="form-control form-control wd-250 select2 " id="line_type" name="line_type" data-placeholder="sex" tabindex="-1" aria-hidden="true">                                                                             
+					<#if map.line_types??>
+						<#list map.line_types as line_type>
+							<option value="${line_type.attribute_id?c}">"${line_type.attribute_name!''}</option>
+						</#list>
+					</#if>
+				</select>                                                                                                                                                                                                  
+			</div><!-- col -->                                                                                                                                                                                             
+		</div>                                                                                                                                                                                                             
+		                                                                                                                                                                                                                   
+		 <div class="row mg-t-20">                                                                                                                                                                                         
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>服务保障:</p>                                                                              
+				<div class="col-lg mg-l-10">   
+				        <#if map.line_services??>
+						<#list map.line_services as line_service>
+							<label class="ckbox"><input type="checkbox" name="line_service"  value="${line_service.attribute_id?c}"/><span>${line_service.attribute_name!''}</span></label>
+						</#list>
+					</#if>                                                                                                                                                                  
+				</div><!-- col -->                                                                                                                                                                                             
+		</div>                                                                                                                                                                                                             
+		<input class="form-control wd-50%" id="line_services" name="line_services"  type="hidden" value="">                                                                                                                
+		                                                                                                                                                                                                                   
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>价格设置:</p>                                                                              
+				<div class="col-lg mg-l-10 box">      
+<div style="width: 350px; margin: 0 auto;">                                                        
+	<div class="select-date">                                                                        
+		<div class="select-date-header">                                                             
+			<ul class="heade-ul">                                                                    
+				<li class="header-item header-item-one">                                             
+					<select name="" id="yearList"></select>                                          
+				</li>                                                                                
+				<li class="header-item header-item-two" onselectstart="return false">                
+					<select name="" id="monthList"></select>                                         
+				</li>                                                                                
+				<li class="header-item header-item-three" onselectstart="return false" >             
+					<span class="reback">回到今天</span>                                             
+				</li>                                                                                
+			</ul>                                                                                    
+		</div>                                                                                       
+		<div class="select-date-body">                                                               
+			<ul class="week-list">                                                                   
+				<li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>        
+			</ul>                                                                                    
+			<ul class="day-tabel"></ul>                                                              
+		</div>                                                                                       
+	</div>                                                                                           
+	                                                                                                 
+	<p>成人：<input type="number" id="money1">元<span class="moneyBtn" id="moneyBtn1">确定</span></p>
+	<p>儿童：<input type="number" id="money2">元<span class="moneyBtn" id="moneyBtn2">确定</span></p>
+</div>                                                                                             
+				</div><!-- col -->                                                                                                                                                                                             
+		</div>      
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>关联景点:</p>                                                                              
+			<div class="col-lg mg-l-10 box">                                                                                                                                                                                   
+				<input class="form-control wd-50%" id="monitorInput" name="monitorInput" type="text" value=""><ul class="box-ul"></ul>                                                                                                                         
+			</div><!-- col -->                                                                                                                                                                                             
+		</div>                                                                                                                                                                                                             
+		<input class="form-control wd-50%" id="scenics" name="scenics"  type="hidden" value="">                                                                                                                            
+	   <div class="row mg-t-20">                                                                                                                                                                                           
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>上传图片:</p>                                                                              
+				<div class="col-lg mg-l-10">   
+				                      <div id="bigbox" class="bigbox">
+				                     	 <div  class="addimgbtn picFileUpload"><h1>添加</h1></div>
+				                      </div>                                                                                                                                                          
+				</div><!-- col -->                                                                                                                                                                                             
+		</div>                                                                                                                                                                                                             
+		<input class="form-control wd-50%" id="line_images" name="line_images"  type="hidden" value="">                                                                                                                    
+		<input class="form-control wd-50%" id="line_cover" name="line_cover"  type="hidden" value="">                                                                                                                    
+		<input class="form-control wd-50%" id="scenics_info" name="scenics_info"  type="hidden" value="">                                                                                                                    
+	                                                                                                                                                                                                                       
+		                                                                                                                                                                                                                   
+		<input class="form-control wd-50%" id="line_price" name="line_price"  type="hidden" value="">                                                                                                                      
+		                                                                                                                                                                                                                   
+	   <div class="row mg-t-20">                                                                                                                                                                                           
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>图文详情:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_info" style="width:100%;height:400%;visibility:hidden;" name="line_info"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>交通信息:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_traffic" style="width:100%;height:400%;visibility:hidden;" name="line_traffic"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>酒店住宿:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_hotel" style="width:100%;height:400%;visibility:hidden;" name="line_hotel"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>行程介绍:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_trip" style="width:100%;height:400%;visibility:hidden;" name="line_trip"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>餐饮:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_restaurant" style="width:100%;height:400%;visibility:hidden;" name="line_restaurant"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>费用包含:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_cost_info" style="width:100%;height:400%;visibility:hidden;" name="line_cost_info"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>费用不含:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_notcost_info" style="width:100%;height:400%;visibility:hidden;" name="line_notcost_info"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>自费项目:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_self_expense" style="width:100%;height:400%;visibility:hidden;" name="line_self_expense"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>预定须知:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_predetermined_instructions" style="width:100%;height:400%;visibility:hidden;" name="line_predetermined_instructions"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>保险说明:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_insurance_description" style="width:100%;height:400%;visibility:hidden;" name="line_insurance_description"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>取消说明:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_cancel_description" style="width:100%;height:400%;visibility:hidden;" name="line_cancel_description"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<p style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>安全提醒:</p>                                                                          
+				<div class="col-lg mg-l-10">                                                                                                                                                                               
+					<textarea class="form-control wd-50%" id="line_security_reminding" style="width:100%;height:400%;visibility:hidden;" name="line_security_reminding"  type="text" value=""> </textarea>                                                                             
+				</div><!-- col -->                                                                                                                                                                                         
+		</div>                                                                                                                                                                                                             
+		<div class="row mg-t-20">                                                                                                                                                                                          
+			<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                                  
+			<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="insert_line(\bureau/line/insert\,\form\)">确定</div>                                                             
+		</div>                                                                                                                                                                                                             
+																																																		                   
+	</div><!-- br-section-wrapper -->                                                                                                                                                                                      
+  </div><!-- br-pagebody -->                                                                                                                                                                                               
+   </form>  
+<script src="/model/lib/jquery/jquery.js"></script>
+    <script src="/model/lib/popper.js/popper.js"></script>
+    <script src="/model/lib/bootstrap/bootstrap.js"></script>
+    <script src="/model/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="/model/lib/moment/moment.js"></script>
+    <script src="/model/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="/model/lib/jquery-switchbutton/jquery.switchButton.js"></script>
+    <script src="/model/lib/peity/jquery.peity.js"></script>
+
+    <script src="/plugins/layer/layer.js"></script>
+    <script src="/plugins/layui/layui.js"></script>
+
+
+    <!--<script src="/model/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>-->
+    <!--<script src="/model/lib/d3/d3.js"></script>-->
+
+
+    <script src="/model/js/bracket.js"></script>
+    <!--<script src="/model/js/ResizeSensor.js"></script>-->
+    <script src="/model/js/dashboard.js"></script>
+     <script src="/model/lib/jquery/jquery.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/line/ro.dataTable.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/line/demo.dataTable.js"></script>
+      <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+      
+      <script type="text/javascript" src="/plugins/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/plugins/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/kindeditor-base.js"></script>
+      <script src="/public/base.js"></script>
+      <script src="/public/kkk.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/line/release.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/tourism/js/laydate.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    window.location = function (){
+    	createEditor_init();
+    	var dom = null;
+    }
+  //添加————提交
+	function insert_line(url,form){
+		image_handle(form);
+		service_handle(form);
+		form_conmit();
+		if (validation(["line_name","day_num","line_images"],[],[])){
+			
+			insert(url,form);
+		}else{
+			return
+		}
+		
+	}
+  
+	var line_info;
+	var line_traffic; 
+	var line_hotel; 
+	var line_trip; 
+	var line_restaurant; 
+	var line_cost_info; 
+	var line_notcost_info; 
+	var line_self_expense; 
+	var line_predetermined_instructions; 
+	var line_insurance_description; 
+	var line_cancel_description; 
+	var line_security_reminding; 
+	//富文本加载
+	function createEditor_init(){
+		
+		//页面初始化完毕后执行此方法
+		$(function() {
+			  //初始化类目选择和图片上传器  
+	        E3.init({fun:function(node){  
+	        }});  
+			//创建富文本编辑器
+			line_info = E3.createEditor("#form [id=line_info]");
+			line_traffic = E3.createEditor("#form [id=line_traffic]");
+			line_hotel = E3.createEditor("#form [id=line_hotel]");
+			line_trip = E3.createEditor("#form [id=line_trip]");
+			line_restaurant = E3.createEditor("#form [id=line_restaurant]");
+			line_cost_info = E3.createEditor("#form [id=line_cost_info]");
+			line_notcost_info = E3.createEditor("#form [id=line_notcost_info]");
+			line_self_expense = E3.createEditor("#form [id=line_self_expense]");
+			line_predetermined_instructions = E3.createEditor("#form [id=line_predetermined_instructions]");
+			line_insurance_description = E3.createEditor("#form [id=line_insurance_description]");
+			line_cancel_description = E3.createEditor("#form [id=line_cancel_description]");
+			line_security_reminding = E3.createEditor("#form [id=line_security_reminding]");
+			
+		}); 
+	}
+	//表单提交富文本处理
+	function form_conmit(){
+		line_info.sync();
+		line_traffic.sync();
+		line_hotel.sync();
+		line_trip.sync();
+		line_restaurant.sync();
+		line_cost_info.sync();
+		line_notcost_info.sync();
+		line_self_expense.sync();
+		line_predetermined_instructions.sync();
+		line_insurance_description.sync();
+		line_cancel_description.sync();
+		line_security_reminding.sync();
+	}
+	
+	
+	//图片处理
+	function image_handle(form){
+		var imgs = $("#bigbox").find("img")
+		var image = "";
+		for(var i = 0; i<imgs.length; i++){
+			var img = imgs[i];
+			
+			if (i == 0){
+				$("input[name = 'line_cover']").val($(img).attr("src"));
+			}
+			if (i!=imgs.length-1){
+				image+=$(img).attr("src")+","
+			}else{
+				image+=$(img).attr("src")
+			}
+			
+		}
+			$("input[name = 'line_images']").val(image);
+	}
+	//服务处理
+	function service_handle(form){
+		var services = $("#"+form).find("input[name = 'line_service']")
+		var service = '';
+		for(var i = 0; i<services.length; i++){
+			service += $(services[i]).val();
+			
+		}
+		$("input[name = 'line_services']").val(service);
+	}
+	
+	
+	$(window).ready(function(){
+		var getData = null;
+		var dataIndex = 0;
+		var dom = null;
+		var toDay = null;
+		$(".select-date").css("display" , 'block')
+		intDom()
+//		console.log($('.adultMoney'))
+	})
+	
+	function getToDay(day){
+		return toDay = day
+	}
+	
+	function intDom(){			//		初始化dom
+		for(let i=0; i<$('.tabel-li').length; i++){
+			if($('.tabel-li').eq(i).text() == toDay){
+				return dom = $('.tabel-li').eq(i)
+			}
+		}
+	}
+	
+	function getDom(d){		//	获取dom
+		console.log(d)
+		return dom = d
+	}
+	
+	$('#moneyBtn1').click(function(){		//		添加成人价格
+		var money = $('#money1').val()
+		if(dom.children('.adultMoney').length == 0){
+			dom.append(`<p class=adultMoney>${money}</p>`)
+		}else{
+			$('.adultMoney').text(money)
+		}
+	})
+	
+	$('#moneyBtn2').click(function(){		//		添加儿童价格
+		var money = $('#money2').val()
+		if(dom.children('.childrenMoney').length == 0){
+			dom.append(`<p class=childrenMoney>${money}</p>`)
+		}else{
+			$('.childrenMoney').text(money)
+		}
+	})
+	
+	function getSelectDate(result){		//这里获取选择的日期
+		console.log('result' , result);
+	}
+	
+	$('#monitorInput').bind('input propertychange' , function(e){//		获取数据
+		$.ajax({
+			type:"POST",
+			url:"http://192.168.1.193:8083/bureau/line/scenic_spot",
+			async:true,
+			data: {scenic: '三庆园'},
+			success: function(data){
+				console.log(data)
+				if(data.code == 200){
+					getData = data.data
+					$('.box-ul').empty()
+					for(let i=0; i<data.data.length; i++){
+						$('.box-ul').append(`<li class=getIndex data-index=${i}>${data.data[i].name}<i>X</i></li>`)
+					}
+					$('.box-ul').css('display' , 'block')
+				}
+			},
+		});
+	})
+	
+	$(document).on('click' , '.box-ul li>i' , function(e){	//	删除
+		e.stopPropagation()
+		var parentIndex = $(this).parent().index();
+		var index = $(this).parent().attr('data-index');
+		var name =getData[index].name
+		var nameID = getData[index].name_id
+		$('.box-ul li').eq(parentIndex).remove()
+		showNameOrId(name , nameID)
+	})
+	
+	$(document).on('click' , '.getIndex' , function(e){	//	点击li	
+		var index = $(this).attr('data-index');
+		var name =getData[index].name
+		var nameID = getData[index].name_id
+		$('#monitorInput').val(name)
+		$('.box-ul').css('display' , 'none')
+		showNameOrId(name , nameID)
+	})
+	
+	function showNameOrId(name , id){
+		console.log('name' , name)
+		console.log('nameID' , id)
+	}
+    </script>
+  </body>
+</html>
+ 

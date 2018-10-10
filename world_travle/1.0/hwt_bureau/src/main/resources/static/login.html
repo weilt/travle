@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Login Form Template</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="/plugins/login/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/plugins/login/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/plugins/login/assets/css/form-elements.css">
+        <link rel="stylesheet" href="/plugins/login/assets/css/style.css">
+              <link rel="stylesheet" href="plugins/layer/mobile/need/layer.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/plugins/login/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/plugins/login/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/plugins/login/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/plugins/login/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/plugins/login/assets/ico/apple-touch-icon-57-precomposed.png">
+        
+              <link href="/plugins/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">  
+              
+              <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+                <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/release.css">
+      
+      <link href="/plugins/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">  
+      <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/release.css">
+      <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=4784f9fde42266b8300aa2fe374a83fb&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+	<style type="text/css">
+	.zry-imgBox{
+				width: 100%;
+				height: auto;
+			}
+			.zry-imgBoxTatle{
+				font-size: 16px;
+				font-weight: bold;
+			}
+			.zry-imgUl{
+				width: 525px;
+				height: auto;
+				position: relative;
+				/*overflow: hidden;
+				zoom: 1;*/
+				margin: 0 auto;
+			}
+			.zry-imgUl div{
+				width: 120px;
+				height: 140px;
+				float: left;
+				margin-left: 80px;	
+				margin-bottom: 30px;
+			}
+			.zry-imgUl i img{
+				width: 100%;
+				height: 100%;
+			}
+			
+			.zry-imgUl div:nth-child(1) , .zry-imgUl div:nth-child(4){
+				margin-left: 0;
+			}
+			.zry-imgUl i{
+				display: block;
+				width: 100%;
+				height: 108px;
+				background-color: rgb(203,203,203);
+				border: 1px solid rgb(95,95,95);
+			}
+			.zry-imgUl p{
+				margin: 0;
+				text-align: center;
+				margin-top: 10px;
+				font-size: 14px;
+			}
+			.zry-imgTitle{
+				position: absolute;
+				left: -130px;
+			}
+		webkit-appearance: button;
+		
+	</style>
+	
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>后台管理</strong> </h1>
+                            <div class="description">
+                            	<p>
+	                            	This is a free responsive login form made with Bootstrap. 
+	                            	Download it on <a href="#"><strong>AZMIND</strong></a>, customize and use it as you like!
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>登陆</h3>
+                            		<p>Enter your username and password to log on:</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="" id="form" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text"  name="legal_person_phome" placeholder="用户名" class="form-username form-control" id="legal_person_phome">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only"  for="form-password">Password</label>
+			                        	<input type="password"  name="password"  placeholder="密码" class="form-password form-control" id="password">
+			                        </div>
+			                        <div style="background: #ccc;" type="submit" class="btn" onclick="login('/back/login','form')">登录</div>
+			                        <div style="background: #ccc;" type="submit" class="btn" onclick="aplly()">申请</div>
+			                   
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 social-login">
+                        	<h3>...or login with:</h3>
+                        	<div class="social-login-buttons">
+	                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
+	                        		<i class="fa fa-facebook"></i> Facebook
+	                        	</a>
+	                        	<a class="btn btn-link-1 btn-link-1-twitter" href="#">
+	                        		<i class="fa fa-twitter"></i> Twitter
+	                        	</a>
+	                        	<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+	                        		<i class="fa fa-google-plus"></i> Google Plus
+	                        	</a>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
+
+
+        <!-- Javascript -->
+        <script src="/plugins/login/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="/plugins/login/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/plugins/login/assets/js/jquery.backstretch.min.js"></script>
+        <script src="/plugins/login/assets/js/scripts.js"></script>
+        <script src="/plugins/layer/layer.js"></script>
+            <script src="/public/base.js"></script>
+            <script src="/public/kkk.js"></script>
+                  <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+                    
+                    
+                  <script type="text/javascript" src="/plugins/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/plugins/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/kindeditor-base.js"></script>
+        <script type="text/javascript">
+        
+        function chek(){
+			var parameter = ["legal_person_phome","password","password"];
+			var type = [null,null,'Min'];
+			var msg = ["账号不能为空！","密码不能为空！","6"];
+			return validation(parameter,type,msg);
+		}
+        	function login(url,form){
+        		if (!chek()){
+        			return;
+        		}
+        		$.ajax({
+        	        url : url,
+        	        type : "POST",
+        	        data : $("#"+form).serialize(),
+        	        success : function (res) {
+        	            if (res.code =="200"){
+        	            	window.location.href = "/main"
+        	            }else{
+        	            	if(res.msg!=null){
+        	            		layer.alert(res.msg,{icon: 6});
+        	            	}else{
+        	            		layer.alert('调试错误',{icon: 6});
+        	            	}
+        	            }
+        	        }
+        	    })
+        	}
+        
+        	//申请
+        	function aplly(){
+        		var html_ = "";
+        		html_  += '<form id="insert_bureau">                                                                                                                                                                                                                '
+        		+'      <div class="br-pagebody">                                                                                                                                                                                                 '
+        		+'                                                                                                                                                                                                                                '
+        		+'        <div class="br-section-wrapper">                                                                                                                                                                                        '
+        		+'            <!--内容-->                                                                                                                                                                                                         '
+        		+'   			<p class="zry-imgBoxTatle">基本信息</p>                                                                                                                                                                           '
+        		+'            <div class="row">                                                                                                                                                                                                   '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>企业名称:</p>                                                                   '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="company_name" name="company_name" placeholder="请输入企业名称" type="text">                                                                                          '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>工商营业执照注册号码:</p>                                                       '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="license_no" name="license_no"  placeholder="请输入工商营业执照注册号码" type="text">                                                                                 '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>法人姓名:</p>                                                                   '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="legal_person" name="legal_person"  placeholder="请输入法人姓名" type="text">                                                                                         '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>企业法人手机号:</p>                                                             '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="legal_person_phome" name="legal_person_phome" placeholder="请输入企业法人手机号" type="text">                                                                        '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>旅行社银行账户:</p>                                                             '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="bureau_bank_account" name="bureau_bank_account"  placeholder="请输入旅行社银行账户" type="text">                                                                     '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>旅行社银行名称:</p>                                                             '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="bank_name" name="bank_name" placeholder="请输入旅行社银行名称" type="text">                                                                                          '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'             <div class="row mg-t-20">                                                                                                                                                                                          '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>注册资本（ 万元）:</p>                                                                   '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-250" id="registered_capital" name="registered_capital"  type="text">                                                                                                     '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'                <p cstyle="width: 79.12px;"  lass="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>组织机构代码证号:</p>                                                           '
+        		+'                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                                                                  '
+        		+'                    <input class="form-control wd-250" id="org_no" name="org_no" placeholder="请输入组织机构代码证号" type="text">                                                                                              '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>质量保证金（ 万元）:</p>                                                                 '
+        		+'                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                                                                  '
+        		+'                    <input class="form-control wd-250" id="quality_deposit" name="quality_deposit" type="text">                                                                                                                 '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>成立时间:</p>                                                                   '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-250" id = "company_time" name = "company_time_str" placeholder="请输入成立时间" type="text" onclick="WdatePicker({maxDate:\'#F{$dp.$D(\\\'licen_validity_begin\\\');}\'})">                                                                                                                                '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600" ><span class="tx-danger">*</span>营业执照开始时间:</p>                                                          '
+        		+'                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                                                                  '
+        		+'                    <input class="form-control wd-250" type="text" id="licen_validity_begin" name="licen_validity_begin_str" placeholder="营业执照开始时间" onclick="WdatePicker({maxDate:\'#F{$dp.$D(\\\'licen_validity_end\\\');}\'})"> '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>营业执照结束时间:</p>                                                           '
+        		+'                <div class="col-lg mg-t-10 mg-lg-t-0 mg-l-10">                                                                                                                                                                  '
+        		+'                    <input class="form-control wd-250" type="text" id="licen_validity_end" name="licen_validity_end_str"  placeholder="营业执照结束时间" onclick="WdatePicker({minDate:\'#F{$dp.$D(\\\'licen_validity_begin\\\');}\'})">  '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                                                                                                                                                                                                                                '
+        		+'                <p  style="width: 79.12px;" class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>是否一般纳税人 :</p>                                                    '
+        		+'                <div class="col-lg-0 mg-t-10 mg-l-20 wd-60">                                                                                                                                                                    '
+        		+'                    <label class="rdiobox ">                                                                                                                                                                                    '
+        		+'                        <input type="radio" name="taxpayer_state" value="0" checked><span>否</span>                                                                                                                             '
+        		+'                    </label>                                                                                                                                                                                                    '
+        		+'                </div>                                                                                                                                                                                                          '
+        		+'                <div class="col-lg-1 mg-t-10 m-l-0">                                                                                                                                                                            '
+        		+'                    <label class="rdiobox">                                                                                                                                                                                     '
+        		+'                        <input type="radio" name="taxpayer_state" value="1"><span>是</span>                                                                                                                                     '
+        		+'                    </label>                                                                                                                                                                                                    '
+        		+'                </div>                                                                                                                                                                                                          '
+        		+'                <!-- col -->                                                                                                                                                                                                    '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row">                                                                                                                                                                                                   '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>旅行社总部地址:</p>                                                             '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="address" name="address" placeholder="请输入旅行社总部地址" type="text">                                                                                              '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>旅行社简介:</p>                                                                 '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <textarea class="form-control"   style = "height: 100px;" name="description"  id="description"></textarea>                                                                                                                                                                                 '
+        		+'                                                                                                                                                                                                                     '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'                                                                                                                                                                                                                                '
+        		+'            <p class="zry-imgBoxTatle">联系人信息</p>                                                                                                                                                                           '
+        		+'            <div class="row">                                                                                                                                                                                                   '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>联系人姓名:</p>                                                                 '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="contacts_name" name="contacts_name"  placeholder="联系人姓名" type="text">                                                                                           '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>联系人手机号:</p>                                                               '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="contacts_phome" name="contacts_phome" placeholder="联系人手机号" type="text">                                                                                        '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'                <p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>联系人邮箱:</p>                                                                 '
+        		+'                <div class="col-lg mg-l-10">                                                                                                                                                                                    '
+        		+'                    <input class="form-control wd-50%" id="contacts_emil" name="contacts_emil" placeholder="联系人邮箱" type="text">                                                                                            '
+        		+'                </div><!-- col -->                                                                                                                                                                                              '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'                                                                                                                                                                                                                                '
+        		
+        		+'            <p class="zry-imgBoxTatle">企业基本资质上传</p>                                                                                                                                                                           '
+        		+'            <div class="row mg-t-20">                                                                                                                                                                                           '
+        		+'			<p style="width: 79.12px;"  class="tx-11 tx-uppercase tx-spacing-2 mg-b-10 mg-t-10 tx-gray-600"><span class="tx-danger">*</span>证书及有效凭证</p>                                                                                                                                                                       '
+        		+'			<div class="zry-imgBox">                                                                                                                                                                                              '
+        		+'			<div class="zry-imgUl">                                                                                                                                                                                               '
+        		+'				<div >                                                                                                                                                                                                            '
+        		+'					<input type="hidden" id="license_url" name="license_url"  />                                                                                                                                                  '
+        		+'					<i class="onePicUpload"></i>                                                                                                                                                                                                       '
+        		+'					<p>营业执照</p>                                                                                                                                                                                               '
+        		+'				</div>                                                                                                                                                                                                            '
+        		+'				<div>                                                                                                                                                                                                             '
+        		+'					<input type="hidden" id="busine_licen_url" name="busine_licen_url"  />                                                                                                                                        '
+        		+'					<i class="onePicUpload"></i>                                                                                                                                                                                                       '
+        		+'					<p>经营许可证</p>                                                                                                                                                                                             '
+        		+'				</div>                                                                                                                                                                                                            '
+        		+'				<div>                                                                                                                                                                                                             '
+        		+'					<input type="hidden" id="duty_policy_url" name="duty_policy_url"  />                                                                                                                                          '
+        		+'					<i class="onePicUpload"></i>                                                                                                                                                                                                       '
+        		+'					<p>责任保险单</p>                                                                                                                                                                                             '
+        		+'				</div>                                                                                                                                                                                                            '
+        		+'				<div>                                                                                                                                                                                                             '
+        		+'					<input type="hidden" id="identity_positive" name="identity_positive"  />                                                                                                                                      '
+        		+'					<i class="onePicUpload"></i>                                                                                                                                                                                                       '
+        		+'					<p>法人身份证（正面）</p>                                                                                                                                                                                     '
+        		+'				</div>                                                                                                                                                                                                            '
+        		+'				<div>                                                                                                                                                                                                             '
+        		+'					<input type="hidden" id="identity_negative" name="identity_negative"  />                                                                                                                                      '
+        		+'					<i class="onePicUpload"></i>                                                                                                                                                                                                       '
+        		+'					<p>法人身份证（反面）</p>                                                                                                                                                                                     '
+        		+'				</div>                                                                                                                                                                                                            '
+        		+'			</div>                                                                                                                                                                                                                '
+        		+'		</div>                                                                                                                                                                                                                    '
+        		+'            </div>                                                                                                                                                                                                              '
+        		+'			<div class="row mg-t-20">                                                                                                                                                                                          '
+				+'				<div class="btn btn-secondary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15" onclick="cancelFormLayer()">取消</div>                                                                  '
+				+'				<div class="btn btn-outline-primary btn-oblong bd-2 pd-x-30 pd-y-10 tx-uppercase tx-bold tx-spacing-1 tx-15 mg-l-10" onclick="insert_bureau(\'/bureau_enter\',\'insert_bureau\')">确定</div>                                                             '
+				+'			</div>      '
+        		+'        </div><!-- br-section-wrapper -->                                                                                                                                                                                       '
+        		+'      </div><!-- br-pagebody -->                                                                                                                                                                                                '
+        		+'       </form>                                                                                                                                                                                                                  '
+        		
+        		fromEject(html_,"入驻申请",'80%','80%');
+        		
+        		E3.initOnePicUpload();
+        	}
+        	
+        	function insert_bureau(url,form){
+        		insert(url,form);
+        	}
+        </script>
+        
+        <!--[if lt IE 10]>
+        <script src="/plugins/login/assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

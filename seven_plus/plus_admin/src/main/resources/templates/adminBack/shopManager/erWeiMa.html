@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>二维码信息</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body onLoad="init('${id!}')">
+    <div class="formbody">
+    <div class="formtitle"><span>二维码信息</span></div>
+    	<p class="col-lg-6 col-md-6" style="text-align: left;" >
+	        <a id="download" download="qrcode.jpg"></a>
+	        <a id="saveQrCode" style="cursor: pointer;">下载二维码</a>
+	    </p>
+	    <div id="qrcode"></div>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+    
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+    <script src="/back/js/jquery.qrcode.js"></script>
+    <script type="text/javascript"> 
+    //创建二维码
+    function createQRCode(id, url, width, height, src){
+        $('#'+id).empty();
+        jQuery('#'+id).qrcode({
+            render: 'canvas',
+            text: url,
+            width : width,              //二维码的宽度  
+            height : height,            //二维码的高度  
+            imgWidth : width/4,         //图片宽
+            imgHeight : height/4,       //图片高
+            src: src            //图片中央的二维码
+        });
+    }
+    function init(id) {
+        createQRCode("qrcode", id, 160, 160, "img/logo.png");
+    }
+    $(document).ready(function(e) {
+		$(".select3").uedSelect({
+			width : 100
+		});
+	});
+    
+    $('#saveQrCode').click(function(){
+        var canvas = $('#qrcode').find("canvas").get(0);
+        try {//解决IE转base64时缓存不足，canvas转blob下载
+            var blob = canvas.msToBlob();
+            navigator.msSaveBlob(blob, 'qrcode.jpg');
+        } catch (e) {//如果为其他浏览器，使用base64转码下载
+            var url = canvas.toDataURL('image/jpeg');
+            $("#download").attr('href', url).get(0).click();
+        }
+        return false;
+    });
+	function chek(){
+		var parameter = ["explain"];
+		var type = [null];
+		var msg = ["说明不能为空！"];
+		return validation(parameter,type,msg);
+	}
+	</script>
+</body>
+</html>

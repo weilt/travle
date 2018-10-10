@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户管理</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="/admin/user/query">用户管理</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+		<div class="tools">
+			<ul class="toolbar">
+				<li class="click" onclick="showPage('/admin/user/insert','70%','70%','添加用户')"><span><img src="/back/images/t01.png" /></span>添加</li>
+			</ul>
+		</div>
+		<form action="/admin/user/list"  id="from">
+			<ul class="seachform">
+			    <li><label>用户名</label><input placeholder="手机号" value="${phone!''}" name="phone" type="text" class="scinput" /></li>
+			    <li><label>洗车次数</label><input placeholder="洗车次数" id="washCount" value="${washCount!''}" name="washCount" type="text" class="scinput" /></li>
+			    <li><label>划痕次数</label><input placeholder="划痕次数" id="nickCount" value="${nickCount!''}" name="nickCount" type="text" class="scinput" /></li>
+
+			    <li><button type="button" class="scbtn" onclick="check(this,'from');" value="查询">查询</button></li>
+		    </ul>
+	    </form>
+		<form id="userId">
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input type="checkbox" onclick="selectAll('userId');"/></th>
+					<th >手机号</th>
+					<th >地区</th>
+					<th >洗车次数</th>
+					<th >划痕次数</th>
+					<th >车牌号</th>
+					<th >操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list list as entity >
+					<tr>
+						<td><input type="checkbox" name="userId" value="${entity.id!''}" /></td>
+				        <td>
+							<#if (phoneSee!0) == 1>
+								${entity.phone!'暂没绑定'}
+							<#else > ${(entity.phone!'18888888888')?replace(((entity.phone!'18888888888')?substring(3,7)),'****')}
+							</#if>
+						</td>
+				        <td>
+							${entity.city!''}
+						</td>
+				        <td>
+				        	<#if (entity.isWash!0) &gt; 0>
+								${entity.washCount!0}
+							<#else> 暂未办理
+				        	</#if>
+				        </td>
+				        <td>
+							<#if (entity.isNick!0) &gt; 0>
+							${entity.nickCount!0}
+							<#else> 暂未办理
+							</#if>
+						</td>
+						<td>
+							${entity.carNo!'暂无'}
+						</td>
+				        <td>
+			 				<a class="tablelink" href="javascript:showPage('/admin/user/info?id=${entity.id?c}','70%','70%','')" title="详情">详情</a>|
+			 				<a class="tablelink" href="javascript:showPage('/admin/user/setBrokerage?id=${entity.id?c}','70%','70%','')" title="设置佣金">设置佣金</a>
+				        </td>
+					</tr>
+				</#list>
+			</tbody>
+		</table>
+		</form>
+		${pageInfo!}
+	</div>
+	
+	<script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+		    $(".select1").uedSelect({
+				width : 100			  
+			});
+		});
+        function check(obj,id) {
+            var washCount = $("#washCount").val();
+            var nickCount = $("#nickCount").val();
+            if (washCount != '' && !Digit(washCount)) {
+                layer.msg("请输入数字！");
+                $("#washCount").focus();
+                return ;
+            }
+
+            if (nickCount != '' && !Digit(nickCount)) {
+                layer.msg("请输入数字！");
+                $("#nickCount").focus();
+                return ;
+            }
+            formSubmit(obj,id);
+        }
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name ="viewport" content ="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/plugin/line/css/swiper.css"/>
+		<script src="/plugin/line/js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				background-size: 100% 100%;
+			}
+			.main{
+				padding-bottom: 50px;
+			}
+			.swiper-container{
+				width: 100%;
+				height: auto;
+			}
+			.swiper-container img{
+				width: 100%;
+				height: auto;
+			}
+			.headBox{
+				width: 100%;
+				height: auto;
+				padding: .2rem .32rem .2rem;
+			}
+			.money{
+				color: #ff5000;
+				font-size: .48rem;
+			}
+			.title{
+				font-size: .4rem;
+				font-weight: bold;
+			}
+			.bg{
+				width: 100%;
+				height: .24rem;
+				background-color: rgb(242,243,244);
+			}
+			.serverGuarantee{
+				display: flex;
+				width: 100%;
+				height: auto;
+				padding: .2rem .32rem .2rem;
+			}
+			.serverGuaranteeL i{
+				display: block;
+				width: 0.5rem;
+				height: 0.5rem;
+				background-image: url(/plugin/line/img/baozhang.png);
+				margin: 0 auto;
+			}
+			.serverGuaranteeL span{
+				display: block;
+    			min-width: 52px;
+				font-size: 13px;
+				color: #999;
+				margin-top: 1px;
+			}
+			.serverGuaranteeR{
+				margin-left: .32rem;
+				font-size: 13px;
+				color: rgb(255,142,2);
+				padding-top: 0.2rem;
+			}
+			.serverGuaranteeR p{
+				
+			}
+			.serverGuaranteeR span{
+				display: inline-block;
+				margin: 0 0.1rem 0.1rem 0;
+			}
+			.tab{
+				overflow: hidden;
+				zoom: 1;
+				width: 100%;
+				height: 45px;
+				background-color: #fff;
+				z-index: 999;
+			}
+			.tab div{
+				-webkit-box-flex: 1;
+			    -webkit-flex: 1;
+			    -moz-box-flex: 1;
+			    -moz-flex: 1;
+			    -ms-flex: 1;
+			    flex: 1;
+			    height: 45px;
+			    width: 50%;
+			    float: left;
+			}
+			.tabL div , .tabR div{
+				width: 100%;
+				height: 100%;
+				line-height: 45px;
+				text-align: center;
+				font-weight: 500;
+				color: #3d3d3d;
+    			font-size: .37333rem;
+			}
+			.onBorder{
+				border-bottom: 3px solid #ffc900;
+			}
+			.tab-index{
+				display: none;
+				width: 100%;
+				height: auto;
+				/*padding: .2rem .32rem .2rem;*/
+			}
+			.introduce{
+				
+			}
+			.details{
+				
+			}
+			.bottomBox{
+				display: flex;
+				width: 100%;
+				height: 50px;
+				background-color: #FFFFFF;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+			}
+			.bottomBox p{
+				color: rgb(127,127,127);
+				font-size: 0.25rem;
+				text-align: center;
+				margin-top: 5px;
+			}
+			.bottomBox i{
+				display: block;
+				margin: 0 auto;
+			}
+			.bottomBox>div{
+				height: 100%;
+			}
+			.collection{
+				flex: 1;
+				padding-top: 2px;
+				border-top: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+			}
+			.consultation{
+				flex: 1;
+				border-top: 1px solid #ccc;
+				padding-top: 2px;
+			}
+			.reservation{
+				flex: 3;
+				background-color: rgb(99,186,136);
+				text-align: center;
+				line-height: 50px;
+				color: #FFFFFF;
+				font-size: 20px;
+			}
+			.collection i{
+				width: 20px;
+				height: 20px;
+				background-image: url(/plugin/line/img/shoucang.png);
+			}
+			.consultation i{
+				width: 20px;
+				height: 20px;
+				background-image: url(/plugin/line/img/zixun.png);
+			}
+			
+			.content-head{
+				font-size: .3rem;
+				font-weight: bold;
+				color: #333;
+				margin-bottom: 10px;
+			}
+			.content-main , .content-commodity{
+				width: 100%;
+				height: auto;
+				padding: .2rem .32rem .2rem;
+			}
+			.content-main img , .content-commodity img{
+				width: 100%;
+				height: auto;
+			}
+			.swiper-pagination-bullet-active{
+				width: 16px !important;
+				border-radius: 10px;
+				background-color: rgb(99,186,136);
+			}
+			.public-style{
+				margin-bottom: 10px;
+			}
+			.public-style span{
+				font-size: 0.27rem;
+			}
+			.position_tab{
+				width: 100%;
+				position: fixed;
+				top: 0;
+				overflow: hidden;
+				zoom: 1;
+				background-color: #FFFFFF;
+				opacity: 0;
+			}
+			.position_tab .tabBtn{
+				float: left;
+				width: 50%;
+			}
+			
+			.commentBox{
+				width: 100%;
+				height: auto;
+				padding: .2rem .32rem .2rem;
+			}
+			.content-head_dispal{
+				display: flex;
+			}
+			.fraction{
+				color: rgb(57,57,57);
+				font-size: 0.25rem;
+			}
+			.commnet-name{
+				color: rgb(57,57,57);
+				font-size: 0.25rem;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+			.comment-label{
+				width: 100%;
+				height: auto;
+				overflow: hidden;
+				zoom: 1;
+				padding: 5px 0;
+			}
+			.comment-label p{
+				width: 50%;
+				height: 25px;
+				float: left;
+				font-size: 0.25rem;
+				margin-bottom: 15px;
+			}
+			.comment-label span{
+				width: auto;
+				height: auto;
+				border: 1px solid rgb(255,142,2);
+				color: rgb(255,142,2);
+				margin-left: 10px;
+				padding: 3px 5px;
+				border-radius: 5px;
+			}
+			.comment-txt{
+				width: 100%;
+				height: auto;
+				color: rgb(103,103,103);
+				font-size: 0.25rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display:-webkit-box; 
+				-webkit-box-orient:vertical; 
+				-webkit-line-clamp:3;
+			}
+			.comment-btnBox{
+				display: flex;
+				width: 100%;
+				height: auto;
+				padding-top: 20px;
+				justify-content: center;
+			}
+			.comment-btnBox div{
+				height: auto;
+				padding: 10px 15px;
+				font-size: 0.25rem;
+				color: rgb(49,190,255);
+				text-align: center;
+				border-radius: 10px;
+				border: 1px solid rgb(49,190,255);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			    </div>
+			    <!-- 如果需要分页器 -->
+			    <div class="swiper-pagination"></div>
+			</div>
+			<div class="headBox">
+				<p class="title"></p>
+				<p class="money"></p>
+			</div>
+			<div class="bg"></div>
+			<div class="serverGuarantee">
+				<div class="serverGuaranteeL">
+					<i></i>
+					<span>服务保障</span>
+				</div>
+				<div class="serverGuaranteeR">
+					<p></p>
+				</div>
+			</div>
+			<div class="bg"></div>
+			
+			<div class="commentBox">
+				<div class="content-head content-head_dispal">
+					<span>用户点评</span>
+					<div style="flex: 1;"></div>
+					<span class="fraction"></span>
+				</div>
+				
+				<div class="commnet-name"></div>
+				<div class="comment-label">
+					<p>描述相符<span class="co-match_score"></span></p>
+					<p>导游服务<span class="co-service_score"></span></p>
+					<p>行程安排<span class="co-trip_score"></span></p>
+				</div>
+				
+				<div class="comment-txt">
+					
+				</div>
+				
+				<div class="comment-btnBox">
+					<div id="getComment">查看全部点评</div><!-- onclick="window.zry.getComment()"-->
+				</div>
+			</div>
+			
+			<div class="bg"></div>
+			<div class="tab">
+				<div class="tabL tabBtn onBorder" data-index = "0">
+					<div class="">图文介绍</div>
+				</div>
+				<div class="tabR tabBtn" data-index = "1">
+					<div>商品详情</div>
+				</div>
+			</div>
+			<div class="bg"></div>
+			<div class="introduce tab-index" data-index = "0">
+				<div class="content-main">
+					<div class="content-head">图文介绍</div>
+				</div>
+				
+				<div class="bg"></div>
+				<div class="content-commodity">
+					<div class="content-head">商品详情</div>
+					<div class="content-traffic public-style">
+						<div class="content-head">交通信息</div>
+					</div>
+					<div class="content-trip public-style">
+						<div class="content-head">行程介绍</div>
+					</div>
+					<div class="content-hotel public-style">
+						<div class="content-head">酒店信息</div>
+					</div>
+					<div class="content-Restaurant public-style">
+						<div class="content-head">餐饮</div>
+					</div>
+					<div class="content-cost_info public-style">
+						<div class="content-head">费用包含</div>
+					</div>
+					<div class="content-notcost_info public-style">
+						<div class="content-head">费用不含</div>
+					</div>
+					<div class="content-self_expense public-style">
+						<div class="content-head">自费项目</div>
+					</div>
+					<div class="content-predetermined_instructions public-style">
+						<div class="content-head">预定须知</div>
+					</div>
+					<div class="content-insurance_description public-style">
+						<div class="content-head">保险说明</div>
+					</div>
+					<div class="content-line_cancel_description public-style">
+						<div class="content-head">取消政策</div>
+					</div>
+					<div class="content-security_reminding public-style">
+						<div class="content-head">安全提醒</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="position_tab">
+			<div class="tabL tabBtn onBorder" data-index = "0">
+				<div class="">图文介绍</div>
+			</div>
+			<div class="tabR tabBtn" data-index = "1">
+				<div>商品详情</div>
+			</div>
+		</div>
+		
+		<!--<div class="bottomBox">
+			<div class="collection">
+				<i></i>
+				<p>收藏</p>
+			</div>
+			<div class="consultation">
+				<i></i>
+				<p>咨询</p>
+			</div>
+			<div class="reservation">立即预定</div>
+		</div>-->
+		
+		<script src="/public/js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/plugin/line/js/swiper.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var tabIndex = 0;
+			var comments = null;
+			var getComments = document.getElementById('getComment')
+			$(window).ready(function(){
+				$('.introduce').css('display' , 'block');
+				$.ajax({
+					type:"post",
+					url:"http://192.168.1.193:8086/bureau/line/details",
+					async:true,
+					data: {line_id:GetQueryString('id')},
+					success: function(d){
+						console.log(d)
+						if(d.code == 200){
+							comments = d.data
+							$('.content-main').append(d.data.hwTravelLineVo.line_info)//	图文介绍
+							$('.title').text(d.data.hwTravelLineVo.line_name)//	线路名称
+							setServer(d.data.line_services)//	设置服务
+							setBanner(d.data.hwTravelLineVo.line_images)//	设置banner
+							setPrice(JSON.parse(d.data.hwTravelLineVo.line_price))//	价格
+							setTraffic(d.data.hwTravelLineVo.line_traffic)//	交通信息
+							setTrip(d.data.hwTravelLineVo.line_trip)	//	行程信息
+							setHotel(d.data.hwTravelLineVo.line_hotel)	//	酒店住宿
+							setRestaurant(d.data.hwTravelLineVo.line_restaurant)//	餐饮
+							setCost_info(d.data.hwTravelLineVo.line_cost_info)//		费用包含
+							setNotcost_info(d.data.hwTravelLineVo.line_notcost_info)//		费用包含
+							setSelf_expense(d.data.hwTravelLineVo.line_self_expense)//		自费项目
+							setPredetermined_instructions(d.data.hwTravelLineVo.line_predetermined_instructions)//预定须知
+							setInsurance_description(d.data.hwTravelLineVo.line_insurance_description)//保险说明
+							setLine_cancel_description(d.data.hwTravelLineVo.line_cancel_description)//取消说明
+							setSecurity_reminding(d.data.hwTravelLineVo.line_security_reminding)//安全说明
+							setComment(d.data.hwTravelLineVo.score_num,d.data.hwTravelLineVo.score)//评论
+							showComment(d.data.hwOrderCommentVo)
+							soonReserve(d.data.hwTravelLineVo.line_id)
+						}
+					}
+				});
+				
+				$(window).scroll(function(){		//	滚动事件
+					var top = $('.tab').offset().top - $(window).scrollTop()
+					if(top <= 0){
+						$('.position_tab').css({'z-index':'11' , 'opacity':'1'})
+						$('.tab').css('opacity' , '0')
+				}else{
+						$('.position_tab').css({'z-index':'-11' , 'opacity':'0'})
+						$('.tab').css('opacity' , '1')
+					}
+				})
+			})
+			
+			getComments.onclick = function(){
+				console.log(str())
+				window.zry.getComment(str())
+			}
+			 
+			function GetQueryString(name) {		//	获取地址参数
+			    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			    var r = window.location.search.substr(1).match(reg);
+			    if(r!=null)return  unescape(r[2]); return null;
+			}
+			
+			function soonReserve(s){
+//				console.log(s)
+			}
+			
+			
+			function str(d){	//	获取评论
+				var d = comments
+				var service_score = d.hwTravelLineVo.service_score
+				var score_num = d.hwTravelLineVo.score_num	//	点评次数
+				var trip_score  = d.hwTravelLineVo.trip_score	//	行程总分
+				var service_score = d.hwTravelLineVo.service_score	//	服务总分
+				var match_score  = d.hwTravelLineVo.match_score	//	服务总分
+				var score = d.hwTravelLineVo.score	//	服务总分
+				var str = {
+					'score': score,
+					'score_num': score_num,
+					'trip_score': trip_score,
+					'service_score': service_score,
+					'match_score': match_score
+				}
+//				console.log(JSON.stringify(str))
+				return JSON.stringify(str)
+			}
+			
+			function showComment(o){
+				var arr = ['trip_score' , 'service_score' , 'match_score'];
+				for(let i=0; i<arr.length; i++){
+					if(o[arr[i]] == 5){
+						o[arr[i]] = '很满意'
+					}else if(o[arr[i]] == 4){
+						o[arr[i]] = '满意'
+					}else if(o[arr[i]] == 3){
+						o[arr[i]] = '一般'
+					}else if(o[arr[i]] == 2){
+						o[arr[i]] = '不满意'
+					}else if(o[arr[i]] == 1){
+						o[arr[i]] = '很差'
+					}
+				}
+
+				$('.commnet-name').text(o.comment_user.nickname)//	评论人
+				$('.co-match_score').text(o.trip_score)
+				$('.co-service_score').text(o.service_score)
+				$('.co-trip_score').text(o.match_score)
+				$('.comment-txt').text(o.comment_dec)
+			}
+			
+			function setComment(num , score){
+				$('.fraction').text(`${num}分 | ${score}条评论`)
+			}
+			
+			function setSecurity_reminding(t){	//	安全说明
+				showDom($('.content-security_reminding') , t)
+			}
+			
+			function setLine_cancel_description(t){		//	取消说明
+				showDom($('.content-line_cancel_description') , t)
+			}
+			
+			function setInsurance_description(t){	//	保险说明
+				showDom($('.content-insurance_description') , t)
+			}
+			
+			function setPredetermined_instructions(t){	//	预定须知
+				showDom($('.content-predetermined_instructions') , t)
+			}
+			
+			function setSelf_expense(t){
+				showDom($('.content-self_expense') , t)
+			}
+			
+			function setNotcost_info(t){	//	费用不含 
+				showDom($('.content-notcost_info') , t)
+			}
+			
+			function setCost_info(t){	//	费用包含
+				showDom($('.content-cost_info') , t)
+			}
+			
+			function setRestaurant(t){		//		餐饮
+				showDom($('.content-Restaurant') , t)
+			}
+			
+			function setHotel(t){	//	酒店住宿 
+				showDom($('.content-hotel') , t)
+			}
+			
+			function setTrip(t){	//	行程信息
+				showDom($('.content-trip') , t)
+			}
+			
+			function setTraffic(t){		//	交通信息
+				showDom($('.content-traffic') , t)
+			}
+			
+			function showDom(dom , data){//	判断字段非空显示
+				if(data == ''){
+					dom.css('display' , 'none')
+				}else{
+					dom.append(data)
+				}
+			}
+			
+			function setServer(s){		//	设置服务
+				for(let i=0; i<s.length; i++){
+					$('.serverGuaranteeR p').append(`<span>${s[i].attribute_name}<span/>`)
+				}
+			}
+			
+			function setPrice(m){	//	价格
+				var money = []
+				var adultPrice = []
+				var childPrice = []
+				for(let i in m){
+					money.push(JSON.parse(m[i]))
+				}
+				for(let i=0; i<money.length; i++){
+					adultPrice.push(money[i].adultPrice)
+					childPrice.push(money[i].childPrice)
+				}
+				var maxadultPrice = Math.max.apply(null , adultPrice)
+				var minadultPrice = Math.min.apply(null , adultPrice)
+				var maxchildPrice = Math.max.apply(null , childPrice)
+				var minchildPrice = Math.min.apply(null , childPrice)
+				if(maxadultPrice == minadultPrice){
+					$('.money').text(`￥${maxadultPrice}`)
+				}else{
+					$('.money').text(`${minadultPrice}-${maxadultPrice}`)
+				}
+			}
+			
+			function setBanner(b){		//		设置banner
+				var banner = new Array();
+				banner = b.split(',')
+				for(let i=0; i<banner.length; i++){
+					$('.swiper-wrapper').append(`<div class='swiper-slide'><img src=${banner[i]}></div>`)
+				}
+				var mySwiper = new Swiper ('.swiper-container', {
+				    direction: 'horizontal',
+				    loop: true,
+				    pagination: {	//		分页器
+				      el: '.swiper-pagination',
+				    },
+				})
+			}
+			
+			$('.tabL').click(function(){
+				var content_head = $(".content-head").offset().top - 50;
+				$("html,body").animate({scrollTop: content_head}, 500);
+			})
+			
+			$('.tabR').click(function(){
+				var content_commodity = $(".content-commodity").offset().top - 50;
+				$("html,body").animate({scrollTop: content_commodity}, 500);
+			})
+			
+			$('.tabBtn').click(function(e){	//	tab
+				tabIndex = e.currentTarget.attributes[1].value
+				console.log('tabIndex' , tabIndex)
+				$('.tabBtn').removeClass('onBorder')
+				if(tabIndex == 0){
+					$('.tabL').addClass('onBorder')
+				}else if(tabIndex == 1){
+					$('.tabR').addClass('onBorder')
+				}
+//				if(index == 0){
+//					$('.introduce').css('display' , 'block');
+//					$('.details').css('display' , 'none');
+//				}else if(index == 1){
+//					$('.introduce').css('display' , 'none');
+//					$('.details').css('display' , 'block');
+//				}
+				
+			})
+		</script>
+	</body>
+</html>

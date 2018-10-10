@@ -1,0 +1,228 @@
+
+  <head>
+      <link href="/model/lib/highlightjs/github.css" rel="stylesheet">
+      <link href="/model/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+      <link href="/model/lib/select2/css/select2.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="/model/css/bracket.css">
+      <link rel="stylesheet" href="/plugins/My97DatePicker/skin/WdatePicker.css">
+      <link rel="stylesheet" href="/plugins/dataTable/js/bureaut/tourism/css/myaccount.css">
+      
+      <link href="/plugins/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">  
+      
+      <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=4784f9fde42266b8300aa2fe374a83fb&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+      
+      <style type="text/css">
+			.zry_box{
+				display: table;
+				width: 100%;
+				height: 40px;
+				padding: 5px;
+				background-color: #fff;
+				margin-bottom: 15px;
+			}
+			.zry_box div{
+				width: auto;
+				height: 100%;
+				border: 1px solid #ccc;
+				text-align: center;
+				padding: 0 15px;
+				line-height: 40px;
+				border-radius: 5px;
+				float: left;
+				margin-left: 20px;
+				box-sizing:borbox;
+			}
+			.zry_box div:nth-child(1){
+				margin-left: 0px;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.bigbox{
+				display: table;
+				width: 625px;
+				height: auto;
+				box-sizing: border-box;
+				border: 1px solid #000;
+				margin: 100px auto;
+				padding: 10px 0 10px 5px;
+			}
+			.bigbox>div{
+				
+				width: 200px;
+				height: 200px;
+				float: left;
+				margin: 0 5px 5px 0;
+				position: relative;
+			}
+			.line{
+				width: 100%;
+				height:20px;
+				position: absolute;
+				bottom: -3px;
+			}
+			.line p{
+				width: 50%;
+				float: left;
+				text-align: center;
+				cursor: pointer;
+				transition: .3s;
+			}
+			.line p:hover{
+				color: #ccc;
+			}
+			.bigbox .addimgbtn{
+				background-color: #ccc;
+			}
+			.addimgbtn h1{
+				text-align: center;
+				margin-top: 80px;
+				cursor: pointer;
+			}
+			.imgbox{
+				width: 100%;
+				height: 180px;
+				background-color: #A52A2A;
+			}
+		</style>
+  </head>
+
+  <body>
+<!--请求路径-->
+  <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="/main">首页</a>
+      </nav>
+  </div>
+
+<!--页面标题-->
+<!-- <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">景点管理</h4>
+    <p class="mg-b-0">景点管理</p>
+</div> -->
+
+<div class="m-box">
+			<div class="m-head">我的账户</div>
+			
+			<div class="m-content">
+				<div class="m-contentL">
+					<div>
+						<div>销售总额</div>
+						<div>${map.hxUserWallet.sale_payment?c}</div>
+					</div>
+					<div>
+						<div>账户余额</div>
+						<div>${map.hxUserWallet.balance?c}</div>
+					</div>
+					<div>
+						<div>冻结金额</div>
+						<div>${map.hxUserWallet.is_not_can?c}</div>
+					</div>
+					<div>
+						<div>可提取金额</div>
+						<div>${map.hxUserWallet.is_can?c}</div>
+					</div>
+					<div>
+						<div>违约金额</div>
+						<div>${map.hxUserWallet.bad_payment?c}</div>
+					</div>
+					<div>
+						<div>已提现金额</div>
+						<div>${map.hxUserWallet.get_payment?c}</div>
+					</div>
+				</div>
+				
+				<div class="m-contentR">
+					<p>
+						<span>提现：</span>
+						<input type="text" name = "forward" id="forward"/>
+					</p>
+					
+					<p>
+						<span>对公账户：</span>
+						<input type="text" disabled="disabled" value="${map.hxBureauBankdAccount.bureau_bank_account!''}"/>
+					</p>
+					<p>
+						<span>开户行：</span>
+						<input type="text"  disabled="disabled" value="${map.hxBureauBankdAccount.bank_name}"/>
+					</p>
+					<p>
+						<span>户名：</span>
+						<input type="text" disabled="disabled" value="${map.hxBureauBankdAccount.legal_person!''}"/>
+					</p>
+					
+					<div class="m-btn" onclick="put_forward()">发起提现</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+  <!--<div class="table-wrapper">-->
+      <!--<table id="dynamic-table" class="table display responsive nowrap">-->
+          <!--<thead>-->
+          <!--<tr>-->
+              <!--<th class="wd-5p"><label class='pos-rel'><input type='checkbox' class='ace'> <span class='lbl'></span></label></th>-->
+              <!--<th class="wd-10p">ID</th>-->
+              <!--<th class="wd-15p">名称</th>-->
+              <!--<th class="wd-20p">性别</th>-->
+              <!--<th class="wd-15p">时间</th>-->
+              <!--<th class="wd-10p">TOKEN</th>-->
+              <!--<th class="wd-25p">操作</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+
+          <!--</tbody>-->
+      <!--</table>-->
+  <!--</div>&lt;!&ndash; table-wrapper &ndash;&gt;-->
+  
+
+
+
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+          <div>Attentively and carefully made by ThemePixels.</div>
+        </div>
+        <div class="footer-right d-flex align-items-center">
+          <span class="tx-uppercase mg-r-10">Share:</span>
+          <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+          <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+        </div>
+      </footer>
+      <script src="/model/lib/jquery/jquery.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/log/ro.dataTable.js"></script>
+      <script src="/plugins/dataTable/js/bureaut/log/demo.dataTable.js"></script>
+      <script src="/plugins/My97DatePicker/WdatePicker.js"></script>
+      
+      <script type="text/javascript" src="/plugins/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/plugins/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/plugins/kindeditor/kindeditor-base.js"></script>
+	<script type="text/javascript" src="/plugins/dataTable/js/bureaut/wallet/wallet.js"></script>
+      <script src="/public/base.js"></script>
+      <script src="/public/kkk.js"></script>
+      
+      
+
+<!--<script src="/model/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>-->
+<!--<script src="/model/lib/d3/d3.js"></script>-->
+
+    <script>
+    
+	
+    	function name() {
+			
+		}
+    	
+    	//
+    	
+    
+    	
+    </script>
+   
+  </body>

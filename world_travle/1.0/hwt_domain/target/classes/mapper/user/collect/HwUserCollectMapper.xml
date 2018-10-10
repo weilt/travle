@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.collect.HwUserCollectMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.collect.HwUserCollect">
+    <id column="collect_id" jdbcType="BIGINT" property="collect_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="name_id" jdbcType="BIGINT" property="name_id" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    collect_id, user_id, type, name_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hw_user_collect
+    where collect_id = #{collect_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_user_collect
+    where collect_id = #{collect_id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.collect.HwUserCollect">
+    insert into hw_user_collect (collect_id, user_id, type, 
+      name_id, create_time)
+    values (#{collect_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{name_id,jdbcType=BIGINT}, #{create_time,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.collect.HwUserCollect">
+    insert into hw_user_collect
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collect_id != null">
+        collect_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name_id != null">
+        name_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collect_id != null">
+        #{collect_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name_id != null">
+        #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.collect.HwUserCollect">
+    update hw_user_collect
+    <set>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name_id != null">
+        name_id = #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where collect_id = #{collect_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.collect.HwUserCollect">
+    update hw_user_collect
+    set user_id = #{user_id,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      name_id = #{name_id,jdbcType=BIGINT},
+      create_time = #{create_time,jdbcType=BIGINT}
+    where collect_id = #{collect_id,jdbcType=BIGINT}
+  </update>
+  
+  <delete id="deleteIds" parameterType="java.lang.Long">
+        delete from hw_user_collect where user_id = #{user_id} and collect_id in
+        <foreach item="collect_id" collection="collect_ids" open="(" separator="," close=")">
+            #{collect_id}
+        </foreach>
+    </delete>
+    
+    <!-- 返回主键添加  insertBackId-->
+    <insert id="insertBackId" parameterType="com.hwt.domain.entity.user.collect.HwUserCollect" useGeneratedKeys="true" keyProperty="collect_id">
+    insert into hw_user_collect
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collect_id != null">
+        collect_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name_id != null">
+        name_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collect_id != null">
+        #{collect_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name_id != null">
+        #{name_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

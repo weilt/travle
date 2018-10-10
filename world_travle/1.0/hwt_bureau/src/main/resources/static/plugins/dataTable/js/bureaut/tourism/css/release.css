@@ -1,0 +1,93 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.box{
+	width: 175px;
+	height: auto;
+	position: relative;
+	margin: 20px auto;
+}
+.box input{
+	width: 100%;
+}
+.box-ul{
+	display: none;
+	width: 100%;
+	list-style: none;
+}
+.box-ul li{
+	width: 100%;
+	height: 30px;
+	text-align: left;
+	line-height: 30px;
+	border-bottom: 1px solid #333333;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 14px;
+	cursor: pointer;
+	transition: .3s;
+	padding: 0 10px;
+	position: relative;
+}
+.box-ul li>i{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 1px solid #000000;
+	text-align: center;
+	line-height: 20px;
+	font-size: 12px;
+	position: absolute;
+	right: 12px;
+	top: 5px;
+	color: #000;
+	z-index: 10;
+	font-style: normal;
+}
+.box-ul li:hover{
+	color: #999;
+}
+.select-date{
+	position: initial;
+	width: 100%;
+	height: auto;
+	box-sizing: content-box;
+}
+.moneyBtn{
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border: 1px solid #333333;
+	cursor: pointer;
+	margin-left: 10px;
+	transition: .3s;
+}
+.moneyBtn:hover{
+	background-color: #999;
+}
+.week-list li{
+	width: 50px;
+	margin: 0;
+}
+.tabel-line , .tabel-ul{
+	height: 50px;
+}
+.tabel-li{
+	width: 50px;
+	height: 50px;
+	margin: 0;
+	line-height: 15px;
+}
+.adultMoney{
+	font-size: 12px;
+	color: #DC143C;
+}
+.childrenMoney{
+	font-size: 12px;
+	color: 	#006400;
+}

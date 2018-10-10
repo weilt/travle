@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HxOrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.order.HxOrderInfo">
+    <result column="order_id" jdbcType="BIGINT" property="order_id" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unit_price" />
+    <result column="travel_line_id" jdbcType="BIGINT" property="travel_line_id" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="dec" jdbcType="VARCHAR" property="dec" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    order_id, unit_price, travel_line_id, image, dec
+  </sql>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.order.HxOrderInfo">
+    insert into hx_order_info (order_id, unit_price, travel_line_id, 
+      image, `dec`)
+    values (#{order_id,jdbcType=BIGINT}, #{unit_price,jdbcType=DECIMAL}, #{travel_line_id,jdbcType=BIGINT}, 
+      #{image,jdbcType=VARCHAR}, #{dec,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.order.HxOrderInfo">
+    insert into hx_order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        order_id,
+      </if>
+      <if test="unit_price != null">
+        unit_price,
+      </if>
+      <if test="travel_line_id != null">
+        travel_line_id,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="dec != null">
+        `dec`
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order_id != null">
+        #{order_id,jdbcType=BIGINT},
+      </if>
+      <if test="unit_price != null">
+        #{unit_price,jdbcType=DECIMAL},
+      </if>
+      <if test="travel_line_id != null">
+        #{travel_line_id,jdbcType=BIGINT},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="dec != null">
+        #{dec,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+</mapper>

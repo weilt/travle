@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_admin_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_bureau" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_bureau_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_information_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_order_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_scenic_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_system_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hwt_user_service" charset="UTF-8" />
+  </component>
+</project>

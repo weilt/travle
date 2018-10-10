@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HwOrderUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.order.HwOrderUser">
+    <id column="order_user_id" jdbcType="BIGINT" property="order_user_id" />
+    <result column="order_id" jdbcType="BIGINT" property="order_id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="identity_type" jdbcType="VARCHAR" property="identity_type" />
+    <result column="identity_num" jdbcType="VARCHAR" property="identity_num" />
+ 
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+ 
+   <sql id="Base_Column_List">
+    order_user_id, order_id, name, identity_type, identity_num,  create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    insurance_dec
+  </sql>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_order_user
+    where order_user_id = #{order_user_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.order.HwOrderUser">
+    insert into hw_order_user (order_user_id, order_id, name, 
+      identity_type, identity_num, create_time 
+      )
+    values (#{order_user_id,jdbcType=BIGINT}, #{order_id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{identity_type,jdbcType=VARCHAR}, #{identity_num,jdbcType=VARCHAR}, #{create_time,jdbcType=BIGINT} 
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.order.HwOrderUser">
+    insert into hw_order_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order_user_id != null">
+        order_user_id,
+      </if>
+      <if test="order_id != null">
+        order_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="identity_type != null">
+        identity_type,
+      </if>
+      <if test="identity_num != null">
+        identity_num,
+      </if>
+     
+      <if test="create_time != null">
+        create_time
+      </if>
+   
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order_user_id != null">
+        #{order_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="order_id != null">
+        #{order_id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_type != null">
+        #{identity_type,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_num != null">
+        #{identity_num,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT}
+      </if>
+      
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.order.HwOrderUser">
+    update hw_order_user
+    <set>
+      <if test="order_id != null">
+        order_id = #{order_id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_type != null">
+        identity_type = #{identity_type,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_num != null">
+        identity_num = #{identity_num,jdbcType=VARCHAR},
+      </if>
+     
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT}
+      </if>
+      
+    </set>
+    where order_user_id = #{order_user_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.order.HwOrderUser">
+    update hw_order_user
+    set order_id = #{order_id,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      identity_type = #{identity_type,jdbcType=VARCHAR},
+      identity_num = #{identity_num,jdbcType=VARCHAR},
+    
+      create_time = #{create_time,jdbcType=BIGINT}
+    where order_user_id = #{order_user_id,jdbcType=BIGINT}
+  </update>
+  <!-- insertSelectiveList多个添加 -->
+  <insert id="insertSelectiveList" parameterType="java.util.List">
+  
+	insert into hw_order_user(order_user_id,order_id,name,identity_type,identity_num, create_time)
+	values
+	<foreach collection="list" item="item" index="index" separator="," > 
+        (#{item.order_user_id},#{item.order_id},#{item.name},#{item.identity_type},#{item.identity_num},#{item.create_time}) 
+    </foreach> 
+</insert>
+
+	<!--   返回主键添加-->
+ <insert id="insertSelectiveBcakId" useGeneratedKeys="true" keyProperty="order_user_id" parameterType="com.hwt.domain.entity.order.HwOrder">
+  insert into hw_order_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="order_user_id != null">
+        order_user_id,
+      </if>
+      <if test="order_id != null">
+        order_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="identity_type != null">
+        identity_type,
+      </if>
+      <if test="identity_num != null">
+        identity_num,
+      </if>
+     
+      <if test="create_time != null">
+        create_time
+      </if>
+   
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="order_user_id != null">
+        #{order_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="order_id != null">
+        #{order_id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_type != null">
+        #{identity_type,jdbcType=VARCHAR},
+      </if>
+      <if test="identity_num != null">
+        #{identity_num,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT}
+      </if>
+      
+    </trim>
+ </insert>
+ 
+ <!-- 一对多查询关联  -->
+     <resultMap type="com.hwt.domain.entity.order.vo.HwOrderUserVo" id="orderUserVo">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+          <id column="order_user_id" jdbcType="BIGINT" property="order_user_id" />
+		    <result column="order_id" jdbcType="BIGINT" property="order_id" />
+		    <result column="name" jdbcType="VARCHAR" property="name" />
+		    <result column="identity_type" jdbcType="VARCHAR" property="identity_type" />
+		    <result column="identity_num" jdbcType="VARCHAR" property="identity_num" />
+		 
+		    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+         <!-- 用collection标签 ,也是实体类属性要对应数据库字段-->
+         <collection property="hwOrderUserInsubranceVos" ofType="insubranceVos" column="order_user_id"
+         	select="query_user_insubrance_list_by_order_id">
+         </collection>    
+     </resultMap>
+     <resultMap type="com.hwt.domain.entity.order.vo.HwOrderUserInsubranceVo" id="insubranceVos">
+         <!-- 实体类属性对应数据库的主键字段，不然主键会查不到 -->
+         <id property="order_user_id" column="order_user_id"/>
+           
+     </resultMap>
+     
+      <!-- 通过订单id查询用户信息以及保险信息 -->
+     <select id="query_list_by_order_id" parameterType="java.lang.Long" resultMap="orderUserVo">
+         select * from hw_order_user where order_id = #{order_id}
+     </select>
+     
+     <!-- 通过id查询用户保险信息 -->
+     <select id="query_user_insubrance_list_by_order_id" parameterType="java.lang.Long" resultMap="insubranceVos">
+         select * from hw_order_user_insubrance where order_user_id = #{order_user_id}
+     </select>
+</mapper>

@@ -1,0 +1,69 @@
+.m-box{
+				width: 950px;
+				height: auto;
+				border: 1px solid #000000;
+				margin: 50px auto;
+			}
+			.m-head{
+				width: 100%;
+				height: 45px;
+				background-color: rgb(244,244,244);
+				padding: 0 12px;
+				box-sizing: border-box;
+				line-height: 45px;
+				border-bottom: 1px solid rgb(244,244,244);
+			}
+			.m-content{
+				width: 100%;
+				height: auto;
+				overflow: hidden;
+				zoom: 1;
+				padding: 75px 50px 75px 50px;
+			}
+			.m-content>div{
+				float: left;
+			}
+			.m-contentL{
+				width: 317px;
+				height: auto;
+				border: 1px solid #000000;
+			}
+			.m-contentL>div{
+				width: 100%;
+				height: 60px;
+				text-align: center;
+				line-height: 60px;
+				overflow: hidden;
+				zoom: 1;
+				border-bottom: 1px solid #000000;
+			}
+			.m-contentL>div:last-child(1){
+				border-bottom: none;
+			}
+			.m-contentL>div>div{
+				float: left;
+				width: 50%;
+				border-left: 1px solid #000000;
+				box-sizing: border-box;
+			}
+			.m-contentL>div>div:nth-child(1){
+				border: none;
+			}
+			.m-contentR{
+				width: 440px;
+				margin-left: 50px;
+			}
+			.m-contentR span{
+				display: inline-block;
+				width: 100px;
+			}
+			.m-btn{
+				width: 140px;
+				height: 42px;
+				border: 1px solid #000000;
+				border-radius: 10px;
+				text-align: center;
+				line-height: 42px;
+				cursor: pointer;
+				margin: 50px auto;
+			}

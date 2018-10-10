@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.version.HxVersionMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.version.HxVersion">
+     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="version_name" jdbcType="VARCHAR" property="version_name" />
+    <result column="version_number" jdbcType="BIGINT" property="version_number" />
+    <result column="android_or_ios" jdbcType="INTEGER" property="android_or_ios" />
+    <result column="minimun" jdbcType="BIGINT" property="minimun" />
+    <result column="is_not_minimum" jdbcType="INTEGER" property="is_not_minimum" />
+    <result column="versions_url" jdbcType="VARCHAR" property="versions_url" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+  </resultMap>
+  
+  <!-- 根据用户id获得用户信息 -->
+  <!-- <select id="selectByUserId" resultMap="BaseResultMap">
+  		select * from hx_user_info where user_id = #{userId}
+  
+  
+  </select> -->
+  <!-- 添加一个版本信息 -->
+  <insert id="insertVersion" parameterType="com.hwt.domain.entity.version.HxVersion">
+    insert into hx_version
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="version_name != null">
+        version_name,
+      </if>
+      <if test="version_number != null">
+        version_number,
+      </if>
+      <if test="android_or_ios != null">
+        android_or_ios,
+      </if>
+      <if test="minimun != null">
+        minimun,
+      </if>
+      <if test="is_not_minimum != null">
+        is_not_minimum,
+      </if>
+      <if test="versions_url != null">
+        versions_url,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="version_instructions != null">
+        version_instructions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="version_name != null">
+        #{version_name,jdbcType=VARCHAR},
+      </if>
+      <if test="version_number != null">
+        #{version_number,jdbcType=BIGINT},
+      </if>
+      <if test="android_or_ios != null">
+        #{android_or_ios,jdbcType=INTEGER},
+      </if>
+      <if test="minimun != null">
+        #{minimun,jdbcType=BIGINT},
+      </if>
+      <if test="is_not_minimum != null">
+        #{is_not_minimum,jdbcType=INTEGER},
+      </if>
+      <if test="versions_url != null">
+        #{versions_url,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version_instructions != null">
+        #{version_instructions,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 修改版本信息 -->
+  <update id="updateVersion" parameterType="com.hwt.domain.entity.version.HxVersion">
+    update hx_version
+    <set>
+      <if test="version_name != null">
+        version_name = #{version_name,jdbcType=VARCHAR},
+      </if>
+      <if test="version_number != null">
+        version_number = #{version_number,jdbcType=BIGINT},
+      </if>
+      <if test="android_or_ios != null">
+        android_or_ios = #{android_or_ios,jdbcType=INTEGER},
+      </if>
+      <if test="minimun != null">
+        minimun = #{minimun,jdbcType=BIGINT},
+      </if>
+      <if test="is_not_minimum != null">
+        is_not_minimum = #{is_not_minimum,jdbcType=INTEGER},
+      </if>
+      <if test="versions_url != null">
+        versions_url = #{versions_url,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version_instructions != null">
+        version_instructions = #{version_instructions,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+   <!-- 根据条件获取总条数 -->
+<select id="queryHxVersionCountByMap" resultType="java.lang.Long" parameterType="map">
+	select count(id) from hx_version where 1=1 
+		<if test="version_name != null and version_name !=''">
+			and  `version_name` like '%${version_name}%'
+		</if>
+		<if test="version_number != null and version_number !=''">
+			and  `version_number` like '%${version_number}%'
+		</if>
+
+</select>
+<!-- 根据条件获取数据 -->
+<select id="queryHxVersionByMap" resultType="com.hwt.domain.entity.version.HxVersion" parameterType="map">
+	select * 
+		from hx_version where 1=1 
+		 
+		<if test="version_name != null and version_name !=''">
+			and  `version_name` like '%${version_name}%'
+		</if>
+		<if test="version_number != null and version_number !=''">
+			and  `version_number` like '%${version_number}%'
+		</if>
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> --> ${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+
+</select>
+</mapper>

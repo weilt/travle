@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.video.HxUserVideoFollowMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.video.HxUserVideoFollow">
+    <id column="user_id" jdbcType="BIGINT" property="user_id" />
+    <id column="follow_user_id" jdbcType="BIGINT" property="follow_user_id" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    user_id, follow_user_id, create_time
+  </sql>
+  
+ 
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.video.HxUserVideoFollow">
+    insert into hx_user_video_follow (user_id, follow_user_id, create_time
+      )
+    values (#{user_id,jdbcType=BIGINT}, #{follow_user_id,jdbcType=BIGINT}, #{create_time,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.video.HxUserVideoFollow">
+    insert into hx_user_video_follow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="follow_user_id != null">
+        follow_user_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="follow_user_id != null">
+        #{follow_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.video.HxUserVideoFollow">
+    update hx_user_video_follow
+    <set>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_id = #{user_id,jdbcType=BIGINT}
+      and follow_user_id = #{follow_user_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.video.HxUserVideoFollow">
+    update hx_user_video_follow
+    set create_time = #{create_time,jdbcType=BIGINT}
+    where user_id = #{user_id,jdbcType=BIGINT}
+      and follow_user_id = #{follow_user_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 关注列表查询 query_follow-->
+  <select id="query_follow" resultType="com.hwt.domain.entity.user.video.vo.VideoFollowVo" parameterType="map">
+  	select a.user_id as user_id , a.account as user_account, a.user_icon as user_icon,a.nickname as nickname,b.create_time as follow_time
+  		 from hx_user_info a, hx_user_video_follow b
+  			
+  	
+  	
+    		where b.user_id = #{user_id} and b.follow_user_id = a.user_id 
+    			<if test="last_follow_time!=null and last_follow_time > 0">
+    				and b.create_time &lt; #{last_follow_time}
+    			
+    			</if>
+    		order by b.create_time desc limit 0,#{pageSize}
+  
+  </select>
+</mapper>

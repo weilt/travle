@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.user.HxUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.user.HxUserInfo">
+     <id column="user_info_id" jdbcType="BIGINT" property="user_info_id" />
+    <result column="user_id" jdbcType="BIGINT" property="user_id" />
+    <result column="referrer_account_id" jdbcType="VARCHAR" property="referrer_account_id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="im_id" jdbcType="VARCHAR" property="im_id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="userType" jdbcType="INTEGER" property="userType" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_birthday" jdbcType="TIMESTAMP" property="user_birthday" />
+    <result column="user_sex" jdbcType="INTEGER" property="user_sex" />
+    <result column="user_autograph" jdbcType="VARCHAR" property="user_autograph" />
+    <result column="user_profession" jdbcType="VARCHAR" property="user_profession" />
+    <result column="user_icon" jdbcType="VARCHAR" property="user_icon" />
+    <result column="user_emotion" jdbcType="INTEGER" property="user_emotion" />
+    <result column="friend_circle_cover" jdbcType="VARCHAR" property="friend_circle_cover" />
+    <result column="user_area_state" jdbcType="VARCHAR" property="user_area_state" />
+    <result column="user_area_state_name" jdbcType="VARCHAR" property="user_area_state_name" />
+    <result column="user_area_province" jdbcType="VARCHAR" property="user_area_province" />
+    <result column="user_area_province_name" jdbcType="VARCHAR" property="user_area_province_name" />
+    <result column="user_area_city" jdbcType="VARCHAR" property="user_area_city" />
+    <result column="user_area_city_name" jdbcType="VARCHAR" property="user_area_city_name" />
+    <result column="user_area_district" jdbcType="VARCHAR" property="user_area_district" />
+    <result column="user_area_district_name" jdbcType="VARCHAR" property="user_area_district_name" />
+    <result column="last_longitude" jdbcType="VARCHAR" property="last_longitude" />
+    <result column="last_latitude" jdbcType="VARCHAR" property="last_latitude" />
+  </resultMap>
+  
+  <!-- 根据用户id获得用户信息 -->
+  <!-- <select id="selectByUserId" resultMap="BaseResultMap">
+  		select * from hx_user_info where user_id = #{userId}
+  
+  </select> -->
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.user.HxUserInfo">
+    insert into hx_user_info (user_info_id, user_id, referrer_account_id, 
+      account, im_id, nickname, 
+      userType, phone, `username`, 
+      user_birthday, user_sex, user_autograph, 
+      user_profession, user_icon, user_emotion, 
+      friend_circle_cover, user_area_state, user_area_state_name, 
+      user_area_province, user_area_province_name, 
+      user_area_city, user_area_city_name, user_area_district, 
+      user_area_district_name, last_longitude, 
+      last_latitude)
+    values (#{user_info_id,jdbcType=BIGINT}, #{user_id,jdbcType=BIGINT}, #{referrer_account_id,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{im_id,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{user_birthday,jdbcType=TIMESTAMP}, #{user_sex,jdbcType=INTEGER}, #{user_autograph,jdbcType=VARCHAR}, 
+      #{user_profession,jdbcType=VARCHAR}, #{user_icon,jdbcType=VARCHAR}, #{user_emotion,jdbcType=INTEGER}, 
+      #{friend_circle_cover,jdbcType=VARCHAR}, #{user_area_state,jdbcType=VARCHAR}, #{user_area_state_name,jdbcType=VARCHAR}, 
+      #{user_area_province,jdbcType=VARCHAR}, #{user_area_province_name,jdbcType=VARCHAR}, 
+      #{user_area_city,jdbcType=VARCHAR}, #{user_area_city_name,jdbcType=VARCHAR}, #{user_area_district,jdbcType=VARCHAR}, 
+      #{user_area_district_name,jdbcType=VARCHAR}, #{last_longitude,jdbcType=VARCHAR}, 
+      #{last_latitude,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.user.HxUserInfo">
+    insert into hx_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user_info_id != null">
+        user_info_id,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="referrer_account_id != null">
+        referrer_account_id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="im_id != null">
+        im_id,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="userType != null">
+        userType,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="username != null">
+        `username`,
+      </if>
+      <if test="user_birthday != null">
+        user_birthday,
+      </if>
+      <if test="user_sex != null">
+        user_sex,
+      </if>
+      <if test="user_autograph != null">
+        user_autograph,
+      </if>
+      <if test="user_profession != null">
+        user_profession,
+      </if>
+      <if test="user_icon != null">
+        user_icon,
+      </if>
+      <if test="user_emotion != null">
+        user_emotion,
+      </if>
+      <if test="friend_circle_cover != null">
+        friend_circle_cover,
+      </if>
+      <if test="user_area_state != null">
+        user_area_state,
+      </if>
+      <if test="user_area_state_name != null">
+        user_area_state_name,
+      </if>
+      <if test="user_area_province != null">
+        user_area_province,
+      </if>
+      <if test="user_area_province_name != null">
+        user_area_province_name,
+      </if>
+      <if test="user_area_city != null">
+        user_area_city,
+      </if>
+      <if test="user_area_city_name != null">
+        user_area_city_name,
+      </if>
+      <if test="user_area_district != null">
+        user_area_district,
+      </if>
+      <if test="user_area_district_name != null">
+        user_area_district_name,
+      </if>
+      <if test="last_longitude != null">
+        last_longitude,
+      </if>
+      <if test="last_latitude != null">
+        last_latitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user_info_id != null">
+        #{user_info_id,jdbcType=BIGINT},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="referrer_account_id != null">
+        #{referrer_account_id,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="im_id != null">
+        #{im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="user_birthday != null">
+        #{user_birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="user_sex != null">
+        #{user_sex,jdbcType=INTEGER},
+      </if>
+      <if test="user_autograph != null">
+        #{user_autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="user_profession != null">
+        #{user_profession,jdbcType=VARCHAR},
+      </if>
+      <if test="user_icon != null">
+        #{user_icon,jdbcType=VARCHAR},
+      </if>
+      <if test="user_emotion != null">
+        #{user_emotion,jdbcType=INTEGER},
+      </if>
+      <if test="friend_circle_cover != null">
+        #{friend_circle_cover,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_state != null">
+        #{user_area_state,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_state_name != null">
+        #{user_area_state_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_province != null">
+        #{user_area_province,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_province_name != null">
+        #{user_area_province_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_city != null">
+        #{user_area_city,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_city_name != null">
+        #{user_area_city_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_district != null">
+        #{user_area_district,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_district_name != null">
+        #{user_area_district_name,jdbcType=VARCHAR},
+      </if>
+      <if test="last_longitude != null">
+        #{last_longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="last_latitude != null">
+        #{last_latitude,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+   <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.user.HxUserInfo">
+    update hx_user_info
+    <set>
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=BIGINT},
+      </if>
+      <if test="referrer_account_id != null">
+        referrer_account_id = #{referrer_account_id,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="im_id != null">
+        im_id = #{im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        userType = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        `username` = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="user_birthday != null">
+        user_birthday = #{user_birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="user_sex != null">
+        user_sex = #{user_sex,jdbcType=INTEGER},
+      </if>
+      <if test="user_autograph != null">
+        user_autograph = #{user_autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="user_profession != null">
+        user_profession = #{user_profession,jdbcType=VARCHAR},
+      </if>
+      <if test="user_icon != null">
+        user_icon = #{user_icon,jdbcType=VARCHAR},
+      </if>
+      <if test="user_emotion != null">
+        user_emotion = #{user_emotion,jdbcType=INTEGER},
+      </if>
+      <if test="friend_circle_cover != null">
+        friend_circle_cover = #{friend_circle_cover,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_state != null">
+        user_area_state = #{user_area_state,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_state_name != null">
+        user_area_state_name = #{user_area_state_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_province != null">
+        user_area_province = #{user_area_province,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_province_name != null">
+        user_area_province_name = #{user_area_province_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_city != null">
+        user_area_city = #{user_area_city,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_city_name != null">
+        user_area_city_name = #{user_area_city_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_district != null">
+        user_area_district = #{user_area_district,jdbcType=VARCHAR},
+      </if>
+      <if test="user_area_district_name != null">
+        user_area_district_name = #{user_area_district_name,jdbcType=VARCHAR},
+      </if>
+      <if test="last_longitude != null">
+        last_longitude = #{last_longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="last_latitude != null">
+        last_latitude = #{last_latitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_info_id = #{user_info_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.user.HxUserInfo">
+    update hx_user_info
+    set user_id = #{user_id,jdbcType=BIGINT},
+      referrer_account_id = #{referrer_account_id,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      im_id = #{im_id,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      userType = #{userType,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      `username` = #{username,jdbcType=VARCHAR},
+      user_birthday = #{user_birthday,jdbcType=TIMESTAMP},
+      user_sex = #{user_sex,jdbcType=INTEGER},
+      user_autograph = #{user_autograph,jdbcType=VARCHAR},
+      user_profession = #{user_profession,jdbcType=VARCHAR},
+      user_icon = #{user_icon,jdbcType=VARCHAR},
+      user_emotion = #{user_emotion,jdbcType=INTEGER},
+      friend_circle_cover = #{friend_circle_cover,jdbcType=VARCHAR},
+      user_area_state = #{user_area_state,jdbcType=VARCHAR},
+      user_area_state_name = #{user_area_state_name,jdbcType=VARCHAR},
+      user_area_province = #{user_area_province,jdbcType=VARCHAR},
+      user_area_province_name = #{user_area_province_name,jdbcType=VARCHAR},
+      user_area_city = #{user_area_city,jdbcType=VARCHAR},
+      user_area_city_name = #{user_area_city_name,jdbcType=VARCHAR},
+      user_area_district = #{user_area_district,jdbcType=VARCHAR},
+      user_area_district_name = #{user_area_district_name,jdbcType=VARCHAR},
+      last_longitude = #{last_longitude,jdbcType=VARCHAR},
+      last_latitude = #{last_latitude,jdbcType=VARCHAR}
+    where user_info_id = #{user_info_id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <!-- findHxUserByPhone -->
+  <select id="findHxUserByPhone" resultType="com.hwt.domain.entity.user.Vo.CommunicationListFriendVo">
+  	
+  	select  a.account_phone,a.user_id, a.account, a.im_id, b.nickname, b.user_icon 
+        from hx_user a,hx_user_info b  
+       
+        where a.user_id = b.user_id and a.account_phone in  
+        <foreach collection="phones" item="phone" index="index"  
+            open="(" close=")" separator=",">  
+            #{phone}  
+        </foreach>  
+  </select>
+<!-- 查询附近的人 -->
+<!-- <select id="queryNearby" resultType="com.hwt.domain.entity.user.Vo.UserInfoVo" parameterType="map">
+	select * from hx_user_info where 1=1 and
+		 (
+		 <if test="startlongitude != null and startlongitude != ''">
+		 	<![CDATA[
+			      last_longitude >= #{startlongitude}
+			]]>
+		 </if>
+		 <if test="lastlongitude != null and lastlongitude != ''">
+		 	<![CDATA[
+			      and last_longitude <= #{lastlongitude}
+			]]>
+		 </if>
+		 <if test="lastlatitude1 != null and lastlatitude1 != ''">
+		 	<![CDATA[
+			      and last_latitude >= #{lastlatitude1}
+			]]>
+		 </if>
+		 <if test="lastlatitude != null and lastlatitude != ''">
+		 	<![CDATA[
+			      and last_latitude <= #{lastlatitude}
+			]]>
+		 </if>
+		 )or(
+		 <if test="startlongitude1 != null and startlongitude1 != ''">
+		 	<![CDATA[
+			      last_longitude >= #{lastlongitude1}
+			]]>
+		 </if>
+		 <if test="lastlongitude1 != null and lastlongitude1 != ''">
+		 	<![CDATA[
+			      and last_longitude <= #{startlongitude1}
+			]]>
+		 </if>
+		 <if test="lastlatitude1 != null and lastlatitude1 != ''">
+		 	<![CDATA[
+			      and last_latitude >= #{lastlatitude1}
+			]]>
+		 </if>
+		 <if test="lastlatitude != null and lastlatitude != ''">
+		 	<![CDATA[
+			      and last_latitude <= #{lastlatitude}
+			]]>
+		 </if>
+		 )or(
+		 <if test="startlatitude != null and startlatitude != ''">
+		 	<![CDATA[
+			      last_latitude >= #{startlatitude}
+			]]>
+		 </if>
+		 <if test="lastlatitude != null and lastlatitude != ''">
+		 	<![CDATA[
+			      and last_latitude <= #{lastlatitude}
+			]]>
+		 </if>
+		 <if test="lastlongitude1 != null and lastlongitude1 != ''">
+		 	<![CDATA[
+			      and last_longitude >= #{lastlongitude1}
+			]]>
+		 </if>
+		 <if test="lastlongitude != null and lastlongitude != ''">
+		 	<![CDATA[
+			      and last_longitude <= #{lastlongitude}
+			]]>
+		 </if>
+		 )or(
+		 <if test="startlatitude1 != null and startlatitude1 != ''">
+		 	<![CDATA[
+			      last_latitude >= #{startlatitude1}
+			]]>
+		 </if>
+		 <if test="lastlatitude1 != null and lastlatitude1 != ''">
+		 	<![CDATA[
+			      and last_latitude <= #{lastlatitude1}
+			]]>
+		 </if>
+		 <if test="lastlongitude1 != null and lastlongitude1 != ''">
+		 	<![CDATA[
+			      and last_longitude >= #{lastlongitude1}
+			]]>
+		 </if>
+		 <if test="lastlongitude != null and lastlongitude != ''">
+		 	<![CDATA[
+			      and last_longitude <= #{lastlongitude}
+			]]>
+		 </if>
+		 )
+</select> -->
+
+<!-- 查询附近的人 -->
+<select id="queryNearbyMap" resultType="com.hwt.domain.entity.user.Vo.HxUserNearbyVo" parameterType="map">
+	
+	SELECT 
+		a.user_id, 
+		a.im_id, 
+		a.user_icon, 
+		a.user_sex, 
+		a.nickname, 
+		a.user_autograph, 
+		a.last_longitude, 
+		a.last_latitude,  
+	ROUND(
+		6378.138 * 2 * ASIN(
+			SQRT(
+				POW(
+					SIN(
+						(
+							#{longitude} * PI() / 180 - last_longitude * PI() / 180
+						) / 2
+					),
+					2
+				) + COS(#{longitude} * PI() / 180) * COS(last_longitude * PI() / 180) * POW(
+					SIN(
+						(
+							#{latitude} * PI() / 180 - last_latitude * PI() / 180
+						) / 2
+					),
+					2
+				)
+			)
+		) * 1000
+	) AS `distance` 
+FROM
+	hx_user_info a 
+WHERE
+	1 = 1 
+AND a.last_longitude != "" 
+AND a.last_latitude != "" 
+AND a.user_id != #{user_id} 
+AND a.user_id NOT IN (
+	SELECT
+		b.friend_id from hx_user_friend b where b.user_id = #{user_id} and b.friend_state = 1 
+)
+	 <if test="user_sex != null and user_sex &lt; 3 and user_sex > -1">
+	 		and user_sex = #{user_sex}  
+	 </if>
+	 <if test="user_birthday_min != null">
+	 		and user_birthday <![CDATA[ <= ]]> #{user_birthday_min} 
+	 </if> 
+	 <if test="user_birthday_max != null">
+	 		and user_birthday <![CDATA[ > ]]> #{user_birthday_max} 
+	 </if>
+	 <if test="user_emotion != null and user_emotion &lt; 5 and user_emotion > -1" >
+	 		and user_emotion = #{user_emotion} 
+	 </if>
+ORDER BY
+	`distance` ASC
+LIMIT 100
+</select>
+</mapper>

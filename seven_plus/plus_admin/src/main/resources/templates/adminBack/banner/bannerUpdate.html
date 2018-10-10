@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改个人信息</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+<link href="/back/js/kindeditor/themes/qq/qq.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+	    <form id = "from">
+		    <ul class="forminfo">
+			    <li><label>轮播图名称<b>*</b></label><input type="hidden" name="id" value="${carWashBanner.id?c}" /><input type="text" class="dfinput" id="banner_name" name="banner_name" value="${carWashBanner.banner_name!''}"/></li>
+			    <li><label>轮播图跳转地址</label><input type="text" class="dfinput" id="address" name="address" value="${carWashBanner.address!''}"/></li>
+			    <li><label>图片位置</label>
+			    	<div class="vocation">
+					    <select class="select3" name="type">
+						    <option value="1" <#if carWashBanner.type==1> selected="selected" </#if>>首页顶部banner</option>
+						    <option value="2" <#if carWashBanner.type==2> selected="selected" </#if>>底部banner</option>
+					    </select>
+				    </div>
+			    </li>
+				<li><label>图片<b>*</b></label>
+					<input type="text" class="dfinput" id="banner_url" name="banner_url" value="${carWashBanner.banner_url!''}" placeholder="这里是图片路径" style="width: 200px;" disabled="disabled"/>
+					
+					<img src="" id="images_test" alt="" height="29px;" width="50px;"/>
+					
+					<input name="" type="button" onclick="create_image('banner_url','images_test')" class="btn" value="上传图片" />
+				</li>
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) sub();" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/back/js/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript">
+	    $(document).ready(function(e) {
+	    	create_textarea('content7');
+	    });
+	
+	    function content7(){
+	    	alert($('#content7').val());
+	    }
+	    $(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 200
+			});
+		});
+		function chek(){
+			var parameter = ["banner_name","banner_url","banner_url"];
+			var type = [null,"Image",null];
+			var msg = ["图片标题不能为空！","上传的文件不是图片格式","图片文件不能为空！"];
+			return validation(parameter,type,msg);
+		}
+		function sub(){
+			var str = $("#banner_url").val();
+			submitForm('/adminBack/banner/update?image='+str,'from');
+		}
+	</script>
+</body>
+</html>

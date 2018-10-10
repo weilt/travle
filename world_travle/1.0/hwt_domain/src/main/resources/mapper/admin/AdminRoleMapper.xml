@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.admin.AdminRoleMapper">
+
+  <sql id="Base_Column_List">
+    id, name, number, description, userId, DATE_FORMAT(createTime,'%Y-%m-%d %h:%i:%s') as createTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultType="com.hwt.domain.entity.admin.AdminRole">
+    select
+    <include refid="Base_Column_List" />
+    from admin_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="queryRole" resultType="com.hwt.domain.entity.admin.AdminRole">
+    select
+    <include refid="Base_Column_List" />
+    from admin_role
+    <if test="name != null &amp;&amp; name.trim().length()>0 ">
+      where name like '${name}%'
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.admin.AdminRole">
+    insert into admin_role (id, name, number, 
+      description, userId, createTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.admin.AdminRole">
+    insert into admin_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      createTime,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime == null">
+        sysdate(),
+      </if>
+    </trim>
+  </insert>
+  
+   <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.admin.AdminRole">
+    update admin_role
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.admin.AdminRole">
+    update admin_role
+    set name = #{name,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据条件获取总条数 -->
+<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="map">
+	select count(id) from admin_role where 1=1 
+		<if test="name != null and name !=''">
+			and  `name` like '%${name}%'
+		</if>
+
+</select>
+<!-- 根据条件获取数据 -->
+<select id="queryListByMap" resultType="com.hwt.domain.entity.admin.vo.AdminRoleVo" parameterType="map">
+	select a.id, a.name, a.number ,a.description, a.createTime, b.user_account from admin_role a,admin_user b where 1=1 and a.userId = b.user_id
+		 
+		
+		<if test="name != null and name !=''">
+			and  `name` like '%${name}%'
+		</if>
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> --> ${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+
+</select>
+
+
+</mapper>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加用户</title>
+	<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    	<form id = "from">
+		    <ul class="forminfo">
+
+			    <li><label>联系电话</label><input maxlength="15" id="telephone" name="phone" type="text" class="dfinput"  /></li>
+
+				<!--<input id="articleContent" name="articleContent" type="hidden" value=""/>-->
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) formVal('/admin/user/insert','from');" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+    
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+    <script type="text/javascript">
+
+
+
+	    $(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+
+        function chek() {
+            var phone = $("#telephone").val();
+
+            if (!(/^1[34578]\d{9}$/.test(phone))) {
+                layer.msg("电话格式错误!");
+                return false;
+            }
+            return true;
+
+            // var parameter = ["title","type"];
+            // var type = [null,"0"];
+            // var msg = ["标题名不能为空！","类型不能为空！"];
+            // return validation(parameter,type,msg);
+        }
+
+		// 解决 textarea  $(form).serialize() 获取不到值问题
+		function formVal(url, form) {
+            // var content = $("#ke_demo").val();
+			// $("#articleContent").val(content);
+            submitForm(url,form);
+        }
+	</script>
+</body>
+</html>

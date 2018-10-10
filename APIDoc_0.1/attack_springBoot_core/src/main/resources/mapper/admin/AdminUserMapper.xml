@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xx.admin.dao.AdminUserDao">
+  
+  
+  
+	<!-- 添加数据 -->
+	<insert id="insert" parameterType="com.xx.admin.entity.AdminUser">
+		INSERT INTO  admin_user (id,userName,passWord,userImage,jobPosition,roleId,
+		realName,sex,address,aboutMe,telephone,createTime,userId,isDelete,wchat)
+	VALUES(#{id},#{userName},#{passWord},#{userImage},#{jobPosition},#{roleId},
+		#{realName},#{sex},#{address},#{aboutMe},#{telephone},NOW(),#{userId},#{isDelete},#{wchat})
+	</insert>
+	
+	<!-- 修改数据 -->
+	<update id="update" parameterType="com.xx.admin.entity.AdminUser">
+		update admin_user set jobPosition = #{jobPosition},roleId = #{roleId},
+		realName=#{realName},sex=#{sex},address=#{address},aboutMe=#{aboutMe},
+		telephone=#{telephone},userId=#{userId},isDelete=#{isDelete},wchat=#{wchat} 
+		where id = #{id}
+	</update>
+	
+	
+	
+	<!-- 查询数据数量 -->
+	<select id="queryListCount" parameterType="map" resultType="int">
+		select COUNT(au.id) from admin_user au,admin_role ar where au.roleId = ar.id
+		<if test="userName != null and '' != userName">  
+              AND au.userName LIKE CONCAT('%',#{userName},'%')
+	     </if> 
+		<if test="realName != null and '' != realName">  
+              AND au.realName LIKE CONCAT('%',#{realName},'%')
+	     </if> 
+		<if test="telephone != null and '' != telephone">  
+              AND au.telephone LIKE CONCAT('%',#{telephone},'%')
+	     </if> 
+		<if test="address != null and '' != address">  
+              AND au.address LIKE CONCAT('%',#{address},'%') 
+	     </if>
+		<if test="sex != null and sex > -1">  
+              AND au.sex = #{sex}  
+	    </if>
+	     <choose>
+	     	<when test="roleId != null and roleId > 0">
+	     		 AND au.roleId = #{roleId} 
+	     	</when>
+	     	<otherwise>
+	     		AND au.roleId !=1  
+	     	</otherwise>
+	     </choose>
+		<if test="isDelete != null and isDelete > 0">  
+              AND au.isDelete = #{isDelete}  
+	     </if>
+	</select>
+
+	<!-- 查询数据列表 -->
+	<select id="queryList" parameterType="map" resultType="map">
+		select au.*,ar.name as roleName from admin_user au,admin_role ar where au.roleId = ar.id
+		<if test="userName != null and '' != userName">  
+              AND au.userName LIKE CONCAT('%',#{userName},'%')
+	     </if> 
+		<if test="realName != null and '' != realName">  
+              AND au.realName LIKE CONCAT('%',#{realName},'%')
+	     </if> 
+		<if test="telephone != null and '' != telephone">  
+              AND au.telephone LIKE CONCAT('%',#{telephone},'%')
+	     </if> 
+		<if test="address != null and '' != address">  
+              AND au.address LIKE CONCAT('%',#{address},'%') 
+	     </if>
+		<if test="sex != null and sex > -1">  
+              AND au.sex = #{sex}  
+	    </if>
+	     <choose>
+	     	<when test="roleId != null and roleId > 0">
+	     		 AND au.roleId = #{roleId} 
+	     	</when>
+	     	<otherwise>
+	     		AND au.roleId !=1  
+	     	</otherwise>
+	     </choose>
+		<if test="isDelete != null and isDelete > 0">  
+              AND au.isDelete = #{isDelete}  
+	     </if>
+		<if test="last != null and '' != last and last > 0">  
+	            <![CDATA[  
+	              LIMIT #{index},#{last}
+	            ]]>  
+	     </if>
+	</select>
+	
+	
+  
+</mapper>

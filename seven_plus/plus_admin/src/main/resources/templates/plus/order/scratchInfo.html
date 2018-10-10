@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a{
+            color: #000000;
+        }
+        .content{
+            display: flex;
+            width: 1200px;
+            height: 850px;
+            margin: 50px auto;
+            border: 1px solid #999999;
+        }
+        .content > div{
+            padding: 24px;
+        }
+        .content > div:nth-child(1){
+            border-right: 1px solid #999999;
+        }
+        .content-L{
+            width: 70%;
+            height: 100%;
+            position: relative;
+        }
+        .head{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .list{
+            margin-left: 30px;
+            margin-bottom: 10px;
+        }
+        .list span{
+            margin-right: 50px;
+        }
+        .list1{
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .showimg{
+            width: 700px;
+            height: 250px;
+            background-color: rgb(242,242,242);
+            margin-left: 30px;
+        }
+        .content-R{
+            width: 30%;
+            height: 100%;
+        }
+        .content-R h3{
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 20px;
+            border-bottom: 1px solid #999999;
+            margin-bottom: 20px;
+        }
+        .content-R p{
+            margin-bottom: 10px;
+        }
+        .btn-c{
+            display: flex;
+            position: absolute;
+            right: 24px;
+        }
+        .btn-c div{
+            width: 100px;
+            height: 40px;
+            background-color: rgb(22,155,213);
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 10px;
+        }
+        .btn-c div:nth-child{
+            margin-right: 20px;
+        }
+    </style>
+    <#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
+</head>
+<body>
+<div class="content">
+    <div class="content-L">
+        <div class="btn-c">
+            <#if (record.state!'')==1>
+            <#else >
+                <div  onclick="showPage('/admin/store/getStoreByName','70%','70%','网点选择')">选择网点</div>
+                <div onclick="checkState(1)">审核成功</div>
+                <div onclick="checkState(2)">审核失败</div>
+            </#if>
+        </div>
+
+        <p class="list">
+            手机号码：<#if (phoneSee!0) == 1>
+            ${user.phone!'暂没绑定'}
+        <#else > ${(user.phone!'18888888888')?replace(((user.phone!'18888888888')?substring(3,7)),'****')}
+        </#if>  &nbsp;&nbsp;
+            指定网点：<input type="text" id="storeName" value="${(store.storeName)!''}"  style="border:1;"/> <input type="hidden" id="storeId"  />
+            <input type="hidden" id="id" value="${record.id!''}" />
+        </p>
+        <p class="list">
+            办理业务：划痕无忧
+        </p>
+        <p class="list">上传时间：${record.createTime?number_to_datetime}</p>
+        <p class="list">
+            <span>状态：<#if (record.state!'') == 0>未审核</#if>
+                    <#if (record.state!'') == 1>审核通过</#if>
+                    <#if (record.state!'') == 2>审核失败</#if>
+            </span>
+            <span>审核时间：${record.createTime?number_to_datetime}</span>
+        </p>
+        <p class="list">
+            划痕次数：${order.useCount!0}次
+        </p>
+        <div class="showimg"> <img src="${record.imgUrl!''}" width="700px" height="250px"> </div>
+        
+    </div>
+    <div class="content-R">
+        <h3>车辆信息</h3>
+        <p>车牌号码：${car.carNo!''}</p>
+        <p>品牌型号：${car.carBrand!''}</p>
+        <p>车辆性质：
+            <#if (car.carNature!'')== 0 > 非运营 </#if>
+            <#if (car.carNature!'')== 1 > 运营 </#if>
+        </p>
+        <p>车龄年限：<#if (car.drivingAge!'')== 0 > 三年以下 </#if>
+                    <#if (car.drivingAge!'')== 1 > 三年到五年以下 </#if>
+                    <#if (car.drivingAge!'')== 2 > 五年以上 </#if>
+        </p>
+        <p>车辆类型：<#if (car.carType!'')== 0 > 五座以下 </#if>
+                    <#if (car.carType!'')== 1 > 五座到七座 </#if>
+        </p>
+    </div>
+</div>
+
+
+<script src="/back/js/jquery.js" language="JavaScript" ></script>
+<script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+<script type="text/javascript" src="/back/js/base.js"></script>
+<script src="/back/js/layer/layer.js"></script>
+
+<script type="text/javascript">
+    //审核
+    function checkState(state) {
+        var storeId = $("#storeId").val();
+        var id = $("#id").val();
+        console.log("asdfasdfa{}:"+storeId);
+        if ( state == 1 && storeId == ''){
+            layer.alert("请选择网点");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url:"/admin/order/checkScratch?from=ajax",
+            dataType: "json",
+            data:{id:id,state:state,storeId:storeId},
+            async: false,
+            success: function(result) {
+                //接收后台返回的结果
+                stateJson(result);
+            },
+            error: function(request) {
+                layer.alert("返回错误");
+            }
+        });
+    }
+
+
+</script>
+    </body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>广告</title>
+    <link type="text/css" rel="stylesheet" href="css/layout.css" />
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        list-style: none;
+    }
+    .slideShow{
+        width: 346px;
+        height: 210px; /*其实就是图片的高度*/
+        border: 1px #eeeeee solid;
+        margin: 100px auto;
+        position: relative;
+        overflow: hidden; /*此处需要将溢出框架的图片部分隐藏*/
+    }
+    .slideShow ul{
+        width: 2000px;
+        position: relative; /*此处需注意relative : 对象不可层叠，但将依据left，right，top，bottom等属性在正常文档流中偏移位置，如果没有这个属性，图片将不可左右移动*/
+    }
+    .slideShow ul li{
+        float: left; /*让四张图片左浮动，形成并排的横着布局，方便点击按钮时的左移动*/
+        width: 346px;
+    }
+    .slideShow .showNav{ /*用绝对定位给数字按钮进行布局*/
+        position: absolute;
+        right: 10px;
+        bottom: 5px;
+        text-align:center;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .slideShow .showNav span{
+        cursor: pointer;
+        display: block;
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: #ff5a28;
+        margin-left: 2px;
+        color: #fff;
+    }
+    .slideShow .showNav .active{
+        background: #b63e1a;
+    }
+</style>
+<body>
+<div class="slideShow">
+    <!--图片布局开始-->
+    <ul>
+        <li><img src="img/picture01.jpg" /></li>
+        <li><img src="img/picture02.jpg" /></li>
+        <li><img src="img/picture03.jpg" /></li>
+        <li><img src="img/picture04.jpg" /></li>
+    </ul>
+    <!--图片布局结束-->
+
+    <!--按钮布局开始-->
+    <div class="showNav">
+        <span class="active">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+    <!--按钮布局结束-->
+</div>
+<script src="/back/js/jquery.js"></script>
+<script src="/back/js/layer/layer.js"></script>
+
+<script>
+
+    $(document).ready(function(){
+        var slideShow=$(".slideShow"), //获取最外层框架的名称
+            ul=slideShow.find("ul"),
+            showNumber=slideShow.find(".showNav span"),//获取按钮
+            oneWidth=slideShow.find("ul li").eq(0).width(); //获取每个图片的宽度
+
+        showNumber.on("click",function(){  //为每个按钮绑定一个点击事件
+            $(this).addClass("active").siblings().removeClass("active"); //按钮被点击时为这个按钮添加高亮状态，并且将其他按钮高亮状态去掉
+            var index=$(this).index(); //获取哪个按钮被点击，也就是找到被点击按钮的索引值
+            ul.animate({
+                "left":-oneWidth*index, //注意此处用到left属性，所以ul的样式里面需要设置position: relative; 让ul左移N个图片大小的宽度，N根据被点击的按钮索引值index确定
+            })
+        })
+    })
+</script>
+</body>
+</html>

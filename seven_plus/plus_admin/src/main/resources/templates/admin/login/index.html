@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .head{
+            width: 100%;
+            height: 50px;
+            position: relative;
+            text-align: center;
+            padding-top: 20px;
+        }
+        .head time{
+            position: absolute;
+            right: 20px;;
+        }
+        .content{
+            width: 100%;
+            min-width: 1200px;
+            height: auto;
+            padding: 0 24px;
+            margin-top: 50px;
+            position: relative;
+            top: 50px;
+        }
+        .bar-box{
+            position: absolute;
+            width: 600px;
+            height: 350px;
+            left: 100px;
+            top: 0;
+            border: 1px solid #000000;
+        }
+        .money{
+            position: absolute;
+            top: 100px;
+            left: 500px;
+        }
+        .count {
+            position: absolute;
+            top: 100px;
+            left: 1050px;
+        }
+        .money span{
+            font-size: 12px;;
+        }
+        .money p{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bottom-box{
+            width: 600px;
+            height: 350px;
+            position: absolute;
+            border: 1px solid #000000;
+            top: 370px;
+            left: 100px;
+        }
+        .bottom-box1{
+            width: 600px;
+            height: 350px;
+            position: absolute;
+            border: 1px solid #000000;
+            top: 740px;
+            left: 100px;
+        }
+        .box1{
+            width: 600px;
+            height: 350px;
+            border: 1px solid #000000;
+            position: absolute;
+            right: 100px;
+            padding: 0 24px;
+        }
+        .title{
+            display: flex;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-bottom: 1px solid #000000;
+        }
+        .list-box{
+            list-style: none;
+        }
+        .list-box .list:nth-child(1){
+            font-weight: bold;
+        }
+        .list{
+            display: flex;
+            width: 100%;
+            height: 30px;
+        }
+        .list div{
+            width: 100px;
+            text-align: center;
+            line-height: 30px;
+        }
+        .box2{
+            width: 600px;
+            height: 350px;
+            border: 1px solid #000000;
+            position: absolute;
+            right: 100px;
+            top: 350px;
+            padding: 0 24px;
+        }
+    </style>
+</head>
+<body onload="showTime()">
+<div class="head">
+    旗驾车服
+    <time id="result"></time>
+</div>
+
+<div class="money">
+    <span>总交易额</span>
+    <p>￥${totalMoney!0}</p>
+</div>
+<div class="count">
+    <span>接入网点</span>
+    <p>${storeCount!0}</p>
+</div>
+<div class="content">
+
+    <input type="hidden" id="districts" value='${districts!""}' />
+    <input type="hidden" id="dayWashDistricts" value='${dayWashDistricts!""}' />
+    <input type="hidden" id="dayNikeDistricts" value='${dayNikeDistricts!""}' />
+    <input type="hidden" id="monthWashDistricts" value='${monthWashDistricts!""}' />
+    <input type="hidden" id="monthNikeDistricts" value='${monthNikeDistricts!""}' />
+    <div id="bar" class="bar-box"></div>
+    <div id="pie1" class="bottom-box"></div>
+    <div id="pie2" class="bottom-box1"></div>
+    <div class="box1">
+        <div class="title">
+            <span>洗车区域排行</span>
+            <div style="flex:1"></div>
+            <span id="month">5月</span>
+        </div>
+
+        <ul class="list-box" id="list">
+            <li class="list">
+                <div>区域</div>
+                <div>次数</div>
+                <div>洗车率</div>
+                <div>排行</div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="box2">
+        <div class="title">
+            <span>划痕区域排行</span>
+            <div style="flex:1"></div>
+            <span id="month1">5月</span>
+        </div>
+
+        <ul class="list-box" id="list2">
+            <li class="list">
+                <div>区域</div>
+                <div>次数</div>
+                <div>划痕率</div>
+                <div>排行</div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="/back/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="/back/js/echarts.js" type="text/javascript" charset="utf-8"></script>
+<script src="/back/js/zry.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+    //定义函数：构建要显示的时间日期字符串
+    function showTime(){
+        //创建Date对象
+        var today = new Date();
+        //分别取出年、月、日、时、分、秒
+        var year = today.getFullYear();
+        var month = today.getMonth()+1;
+        var day = today.getDate();
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        var seconds = today.getSeconds();
+        var objM = document.getElementById("month");
+        var objM1 = document.getElementById("month1");
+        objM.innerHTML = month + "月";
+        objM1.innerHTML = month + "月";
+        //如果是单个数，则前面补0
+        month  = month<10  ? "0"+month : month;
+        day  = day <10  ? "0"+day : day;
+        hours  = hours<10  ? "0"+hours : hours;
+        minutes = minutes<10 ? "0"+minutes : minutes;
+        seconds = seconds<10 ? "0"+seconds : seconds;
+
+        //构建要输出的字符串
+        var str = year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+
+        //获取id=result的对象
+        var obj = document.getElementById("result");
+        //将str的内容写入到id=result的<div>中去
+        obj.innerHTML = str;
+        //延时器
+        window.setTimeout("showTime()",1000);
+    }
+
+
+    //网点覆盖
+    var districts = $("#districts").val();
+
+
+    //当日
+    var dayWashDistricts = $("#dayWashDistricts").val();
+    var dayNikeDistricts = $("#dayNikeDistricts").val();
+
+    //当月
+    var monthWashDistricts = $("#monthWashDistricts").val();
+    var monthNikeDistricts = $("#monthNikeDistricts").val();
+
+
+    var data = [
+        {value:656, name:'渝中'},
+        {value:45, name:'渝北'},
+        {value:123, name:'九龙坡'},
+        {value:556, name:'大渡口'},
+        {value:123, name:'沙坪坝'},
+        {value:13, name:'巴南'}
+    ]
+    var dataList = [
+        {place:'渝北' , num:12 , rate:'50%' , ranking:'第一'},
+        {place:'渝中' , num:78 , rate:'20%' , ranking:'第一'},
+        {place:'江北' , num:55 , rate:'56%' , ranking:'第一'},
+        {place:'大渡口' , num:95 , rate:'77%' , ranking:'第一'},
+        {place:'九龙坡' , num:61 , rate:'42%' , ranking:'第一'}
+    ]
+
+    showRanking('#list' , JSON.parse(monthWashDistricts));
+    showRanking('#list2' , JSON.parse(monthNikeDistricts));
+
+    drawChart('bar' , 'bar' , JSON.parse(districts) , '网点覆盖');
+    drawChart('pie1' , 'pie' , JSON.parse(dayWashDistricts) , '今日洗车占比');
+    drawChart('pie2' , 'pie' , JSON.parse(dayNikeDistricts) , '今日划痕占比');
+
+
+</script>
+
+</body>
+</html>

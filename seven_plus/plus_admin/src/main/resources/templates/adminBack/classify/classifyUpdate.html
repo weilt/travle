@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加模块信息</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+<link href="/back/js/kindeditor/themes/qq/qq.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息${classify.id?c}</span></div>
+    	<form id = "from">
+		    <ul class="forminfo">
+			    <li><label>分类名称<b>*</b></label><input type="hidden" name="id" value="${classify.id?c}" ><input id="name" name="name" type="text" class="dfinput" value="${classify.name!''}" /></li>
+			    <li><label>是否常用车型</label>
+			    	<div class="vocation">
+					    <select class="select3" name="commonly">
+						    <option value="1" <#if classify.commonly==1> selected="selected" </#if> >是</option>
+						    <option value="2" <#if classify.commonly==2> selected="selected" </#if> >否</option>
+					    </select>
+				    </div>
+			    </li>
+			    <li><label>品牌LOGO<b>*</b></label>
+					<input type="text" class="dfinput" id="image" name="image" value="${classify.image!''}" placeholder="这里是图片路径" style="width: 200px;" disabled="disabled"/>
+					
+					<img src="${classify.image!''}" id="images_test" alt="" height="29px;" width="50px;"/>
+					
+					<input name="" type="button" onclick="create_image('image','images_test')" class="btn" value="上传图片" />
+				</li>
+			    <li><label>模块描述</label>
+			    	<textarea id="description" name="description" rows="3" cols="100" class="textinput" >${classify.description!''}</textarea>
+			    </li>
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认" onclick="if(chek()) sub();" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/back/js/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-base.js"></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+	<script type="text/javascript" src="/back/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript">
+	    $(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+
+	    $(document).ready(function(e) {
+	    	create_textarea('content7');
+	    });
+	
+	    function content7(){
+	    	alert($('#content7').val());
+	    }
+		function chek(){
+			var parameter = ["image","name"];
+			var type = ["Image",null];
+			var msg = ["上传的文件不是图片文件","分类名称不能为空！"];
+			return validation(parameter,type,msg);
+		}
+		function sub(){
+			var str = $("#image").val();
+			submitForm('/adminBack/classify/update?image='+str,'from');
+		}
+	</script>
+</body>
+</html>

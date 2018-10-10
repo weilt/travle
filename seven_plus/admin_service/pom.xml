@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>seven_plus</artifactId>
+        <groupId>com.seven.plus</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.seven.plus</groupId>
+    <artifactId>admin_service</artifactId>
+
+    <dependencies>
+        <!-- 公共包依赖 -->
+        <dependency>
+            <groupId>com.seven.plus</groupId>
+            <artifactId>plus_common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- 数据库模块依赖 -->
+        <dependency>
+            <groupId>com.seven.plus</groupId>
+            <artifactId>domain_service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- 利用 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.14.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- tomcat 依赖 -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>8.5.27</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

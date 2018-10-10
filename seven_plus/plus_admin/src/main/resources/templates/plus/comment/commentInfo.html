@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>评论详情</title>
+	<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+	<link href="/back/js/kindeditor/themes/qq/qq.css" rel="stylesheet" type="text/css" />
+	<#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    	<form id = "from">
+		    <ul class="forminfo">
+			    <li><label>手机号码</label><input maxlength="15" type="text" readonly="readonly" value="<#if (phoneSee!0) == 1>${entity.phone!'暂没绑定'}<#else > ${(entity.phone!'18888888888')?replace(((entity.phone!'18888888888')?substring(3,7)),'****')}</#if>" class="dfinput" id="title" name="articleTitel"/></li>
+			   
+			    <li><label>网点名称</label><input maxlength="15" id="telephone" readonly="readonly" name="storeName" type="text" class="dfinput" value="${entity.storeName!''}" /></li>
+			    <li><label>评价时间</label><input id="wchat" name="createTime" readonly="readonly" type="text" class="dfinput" maxlength="15" value='${entity.createTime?number_to_datetime}' /></li>
+				<li><label>评价内容</label><textarea   rows="20" cols="100" readonly="readonly" style="width:95%;height:200px;visibility:hidden;" id="ke_demo" name="articleContent" >${entity.comment!''}</textarea></li>
+				<!--<input id="articleContent" name="articleContent" type="hidden" value=""/>-->
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+    <script type="text/javascript" src="/back/js/select-ui.min.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-all.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="/back/js/kindeditor/plugins/code/prettify.js"></script>
+	<script type="text/javascript" src="/back/js/kindeditor/kindeditor-base.js"></script>"
+    
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+    <script type="text/javascript">
+
+        create_textarea("ke_demo");
+
+	    $(document).ready(function(e) {
+			$(".select3").uedSelect({
+				width : 100
+			});
+		});
+		
+	</script>
+</body>
+</html>

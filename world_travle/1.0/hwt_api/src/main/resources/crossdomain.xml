@@ -1,0 +1,9 @@
+<!--
+<cross-domain-policy>
+<allow-access-from domain="www.someSide.com" secure="false"/>
+<allow-access-from domain="*"/>
+</cross-domain-policy>
+-->
+<cross-domain-policy>
+    <allow-access-from domain="*" />
+</cross-domain-policy>

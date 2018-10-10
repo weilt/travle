@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.plus.mapper.PlusStoreMapper">
+
+
+    <insert id="insertPlusStore"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `plus_store`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="storeName!=null">
+                        `store_name`,
+                    </if>
+                    <if test="storePhone!=null">
+                        `store_phone`,
+                    </if>
+                    <if test="storeDistrict!=null">
+                        `store_district`,
+                    </if>
+                    <if test="storeType!=null">
+                        `store_type`,
+                    </if>
+                    <if test="storeImg!=null">
+                        `store_img`,
+                    </if>
+                    <if test="storeLat!=null">
+                        `store_lat`,
+                    </if>
+                    <if test="storeLon!=null">
+                        `store_lon`,
+                    </if>
+                    <if test="storeAddress!=null">
+                        `store_address`,
+                    </if>
+                    <if test="orderCount!=null">
+                        `order_count`,
+                    </if>
+                    <if test="createTime!=null">
+                        `create_time`,
+                    </if>
+                    <if test="updateTime!=null">
+                        `update_time`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="storeName!=null">
+                    #{storeName},
+                </if>
+                <if test="storePhone!=null">
+                    #{storePhone},
+                </if>
+                <if test="storeDistrict!=null">
+                    #{storeDistrict},
+                </if>
+                <if test="storeType!=null">
+                    #{storeType},
+                </if>
+                <if test="storeImg!=null">
+                    #{storeImg},
+                </if>
+                <if test="storeLat!=null">
+                    #{storeLat},
+                </if>
+                <if test="storeLon!=null">
+                    #{storeLon},
+                </if>
+                <if test="storeAddress!=null">
+                    #{storeAddress},
+                </if>
+                <if test="orderCount!=null">
+                    #{orderCount},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime},
+                </if>
+                <if test="updateTime!=null">
+                    #{updateTime},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePlusStore">
+        UPDATE `plus_store`
+        SET
+        <trim suffixOverrides=",">
+            <if test="storeName != null and storeName!=''">
+                `store_name` = #{storeName},
+            </if>
+            <if test="storePhone!=null">
+                `store_phone` = #{storePhone},
+            </if>
+            <if test="storeDistrict!=null">
+                `store_district` = #{storeDistrict},
+            </if>
+            <if test="storeType != null">
+                `store_type` = #{storeType},
+            </if>
+            <if test="storeImg != null and storeImg!=''">
+                `store_img` = #{storeImg},
+            </if>
+            <if test="storeLat != null and storeLat!=''">
+                `store_lat` = #{storeLat},
+            </if>
+            <if test="storeLon != null and storeLon!=''">
+                `store_lon` = #{storeLon},
+            </if>
+            <if test="storeAddress != null and storeAddress!=''">
+                `store_address` = #{storeAddress},
+            </if>
+            <if test="orderCount != null">
+                `order_count` = #{orderCount},
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `plus_store`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.storeName != null and set.storeName!=''">
+            `store_name` = #{set.storeName},
+        </if>
+        <if test="set.storeType != null">
+            `store_type` = #{set.storeType},
+        </if>
+        <if test="set.storeImg != null and set.storeImg!=''">
+            `store_img` = #{set.storeImg},
+        </if>
+        <if test="set.storeLat != null and set.storeLat!=''">
+            `store_lat` = #{set.storeLat},
+        </if>
+        <if test="set.storeLon != null and set.storeLon!=''">
+            `store_lon` = #{set.storeLon},
+        </if>
+        <if test="set.storeAddress != null and set.storeAddress!=''">
+            `store_address` = #{set.storeAddress},
+        </if>
+        <if test="set.orderCount != null">
+            `order_count` = #{set.orderCount},
+        </if>
+        <if test="set.createTime != null">
+            `create_time` = #{set.createTime},
+        </if>
+        <if test="set.updateTime != null">
+            `update_time` = #{set.updateTime},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.storeNameList != null">
+                    `store_name` in
+                    <foreach collection="where.storeNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyStoreName!=null and where.fuzzyStoreName.size()>0">
+                (
+                <foreach collection="where.fuzzyStoreName"  separator="or" item="item">
+                    `Store_name` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyStoreName!=null and where.rightFuzzyStoreName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyStoreName"  separator="or" item="item">
+                    `Store_name` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.storeTypeList != null">
+                    `store_type` in
+                    <foreach collection="where.storeTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.storeTypeSt !=null">
+                `store_type` >= #{where.storeTypeSt} and
+            </if>
+            <if test="where.storeTypeEd!=null">
+                `store_type` &lt;= #{where.storeTypeEd} and
+            </if>
+                <if test="where.storeImgList != null">
+                    `store_img` in
+                    <foreach collection="where.storeImgList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyStoreImg!=null and where.fuzzyStoreImg.size()>0">
+                (
+                <foreach collection="where.fuzzyStoreImg"  separator="or" item="item">
+                    `Store_img` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyStoreImg!=null and where.rightFuzzyStoreImg.size()>0">
+                (
+                <foreach collection="where.rightFuzzyStoreImg"  separator="or" item="item">
+                    `Store_img` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.storeLatList != null">
+                    `store_lat` in
+                    <foreach collection="where.storeLatList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyStoreLat!=null and where.fuzzyStoreLat.size()>0">
+                (
+                <foreach collection="where.fuzzyStoreLat"  separator="or" item="item">
+                    `Store_lat` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyStoreLat!=null and where.rightFuzzyStoreLat.size()>0">
+                (
+                <foreach collection="where.rightFuzzyStoreLat"  separator="or" item="item">
+                    `Store_lat` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.storeLonList != null">
+                    `store_lon` in
+                    <foreach collection="where.storeLonList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyStoreLon!=null and where.fuzzyStoreLon.size()>0">
+                (
+                <foreach collection="where.fuzzyStoreLon"  separator="or" item="item">
+                    `Store_lon` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyStoreLon!=null and where.rightFuzzyStoreLon.size()>0">
+                (
+                <foreach collection="where.rightFuzzyStoreLon"  separator="or" item="item">
+                    `Store_lon` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.storeAddressList != null">
+                    `store_address` in
+                    <foreach collection="where.storeAddressList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyStoreAddress!=null and where.fuzzyStoreAddress.size()>0">
+                (
+                <foreach collection="where.fuzzyStoreAddress"  separator="or" item="item">
+                    `Store_address` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyStoreAddress!=null and where.rightFuzzyStoreAddress.size()>0">
+                (
+                <foreach collection="where.rightFuzzyStoreAddress"  separator="or" item="item">
+                    `Store_address` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.orderCountList != null">
+                    `order_count` in
+                    <foreach collection="where.orderCountList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.orderCountSt !=null">
+                `order_count` >= #{where.orderCountSt} and
+            </if>
+            <if test="where.orderCountEd!=null">
+                `order_count` &lt;= #{where.orderCountEd} and
+            </if>
+                <if test="where.createTimeList != null">
+                    `create_time` in
+                    <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.createTimeSt !=null">
+                `create_time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_time` &lt;= #{where.createTimeEd} and
+            </if>
+                <if test="where.updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="where.updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.updateTimeSt !=null">
+                `update_time` >= #{where.updateTimeSt} and
+            </if>
+            <if test="where.updateTimeEd!=null">
+                `update_time` &lt;= #{where.updateTimeEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.domain.plus.entity.PlusStore" id="PlusStoreMap">
+        <result property="id" column="id"/>
+        <result property="storeName" column="store_name"/>
+        <result property="storePhone" column="store_phone"/>
+        <result property="storeDistrict" column="store_district"/>
+        <result property="storeType" column="store_type"/>
+        <result property="storeImg" column="store_img"/>
+        <result property="storeLat" column="store_lat"/>
+        <result property="storeLon" column="store_lon"/>
+        <result property="storeAddress" column="store_address"/>
+        <result property="orderCount" column="order_count"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+    <select id="queryPlusStore" resultMap="PlusStoreMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_store`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="storeName != null and storeName!=''">
+                `store_name` = #{storeName} and
+            </if>
+            <if test="storeType != null">
+                `store_type` = #{storeType} and
+            </if>
+            <if test="storeImg != null and storeImg!=''">
+                `store_img` = #{storeImg} and
+            </if>
+            <if test="storeLat != null and storeLat!=''">
+                `store_lat` = #{storeLat} and
+            </if>
+            <if test="storeLon != null and storeLon!=''">
+                `store_lon` = #{storeLon} and
+            </if>
+            <if test="storeAddress != null and storeAddress!=''">
+                `store_address` = #{storeAddress} and
+            </if>
+            <if test="orderCount != null">
+                `order_count` = #{orderCount} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusStore$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="storeNameList != null">
+                    `store_name` in
+                    <foreach collection="storeNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyStoreName!=null and fuzzyStoreName.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreName"  separator="or" item="item">
+                        `Store_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreName!=null and rightFuzzyStoreName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreName"  separator="or" item="item">
+                        `Store_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="storeTypeList != null">
+                    `store_type` in
+                    <foreach collection="storeTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="storeTypeSt !=null">
+                    `store_type` >= #{storeTypeSt} and
+                </if>
+                <if test="storeTypeEd!=null">
+                    `store_type` &lt;= #{storeTypeEd} and
+                </if>
+                <if test="storeImgList != null">
+                    `store_img` in
+                    <foreach collection="storeImgList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyStoreImg!=null and fuzzyStoreImg.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreImg"  separator="or" item="item">
+                        `Store_img` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreImg!=null and rightFuzzyStoreImg.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreImg"  separator="or" item="item">
+                        `Store_img` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="storeLatList != null">
+                    `store_lat` in
+                    <foreach collection="storeLatList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyStoreLat!=null and fuzzyStoreLat.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreLat"  separator="or" item="item">
+                        `Store_lat` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreLat!=null and rightFuzzyStoreLat.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreLat"  separator="or" item="item">
+                        `Store_lat` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="storeLonList != null">
+                    `store_lon` in
+                    <foreach collection="storeLonList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyStoreLon!=null and fuzzyStoreLon.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreLon"  separator="or" item="item">
+                        `Store_lon` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreLon!=null and rightFuzzyStoreLon.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreLon"  separator="or" item="item">
+                        `Store_lon` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="storeAddressList != null">
+                    `store_address` in
+                    <foreach collection="storeAddressList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyStoreAddress!=null and fuzzyStoreAddress.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreAddress"  separator="or" item="item">
+                        `Store_address` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreAddress!=null and rightFuzzyStoreAddress.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreAddress"  separator="or" item="item">
+                        `Store_address` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="orderCountList != null">
+                    `order_count` in
+                    <foreach collection="orderCountList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="orderCountSt !=null">
+                    `order_count` >= #{orderCountSt} and
+                </if>
+                <if test="orderCountEd!=null">
+                    `order_count` &lt;= #{orderCountEd} and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPlusStoreLimit1" resultMap="PlusStoreMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_store`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="storeName != null and storeName!=''">
+                `store_name` = #{storeName} and
+            </if>
+            <if test="storeType != null">
+                `store_type` = #{storeType} and
+            </if>
+            <if test="storeImg != null and storeImg!=''">
+                `store_img` = #{storeImg} and
+            </if>
+            <if test="storeLat != null and storeLat!=''">
+                `store_lat` = #{storeLat} and
+            </if>
+            <if test="storeLon != null and storeLon!=''">
+                `store_lon` = #{storeLon} and
+            </if>
+            <if test="storeAddress != null and storeAddress!=''">
+                `store_address` = #{storeAddress} and
+            </if>
+            <if test="orderCount != null">
+                `order_count` = #{orderCount} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusStore$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="storeNameList != null">
+                        `store_name` in
+                        <foreach collection="storeNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyStoreName!=null and fuzzyStoreName.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreName"  separator="or" item="item">
+                        `Store_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreName!=null and rightFuzzyStoreName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreName"  separator="or" item="item">
+                        `Store_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="storeTypeList != null">
+                        `store_type` in
+                        <foreach collection="storeTypeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="storeTypeSt !=null">
+                    `store_type` >= #{storeTypeSt} and
+                </if>
+                <if test="storeTypeEd!=null">
+                    `store_type` &lt;= #{storeTypeEd} and
+                </if>
+                    <if test="storeImgList != null">
+                        `store_img` in
+                        <foreach collection="storeImgList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyStoreImg!=null and fuzzyStoreImg.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreImg"  separator="or" item="item">
+                        `Store_img` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreImg!=null and rightFuzzyStoreImg.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreImg"  separator="or" item="item">
+                        `Store_img` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="storeLatList != null">
+                        `store_lat` in
+                        <foreach collection="storeLatList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyStoreLat!=null and fuzzyStoreLat.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreLat"  separator="or" item="item">
+                        `Store_lat` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreLat!=null and rightFuzzyStoreLat.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreLat"  separator="or" item="item">
+                        `Store_lat` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="storeLonList != null">
+                        `store_lon` in
+                        <foreach collection="storeLonList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyStoreLon!=null and fuzzyStoreLon.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreLon"  separator="or" item="item">
+                        `Store_lon` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreLon!=null and rightFuzzyStoreLon.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreLon"  separator="or" item="item">
+                        `Store_lon` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="storeAddressList != null">
+                        `store_address` in
+                        <foreach collection="storeAddressList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyStoreAddress!=null and fuzzyStoreAddress.size()>0">
+                    (
+                    <foreach collection="fuzzyStoreAddress"  separator="or" item="item">
+                        `Store_address` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyStoreAddress!=null and rightFuzzyStoreAddress.size()>0">
+                    (
+                    <foreach collection="rightFuzzyStoreAddress"  separator="or" item="item">
+                        `Store_address` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="orderCountList != null">
+                        `order_count` in
+                        <foreach collection="orderCountList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="orderCountSt !=null">
+                    `order_count` >= #{orderCountSt} and
+                </if>
+                <if test="orderCountEd!=null">
+                    `order_count` &lt;= #{orderCountEd} and
+                </if>
+                    <if test="createTimeList != null">
+                        `create_time` in
+                        <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                    <if test="updateTimeList != null">
+                        `update_time` in
+                        <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `store_name`,
+        `store_phone`,
+        `store_district`,
+        `store_type`+0 as `store_type`,
+        `store_img`,
+        `store_lat`,
+        `store_lon`,
+        `store_address`,
+        `order_count`,
+        `create_time`,
+        `update_time`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof entity.PlusStore$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeName==true">
+                        `store_name`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeType==true">
+                        `store_type`+0 as `store_type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeImg==true">
+                        `store_img`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeLat==true">
+                        `store_lat`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeLon==true">
+                        `store_lon`,
+                    </if>
+                    <if test="fetchFields.fetchFields.storeAddress==true">
+                        `store_address`,
+                    </if>
+                    <if test="fetchFields.fetchFields.orderCount==true">
+                        `order_count`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createTime==true">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.updateTime==true">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeName==null">
+                        `store_name`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeType==null">
+                        `store_type`+0 as `store_type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeImg==null">
+                        `store_img`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeLat==null">
+                        `store_lat`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeLon==null">
+                        `store_lon`,
+                    </if>
+                    <if test="fetchFields.excludeFields.storeAddress==null">
+                        `store_address`,
+                    </if>
+                    <if test="fetchFields.excludeFields.orderCount==null">
+                        `order_count`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createTime==null">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.updateTime==null">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof entity.PlusStore$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+    <select id="countStore" resultType="java.lang.Integer">
+        select count(1)
+        from plus_store
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="name != null and name != ''">
+                store_name like concat(concat('%',#{name}),'%') and
+            </if>
+            <if test="address != null and address != '' ">
+                store_address like concat(concat('%',#{address}),'%') and
+            </if>
+            <if test="count != null ">
+                order_count = #{count}
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryStore" resultMap="PlusStoreMap">
+        select <include refid="allResult"/>
+        from plus_store
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="name != null and name != ''">
+                store_name like concat(concat('%',#{name}),'%') and
+            </if>
+            <if test="address != null and address != '' ">
+                store_address like concat(concat('%',#{address}),'%') and
+            </if>
+            <if test="count != null ">
+                order_count = #{count}
+            </if>
+        </trim>
+        order by create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <select id="queryStoreById" resultMap="PlusStoreMap">
+        select <include refid="allResult"/>
+        from plus_store where id = #{id}
+    </select>
+
+    <select id="queryStoreByType" resultType="com.domain.plus.vo.StoreVo" >
+        SELECT
+            id AS id,
+            store_name AS storeName,
+            store_address AS storeAddress,
+            store_lat AS storeLat,
+            store_lon AS storeLon,
+            store_img AS storeImg,
+            order_count AS orderCount
+        FROM
+            plus_store
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="storeType != null">
+                store_type = #{storeType} and
+            </if>
+        </trim>
+        order by create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+    <select id="queryStoreByTypeAndName" resultType="com.domain.plus.vo.StoreVo" >
+        SELECT
+        id AS id,
+        store_name AS storeName,
+        store_address AS storeAddress,
+        store_lat AS storeLat,
+        store_lon AS storeLon,
+        store_img AS storeImg,
+        order_count AS orderCount
+        FROM
+        plus_store
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="storeType != null">
+                store_type = #{storeType} and
+            </if>
+            <if test="storeName != null and storeName != ''">
+                store_name like concat(concat('%',#{storeName}),'%') and
+            </if>
+        </trim>
+        order by create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <select id="countStoreByNameAndType" resultType="java.lang.Integer">
+        SELECT
+        count(1)
+        FROM
+        plus_store
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="storeType != null and storeType != ''">
+                store_type = #{storeType} and
+            </if>
+            <if test="storeName != null and storeName != ''">
+                store_name like concat(concat('%',#{storeName}),'%') and
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryStoreByNameAndType" resultMap="PlusStoreMap">
+        SELECT
+        <include refid="allResult" />
+        FROM
+        plus_store
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="storeType != null and storeType != ''">
+                store_type = #{storeType} and
+            </if>
+            <if test="storeName != null and storeName != ''">
+                store_name like concat(concat('%',#{storeName}),'%') and
+            </if>
+        </trim>
+        order by create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <select id="queryStoreCountAndDistrict" resultType="com.domain.plus.vo.CountAndDistrictVo">
+        SELECT
+            count(id) AS value,
+            store_district AS name
+        FROM
+            plus_store
+        GROUP BY
+            store_district
+    </select>
+
+    <select id="queryStoreCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) count FROM plus_store
+    </select>
+
+
+    <select id="queryStoreCountAndDistrictByTypeAndTime" resultType="com.domain.plus.vo.CountAndDistrictVo">
+        SELECT count(r.id) AS value,
+            s.store_district AS name
+        FROM order_record r
+        LEFT JOIN plus_store s ON s.id = r.store_id
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="state != null ">
+                r.state = 1 and
+            </if>
+            <if test="orderType != null">
+                r.order_type = #{orderType} and
+            </if>
+            <if test="beginTime != null">
+                r.create_time &gt; #{beginTime} and r.create_time &lt; #{endTime}
+            </if>
+        </trim>
+        GROUP BY s.store_district
+        ORDER BY value DESC
+    </select>
+</mapper>

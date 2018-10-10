@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.order.HwOrderUserInsubranceMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.order.HwOrderUserInsubrance">
+    <id column="user_insubrance_id" jdbcType="BIGINT" property="user_insubrance_id" />
+    <result column="order_user_id" jdbcType="BIGINT" property="order_user_id" />
+    <result column="insubrance_id" jdbcType="BIGINT" property="insubrance_id" />
+    <result column="insurance_price" jdbcType="DECIMAL" property="insurance_price" />
+    <result column="insurance_name" jdbcType="VARCHAR" property="insurance_name" />
+    <result column="insurance_url" jdbcType="VARCHAR" property="insurance_url" />
+    <result column="insurance_company" jdbcType="VARCHAR" property="insurance_company" />
+    <result column="create_tiem" jdbcType="BIGINT" property="create_tiem" />
+    <result column="insurance_dec" jdbcType="LONGVARCHAR" property="insurance_dec" />
+  </resultMap>
+  
+ 
+  <sql id="Base_Column_List">
+    user_insubrance_id, order_user_id, insubrance_id, insurance_price, insurance_name, 
+    insurance_url, insurance_company, create_tiem
+  </sql>
+  <sql id="Blob_Column_List">
+    insurance_dec
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hw_order_user_insubrance
+    where user_insubrance_id = #{user_insubrance_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hw_order_user_insubrance
+    where user_insubrance_id = #{user_insubrance_id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hwt.domain.entity.order.HwOrderUserInsubrance">
+    insert into hw_order_user_insubrance (user_insubrance_id, order_user_id, 
+      insubrance_id, insurance_price, insurance_name, 
+      insurance_url, insurance_company, create_tiem, 
+      insurance_dec)
+    values (#{user_insubrance_id,jdbcType=BIGINT}, #{order_user_id,jdbcType=BIGINT}, 
+      #{insubrance_id,jdbcType=BIGINT}, #{insurance_price,jdbcType=DECIMAL}, #{insurance_name,jdbcType=VARCHAR}, 
+      #{insurance_url,jdbcType=VARCHAR}, #{insurance_company,jdbcType=VARCHAR}, #{create_tiem,jdbcType=BIGINT}, 
+      #{insurance_dec,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.order.HwOrderUserInsubrance">
+    insert into hw_order_user_insubrance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user_insubrance_id != null">
+        user_insubrance_id,
+      </if>
+      <if test="order_user_id != null">
+        order_user_id,
+      </if>
+      <if test="insubrance_id != null">
+        insubrance_id,
+      </if>
+      <if test="insurance_price != null">
+        insurance_price,
+      </if>
+      <if test="insurance_name != null">
+        insurance_name,
+      </if>
+      <if test="insurance_url != null">
+        insurance_url,
+      </if>
+      <if test="insurance_company != null">
+        insurance_company,
+      </if>
+      <if test="create_tiem != null">
+        create_tiem,
+      </if>
+      <if test="insurance_dec != null">
+        insurance_dec,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user_insubrance_id != null">
+        #{user_insubrance_id,jdbcType=BIGINT},
+      </if>
+      <if test="order_user_id != null">
+        #{order_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="insubrance_id != null">
+        #{insubrance_id,jdbcType=BIGINT},
+      </if>
+      <if test="insurance_price != null">
+        #{insurance_price,jdbcType=DECIMAL},
+      </if>
+      <if test="insurance_name != null">
+        #{insurance_name,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance_url != null">
+        #{insurance_url,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance_company != null">
+        #{insurance_company,jdbcType=VARCHAR},
+      </if>
+      <if test="create_tiem != null">
+        #{create_tiem,jdbcType=BIGINT},
+      </if>
+      <if test="insurance_dec != null">
+        #{insurance_dec,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.order.HwOrderUserInsubrance">
+    update hw_order_user_insubrance
+    <set>
+      <if test="order_user_id != null">
+        order_user_id = #{order_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="insubrance_id != null">
+        insubrance_id = #{insubrance_id,jdbcType=BIGINT},
+      </if>
+      <if test="insurance_price != null">
+        insurance_price = #{insurance_price,jdbcType=DECIMAL},
+      </if>
+      <if test="insurance_name != null">
+        insurance_name = #{insurance_name,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance_url != null">
+        insurance_url = #{insurance_url,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance_company != null">
+        insurance_company = #{insurance_company,jdbcType=VARCHAR},
+      </if>
+      <if test="create_tiem != null">
+        create_tiem = #{create_tiem,jdbcType=BIGINT},
+      </if>
+      <if test="insurance_dec != null">
+        insurance_dec = #{insurance_dec,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where user_insubrance_id = #{user_insubrance_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.order.HwOrderUserInsubrance">
+    update hw_order_user_insubrance
+    set order_user_id = #{order_user_id,jdbcType=BIGINT},
+      insubrance_id = #{insubrance_id,jdbcType=BIGINT},
+      insurance_price = #{insurance_price,jdbcType=DECIMAL},
+      insurance_name = #{insurance_name,jdbcType=VARCHAR},
+      insurance_url = #{insurance_url,jdbcType=VARCHAR},
+      insurance_company = #{insurance_company,jdbcType=VARCHAR},
+      create_tiem = #{create_tiem,jdbcType=BIGINT},
+      insurance_dec = #{insurance_dec,jdbcType=LONGVARCHAR}
+    where user_insubrance_id = #{user_insubrance_id,jdbcType=BIGINT}
+  </update>
+   <insert id="insertSelectiveList" parameterType="java.util.List">
+  
+	insert into hw_order_user_insubrance(user_insubrance_id,order_user_id,insubrance_id,insurance_price,insurance_name, 
+		insurance_url,insurance_company,insurance_dec,create_time)
+	values
+	<foreach collection="list" item="item" index="index" separator="," > 
+        (#{item.user_insubrance_id},#{item.order_user_id},#{item.insubrance_id},#{item.insurance_price},
+        #{item.insurance_name},#{item.insurance_url},#{item.insurance_company},#{item.insurance_dec},#{item.create_time}) 
+    </foreach> 
+</insert>
+</mapper>

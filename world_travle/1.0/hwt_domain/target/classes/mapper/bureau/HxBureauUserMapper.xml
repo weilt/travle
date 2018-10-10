@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwt.domain.mapper.bureau.HxBureauUserMapper">
+  <resultMap id="BaseResultMap" type="com.hwt.domain.entity.bureau.HxBureauUser">
+    <id column="bureau_user_id" jdbcType="BIGINT" property="bureau_user_id" />
+    <result column="bureau_user_account" jdbcType="VARCHAR" property="bureau_user_account" />
+    <result column="pwd_salt" jdbcType="VARCHAR" property="pwd_salt" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="bureau_id" jdbcType="BIGINT" property="bureau_id" />
+    <result column="bureau_role_id" jdbcType="BIGINT" property="bureau_role_id" />
+    <result column="create_time" jdbcType="BIGINT" property="create_time" />
+    <result column="im_id" jdbcType="VARCHAR" property="im_id" />
+    <result column="im_token" jdbcType="VARCHAR" property="im_token" />
+    <result column="im_token_time" jdbcType="VARCHAR" property="im_token_time" />
+    <result column="is_legal" jdbcType="INTEGER" property="is_legal" />
+    <result column="is_delete" jdbcType="INTEGER" property="is_delete" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="real_name" jdbcType="VARCHAR" property="real_name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  
+ 
+  <sql id="Base_Column_List">
+    bureau_user_id, bureau_user_account, pwd_salt, password, bureau_id, bureau_role_id, 
+    create_time, im_id, im_token, im_token_time, is_legal, is_delete, phone, real_name, 
+    description, remarks
+  </sql>
+ 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_bureau_user
+    where bureau_user_id = #{bureau_user_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_bureau_user
+    where bureau_user_id = #{bureau_user_id,jdbcType=BIGINT}
+  </delete>
+ 
+  <insert id="insert" parameterType="com.hwt.domain.entity.bureau.HxBureauUser">
+    insert into hx_bureau_user (bureau_user_id, bureau_user_account, 
+      pwd_salt, password, bureau_id, 
+      bureau_role_id, create_time, im_id, 
+      im_token, im_token_time, is_legal, 
+      is_delete, phone, real_name, 
+      description, remarks)
+    values (#{bureau_user_id,jdbcType=BIGINT}, #{bureau_user_account,jdbcType=VARCHAR}, 
+      #{pwd_salt,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{bureau_id,jdbcType=BIGINT}, 
+      #{bureau_role_id,jdbcType=BIGINT}, #{create_time,jdbcType=BIGINT}, #{im_id,jdbcType=VARCHAR}, 
+      #{im_token,jdbcType=VARCHAR}, #{im_token_time,jdbcType=VARCHAR}, #{is_legal,jdbcType=INTEGER}, 
+      #{is_delete,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{real_name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwt.domain.entity.bureau.HxBureauUser">
+    insert into hx_bureau_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bureau_user_id != null">
+        bureau_user_id,
+      </if>
+      <if test="bureau_user_account != null">
+        bureau_user_account,
+      </if>
+      <if test="pwd_salt != null">
+        pwd_salt,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="bureau_id != null">
+        bureau_id,
+      </if>
+      <if test="bureau_role_id != null">
+        bureau_role_id,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="im_id != null">
+        im_id,
+      </if>
+      <if test="im_token != null">
+        im_token,
+      </if>
+      <if test="im_token_time != null">
+        im_token_time,
+      </if>
+      <if test="is_legal != null">
+        is_legal,
+      </if>
+      <if test="is_delete != null">
+        is_delete,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="real_name != null">
+        real_name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bureau_user_id != null">
+        #{bureau_user_id,jdbcType=BIGINT},
+      </if>
+      <if test="bureau_user_account != null">
+        #{bureau_user_account,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd_salt != null">
+        #{pwd_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="bureau_id != null">
+        #{bureau_id,jdbcType=BIGINT},
+      </if>
+      <if test="bureau_role_id != null">
+        #{bureau_role_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="im_id != null">
+        #{im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token != null">
+        #{im_token,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token_time != null">
+        #{im_token_time,jdbcType=VARCHAR},
+      </if>
+      <if test="is_legal != null">
+        #{is_legal,jdbcType=INTEGER},
+      </if>
+      <if test="is_delete != null">
+        #{is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="real_name != null">
+        #{real_name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwt.domain.entity.bureau.HxBureauUser">
+    update hx_bureau_user
+    <set>
+      <if test="bureau_user_account != null">
+        bureau_user_account = #{bureau_user_account,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd_salt != null">
+        pwd_salt = #{pwd_salt,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="bureau_id != null">
+        bureau_id = #{bureau_id,jdbcType=BIGINT},
+      </if>
+      <if test="bureau_role_id != null">
+        bureau_role_id = #{bureau_role_id,jdbcType=BIGINT},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=BIGINT},
+      </if>
+      <if test="im_id != null">
+        im_id = #{im_id,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token != null">
+        im_token = #{im_token,jdbcType=VARCHAR},
+      </if>
+      <if test="im_token_time != null">
+        im_token_time = #{im_token_time,jdbcType=VARCHAR},
+      </if>
+      <if test="is_legal != null">
+        is_legal = #{is_legal,jdbcType=INTEGER},
+      </if>
+      <if test="is_delete != null">
+        is_delete = #{is_delete,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="real_name != null">
+        real_name = #{real_name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bureau_user_id = #{bureau_user_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwt.domain.entity.bureau.HxBureauUser">
+    update hx_bureau_user
+    set bureau_user_account = #{bureau_user_account,jdbcType=VARCHAR},
+      pwd_salt = #{pwd_salt,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      bureau_id = #{bureau_id,jdbcType=BIGINT},
+      bureau_role_id = #{bureau_role_id,jdbcType=BIGINT},
+      create_time = #{create_time,jdbcType=BIGINT},
+      im_id = #{im_id,jdbcType=VARCHAR},
+      im_token = #{im_token,jdbcType=VARCHAR},
+      im_token_time = #{im_token_time,jdbcType=VARCHAR},
+      is_legal = #{is_legal,jdbcType=INTEGER},
+      is_delete = #{is_delete,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      real_name = #{real_name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where bureau_user_id = #{bureau_user_id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据条件获取总条数 -->
+<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="map">
+	select count(bureau_user_id) from hx_bureau_user where 1=1 and is_legal !=1 
+		<if test="bureau_user_account != null and bureau_user_account !=''">
+			and  `bureau_user_account` like '%${bureau_user_account}%'
+		</if>
+		<if test="real_name != null and real_name !=''">
+			and  `real_name` like '%${real_name}%'
+		</if>
+		<if test="phone != null and phone !=''">
+			and  `phone` like '%${phone}%'
+		</if>
+		<if test="is_delete != null and is_delete &gt; 0">
+			and  is_delete = #{is_delete}
+		</if>
+
+</select>
+<!-- 根据条件获取数据 -->
+<select id="queryListByMap" resultType="java.util.Map" parameterType="map">
+	select bureau_user_id, `bureau_user_account`, description, real_name , phone, is_delete ,is_legal 
+		from hx_bureau_user where  1=1 and is_legal !=1 
+		
+		<if test="bureau_user_account != null and bureau_user_account !=''">
+			and  `bureau_user_account` like '%${bureau_user_account}%'
+		</if>
+		<if test="real_name != null and real_name !=''">
+			and  `real_name` like '%${real_name}%'
+		</if>
+		<if test="phone != null and phone !=''">
+			and  `phone` like '%${phone}%'
+		</if>
+		<if test="is_delete != null and is_delete &gt; 0">
+			and  is_delete = #{is_delete}
+		</if>
+		
+		<if test="orderBy!=null and orderBy!=''">
+			order by  <!-- <![CDATA[ #{orderBy} ]]> --> ${orderBy}
+		</if> 
+		
+		 limit #{startNum} ,#{pageSize}
+
+</select>
+</mapper>

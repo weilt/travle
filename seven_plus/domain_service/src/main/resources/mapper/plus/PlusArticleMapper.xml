@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.plus.mapper.PlusArticleMapper">
+
+
+    <insert id="insertPlusArticle"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `plus_article`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="articleTitel!=null">
+                        `article_titel`,
+                    </if>
+                    <if test="articleType!=null">
+                        `article_type`,
+                    </if>
+                    <if test="articleContent!=null">
+                        `article_content`,
+                    </if>
+                    <if test="userId!=null">
+                        `user_id`,
+                    </if>
+                    <if test="contactsPhome!=null">
+                        `contacts_phome`,
+                    </if>
+                    <if test="contactsWechat!=null">
+                        `contacts_wechat`,
+                    </if>
+                    <if test="createTime!=null">
+                        `create_time`,
+                    </if>
+                    <if test="updateTime!=null">
+                        `update_time`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="articleTitel!=null">
+                    #{articleTitel},
+                </if>
+                <if test="articleType!=null">
+                    #{articleType},
+                </if>
+                <if test="articleContent!=null">
+                    #{articleContent},
+                </if>
+                <if test="userId!=null">
+                    #{userId},
+                </if>
+                <if test="contactsPhome!=null">
+                    #{contactsPhome},
+                </if>
+                <if test="contactsWechat!=null">
+                    #{contactsWechat},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime},
+                </if>
+                <if test="updateTime!=null">
+                    #{updateTime},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePlusArticle">
+        UPDATE `plus_article`
+        SET
+        <trim suffixOverrides=",">
+            <if test="articleTitel != null and articleTitel!=''">
+                `article_titel` = #{articleTitel},
+            </if>
+            <if test="articleType != null">
+                `article_type` = #{articleType},
+            </if>
+            <if test="articleContent != null and articleContent!=''">
+                `article_content` = #{articleContent},
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId},
+            </if>
+            <if test="contactsPhome != null and contactsPhome!=''">
+                `contacts_phome` = #{contactsPhome},
+            </if>
+            <if test="contactsWechat != null and contactsWechat!=''">
+                `contacts_wechat` = #{contactsWechat},
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `plus_article`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.articleTitel != null and set.articleTitel!=''">
+            `article_titel` = #{set.articleTitel},
+        </if>
+        <if test="set.articleType != null">
+            `article_type` = #{set.articleType},
+        </if>
+        <if test="set.articleContent != null and set.articleContent!=''">
+            `article_content` = #{set.articleContent},
+        </if>
+        <if test="set.userId != null">
+            `user_id` = #{set.userId},
+        </if>
+        <if test="set.contactsPhome != null and set.contactsPhome!=''">
+            `contacts_phome` = #{set.contactsPhome},
+        </if>
+        <if test="set.contactsWechat != null and set.contactsWechat!=''">
+            `contacts_wechat` = #{set.contactsWechat},
+        </if>
+        <if test="set.createTime != null">
+            `create_time` = #{set.createTime},
+        </if>
+        <if test="set.updateTime != null">
+            `update_time` = #{set.updateTime},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.articleTitelList != null">
+                    `article_titel` in
+                    <foreach collection="where.articleTitelList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyArticleTitel!=null and where.fuzzyArticleTitel.size()>0">
+                (
+                <foreach collection="where.fuzzyArticleTitel"  separator="or" item="item">
+                    `Article_titel` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyArticleTitel!=null and where.rightFuzzyArticleTitel.size()>0">
+                (
+                <foreach collection="where.rightFuzzyArticleTitel"  separator="or" item="item">
+                    `Article_titel` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.articleTypeList != null">
+                    `article_type` in
+                    <foreach collection="where.articleTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.articleTypeSt !=null">
+                `article_type` >= #{where.articleTypeSt} and
+            </if>
+            <if test="where.articleTypeEd!=null">
+                `article_type` &lt;= #{where.articleTypeEd} and
+            </if>
+                <if test="where.articleContentList != null">
+                    `article_content` in
+                    <foreach collection="where.articleContentList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyArticleContent!=null and where.fuzzyArticleContent.size()>0">
+                (
+                <foreach collection="where.fuzzyArticleContent"  separator="or" item="item">
+                    `Article_content` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyArticleContent!=null and where.rightFuzzyArticleContent.size()>0">
+                (
+                <foreach collection="where.rightFuzzyArticleContent"  separator="or" item="item">
+                    `Article_content` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.userIdList != null">
+                    `user_id` in
+                    <foreach collection="where.userIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.userIdSt !=null">
+                `user_id` >= #{where.userIdSt} and
+            </if>
+            <if test="where.userIdEd!=null">
+                `user_id` &lt;= #{where.userIdEd} and
+            </if>
+                <if test="where.contactsPhomeList != null">
+                    `contacts_phome` in
+                    <foreach collection="where.contactsPhomeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyContactsPhome!=null and where.fuzzyContactsPhome.size()>0">
+                (
+                <foreach collection="where.fuzzyContactsPhome"  separator="or" item="item">
+                    `Contacts_phome` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyContactsPhome!=null and where.rightFuzzyContactsPhome.size()>0">
+                (
+                <foreach collection="where.rightFuzzyContactsPhome"  separator="or" item="item">
+                    `Contacts_phome` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.contactsWechatList != null">
+                    `contacts_wechat` in
+                    <foreach collection="where.contactsWechatList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyContactsWechat!=null and where.fuzzyContactsWechat.size()>0">
+                (
+                <foreach collection="where.fuzzyContactsWechat"  separator="or" item="item">
+                    `Contacts_wechat` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyContactsWechat!=null and where.rightFuzzyContactsWechat.size()>0">
+                (
+                <foreach collection="where.rightFuzzyContactsWechat"  separator="or" item="item">
+                    `Contacts_wechat` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.createTimeList != null">
+                    `create_time` in
+                    <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.createTimeSt !=null">
+                `create_time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_time` &lt;= #{where.createTimeEd} and
+            </if>
+                <if test="where.updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="where.updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.updateTimeSt !=null">
+                `update_time` >= #{where.updateTimeSt} and
+            </if>
+            <if test="where.updateTimeEd!=null">
+                `update_time` &lt;= #{where.updateTimeEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.domain.plus.entity.PlusArticle" id="PlusArticleMap">
+        <result property="id" column="id"/>
+        <result property="articleTitel" column="article_titel"/>
+        <result property="articleType" column="article_type"/>
+        <result property="articleContent" column="article_content"/>
+        <result property="userId" column="user_id"/>
+        <result property="contactsPhome" column="contacts_phome"/>
+        <result property="contactsWechat" column="contacts_wechat"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+
+    <!-- 查询分页 -->
+    <select id="queryPlusArticleType" resultMap="PlusArticleMap">
+        select
+        <include refid="allResult"></include>
+        from plus_article
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="type != null and type > 0">
+                article_type = #{type}
+            </if>
+        </trim>
+        order by create_time desc
+        <!-- 分页 -->
+        <if test="last != null and '' != last and last > 0">
+            <![CDATA[
+              LIMIT #{index},#{last}
+            ]]>
+        </if>
+    </select>
+
+    <!-- 查询总条数 -->
+    <select id="countPlusArticleType" resultType="java.lang.Integer">
+        select
+        count(1)
+        from plus_article
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="type != null and type > 0">
+                article_type = #{type}
+            </if>
+        </trim>
+    </select>
+
+
+    <select id="queryPlusArticle" resultMap="PlusArticleMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_article`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="articleTitel != null and articleTitel!=''">
+                `article_titel` = #{articleTitel} and
+            </if>
+            <if test="articleType != null">
+                `article_type` = #{articleType} and
+            </if>
+            <if test="articleContent != null and articleContent!=''">
+                `article_content` = #{articleContent} and
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId} and
+            </if>
+            <if test="contactsPhome != null and contactsPhome!=''">
+                `contacts_phome` = #{contactsPhome} and
+            </if>
+            <if test="contactsWechat != null and contactsWechat!=''">
+                `contacts_wechat` = #{contactsWechat} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusArticle$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="articleTitelList != null">
+                    `article_titel` in
+                    <foreach collection="articleTitelList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyArticleTitel!=null and fuzzyArticleTitel.size()>0">
+                    (
+                    <foreach collection="fuzzyArticleTitel"  separator="or" item="item">
+                        `Article_titel` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyArticleTitel!=null and rightFuzzyArticleTitel.size()>0">
+                    (
+                    <foreach collection="rightFuzzyArticleTitel"  separator="or" item="item">
+                        `Article_titel` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="articleTypeList != null">
+                    `article_type` in
+                    <foreach collection="articleTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="articleTypeSt !=null">
+                    `article_type` >= #{articleTypeSt} and
+                </if>
+                <if test="articleTypeEd!=null">
+                    `article_type` &lt;= #{articleTypeEd} and
+                </if>
+                <if test="articleContentList != null">
+                    `article_content` in
+                    <foreach collection="articleContentList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyArticleContent!=null and fuzzyArticleContent.size()>0">
+                    (
+                    <foreach collection="fuzzyArticleContent"  separator="or" item="item">
+                        `Article_content` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyArticleContent!=null and rightFuzzyArticleContent.size()>0">
+                    (
+                    <foreach collection="rightFuzzyArticleContent"  separator="or" item="item">
+                        `Article_content` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="userIdList != null">
+                    `user_id` in
+                    <foreach collection="userIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="userIdSt !=null">
+                    `user_id` >= #{userIdSt} and
+                </if>
+                <if test="userIdEd!=null">
+                    `user_id` &lt;= #{userIdEd} and
+                </if>
+                <if test="contactsPhomeList != null">
+                    `contacts_phome` in
+                    <foreach collection="contactsPhomeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyContactsPhome!=null and fuzzyContactsPhome.size()>0">
+                    (
+                    <foreach collection="fuzzyContactsPhome"  separator="or" item="item">
+                        `Contacts_phome` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyContactsPhome!=null and rightFuzzyContactsPhome.size()>0">
+                    (
+                    <foreach collection="rightFuzzyContactsPhome"  separator="or" item="item">
+                        `Contacts_phome` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="contactsWechatList != null">
+                    `contacts_wechat` in
+                    <foreach collection="contactsWechatList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyContactsWechat!=null and fuzzyContactsWechat.size()>0">
+                    (
+                    <foreach collection="fuzzyContactsWechat"  separator="or" item="item">
+                        `Contacts_wechat` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyContactsWechat!=null and rightFuzzyContactsWechat.size()>0">
+                    (
+                    <foreach collection="rightFuzzyContactsWechat"  separator="or" item="item">
+                        `Contacts_wechat` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="updateTimeList != null">
+                    `update_time` in
+                    <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPlusArticleLimit1" resultMap="PlusArticleMap">
+        select
+        <include refid="baseResult"></include>
+        from  `plus_article`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="articleTitel != null and articleTitel!=''">
+                `article_titel` = #{articleTitel} and
+            </if>
+            <if test="articleType != null">
+                `article_type` = #{articleType} and
+            </if>
+            <if test="articleContent != null and articleContent!=''">
+                `article_content` = #{articleContent} and
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId} and
+            </if>
+            <if test="contactsPhome != null and contactsPhome!=''">
+                `contacts_phome` = #{contactsPhome} and
+            </if>
+            <if test="contactsWechat != null and contactsWechat!=''">
+                `contacts_wechat` = #{contactsWechat} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime} and
+            </if>
+            <if test = "(_parameter instanceof entity.PlusArticle$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="articleTitelList != null">
+                        `article_titel` in
+                        <foreach collection="articleTitelList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyArticleTitel!=null and fuzzyArticleTitel.size()>0">
+                    (
+                    <foreach collection="fuzzyArticleTitel"  separator="or" item="item">
+                        `Article_titel` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyArticleTitel!=null and rightFuzzyArticleTitel.size()>0">
+                    (
+                    <foreach collection="rightFuzzyArticleTitel"  separator="or" item="item">
+                        `Article_titel` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="articleTypeList != null">
+                        `article_type` in
+                        <foreach collection="articleTypeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="articleTypeSt !=null">
+                    `article_type` >= #{articleTypeSt} and
+                </if>
+                <if test="articleTypeEd!=null">
+                    `article_type` &lt;= #{articleTypeEd} and
+                </if>
+                    <if test="articleContentList != null">
+                        `article_content` in
+                        <foreach collection="articleContentList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyArticleContent!=null and fuzzyArticleContent.size()>0">
+                    (
+                    <foreach collection="fuzzyArticleContent"  separator="or" item="item">
+                        `Article_content` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyArticleContent!=null and rightFuzzyArticleContent.size()>0">
+                    (
+                    <foreach collection="rightFuzzyArticleContent"  separator="or" item="item">
+                        `Article_content` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="userIdList != null">
+                        `user_id` in
+                        <foreach collection="userIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="userIdSt !=null">
+                    `user_id` >= #{userIdSt} and
+                </if>
+                <if test="userIdEd!=null">
+                    `user_id` &lt;= #{userIdEd} and
+                </if>
+                    <if test="contactsPhomeList != null">
+                        `contacts_phome` in
+                        <foreach collection="contactsPhomeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyContactsPhome!=null and fuzzyContactsPhome.size()>0">
+                    (
+                    <foreach collection="fuzzyContactsPhome"  separator="or" item="item">
+                        `Contacts_phome` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyContactsPhome!=null and rightFuzzyContactsPhome.size()>0">
+                    (
+                    <foreach collection="rightFuzzyContactsPhome"  separator="or" item="item">
+                        `Contacts_phome` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="contactsWechatList != null">
+                        `contacts_wechat` in
+                        <foreach collection="contactsWechatList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyContactsWechat!=null and fuzzyContactsWechat.size()>0">
+                    (
+                    <foreach collection="fuzzyContactsWechat"  separator="or" item="item">
+                        `Contacts_wechat` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyContactsWechat!=null and rightFuzzyContactsWechat.size()>0">
+                    (
+                    <foreach collection="rightFuzzyContactsWechat"  separator="or" item="item">
+                        `Contacts_wechat` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="createTimeList != null">
+                        `create_time` in
+                        <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                    <if test="updateTimeList != null">
+                        `update_time` in
+                        <foreach collection="updateTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="updateTimeSt !=null">
+                    `update_time` >= #{updateTimeSt} and
+                </if>
+                <if test="updateTimeEd!=null">
+                    `update_time` &lt;= #{updateTimeEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+
+    <select id="exist" resultType="java.lang.Integer">
+        select count(1) from  plus_article where article_type = #{type}
+    </select>
+
+    <select id="queryCommentByTypeLimit1" resultType="java.lang.String">
+        select  article_content from plus_article where article_type = #{type} order by id desc limit 1
+    </select>
+
+    <select id="queryArticleByType" resultMap="PlusArticleMap">
+        select
+        <include refid="allResult" />
+        from plus_article where article_type = #{type} order by id desc limit 1
+    </select>
+
+    <select id="findById" resultMap="PlusArticleMap">
+        select
+        <include refid="allResult" />
+        from plus_article
+        where  id = #{id}
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `article_titel`,
+        `article_type`,
+        `article_content`,
+        `user_id`,
+        `contacts_phome`,
+        `contacts_wechat`,
+        `create_time`,
+        `update_time`,
+        </trim>
+    </sql>
+
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof entity.PlusArticle$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.articleTitel==true">
+                        `article_titel`,
+                    </if>
+                    <if test="fetchFields.fetchFields.articleType==true">
+                        `article_type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.articleContent==true">
+                        `article_content`,
+                    </if>
+                    <if test="fetchFields.fetchFields.userId==true">
+                        `user_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.contactsPhome==true">
+                        `contacts_phome`,
+                    </if>
+                    <if test="fetchFields.fetchFields.contactsWechat==true">
+                        `contacts_wechat`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createTime==true">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.updateTime==true">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.articleTitel==null">
+                        `article_titel`,
+                    </if>
+                    <if test="fetchFields.excludeFields.articleType==null">
+                        `article_type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.articleContent==null">
+                        `article_content`,
+                    </if>
+                    <if test="fetchFields.excludeFields.userId==null">
+                        `user_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.contactsPhome==null">
+                        `contacts_phome`,
+                    </if>
+                    <if test="fetchFields.excludeFields.contactsWechat==null">
+                        `contacts_wechat`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createTime==null">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.updateTime==null">
+                        `update_time`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof entity.PlusArticle$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

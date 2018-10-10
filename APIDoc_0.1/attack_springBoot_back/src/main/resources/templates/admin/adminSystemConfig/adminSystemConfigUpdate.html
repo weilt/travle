@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改配置新信息</title>
+<link href="/back/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/back/css/select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formbody">
+    <div class="formtitle"><span>基本信息</span></div>
+    	<form id="from">
+    		<input type="hidden" name="id" value="${obj.id?c}"/>
+		    <ul class="forminfo">
+			    <li><label>配置键<b>*</b></label><input value="${obj.configKey!''}" maxlength="20" id="configKey" name="configKey" type="text" class="dfinput" disabled="disabled"/><i style="color: red">键值不能修改</i></li>
+			    <li><label>显示名称<b>*</b></label><input value="${obj.displayName!''}" maxlength="15" id="displayName" name="displayName" type="text" class="dfinput" /><i>名称请控制在15个字以内</i></li>
+			    <li><label>配置值<b>*</b></label><input value="${obj.configValue!''}" maxlength="100" id="configValue" name="configValue" type="text" class="dfinput" /><i>配置值请控制在100个字以内</i></li>
+			    <li><label>配置描述</label>
+			    	<textarea id="description" name="description" rows="3" cols="100" class="textinput" >${obj.description!''}</textarea>
+			    </li>
+			    <li><label>&nbsp;</label><input type="button" class="btn" value="确认修改" onclick="if(chek()) submitForm('/admin/systemconfig/update','from');" /></li>
+		    </ul>
+	    </form>
+    </div>
+    <script src="/back/js/jquery.js" language="JavaScript" ></script>
+	<!-- 弹窗js -->
+    <script src="/back/js/layer/layer.js"></script>
+    <script src="/back/js/base.js"></script>
+    <script type="text/javascript">
+		function chek(){
+			var parameter = ["displayName","configValue"];
+			var type = [null,null,null];
+			var msg = ["显示名称不能为空！","配置值不能为空"];
+			return validation(parameter,type,msg);
+		}
+	</script>
+</body>
+</html>
